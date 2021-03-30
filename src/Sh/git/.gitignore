@@ -1,0 +1,34 @@
+# VIM specific ignore
+*~
+*.swp
+.netrwhist
+.NERDTreeBookmarks
+
+
+#if any log(s)
+*.log
+
+
+# ide related
+.idea/
+.DS_Store
+
+# nodejs specific ignore
+node_modules/
+
+
+*.log
+*.o
+id_rsa
+id_rsa.pub
+
+# Ignore tags
+.git/tags
+./tags
+tags
+
+
+# php specific ignore
+.php_cs.cache
+.phpcs-cache
+.phpunit.result.cache
