@@ -1,0 +1,54 @@
+[submodule "vendor/fugitive"]
+	path = vendor/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vendor/vim-sensible"]
+	path = vendor/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "vendor/vim-scriptease"]
+	path = vendor/vim-scriptease
+	url = https://github.com/tpope/vim-scriptease.git
+[submodule "vendor/vim-pathogen"]
+	path = vendor/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "vendor/vim-commentry"]
+	path = vendor/vim-commentry
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "vendor/vim-surround"]
+	path = vendor/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vendor/papercolor-theme"]
+	path = vendor/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "vendor/fzf"]
+	path = vendor/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "vendor/fzf.vim"]
+	path = vendor/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "vendor/vim-airline"]
+	path = vendor/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vendor/vim-airline-theme"]
+	path = vendor/vim-airline-theme
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "vendor/vim-gitgutter"]
+	path = vendor/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "vendor/vim-markdown"]
+	path = vendor/vim-markdown
+	url = https://github.com/gabrielelana/vim-markdown.git
+[submodule "vendor/nerdtree"]
+	path = vendor/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "vendor/tlib_vim"]
+	path = vendor/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "vendor/vim-addon-mw-utils"]
+	path = vendor/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vendor/vim-snipmate"]
+	path = vendor/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "vendor/vim-snippets"]
+	path = vendor/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
