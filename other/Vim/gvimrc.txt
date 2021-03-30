@@ -1,0 +1,50 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" About:- Visual vimrc configuration
+" Maintainer:- Vallabh Kansagara — @vrkansagara
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has("gui_macvim")
+	" set macvim specific stuff
+
+	"Open into full screen mode
+	au GUIEnter * set fullscreen
+
+	set macligatures
+	set guifont=Fira_Code:h14
+
+	set guioptions-=l
+	set guioptions-=L
+	set guioptions-=r
+	set guioptions-=R
+
+	" This is for mouse scrolling (primarily in GVIM)
+	map <M-Esc>[62~ <MouseDown>
+	map! <M-Esc>[62~ <MouseDown>
+	map <M-Esc>[63~ <MouseUp>
+	map! <M-Esc>[63~ <MouseUp>
+	map <M-Esc>[64~ <S-MouseDown>
+	map! <M-Esc>[64~ <S-MouseDown>
+	map <M-Esc>[65~ <S-MouseUp>
+	map! <M-Esc>[65~ <S-MouseUp>
+	set macligatures
+
+	"No damn bells!
+	set noerrorbells visualbell t_vb=
+else
+
+	set go=agimt
+	set guifont=Hack\ 10
+	set linespace=14
+	set lines=24
+	
+	" Power management savings -- turn off blinking cursor
+	let &guicursor = &guicursor . ",a:blinkon0"
+	
+	" Do not display Toolbar or menus
+	:set go-=T
+	:set go-=m
+	
+	" In gvim, we can safely use the 'fancy' Powerline symbols
+	let g:Powerline_symbols="fancy"
+	let g:Powerline_cache_file="~/.vim/data/tmp/Powerline-gvim.cache"
+endif
