@@ -1,0 +1,9 @@
+#vim specific swap
+*~
+*.swp
+*.log
+bundle/
+data/spell/*
+coc-settings.json
+tags
+.idea
