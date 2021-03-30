@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -e
+
+dir=$(pwd)
+name="tags"
+
+echo "Creating tags for directory '$dir' using alias '$name'"
+
+exec ctags-exuberant -f $dir/$name \
+	--languages=PHP \
+	-R \
+	--totals=yes \
+	--tag-relative=yes \
+	# --fields=+aimS \
+	# --extra=+f \
+	--PHP-kinds=+cdfiv \
+	--exclude="\.svn" \
+	--exclude="\.git/" \
+	--exclude="node_modules/" \
+	--exclude="\DATA" \
+	--exclude="\composer" \
+	--exclude="\composer.phar" \
+	--exclude='*.js' \
+	--exclude='*.min.js' \
+	--exclude='*.phtml' \
+	--exclude='*.blade.php'
+	# --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\/f/' \
+	# --regex-PHP='/abstract class ([^ ]*)/\/c/' \
+	# --regex-PHP='/interface ([^ ]*)/\/c/' \
+	# --regex-PHP='/get([a-z|A-Z|0-9]+)Attribute/\1/' \
+	# --regex-PHP='/scope([a-z|A-Z|0-9]+)/\1/'
+
+echo "ctag generation done. [DONE]"
