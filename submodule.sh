@@ -14,11 +14,25 @@ echo "Submodule installation started at ${CURRENT_DATE}"
 
 cd ~/.vim
 
-# ${SUDO} rm -rf .gitmodules
-# ${SUDO} touch .gitmodules
+read -r -p "Do you want to remove git modules ? [Y/n] " input
+case $input in
+    [yY][eE][sS]|[yY])
+		echo "Install desktop manager"
+		${SUDO} rm -rf ./.git/modules/*
+		${SUDO} rm -rf .gitmodules
+		${SUDO} touch .gitmodules
+ ;;
+    [nN][oO]|[nN])
+ echo "Skipping...XFCE"
+       ;;
+    *)
+ echo "Invalid input..."
+ exit 1
+ ;;
+esac
+
 ${SUDO} rm -rf bundle/*
 ${SUDO} rm -rf vendor/*
-# ${SUDO} rm -rf ./.git/modules/*
 
 echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
 git submodule add -f https://github.com/tpope/vim-pathogen.git vendor/vim-pathogen
@@ -79,7 +93,7 @@ git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippe
 
 # git submodule add -f https://github.com/jlanzarotta/bufexplorer.git vendor/bufexplorer
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
-#git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
+git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
 
 
@@ -87,6 +101,6 @@ git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
-# git submodule update --init --recursive
+git submodule update --init --recursive
 
 echo "Submodule installation recursive dependence [DONE]."
