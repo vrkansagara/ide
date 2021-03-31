@@ -25,7 +25,7 @@ try
 	"(Priority = 3) Override VIM built in functionality(load into 0-9,az,AZ order)
 	for f in split(glob('~/.vim/src/Config/Vim/*.vim'), '\n')
 		if (filereadable(f))
-			"exe 'source' f
+			exe 'source' f
 		else
 			throw "File can not able to read " . f
 		endif
@@ -34,7 +34,7 @@ try
 	"(Priority = 4) Language specific settings configuration,Loading order that doesn't matter
 	for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
 		if (filereadable(f))
-			"exe 'source' f
+			exe 'source' f
 		else
 			throw "File can not able to read " . f
 		endif
