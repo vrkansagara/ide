@@ -16,10 +16,9 @@
 "Use <c-y> to create a new file and its parent directories.
 "Use <c-z> to mark/unmark multiple files and <c-o> to open them.
 
-"let g:ctrlp_map = '<c-p>'
-
 " Quickly find and open a file in the CWD
-let g:ctrlp_map = '<C-f>'
+" let g:ctrlp_map = '<C-f>'
+let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " Quickly find and open a recently opened file
@@ -45,4 +44,3 @@ let g:ctrlp_max_height = 15
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|^\vendor|^\bundle'
 
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
-
