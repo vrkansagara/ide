@@ -15,7 +15,7 @@ echo "Submodule installation started at ${CURRENT_DATE}"
 cd ~/.vim
 
 # ${SUDO} rm -rf .gitmodules
-${SUDO} touch .gitmodules
+# ${SUDO} touch .gitmodules
 ${SUDO} rm -rf bundle/*
 ${SUDO} rm -rf vendor/*
 # ${SUDO} rm -rf ./.git/modules/*
@@ -41,10 +41,10 @@ git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surrou
 echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
 git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
 
-echo "Installation of [ A command-line fuzzy finder   ] ..."
-git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
-echo "Installation of [ fzf heart vim  ] ..."
-git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
+# echo "Installation of [ A command-line fuzzy finder   ] ..."
+# git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
+# echo "Installation of [ fzf heart vim  ] ..."
+# git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
 git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
@@ -78,7 +78,7 @@ git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippe
 # git submodule add -f https://github.com/liuchengxu/vim-clap.git vendor/vim-clap
 
 # git submodule add -f https://github.com/jlanzarotta/bufexplorer.git vendor/bufexplorer
-#git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
+git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 #git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
 
@@ -87,6 +87,6 @@ git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippe
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
-git submodule update --init --recursive
+# git submodule update --init --recursive
 
 echo "Submodule installation recursive dependence [DONE]."
