@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
