@@ -40,7 +40,7 @@ You can simply run bellow command to update, this project
 - Do not use `CTRL+S` this is standard terminal suspension command (Press `CTRL+Q` will resume)
 
 #### VIM Screen
-![image](https://github.com/vrkansagara/ide/blob/master/screenshots/light.png)
+![image](https://github.com/vrkansagara/ide/blob/master/src/Images/light.png)
 
 #### You can !
   I would like take issue and pull request regarding this project and love to answer if anything on this.
