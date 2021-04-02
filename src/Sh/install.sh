@@ -8,19 +8,20 @@ fi
 ${SUDO} apt-get install --reinstall ca-certificates
 
 echo "Application related stuff..."
-${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
+# ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
+${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake python3-dev markdown
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
 ${SUDO} apt-get install -y zsh guake ufw geany
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Installing network realated stuf "
 # Use `nmtui=wireless command line`
 ${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois network-manager
 
 echo "System related stuff "
-${SUDO} apt-get install -y elinks htop ctags vim curl lsb-release
+${SUDO} apt-get install -y elinks htop ctags curl lsb-release
 
 read -r -p "Do you want to install XFCE desktop ? [Y/n] " input
 case $input in
