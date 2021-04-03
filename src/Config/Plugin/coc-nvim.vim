@@ -1,4 +1,5 @@
 " (1) curl -sL install-node.now.sh/lts | bash
+" Debug language server :- :CocList services
 " :CocInstall coc-json coc-tsserver
 "
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
@@ -172,6 +173,7 @@ let g:coc_global_extensions = [
 			\'coc-git',
 			\'coc-clangd',
 			\'coc-sh',
+			\'coc-phpls',
 			\'coc-html',
 			\'coc-css',
 			\'coc-json',
