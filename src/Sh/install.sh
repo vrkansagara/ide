@@ -6,6 +6,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 # System specific stuff
 ${SUDO} apt-get install --reinstall ca-certificates
+${SUDO} apt-get install gcc libncurses5-dev libncursesw5-dev
 
 echo "Application related stuff..."
 # ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
