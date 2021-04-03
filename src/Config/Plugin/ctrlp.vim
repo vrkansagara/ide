@@ -15,6 +15,14 @@
 "Use <c-n>, <c-p> to select the next/previous string in the prompt's history.
 "Use <c-y> to create a new file and its parent directories.
 "Use <c-z> to mark/unmark multiple files and <c-o> to open them.
+" Use this option to specify how the newly created file is to be opened when
+" pressing <c-y>: >
+  " let g:ctrlp_open_new_file = 'v'
+" <
+  " t - in a new tab.
+  " h - in a new horizontal split.
+  " v - in a new vertical split.
+  " r - in the current window.
 
 " Quickly find and open a file in the CWD
 " let g:ctrlp_map = '<C-f>'
