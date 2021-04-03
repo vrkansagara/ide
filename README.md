@@ -52,8 +52,8 @@ command (Press `CTRL+Q` will resume)
 
 #### VIM Screen
 
-![image](https://github.com/vrkansagara/ide/blob/master/src/Images/light.png)
-![image](https://github.com/vrkansagara/ide/blob/master/src/Images/light1.png)
+![Light](src/Images/light.png?raw=true "light")
+![Light1](src/Images/light1.png?raw=true "light1")
 
 #### You can
 
