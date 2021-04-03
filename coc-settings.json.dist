@@ -1,0 +1,19 @@
+{
+	"intelephense.licenceKey": "--------------YOUR----------KEY",
+	"coc.preferences.jumpCommand": "tabe",
+	"sh.enable": true,
+	"snippets.userSnippetsDirectory": "/home/vallabh/.vim/src/Snippets",
+	"snippets.extends": {
+		"php" : [
+			"phtml",
+			"php"
+		],
+		"cpp": ["c"],
+		"javascriptreact": ["javascript"],
+		"typescript": ["javascript","js"]
+	},
+	"snippets.ultisnips.enable": false,
+	"snippets.ultisnips.directories": [
+		"/home/vallabh/.vim/src/Snippets/UltiSnips"
+	]
+}
