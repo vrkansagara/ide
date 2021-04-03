@@ -176,6 +176,7 @@ let g:coc_global_extensions = [
 			\'coc-phpls',
 			\'coc-go',
 			\'coc-julia',
+			\'coc-python',
 			\'coc-html',
 			\'coc-css',
 			\'coc-json',
