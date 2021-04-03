@@ -36,9 +36,9 @@ echo "Set up pathogen for vim run time path."
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 echo "Adding symbolic link for better git tracking of project"
-mv $HOME/.vim/coc-settings.json.dist $HOME/.vim/coc-settings.json
 ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
 ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
+mv $HOME/.vim/coc-settings.json.dist $HOME/.vim/coc-settings.json
 
 # Set sh and bin  directory executable
 ${SUDO} chmod -R +x $HOME/.vim/src/sh/* $HOME/.vim/bin
