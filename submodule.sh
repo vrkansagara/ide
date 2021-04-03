@@ -78,7 +78,7 @@ git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 
 # echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode 
 # and host language servers. ] ..."
-# git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
 #echo "Installation of [ Perform all your vim insert mode completions with Tab  ] ..."
 # git submodule add -f https://github.com/ervandew/supertab.git vendor/supertab
