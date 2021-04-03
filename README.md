@@ -53,8 +53,9 @@ command (Press `CTRL+Q` will resume)
 #### VIM Screen
 
 ![image](https://github.com/vrkansagara/ide/blob/master/src/Images/light.png)
+![image](https://github.com/vrkansagara/ide/blob/master/src/Images/light1.png)
 
 #### You can
 
 I would like take issue and pull request regarding this project and
-love to answer if anything on this.
+love to answer if anything on this. I would be more happy if you have on this.
