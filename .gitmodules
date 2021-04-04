@@ -55,3 +55,6 @@
 [submodule "vendor/coc.nvim"]
 	path = vendor/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
+[submodule "vendor/vim-visual-multi"]
+	path = vendor/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi.git
