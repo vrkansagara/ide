@@ -44,10 +44,14 @@ if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-" like <leader>q quite current file
+" like <leader>q quite/close current file
 nnoremap <leader>q :q<cr>
-" like <leader>Q quite gresss fully
-nnoremap <leader>Q :qa<cr>
+" like <leader>Q quite/close grease fully
+" nnoremap <leader>Q :qa<cr>
+" nnoremap <leader>Q :confirm qall <cr>
+" Close all unchanged files(buffers)
+nnoremap <leader>Q :bufdo! bw<cr>
+" if user want to discard all the change and close all the files then they can use :qa!
 
 " "sudo" save: current file.
 cnoremap w!! w !sudo tee % >/dev/null
