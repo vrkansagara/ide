@@ -9,7 +9,7 @@ ${SUDO} apt-get install --reinstall ca-certificates
 
 echo "Application related stuff..."
 # ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
-${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit
+${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
 ${SUDO} apt-get install -y zsh guake ufw geany
