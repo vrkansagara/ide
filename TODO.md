@@ -5,3 +5,4 @@
 - [ ]snippiest
 - [ ]autosuggestion
 - [ ]colour theme
+- [ ] Add snippiest configuration
