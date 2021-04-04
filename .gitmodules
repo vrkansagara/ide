@@ -49,3 +49,6 @@
 [submodule "vendor/vim-snippets"]
 	path = vendor/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "vendor/emmet-vim"]
+	path = vendor/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
