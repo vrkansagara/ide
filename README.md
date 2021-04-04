@@ -1,4 +1,7 @@
-# My every day editor for all kind of text interface work
+# My editor my way :heart:
+
+
+My every day editor for all kind of text interface work
 
 This editor keep the philosophy of `unix`
 
@@ -36,7 +39,6 @@ You can simply run bellow command to update, this project
 
 - Shortcuts
 - Debug information
-- Do's and Dont's
 - Developer use case
 - Todo / Fix
 - New feature / Removal of things
@@ -59,4 +61,7 @@ command (Press `CTRL+Q` will resume)
 I would like take issue and pull request regarding this project and
 love to answer if anything on this. I would be more happy if you have on this.
 
+
+
+#
 Made with :heart: in India
