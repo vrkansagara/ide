@@ -1,7 +1,9 @@
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About:- Main configuration file for the VIM(init)
 " Maintainer:- Vallabh Kansagara — @vrkansagara
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Alt-letter will now be recognised by vi in a terminal as well as by gvim. The timeout settings are used to work around the ambiguity with escape sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate keys. That should be enough time to distinguish between Meta encoding and hitting two keys.
 let c='a'
 while c <= 'z'
