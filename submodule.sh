@@ -18,8 +18,8 @@ read -r -p "Do you want to remove git modules ? [Y/n]" input
 case $input in
     [yY][eE][sS]|[yY])
 		echo "Install desktop manager"
-		${SUDO} touch .gitmodules
 		${SUDO} rm -rf .gitmodules
+		${SUDO} touch .gitmodules
 		${SUDO} rm -rf ./.git/modules/*
  ;;
     [nN][oO]|[nN])
@@ -87,9 +87,9 @@ echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
-git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
-git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
-git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
+# git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
+# git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
+# git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
 # echo "Installation of [ clap Modern performant 
