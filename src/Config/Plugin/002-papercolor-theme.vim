@@ -1,9 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File name :- 002-papercolor-them.vim
-" About:- Color scheme for the editor.
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-" Note:- Do not rename of file , as It used for priority include name(002)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- Do not rename of file                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable
 
