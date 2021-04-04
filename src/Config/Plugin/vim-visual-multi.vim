@@ -1,4 +1,3 @@
-
 " select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
 " create cursors vertically with Ctrl-Down/Ctrl-Up
 " select one character at a time with Shift-Arrows
@@ -8,6 +7,8 @@
 " press Q to remove current cursor/selection
 " start insert mode with i,a,I,A
 
+let g:VM_leader = ','
+
 let g:VM_mouse_mappings   = 1
 let g:VM_theme            = 'iceblue'
 
@@ -15,4 +16,3 @@ let g:VM_maps = {}
 let g:VM_maps["Undo"]     = 'u'
 let g:VM_maps["Redo"]     = '<C-r>'
 
-let g:VM_leader = ','

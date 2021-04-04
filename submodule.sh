@@ -83,8 +83,8 @@ git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 #echo "Installation of [ Perform all your vim insert mode completions with Tab  ] ..."
 # git submodule add -f https://github.com/ervandew/supertab.git vendor/supertab
 
-#echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
-#git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
+echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
+git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
 git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
