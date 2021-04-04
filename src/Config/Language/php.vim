@@ -1,7 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- PHP related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PHP parser check (CTRL + l)
 autocmd FileType php noremap <C-l> :w!<CR>:! echo -e "\033[0m" /usr/bin/clear && php -l %<CR>
