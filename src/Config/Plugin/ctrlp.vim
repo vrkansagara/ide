@@ -1,9 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File name :- ctrlp.vim
-" About:- Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-" web :-  https://kien.github.io/ctrlp.vim/
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :-,
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Once CtrlP is open:
 "Press <F5> to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.
