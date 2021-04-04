@@ -1,7 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- GCC compiler related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- GCC compiler related configuration.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 au BufEnter *.c compiler gcc
 au BufEnter *.cpp compiler gcc
