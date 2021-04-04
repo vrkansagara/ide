@@ -1,3 +1,9 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " coc-snippets
 "
 " Use :CocList snippets to open snippets list.
