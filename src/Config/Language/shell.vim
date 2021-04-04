@@ -1,7 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- Shell script related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " .sh files as Shell script
 :autocmd BufNewFile,BufRead *.sh set ft=sh
