@@ -54,7 +54,9 @@ command (Press `CTRL+Q` will resume)
 
 #### VIM Screen
 ![Light](src/Images/light.png?raw=true "light")
-![Light1](src/Images/light1.png?raw=true "light1")
+![Light](src/Images/light.png?raw=true "light")
+![LightVim](src/Images/light-vim.png?raw=true "Light VIM")
+![DarkVim](src/Images/dark-vim.png?raw=true "Dark VIM")
 
 #### You can
 
