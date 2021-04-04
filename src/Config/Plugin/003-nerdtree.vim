@@ -1,3 +1,9 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Space conflicts with code folding.
 " This only work with first directory with vim open
 " nnoremap <leader><space> :NERDTreeToggle<cr>
