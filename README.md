@@ -51,7 +51,6 @@ Do not use `CTRL+S` this is standard terminal suspension
 command (Press `CTRL+Q` will resume)
 
 #### VIM Screen
-
 ![Light](src/Images/light.png?raw=true "light")
 ![Light1](src/Images/light1.png?raw=true "light1")
 
