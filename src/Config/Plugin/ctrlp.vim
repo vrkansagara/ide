@@ -34,7 +34,7 @@ let g:ctrlp_cmd = 'CtrlP'
 nnoremap <C-S-f>f :CtrlPMixed<CR>
 
 " Quickly find and open a buffer
-nnoremap <leader>o :CtrlPBuffer<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>. :CtrlPBufTag<cr>
 nnoremap <leader>` :CtrlPMRUFiles<cr>
 
