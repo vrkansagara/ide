@@ -92,6 +92,7 @@ echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snipp
 # git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
+
 # echo "Installation of [ clap Modern performant 
 # generic finder and dispatcher for Vim and NeoVim  ] ..."
 # git submodule add -f https://github.com/liuchengxu/vim-clap.git vendor/vim-clap
@@ -100,7 +101,8 @@ git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippe
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
-
+echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
+git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
 # #git submodule add -f https://github.com/preservim/tagbar.git bundle/tagbar
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
