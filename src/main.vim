@@ -45,9 +45,12 @@ if has("autocmd")
 endif
 
 " like <leader>q quite/close current file
-nnoremap <leader>q :q<cr>
+nnoremap <leader>q :confirm q<cr>
+
 " like <leader>Q quite/close grease fully
 " nnoremap <leader>Q :qa<cr>
+nnoremap <C-q> :confirm qa<cr>
+
 " nnoremap <leader>Q :confirm qall <cr>
 " Close all unchanged files(buffers)
 nnoremap <leader>Q :bufdo! bw<cr>
@@ -178,4 +181,3 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
-
