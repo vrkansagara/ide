@@ -1,8 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- mustache related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " mustache.vim settings
 if has("autocmd")
