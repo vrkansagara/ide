@@ -37,9 +37,9 @@ if executable('ag')
 endif
 
 " Quick command to find todo and debug into codebase
+command Todo Ack! 'TODO|FIXME|CHANGED|BUG|HACK'
 command Debug Ack! 'NOTE|IDEA|INFO|WARNING|CRITICAL'
 
-command Todo Ack! 'TODO|FIXME|CHANGED|BUG|HACK'
 if has("autocmd")
 	" Highlight TODO, FIXME, NOTE, etc.
 	if v:version > 701
