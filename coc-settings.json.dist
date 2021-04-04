@@ -1,5 +1,5 @@
 {
-	"intelephense.licenceKey": "--------------YOUR----------KEY",
+	"intelephense.licenceKey": "-----YOUR-----KEY-----"
 	"coc.preferences.jumpCommand": "tabe",
 	"sh.enable": true,
 	"snippets.userSnippetsDirectory": "/home/vallabh/.vim/src/Snippets",
