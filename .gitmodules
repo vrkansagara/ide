@@ -52,3 +52,6 @@
 [submodule "vendor/emmet-vim"]
 	path = vendor/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vendor/vim-go"]
+	path = vendor/vim-go
+	url = https://github.com/fatih/vim-go.git
