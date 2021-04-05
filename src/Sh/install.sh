@@ -1,9 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
-if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+
+if [ "$(whoami)" != "root" \]; then
+	SUDO=sudo
 fi
+
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :- This is the system setup script.
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 # System specific stuff
 ${SUDO} apt-get install --reinstall ca-certificates
 
@@ -14,7 +25,10 @@ ${SUDO} apt-get install -y libxml2-utils #xmllint
 
 ${SUDO} apt-get install -y zsh guake ufw geany
 
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 echo "Installing network realated stuf "
 # Use `nmtui=wireless command line`
@@ -41,8 +55,6 @@ esac
 ${SUDO} apt-get install -y nginx nginx-full php
 ${SUDO} apt-get autoremove
 
-echo "Install composer2 globaly"
-
 echo "[DONE] My required linux binary installation id done."
 
-exit 0
+exit 1
