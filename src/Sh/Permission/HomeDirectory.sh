@@ -1,15 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
 
-if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+if [ "$(whoami)" != "root" \]; then
+	SUDO=sudo
 fi
 
-echo "$USER is the only one is owning the $HOME directory"
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :- Linux home directory permission, Linux way !
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
 ${SUDO} chown $USER:$USER -Rf $HOME
 
-echo "$USER has all the rights to change $HOME directory"
+echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
 ${SUDO} chmod 0755 -Rf $HOME
 
 echo "SSH must be with golden permission of SSH way"
@@ -30,4 +37,4 @@ fi
 
 echo "[DONE] Linux home directory permission applied."
 
-exit 0
+exit 1
