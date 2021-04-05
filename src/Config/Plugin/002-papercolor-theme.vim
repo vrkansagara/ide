@@ -17,10 +17,6 @@ else
 	colorscheme PaperColor
 endif
 
-	set bg=dark
-	set background=dark
-	colorscheme atom-dark-256
-
 nnoremap <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
 	try
