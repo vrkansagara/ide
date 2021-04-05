@@ -26,6 +26,7 @@ git config --global alias.ls 'config --global -l'
 git config --global alias.ll 'log --oneline'
 git config --global alias.undo 'reset --soft HEAD~1'
 git config --global alias.undoRemove 'reset --hard HEAD~1'
+git config --global alias.current 'rev-parse --verify HEAD'
 
 git config --global alias.co checkout
 git config --global alias.br branch
