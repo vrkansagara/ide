@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- Do not rename of file                                   "
+" Note		 :- Do not rename this file                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable
@@ -12,26 +12,28 @@ if has('gui_running') || &term =='linux' || &t_Co < 256
 	set background=dark
 	colorscheme atom-dark-256
 else
-    set t_Co=256
+	set t_Co=256
 	set background=light
 	colorscheme PaperColor
 endif
 
+	set bg=dark
+	set background=dark
+	colorscheme atom-dark-256
 
 nnoremap <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
 	try
 		if (&background == "light")
+			let g:airline_theme='base16_google'
 			set background=dark
 			colorscheme atom-dark-256
-			let g:airline_theme='dark'
 		else
-			set background=light
 			let g:airline_theme='papercolor'
+			set background=light
 			colorscheme PaperColor
 		endif
 	catch
-        throw exception
-    endtry
-    return 1
+		throw exception
+	endtry
 endfunction
