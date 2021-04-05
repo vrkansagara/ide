@@ -40,6 +40,12 @@ try
 		endif
 	endfor
 
+
+	" Set default color scheme
+	set bg=dark
+	set background=dark
+	colorscheme atom-dark-256
+
 	" Before passing access to user , it must be light background.
 	echo "Do one thing and do it well - Vallabh Kansagara (VRKANSAGARA)."
 
