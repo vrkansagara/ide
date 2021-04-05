@@ -6,9 +6,14 @@ if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
+
+if ! command -v ls &> /dev/null
+then
+	echo "ls command not found"
+fi
+
 echo $0
 
 full_path=$(realpath $0)
