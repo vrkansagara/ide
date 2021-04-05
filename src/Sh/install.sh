@@ -52,6 +52,11 @@ case $input in
  ;;
 esac
 
+cd /tmp
+wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz 
+${SUDO} rm -rf /usr/local/go
+${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+
 ${SUDO} apt-get install -y nginx nginx-full php
 ${SUDO} apt-get autoremove
 
