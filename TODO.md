@@ -1,8 +1,8 @@
 # List to todo
 
-- [ ] Add multi select cursor
-- [ ] code completion
-- [ ] snippiest
-- [ ] autosuggestion
-- [ ] colour theme
-- [ ] Add snippiest configuration
+- [x] Add multi select cursor
+- [x] code completion
+- [x] snippiest
+- [x] autosuggestion
+- [x] colour theme
+- [x] Add snippiest configuration
