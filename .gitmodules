@@ -40,18 +40,15 @@
 [submodule "vendor/vim-visual-multi"]
 	path = vendor/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
+[submodule "vendor/vim-snippets"]
+	path = vendor/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
 [submodule "vendor/ctrlp.vim"]
 	path = vendor/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "vendor/ack.vim"]
 	path = vendor/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vendor/vim-snippets"]
-	path = vendor/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
 [submodule "vendor/emmet-vim"]
 	path = vendor/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
-[submodule "bundle/tagbar"]
-	path = bundle/tagbar
-	url = https://github.com/preservim/tagbar.git
