@@ -14,7 +14,7 @@ echo "Sub-module installation started at ${CURRENT_DATE}"
 
 cd ~/.vim
 
-read -r -p "Do you want to remove git modules ? [Y/n]" input
+read -r -p "Do you want to remove git modules ? [Y/n] " input
 case $input in
     [yY][eE][sS]|[yY])
 		echo "Install desktop manager"
@@ -23,7 +23,7 @@ case $input in
 		${SUDO} rm -rf ./.git/modules/*
  ;;
     [nN][oO]|[nN])
- echo "Skipping...XFCE"
+ echo "Skipping...Removal of git sub module"
        ;;
     *)
  echo "Invalid input..."
