@@ -104,7 +104,8 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
-# #git submodule add -f https://github.com/preservim/tagbar.git bundle/tagbar
+# echo "Installation of [ Vim plugin that displays tags in a window, ordered by scope  ] ..."
+# git submodule add -f https://github.com/preservim/tagbar.git bundle/tagbar
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
