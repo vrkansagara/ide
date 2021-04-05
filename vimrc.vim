@@ -40,7 +40,6 @@ try
 		endif
 	endfor
 
-
 	" Set default color scheme
 	set bg=dark
 	set background=dark
