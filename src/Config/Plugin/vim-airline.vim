@@ -13,14 +13,13 @@
 "  : 20    - current column 20
 
 let g:airline_disable_statusline=0
-let g:airline_theme='papercolor'
 
-" First line ensures we can have full spectrum of colors
-if has('gui_running') || &term =='linux' || &t_Co < 256
-	let g:airline_solarized_bg='dark'
-else
-	let g:airline_solarized_bg='light'
-endif
+" " First line ensures we can have full spectrum of colors
+" if has('gui_running') || &term =='linux' || &t_Co < 256
+" 	let g:airline_solarized_bg='dark'
+" else
+" 	let g:airline_solarized_bg='light'
+" endif
 
 let g:airline#extensions#tagbar#enabled=1
 let g:airline#extensions#tagbar#flags= 'f'
