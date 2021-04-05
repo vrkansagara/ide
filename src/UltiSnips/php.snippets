@@ -44,3 +44,14 @@ endsnippet
 snippet microtimeStart "Microtime start"
 define('PHP_START', microtime(true));
 endsnippet
+
+snippet test "PHPUnit test dock block"
+/** @test */
+endsnippet
+
+snippet testPubf "PHPUnit public functin"
+/** @test */
+public function ${1}(){
+	${2}
+}
+endsnippet
