@@ -40,23 +40,23 @@ try
 		endif
 	endfor
 
-	" Set default color scheme
-	set bg=dark
-	set background=dark
-	colorscheme atom-dark-256
-	let g:airline_theme='base16_google'
-
 	" Before passing access to user , it must be light background.
 	echo "Do one thing and do it well - Vallabh Kansagara (VRKANSAGARA)."
 
 catch /.*/
+
 	call VimErrorCaught()
+
 catch /^\d\+$/
+
 	echo  "\n Error =========@START\n\n"
 	echo "Caught error: " . v:exception
 	echo "Caught error: " . v:errmsg
 	echo  "\n Error =========@END\n"
+
 finally
+	
 	" This is for fail back.
 	" echo "Finally block called."
+	
 endtry
