@@ -14,8 +14,8 @@ noremap <leader><space> :call NERDTreeToggleInCurDir()<cr>
 noremap <A-p> :NERDTreeToggle<cr>
 
 
-nnoremap <leader>nb :NERDTreeFromBookmark
-nnoremap <leader>nf :NERDTreeFind<cr>
+" nnoremap <leader>nb :NERDTreeFromBookmark
+" nnoremap <leader>nf :NERDTreeFind<cr>
 
 let NERDTreeMinimalUI = 3
 let NERDTreeDirArrows = 1
@@ -25,13 +25,13 @@ let NERDTreeDirArrowCollapsible = '-'
 
 let NERDTreeIgnore = ['.netrwhist','.NERDTreeBookmarks','^node_modules$','^.DS_Store$','^.idea$','^.git$','^.coffee$','^vendor$','^bundle$']
 
-" Let alwayse open bookmark with file explore
+" Let always open bookmark with file explore
 let NERDTreeShowBookmarks=1
 
 " This will look for the opening of vim directory(git ignore global)
-if filereadable(".NERDTreeBookmarks")
-    let g:NERDTreeBookmarksFile = ".NERDTreeBookmarks"
-endif
+" if filereadable(".NERDTreeBookmarks")
+    " let g:NERDTreeBookmarksFile = ".NERDTreeBookmarks"
+" endif
 
 " Open explorer to the right side
 let NERDTreeWinPos = "right"
