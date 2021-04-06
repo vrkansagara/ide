@@ -55,3 +55,20 @@ public function ${1}(){
 	${2}
 }
 endsnippet
+
+snippet lresponse "Laravel response"
+$payLoad = [
+	'message' => '${1}',
+	'data' => ${2}
+];
+return $this->response($payLoad);
+endsnippet
+
+snippet tryCatch "MytryCatch"
+try {
+	${1}
+} catch (Exception $exception) {
+	throw $exception;
+	${2}
+}
+endsnippet
