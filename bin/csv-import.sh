@@ -1,3 +1,29 @@
+#!/usr/bin/env bash
+
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
+export DEBIAN_FRONTEND=noninteractive
+
+if [ "$(whoami)" != "root" \]; then
+	SUDO=sudo
+fi
+
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :- 
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+# Performance Tip(1) :- More over you can define table definition into Mysql after first import
+# select * from tableName procedure analyse()
+# 
+# Performance Tip(2) :- open CSV with excel and do column wise = max(len(RANGE:RANGE)) 
+# and assign value to data type in mysql
+# 
+# I personaly like (2) approach to complete this kind of job with +5 increment of data length for feature.
+
+
 #!/bin/bash
 
 # show commands being executed, per debug
@@ -61,7 +87,7 @@ eof
 	  mysql --defaults-extra-file=$credentialsFile $_db --execute="alter table \`$_table_name\` add column $_header text"
   done
 
-  # import csv into mysql
+  # import csv into mysql and change parameter as per CSV format.
   # --fields-enclosed-by='"' \
   mysqlimport \
 	  --ignore-lines=1 \
