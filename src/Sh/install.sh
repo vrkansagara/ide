@@ -23,7 +23,7 @@ echo "Application related stuff..."
 ${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
-${SUDO} apt-get install -y zsh guake ufw geany
+${SUDO} apt-get install -y zsh guake ufw geany httrack
 
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
