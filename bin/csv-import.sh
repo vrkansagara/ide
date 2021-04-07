@@ -47,6 +47,7 @@ do
   # Ensure table exists
   mysql --defaults-extra-file=$credentialsFile  $_db << eof
 	-- DROP TABLE IF EXISTS \`$_table_name\`;
+	-- TRUNCATE TABLE \`$_table_name\`;
 	CREATE TABLE IF NOT EXISTS \`$_table_name\` (
 	  id int(11) NOT NULL auto_increment,
 	  PRIMARY KEY  (id)
