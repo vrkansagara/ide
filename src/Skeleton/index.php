@@ -10,3 +10,5 @@ $array = array();
 var_dump($dt);
 
 echo sprintf('[ %s ] take %2.5f milliseconds  to complete',$_SERVER['PHP_SELF'],microtime(true)-PHP_START). PHP_EOL;
+
+// phpinfo();
