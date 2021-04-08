@@ -30,7 +30,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 # set -x
 
 # define database connectivity
-_db="csv"
+_db="csv_original"
 _db_user="root"
 _db_password="toor"
 _db_host="localhost"
