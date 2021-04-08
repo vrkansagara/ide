@@ -35,6 +35,7 @@ let NERDTreeShowBookmarks=1
 
 " Open explorer to the right side
 let NERDTreeWinPos = "right"
+let NERDTreeWinSize=70
 
 " Close the pan once file is open
 let NERDTreeQuitOnOpen=3

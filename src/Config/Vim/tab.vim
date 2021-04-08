@@ -20,10 +20,11 @@ nnoremap <C-Left> :tabp<CR>
 inoremap <C-Left> <ESC>:tabp<CR>
 nnoremap <C-Right> :tabn<CR>
 inoremap <C-Right> <ESC>:tabn<CR>
-nnoremap <C-Up> :tabfirst<CR>
-inoremap <C-Up> <ESC>:tabfirst<CR>
-nnoremap <C-Down> :tablast<CR>
-inoremap <C-Down> <ESC>:tablast<CR>
+" Conflicts with multi cursor
+" nnoremap <C-Up> :tabfirst<CR>
+" inoremap <C-Up> <ESC>:tabfirst<CR>
+" nnoremap <C-Down> :tablast<CR>
+" inoremap <C-Down> <ESC>:tablast<CR>
 
 " In tty right and left key will not work
 nnoremap <leader>tp :tabp<CR>

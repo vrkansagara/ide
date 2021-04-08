@@ -5,7 +5,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PHP parser check (CTRL + l)
-autocmd FileType php noremap <C-l> :w!<cr>:! echo -e "\033[0m" && /usr/bin/clear<CR>:!php -l %<CR>
+" autocmd FileType php noremap <C-l> :w!<cr>:! echo -e "\033[0m" && /usr/bin/clear<CR>:!php -l %<CR>
 
 " run file with PHP CLI (CTRL-m) ( called as ENTER) 
 autocmd FileType php noremap <C-m> :w!<CR>:!php %<CR>
