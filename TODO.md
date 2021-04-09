@@ -6,3 +6,4 @@
 - [x] autosuggestion
 - [x] colour theme
 - [x] Add snippiest configuration
+- [ ] Vim terminal scroll up and down should work
