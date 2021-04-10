@@ -1,9 +1,3 @@
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " (1) curl -sL install-node.now.sh/lts | bash
 " Debug language server :- :CocList services
 " :CocInstall coc-json coc-tsserver

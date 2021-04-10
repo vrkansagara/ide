@@ -10,8 +10,8 @@
 " run file with PHP CLI (CTRL-m) ( called as ENTER) 
 autocmd FileType php noremap <C-m> :w!<CR>:!php %<CR>
 
-autocmd FileType php  nnoremap <F8> :call PhpCsCheck()<CR>
-autocmd FileType php  nnoremap <F9> :call PhpCsFix()<CR>
+" autocmd FileType php  nnoremap <F8> :call PhpCsCheck()<CR>
+" autocmd FileType php  nnoremap <F9> :call PhpCsFix()<CR>
 
 " .inc, phpt, phtml, phps files as PHP
 autocmd BufNewFile,BufRead *.inc set ft=php
