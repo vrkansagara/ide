@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 set -e
+
 set -x  Used to debug the script
 
 if [ "$(whoami)" != "root" ]; then
@@ -106,6 +106,9 @@ git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
 echo "Installation of [ Go development plugin for Vim ] ..."
 git submodule add -f https://github.com/fatih/vim-go.git vendor/vim-go
+
+echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
+git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
 
 # echo "Installation of [ Vim plugin that displays tags in a window, ordered by scope  ] ..."
 # git submodule add -f https://github.com/preservim/tagbar.git bundle/tagbar
