@@ -17,8 +17,6 @@ set timeout ttimeoutlen=50
 map! kj <Esc>
 inoremap kj <Esc>
 
-set linespace=60
-
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 
