@@ -1,7 +1,7 @@
 set foldmethod=indent
 set foldnestmax=10
-set nofoldenable " All folds are open
-" set foldenable   " All folds are closed as per foldlevel
+" set nofoldenable " All folds are open
+set foldenable   " All folds are closed as per foldlevel
 set foldlevel=1
 
 
