@@ -42,10 +42,11 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_lazy_update = 1
 let g:ctrlp_use_caching = 1
 
-"let g:ctrlp_prompt_mappings = {
-"    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-"    \ 'AcceptSelection("t")': ['<cr>'],
-"    \ }
+"This will require to avoid duplication of tabs or open as buffer
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
 
 let g:ctrlp_max_height = 15
 let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|^\vendor|^\bundle'
