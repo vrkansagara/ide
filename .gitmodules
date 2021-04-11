@@ -55,3 +55,6 @@
 [submodule "vendor/vim-go"]
 	path = vendor/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "vendor/vdebug"]
+	path = vendor/vdebug
+	url = https://github.com/vim-vdebug/vdebug.git
