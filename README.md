@@ -1,8 +1,6 @@
 # My editor my way :heart:
 
-My every day editor for all kind of text interface work
-
-This editor keep the philosophy of `unix`
+My every day editor for all kind of text interface work, This editor keep the philosophy of `unix`
 
 ## Do one thing and do it well
 
@@ -17,11 +15,11 @@ Developer User :- If there is vim there is geek.
 You can install this via the command-line with
 either `curl`, `wget` or another similar tool.
 
-| Method    | Command                                                                                     |
+| Method    | Command |
 | :-------- | :------------------------------------------------------------------------------------------ |
-| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"` |
-| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"`   |
-| **fetch** | `sh -c "$(fetch -o - https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"` |
+| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"`|
+| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"`|
+| **fetch** | `sh -c "$(fetch -o - https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"`|
 
 ### How can I update this project
 
