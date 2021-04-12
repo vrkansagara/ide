@@ -26,21 +26,31 @@ either `curl`, `wget` or another similar tool.
 You can simply run bellow command to update, this project
 
 ```bash
- cd $HOME/.vim
- git stash
- git pull --rebase
- sh ./submodule.sh
+cd $HOME/.vim
+git stash
+git pull --rebase
+sh ./submodule.sh
 ```
 
 #### Documents
 
 [Docs](src/Docs/README.md)
 
+## Do's and dont's
+
+Do not use `CTRL+S` this is standard terminal suspension
+command (Press `CTRL+Q` will resume)
+
+## VIM Screen
+![Light](src/Images/light.png?raw=true "light")
+![Light](src/Images/light.png?raw=true "light")
+![LightVim](src/Images/light-vim.png?raw=true "Light VIM")
+![DarkVim](src/Images/dark-vim.png?raw=true "Dark VIM")
+
 ### You can
 
 I would like take issue and pull request regarding this project and
 love to answer if anything on this. I would be more happy if you have on this.
-
 
 #
 Made with :heart: in India 
