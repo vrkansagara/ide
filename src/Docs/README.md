@@ -22,3 +22,24 @@ W – go to the next WORD.
 H – Go to the first line of current screen.
 M – Go to the middle line of current screen.
 L – Go to the last line of current screen.
+
+## Do's and dont's
+
+Do not use `CTRL+S` this is standard terminal suspension
+command (Press `CTRL+Q` will resume)
+
+#### Awesome for this project
+
+- Shortcuts
+- Debug information
+- Developer use case
+- Todo / Fix
+- New feature / Removal of things
+
+## VIM Screen
+![Light](Images/light.png?raw=true "light")
+![Light](Images/light.png?raw=true "light")
+![LightVim](Images/light-vim.png?raw=true "Light VIM")
+![DarkVim](Images/dark-vim.png?raw=true "Dark VIM")
+
+
