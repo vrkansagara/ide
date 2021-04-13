@@ -1,10 +1,14 @@
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- Main configuration file for the VIM(init)
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Note		 :- Main configuration file for the VIM(init)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Alt-letter will now be recognised by vi in a terminal as well as by gvim. The timeout settings are used to work around the ambiguity with escape sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate keys. That should be enough time to distinguish between Meta encoding and hitting two keys.
+" Alt-letter will now be recognized by vi in a terminal as well as by gvim. 
+" The timeout settings are used to work around the ambiguity with escape 
+" sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than
+" between Meta encoding and hitting two keys.
+" 50ms will count as separate keys. That should be enough time to distinguish 
 let c='a'
 while c <= 'z'
   exec "set <A-".c.">=\e".c
@@ -40,6 +44,14 @@ nnoremap <Right> :vertical resize +5<CR>
 nnoremap <Up> :resize -5<CR>
 nnoremap <Down> :resize +5<CR>
 
+" Vim move lime up and down using j and k
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " vimcasts #24
 " Auto-reload vimrc on save
 if has("autocmd")
@@ -65,31 +77,6 @@ nnoremap <leader>w :w<cr>
 " w! Save current file with sudo access
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
-
-" Yank text to the clipboard easier (y = yank|copy , d = delete|cut, p = paste) (Register
-" *=window, + = linux) - In normal mode, one can use p to paste after the cursor, or P to paste before the cursor.
-if has('clipboard')
-	if has("win32")
-		"Windows options here
-		noremap <leader>y "*y
-		noremap <leader>yy "*Y
-		noremap <leader>p "*p
-	else
-		if has("unix")
-			let s:uname = system("uname")
-			if s:uname == "Darwin\n"
-				"Mac options here
-			elseif s:uname == "Linux\n"
-				" Linux stuff
-				noremap <leader>y "+y
-				noremap <leader>yy "+Y
-				noremap <leader>p "+p
-			endif
-		endif
-	endif
-else
-	echomsg "Clipboard functionality is not present with current VIM"
-endif
 
 " Use UTF-8 encoding
 set encoding=utf-8
@@ -165,20 +152,11 @@ set laststatus=2
 set scrolljump=5
 set scrolloff=3
 
-" Vim move lime up and down using j and k
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
-
-
 " nnoremap <F5> yi":let @/ = @"<CR>
 " Set column size to 80 character (standard size)
-" " Make it obvious where 80 characters is ( Reformat it:gq)
-" set textwidth=80
-" set colorcolumn=+1
+" " Make it obvious where 80 characters is ( Reformat it:gq)                   i
+set textwidth=80
+set colorcolumn=+1
 " au BufRead,BufNewFile * setlocal textwidth=80
 
 " set complete=.,w,b,u,t,kspell
