@@ -25,7 +25,7 @@ let g:airline_theme='base16_google'
 " Let syntax enable after colour scheme apply for better highlight
 syntax enable
 
-" nnoremap <F5> :call ChangeColorScheme()<CR>
+nnoremap <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
 	try
 		if (&background == "light")
