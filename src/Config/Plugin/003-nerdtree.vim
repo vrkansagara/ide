@@ -23,7 +23,16 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeDirArrowExpandable = '+'
 let NERDTreeDirArrowCollapsible = '-'
 
-let NERDTreeIgnore = ['.netrwhist','.NERDTreeBookmarks','^node_modules$','^.DS_Store$','^.idea$','^.git$','^.coffee$','^vendor$','^bundle$']
+let NERDTreeIgnore = [
+			\'.netrwhist',
+			\ '.NERDTreeBookmarks',
+			\ '^node_modules$',
+			\ '^.DS_Store$',
+			\ '^.idea$',
+			\ '^.git$',
+			\ '^.coffee$',
+			\ '^vendor$',
+			\ '^bundle$']
 
 " Let always open bookmark with file explore
 let NERDTreeShowBookmarks=1
@@ -35,7 +44,7 @@ let NERDTreeShowBookmarks=1
 
 " Open explorer to the right side
 let NERDTreeWinPos = "right"
-let NERDTreeWinSize=70
+let NERDTreeWinSize=55
 
 " Close the pan once file is open
 let NERDTreeQuitOnOpen=3
