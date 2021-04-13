@@ -14,7 +14,8 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+# -- SET GLOBAL slow_query_log = 'ON';
+# select @@slow_query_log
 # Performance Tip(1) :- More over you can define table definition into Mysql after first import
 # select * from tableName procedure analyse()
 # 
