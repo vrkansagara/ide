@@ -9,9 +9,6 @@
 - [ ] Vim terminal scroll up and down should work
 
 
-
-
-
 ## Print VIM environment
 :abbreviate   - list abbreviations
 :args         - argument list
