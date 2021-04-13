@@ -80,9 +80,6 @@ git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 # and host language servers. ] ..."
 git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
-#echo "Installation of [ Perform all your vim insert mode completions with Tab  ] ..."
-# git submodule add -f https://github.com/ervandew/supertab.git vendor/supertab
-
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
@@ -104,11 +101,11 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
-echo "Installation of [ Go development plugin for Vim ] ..."
-git submodule add -f https://github.com/fatih/vim-go.git vendor/vim-go
+# echo "Installation of [ Go development plugin for Vim ] ..."
+# git submodule add -f https://github.com/fatih/vim-go.git vendor/vim-go
 
-echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
-git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
+# echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
+# git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
 
 # echo "Installation of [ Vim plugin that displays tags in a window, ordered by scope  ] ..."
 # git submodule add -f https://github.com/preservim/tagbar.git bundle/tagbar
