@@ -7,7 +7,8 @@
 - [x] colour theme
 - [x] Add snippiest configuration
 - [ ] Vim terminal scroll up and down should work
-
+- [x] While pasting long data into vim it taking log time (i.e. index.html content past into vim)
+resolved by using `<leader>p`
 
 ## Print VIM environment
 :abbreviate   - list abbreviations
