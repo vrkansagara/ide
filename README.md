@@ -35,13 +35,26 @@ You can simply run bellow command to update, this project
  sh ./submodule.sh
 ```
 
-#### Awesome awesome for this project
+#### Awesome for this project
 
 - Shortcuts
 - Debug information
 - Developer use case
 - Todo / Fix
 - New feature / Removal of things
+
+## Find file(s) - CtrlP
+
+~~~bash
+<Ctrl+P> Find file(s)
+
+<leader>b Find into curent buffer
+
+<leader>. Find ctags symbole
+
+<leader>` Most recent open fil(s)
+
+~~~
 
 #### Documents
 
