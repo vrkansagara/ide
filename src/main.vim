@@ -21,6 +21,9 @@ set timeout ttimeoutlen=50
 map! kj <Esc>
 inoremap kj <Esc>
 
+" Switch between the last two files (press two time leader)
+nnoremap <leader><leader> <C-^>
+
  " nnoremap <silent> <F1> Already set with guake terminal 
 
 " Do you absolutely hate trailing white space or tabs in your files? (Yes =
@@ -168,9 +171,6 @@ set scrolloff=3
 set textwidth=80
 set colorcolumn=+1
 au BufRead,BufNewFile *.md vim setlocal textwidth=80
-
-" Switch between the last two files
-nnoremap <leader><leader> <C-^>
 "
 "
 " set complete=.,w,b,u,t,kspell
