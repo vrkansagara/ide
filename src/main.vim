@@ -1,14 +1,14 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Alt-letter will now be recognized by vi in a terminal as well as by gvim. 
-" The timeout settings are used to work around the ambiguity with escape 
+" Alt-letter will now be recognized by vi in a terminal as well as by gvim.
+" The timeout settings are used to work around the ambiguity with escape
 " sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than
 " between Meta encoding and hitting two keys.
-" 50ms will count as separate keys. That should be enough time to distinguish 
+" 50ms will count as separate keys. That should be enough time to distinguish
 let c='a'
 while c <= 'z'
   exec "set <A-".c.">=\e".c
@@ -20,6 +20,17 @@ set timeout ttimeoutlen=50
 " The escape key is a long ways away. This maps it to the sequence 'kj'
 map! kj <Esc>
 inoremap kj <Esc>
+
+ " nnoremap <silent> <F1> Already set with guake terminal 
+
+" Do you absolutely hate trailing white space or tabs in your files? (Yes =
+" Press F2)
+nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
+
+" vim regex highlight (i.e. regexPattern = "nnoremap" ) [Require :set hlsearch]
+nnoremap <silent> <F3> yi":let @/ = @"<CR>
+
+" Press <F12> for custom termina inside vim 
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
@@ -152,12 +163,15 @@ set laststatus=2
 set scrolljump=5
 set scrolloff=3
 
-" nnoremap <F5> yi":let @/ = @"<CR>
 " Set column size to 80 character (standard size)
 " " Make it obvious where 80 characters is ( Reformat it:gq)                   i
 set textwidth=80
 set colorcolumn=+1
-" au BufRead,BufNewFile * setlocal textwidth=80
+au BufRead,BufNewFile *.md vim setlocal textwidth=80
 
+" Switch between the last two files
+nnoremap <leader><leader> <C-^>
+"
+"
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
