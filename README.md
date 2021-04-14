@@ -71,6 +71,7 @@ command (Press `CTRL+Q` will resume)
 ![Light](src/Images/light.png?raw=true "light")
 ![LightVim](src/Images/light-vim.png?raw=true "Light VIM")
 ![DarkVim](src/Images/dark-vim.png?raw=true "Dark VIM")
+![VimTerminal](src/Images/vim-terminal.png?raw=true "VimTerminal")
 
 #### You can
 
