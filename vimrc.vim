@@ -10,6 +10,12 @@ endfunction
 
 try
 
+	"(Priority = 0) Initialization vim path loader
+	if empty(glob('~/.vim/autoload/pathogen.vim'))
+		silent !mkdir -p ~/.vim/autoload
+		silent !curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim 
+	endif
+	
 	"(Priority = 1) Initialization of vim
 	source ~/.vim/src/main.vim
 
