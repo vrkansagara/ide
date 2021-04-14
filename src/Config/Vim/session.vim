@@ -7,6 +7,12 @@
 " Remember settings between sessions
 " set viminfo='400,f1,"500,h,/100,:100,<500
 
+" Why don't my plugins load when I use Vim sessions?
+set sessionoptions-=options
+
+" Why terminal window load when I use Vim built in terminal ?
+set sessionoptions-=terminal
+
 " Ref:- https://stackoverflow.com/a/31978241/2627408
 function! MakeSession()
 	let b:sessiondir = $HOME . "/.vim/data/sessions" . getcwd()
