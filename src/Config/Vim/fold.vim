@@ -25,4 +25,15 @@ autocmd FileType python setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s
 autocmd FileType php	setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
 autocmd FileType php	setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
 
+" Toggle method used for folding
+nnoremap mm :call ToggleFoldMethod()<CR>
 
+function! ToggleFoldMethod()
+    if &foldmethod == 'indent'
+        set foldmethod=marker
+        echo "foldmethod=marker"
+    else
+        set foldmethod=indent
+        echo "foldmethod=indent"
+    endif
+endfunction
