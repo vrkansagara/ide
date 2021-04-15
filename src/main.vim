@@ -170,8 +170,8 @@ set scrolloff=3
 " " Make it obvious where 80 characters is ( Reformat it:gq)                   i
 set textwidth=80
 set colorcolumn=+1
-au BufRead,BufNewFile *.md vim setlocal textwidth=80
-"
-"
+" au BufRead,BufNewFile *.md vim setlocal textwidth=80
+
+
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
