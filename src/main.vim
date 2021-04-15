@@ -24,7 +24,7 @@ inoremap kj <Esc>
 " Switch between the last two files (press two time leader)
 nnoremap <leader><leader> <C-^>
 
- " nnoremap <silent> <F1> Already set with guake terminal 
+ " nnoremap <silent> <F1> Already set with guake terminal
 
 " Do you absolutely hate trailing white space or tabs in your files? (Yes =
 " Press F2)
@@ -33,7 +33,7 @@ nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:
 " vim regex highlight (i.e. regexPattern = "nnoremap" ) [Require :set hlsearch]
 nnoremap <silent> <F3> yi":let @/ = @"<CR>
 
-" Press <F12> for custom termina inside vim 
+" Press <F12> for custom termina inside vim
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
