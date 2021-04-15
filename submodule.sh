@@ -14,9 +14,8 @@ echo "Sub-module installation started at ${CURRENT_DATE}"
 
 cd ~/.vim
 
-read -r -p "Do you want to remove git modules ? [Y/n] " input
-case $input in
-    [yY][eE][sS]|[yY])
+read -r -p "Do you want to remove git modules[Y/n]?" input
+case $input in [yY][eE][sS]|[yY])
 		echo "Install desktop manager"
 		${SUDO} rm -rf .gitmodules
 		${SUDO} touch .gitmodules
