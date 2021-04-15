@@ -1,0 +1,54 @@
+{
+	"name": "vrkansagara/ide",
+	"description": "IDE = UNIX + VIM",
+	"keywords": [
+		"ide",
+		"vim",
+		"linux",
+		"unix"
+	],
+	"homepage": "https://vrkansagara.in/",
+	"type": "library",
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Vallabh Kansagara",
+			"email": "vrkansagara@gmail.com",
+			"homepage": "https://vrkansagara.in/"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"guzzle/guzzle": "^3.9",
+		"phpoffice/phpspreadsheet": "^1.17",
+		"guzzlehttp/guzzle": "^7.3",
+		"mtdowling/jmespath.php": "^2.6",
+		"phpunit/phpunit": "^9.5",
+        "laminas/laminas-coding-standard": "^2.1"
+	},
+	"support": {
+		"email": "vrkansagara@gmail.com",
+		"issues": "https://github.com/vrkansagara/ide/issues",
+		"source": "https://github.com/vrkansagara/ide"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "./vendor/bin/phpcs",
+        "cs-fix": "./vendor/bin/phpcbf --standard=./phpcs.xml",
+        "test": [
+            "./vendor/bin/phpunit --testdox --colors=always",
+            "git rev-parse --verify HEAD"
+        ],
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "serve": [
+            "@clear",
+            "if sudo lsof -t -i:8000; then sudo kill -9 $(sudo lsof -t -i:8000 ); fi",
+            "sudo -u www-data php -S 0.0.0.0:8000 -t ./src/Skeleton/Php/"
+        ]
+    }
+}

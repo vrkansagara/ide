@@ -1,3 +1,9 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set foldmethod=indent
 set foldnestmax=10
 " set nofoldenable " All folds are open
@@ -7,9 +13,8 @@ set foldlevel=1
 
 " Folding
 " Toggle folding with spacebar instead of za
-nnoremap <space> za
-nnoremap <S-space> zM
-
+nnoremap <silent><nowait> <space> zM
+nnoremap <silent><nowait> <space><space> zR
 
 " Following will prevent vim from closing folds in a current pane when opening a
 " new pane.
