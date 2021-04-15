@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
-set -e
 
-set -x  Used to debug the script
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
+export DEBIAN_FRONTEND=noninteractive
 
-if [ "$(whoami)" != "root" ]; then
+if [ "$(whoami)" != "root" \]; then
 	SUDO=sudo
 fi
 
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :-
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Sub-module installation started at ${CURRENT_DATE}"
 
 cd ~/.vim
 
-read -r -p "Do you want to remove git modules[Y/n]?" input
+read -r -p 'Do you want to remove git modules[Y/n]?' input
 case $input in [yY][eE][sS]|[yY])
 		echo "Install desktop manager"
 		${SUDO} rm -rf .gitmodules
@@ -64,18 +69,18 @@ echo "Installation of [ lean & mean status/tabline for vim that's light as air  
 git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
 git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
 
-echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and 
+echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and
 stages/previews/undoes hunks and partial hunks. ] ..."
 git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
 
-echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with 
+echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with
 a syntax highlight that doesn't suck!  ] ..."
 git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
 
 echo "Installation of [ A tree explorer plugin for vim. ] ..."
 git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 
-# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode 
+# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
 # and host language servers. ] ..."
 git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
@@ -83,18 +88,13 @@ echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
-# git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
-# git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
-# git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
 
-# echo "Installation of [ clap Modern performant 
-# generic finder and dispatcher for Vim and NeoVim  ] ..."
-# git submodule add -f https://github.com/liuchengxu/vim-clap.git vendor/vim-clap
-
-# git submodule add -f https://github.com/jlanzarotta/bufexplorer.git vendor/bufexplorer
+echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
+
+echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
 echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
@@ -106,8 +106,6 @@ git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 # echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
 # git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
 
-# echo "Installation of [ Vim plugin that displays tags in a window, ordered by scope  ] ..."
-# git submodule add -f https://github.com/preservim/tagbar.git bundle/tagbar
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
