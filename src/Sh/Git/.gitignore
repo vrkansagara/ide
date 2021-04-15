@@ -32,3 +32,10 @@ tags
 .php_cs.cache
 .phpcs-cache
 .phpunit.result.cache
+phpcs.xml
+phpunit.xml
+clover.xml
+docker-compose.override.yml
+/DATA/
+
+
