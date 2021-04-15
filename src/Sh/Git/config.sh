@@ -29,6 +29,9 @@ git config --global core.fileMode false
 
 # git config --global diff.external "/usr/bin/meld"
 git config --global diff.tool vimdiff
+git config --global merge.tool vimdiff
+git config --global merge.conflictstyle diff3
+git config --global mergetool.prompt false
 
 git config --global user.name "Vallabh Kansagara"
 git config --global help.autocorrect 0
