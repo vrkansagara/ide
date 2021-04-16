@@ -1,6 +1,4 @@
-<?php
-declare(strict_types = 1);
-
+<?php declare(strict_types = 1);
 define('PHP_START', microtime(true));
 
 echo 'List down all the default constant defined by the php ';
