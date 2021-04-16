@@ -53,7 +53,6 @@ You can simply run bellow command to update, this project
 <leader>. Find ctags symbole
 
 <leader>` Most recent open fil(s)
-
 ~~~
 
 #### Documents
