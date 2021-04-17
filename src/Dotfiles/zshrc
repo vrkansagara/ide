@@ -140,6 +140,9 @@ alias gPersonal='git config --global user.email "vrkansagara@gmail.com"'
 alias phpRun='php -S 0.0.0.0:12345 -d ./'
 alias phpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 
+# PHP Laminas server
+alias phpComposerRun='composer run-script serve --timeout 0'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
