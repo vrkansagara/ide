@@ -1,6 +1,5 @@
 # My editor my way :heart:
 
-
 My every day editor for all kind of text interface work
 
 This editor keep the philosophy of `unix`
@@ -66,7 +65,7 @@ command (Press `CTRL+Q` will resume)
 
 #### VIM Screen
 
-  ![VimTerminal](src/Images/vim-terminal.png?raw=true "VimTerminal")
+![VimTerminal](src/Images/vim-terminal.png?raw=true "VimTerminal")
 ![Light](src/Images/light.png?raw=true "light")
 ![DarkVim](src/Images/dark-vim.png?raw=true "Dark VIM")
 ![Light](src/Images/light.png?raw=true "light")
