@@ -22,7 +22,7 @@ autocmd BufNewFile,BufRead *.blade.php set ft=php
 
 function! PhpCsCheck()
     try
-        exec "!./vendor/bin/phpcs ". expand('%:p')
+        exec "!~/.vim/vendor/bin/phpcs ". expand('%:p')
     catch
         " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
         throw :exception
@@ -34,7 +34,7 @@ endfunction
 function! PhpCsFix()
     try
         call PhpCsCheck()
-        exec "!./vendor/bin/phpcbf ". expand('%:p')
+        exec "!~/.vim/vendor/bin/phpcbf ". expand('%:p')
     catch
         " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
         throw :exception
