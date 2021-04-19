@@ -26,7 +26,10 @@
 
 snippet php "php7 opening"
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
+${1}
 endsnippet
 
 snippet dbge "Add error reporting"
@@ -115,4 +118,17 @@ if (php_sapi_name() === 'cli-server') {
 // Composer autoloading
 include __DIR__ . '/../vendor/autoload.php';
 ${1}
+endsnippet
+
+snippet set "Setter method"
+
+/**
+* Get value of ${3}
+*/
+
+public function get${1}()
+{
+	return $this->${2};
+}
+
 endsnippet
