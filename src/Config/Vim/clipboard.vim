@@ -1,10 +1,18 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Yank text to the clipboard easier (y = yank|copy , d = delete|cut, p = paste) (Register
-" *=window, + = linux) - In normal mode, one can use p to paste after the cursor, or P to paste before the cursor.
+
+" Fortunately, Vim remembers previous deletes/yanks in the numbered registers.
+" You can enter the command :reg to list all the registers. 
+" If the text you want is in register 2, enter "2p to paste it after the cursor,
+" or "2P to paste it before the cursor.
+
+" Yank text to the clipboard easier (y = yank|copy , d = delete|cut, p = paste)
+" (Register *=window, + = linux) - In normal mode, one can use p to paste after
+" the cursor, or P to paste before the cursor.
+
 if has('clipboard')
 	if has("win32")
 		"Windows options here
@@ -27,5 +35,3 @@ if has('clipboard')
 else
 	echomsg "Clipboard functionality is not present with current VIM"
 endif
-
-
