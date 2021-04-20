@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Space conflicts with code folding.
@@ -23,6 +23,7 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeDirArrowExpandable = '+'
 let NERDTreeDirArrowCollapsible = '-'
 
+" \ '^vendor$',
 let NERDTreeIgnore = [
 			\'.netrwhist',
 			\ '.NERDTreeBookmarks',
@@ -31,7 +32,6 @@ let NERDTreeIgnore = [
 			\ '^.idea$',
 			\ '^.git$',
 			\ '^.coffee$',
-			\ '^vendor$',
 			\ '^bundle$']
 
 " Let always open bookmark with file explore
