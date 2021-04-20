@@ -66,39 +66,39 @@ git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/pa
 # git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
-git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
-git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
+# git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
+# git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
 
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and
 stages/previews/undoes hunks and partial hunks. ] ..."
 git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
 
-echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with
-a syntax highlight that doesn't suck!  ] ..."
-git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
+# echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with
+# a syntax highlight that doesn't suck!  ] ..."
+# git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
 
-echo "Installation of [ A tree explorer plugin for vim. ] ..."
-git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
+# echo "Installation of [ A tree explorer plugin for vim. ] ..."
+# git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 
 # echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
 # and host language servers. ] ..."
 # git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
-echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
-git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
+# echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
+# git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
-echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
-git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
+# echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
+# git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
 
-echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
-git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
+# echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
+# git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 
-echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
-git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
+# echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
+# git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
-echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
-git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
+# echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
+# git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
 # echo "Installation of [ Go development plugin for Vim ] ..."
 # git submodule add -f https://github.com/fatih/vim-go.git vendor/vim-go
