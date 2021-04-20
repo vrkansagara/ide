@@ -1,5 +1,9 @@
 # List to todo
 
+
+- [ ] netrw
+	- [ ] Copy file/folder
+
 - [x] Add multi select cursor
 - [x] code completion
 - [x] snippiest
