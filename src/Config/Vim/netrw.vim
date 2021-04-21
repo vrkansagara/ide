@@ -6,6 +6,11 @@ let g:netrw_altv = 1
 let g:netrw_liststyle = 4
 let g:netrw_winsize = 40
 let g:NetrwIsOpen=0
+
+" Per default, netrw leaves unmodified buffers open.  This autocommand
+" deletes netrw's buffer once it's hidden (using ':q;, for example)
+autocmd FileType netrw setl bufhidden=delete  " or use :qa!
+
 function! ToggleNetrw()
     if g:NetrwIsOpen
         let i = bufnr("$")
