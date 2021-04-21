@@ -43,3 +43,12 @@
 [submodule "vendor/vim-visual-multi"]
 	path = vendor/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
+[submodule "AutoComplPop"]
+	path = AutoComplPop
+	url = https://github.com/vim-scripts/AutoComplPop
+[submodule "vendor/AutoComplPop"]
+	path = vendor/AutoComplPop
+	url = https://github.com/vim-scripts/AutoComplPop
+[submodule "vendor/supertab"]
+	path = vendor/supertab
+	url = https://github.com/ervandew/supertab
