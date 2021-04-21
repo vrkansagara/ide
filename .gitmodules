@@ -19,6 +19,27 @@
 [submodule "vendor/papercolor-theme"]
 	path = vendor/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "vendor/vim-airline"]
+	path = vendor/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vendor/vim-airline-theme"]
+	path = vendor/vim-airline-theme
+	url = https://github.com/vim-airline/vim-airline-themes.git
 [submodule "vendor/vim-gitgutter"]
 	path = vendor/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "vendor/vim-markdown"]
+	path = vendor/vim-markdown
+	url = https://github.com/gabrielelana/vim-markdown.git
+[submodule "vendor/vim-snippets"]
+	path = vendor/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "vendor/ctrlp.vim"]
+	path = vendor/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "vendor/ack.vim"]
+	path = vendor/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "vendor/vim-visual-multi"]
+	path = vendor/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi.git
