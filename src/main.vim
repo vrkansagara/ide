@@ -30,6 +30,11 @@ nnoremap <leader><leader> <C-^>
 " Press F2)
 nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
 
+" " Toggle visually showing all white space characters.
+noremap <S-F2> :set list!<CR>
+inoremap <S-F2> <C-o>:set list!<CR>
+cnoremap <S-F2> <C-c>:set list!<CR>
+
 " vim regex highlight (i.e. regexPattern = "nnoremap" ) [Require :set hlsearch]
 nnoremap <silent> <F3> yi":let @/ = @"<CR>
 
@@ -38,7 +43,7 @@ set nocompatible      "Limit search to your project
 set path+=**          "Search all subdirectories and recursively
 set wildmenu          "Shows multiple matches on one line
 
-" Press <F12> for custom terminal inside vim
+" Press <F12> for custom termina inside vim
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
@@ -181,3 +186,23 @@ au BufRead,BufNewFile *.md vim setlocal textwidth=80
 
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
+
+
+" Ensure tabs don't get converted to spaces in Makefiles.
+autocmd FileType make setlocal noexpandtab
+
+
+" Profile Vim by running this command once to start it and again to stop it.
+function! s:profile(bang)
+  if a:bang
+    profile pause
+    noautocmd qall
+  else
+    profile start /tmp/profile.log
+    profile func *
+    profile file *
+  endif
+endfunction
+
+command! -bang Profile call s:profile(<bang>0)
+
