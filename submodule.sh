@@ -97,6 +97,12 @@ git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
+# echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
+# git submodule add -f https://github.com/vim-scripts/AutoComplPop vendor/AutoComplPop
+
+echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
+git submodule add -f https://github.com/ervandew/supertab vendor/supertab
+
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
@@ -110,5 +116,6 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
 git submodule update --init --recursive
-
 echo "Submodule installation recursive dependence [DONE]."
+
+git submodule add -f https 
