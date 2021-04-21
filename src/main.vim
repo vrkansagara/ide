@@ -33,7 +33,12 @@ nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:
 " vim regex highlight (i.e. regexPattern = "nnoremap" ) [Require :set hlsearch]
 nnoremap <silent> <F3> yi":let @/ = @"<CR>
 
-" Press <F12> for custom termina inside vim
+"These next three lines are for the fuzzy search:
+set nocompatible      "Limit search to your project
+set path+=**          "Search all subdirectories and recursively
+set wildmenu          "Shows multiple matches on one line
+
+" Press <F12> for custom terminal inside vim
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
