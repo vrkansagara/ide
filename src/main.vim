@@ -15,7 +15,8 @@ while c <= 'z'
   exec "imap \e".c." <A-".c.">"
   let c = nr2char(1+char2nr(c))
 endw
-set timeout ttimeoutlen=50
+set timeout ttimeoutlen=10
+set ttimeoutlen=10
 
 " The escape key is a long ways away. This maps it to the sequence 'kj'
 map! kj <Esc>
