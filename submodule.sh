@@ -115,7 +115,8 @@ git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
+
+git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
+
 git submodule update --init --recursive
 echo "Submodule installation recursive dependence [DONE]."
-
-git submodule add -f https 
