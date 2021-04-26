@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 define('PHP_START', microtime(true));
 
+require_once '/home/vallabh/.vim/vendor/autoload.php';
+
 echo 'List down all the default constant defined by the php ';
 print_r(get_defined_constants(true));
 
@@ -18,5 +20,7 @@ echo sprintf(
     $_SERVER['PHP_SELF'],
     microtime(true) - PHP_START
 ) . PHP_EOL;
+
+$test = new Client
 
 // phpinfo();
