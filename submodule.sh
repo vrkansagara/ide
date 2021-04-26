@@ -59,12 +59,6 @@ git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surrou
 echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
 git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
 
-# As CtrlP is the 100% vim so no need extra burden of plugin and shell library
-# echo "Installation of [ A command-line fuzzy finder   ] ..."
-# git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
-# echo "Installation of [ fzf heart vim  ] ..."
-# git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
-
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
 git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
 git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
@@ -77,12 +71,8 @@ echo "Installation of [ Markdown for Vim: a complete environment to create
 Markdown files with a syntax highlight that doesn't suck!  ] ..."
 git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
 
-# echo "Installation of [ A tree explorer plugin for vim. ] ..."
-# git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
-
-# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
-# and host language servers. ] ..."
-# git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+echo "Installation of [ A tree explorer plugin for vim. ] ..."
+git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
@@ -103,6 +93,13 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 
+git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
+
+# Unwanted / Disabled modules
+# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
+# and host language servers. ] ..."
+# git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
@@ -115,8 +112,12 @@ git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
+# As CtrlP is the 100% vim so no need extra burden of plugin and shell library
+# echo "Installation of [ A command-line fuzzy finder   ] ..."
+# git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
+# echo "Installation of [ fzf heart vim  ] ..."
+# git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
-git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
 
 git submodule update --init --recursive
 echo "Submodule installation recursive dependence [DONE]."
