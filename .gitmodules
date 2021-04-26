@@ -55,3 +55,6 @@
 [submodule "vendor/vim-php-namespace"]
 	path = vendor/vim-php-namespace
 	url = https://github.com/arnaud-lb/vim-php-namespace.git
+[submodule "vendor/nerdtree"]
+	path = vendor/nerdtree
+	url = https://github.com/preservim/nerdtree.git
