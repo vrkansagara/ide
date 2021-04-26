@@ -46,6 +46,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
 let NERDTreeWinSize=55
 
+
 " Close the pan once file is open
 let NERDTreeQuitOnOpen=3
 let NERDTreeAutoDeleteBuffer = 1
