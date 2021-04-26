@@ -13,9 +13,9 @@ exec ctags-exuberant -f $dir/$name \
 	--tag-relative=yes \
 	# --fields=+aimS \
 	# --extra=+f \
-	--PHP-kinds=+cdfiv \
-	--exclude="\.svn" \
-	--exclude="\.git/" \
+	# --PHP-kinds=+cdfiv \
+	# --exclude="\.svn" \
+	# --exclude="\.git/" \
 	--exclude="node_modules/" \
 	--exclude="\DATA" \
 	--exclude="\composer" \
@@ -30,4 +30,4 @@ exec ctags-exuberant -f $dir/$name \
 	# --regex-PHP='/get([a-z|A-Z|0-9]+)Attribute/\1/' \
 	# --regex-PHP='/scope([a-z|A-Z|0-9]+)/\1/'
 
-echo "ctag generation done. [DONE]"
+echo "ctags-execuberant generation done. [DONE]"
