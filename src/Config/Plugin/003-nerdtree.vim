@@ -22,7 +22,8 @@ let NERDTreeDirArrows = 1
 let NERDTreeShowLineNumbers=1
 let NERDTreeDirArrowExpandable = '+'
 let NERDTreeDirArrowCollapsible = '-'
-
+let NERDTreeCustomOpenArgs = {'file':{'where':'t'}}
+" let NERDTreeCustomOpenArgs = {'file': {'reuse':'currenttab', 'where':'p', 'keepopen':1, 'stay':1}}
 " \ '^vendor$',
 let NERDTreeIgnore = [
 			\'.netrwhist',
@@ -84,3 +85,16 @@ function! NERDTreeToggleInCurDir()
 		endif
 	endif
 endfunction
+
+
+" function NERDTreeMyOpenFile(node)
+"     call a:node.activate({'reuse': 'currenttab', 'where': 'p'})
+" endfunction
+" autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
+
+function NERDTreeMyOpenInTab(node)
+    call a:node.open({'reuse': "all", 'where': 't'})
+endfunction
+" autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+
