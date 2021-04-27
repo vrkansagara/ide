@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 declare(strict_types=1);
 
@@ -21,6 +21,11 @@ echo sprintf(
     microtime(true) - PHP_START
 ) . PHP_EOL;
 
-$test = new Client
-
-// phpinfo();
+$test = new Client:
+/**
+*This is comment
+*/
+public function thisTestFunction(){
+	// body data
+}
+// iskdfj

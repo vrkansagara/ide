@@ -20,7 +20,7 @@ function Terminal()
 	let opts.term_kill = 'term'
 	let opts.norestore = 1
 	let opts.exit_cb = 'OnTermExit'
-	let bid = term_start(['bash'], opts)
+	let bid = term_start(['zsh'], opts)
 
 	function! OnTermExit(job, message)
 		close
