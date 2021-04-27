@@ -19,4 +19,34 @@ nnoremap <C-\> :split<CR>:exec("tag ".expand("<cword>"))<CR>
 " set tags^=./tags
 
 " https://github.com/tpope/vim-fugitive/commit/63a05a6935ec4a45551bf141089c13d5671202a1
+" :set tags^=./.git/tags; "Suggested 
 set tags^=./tags;
+" Navigating through multiple definition
+" If you used :tag on a tag that's got multiple definitions, use these commands to sift through them all.
+
+" Shortcut	Definition
+" :tn	Move to next definition (:tnext)
+" :tp	Move to previous definition (:tprevious)
+" :ts	List all definitions (:tselect)
+" Key shortcuts
+" You can also place your cursor on some text and press ^] to jump to that tag.
+
+" Shortcut	Definition
+" ^]	Jump to definition
+" ^t	Jump back from definition
+" ^W }	Preview definition
+" g]	See all definitions
+
+" Select tag from tag list
+" :tselect
+" Move to the first tag
+" :tfirst
+" Move to the last tag
+" :tlast
+" Move to the previous tag
+" :tprev
+" Move to next tag
+" :tnext
+" Search tag by other tag commands
+" :tag num
+
