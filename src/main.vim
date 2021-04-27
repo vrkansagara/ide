@@ -18,8 +18,6 @@ endw
 set timeout ttimeoutlen=10
 set ttimeoutlen=10
 
-let g:mucomplete#enable_auto_at_startup = 1
-
 " The escape key is a long ways away. This maps it to the sequence 'kj'
 map! kj <Esc>
 inoremap kj <Esc>
