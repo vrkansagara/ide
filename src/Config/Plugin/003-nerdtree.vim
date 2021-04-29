@@ -13,7 +13,6 @@ noremap <leader><space> :call NERDTreeToggleInCurDir()<cr>
 " Direct control key conflicts with different OS (i.e. xfce)
 noremap <A-p> :NERDTreeToggle<cr>
 
-
 " nnoremap <leader>nb :NERDTreeFromBookmark
 " nnoremap <leader>nf :NERDTreeFind<cr>
 
@@ -47,15 +46,9 @@ let NERDTreeShowBookmarks=1
 let NERDTreeWinPos = "right"
 let NERDTreeWinSize=55
 
-
 " Close the pan once file is open
 let NERDTreeQuitOnOpen=3
 let NERDTreeAutoDeleteBuffer = 1
-
-
-" autocmd FileType nerdtree nmap <buffer> <left> o
-" autocmd FileType nerdtree nmap <buffer> <right> o
-autocmd FileType nerdtree nmap <buffer> <S-right> T: <ESC>
 
 "" Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -87,14 +80,23 @@ function! NERDTreeToggleInCurDir()
 endfunction
 
 
-" function NERDTreeMyOpenFile(node)
-"     call a:node.activate({'reuse': 'currenttab', 'where': 'p'})
-" endfunction
-" autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
+function NERDTreeMyOpenFile(node)
+	" autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
+    call a:node.activate({'reuse': 'currenttab', 'where': 'p'})
+endfunction
 
 function NERDTreeMyOpenInTab(node)
+	" call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
     call a:node.open({'reuse': "all", 'where': 't'})
 endfunction
-" autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
-autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+
+" Only set of option when nedtree buffer is active or pointer in it.
+autocmd FileType nerdtree call SetNERDTreeOptions()
+function! SetNERDTreeOptions()
+	" nmap <buffer> <left> o
+	" nmap <buffer> <right> o
+	nmap <buffer> <S-right> T: <ESC>
+	" autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+	call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+endfunction
 
