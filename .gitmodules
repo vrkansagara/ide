@@ -55,6 +55,6 @@
 [submodule "vendor/ack.vim"]
 	path = vendor/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vendor/supertab"]
-	path = vendor/supertab
-	url = https://github.com/ervandew/supertab
+[submodule "vendor/vim-php-namespace"]
+	path = vendor/vim-php-namespace
+	url = https://github.com/arnaud-lb/vim-php-namespace.git

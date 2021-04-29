@@ -8,14 +8,14 @@ if [ "(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-CURRENT_DATE=(date "+%Y%m%d%H%M%S")
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-echo "Sub-module installation started at ${CURRENT_DATE}"
+echo "Sub-module installation started at $CURRENT_DATE"
 
 cd ~/.vim
 
@@ -92,15 +92,17 @@ git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
-# echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
-# git submodule add -f https://github.com/vim-scripts/AutoComplPop vendor/AutoComplPop
-
-echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
-git submodule add -f https://github.com/ervandew/supertab vendor/supertab
-
-# git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
+echo "Installation of [ types "use" statements for you ] ..."
+git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
 
 # Unwanted / Disabled modules
+
+# echo "Installation of [Automatically opens popup menu for completions ] ..."
+# git submodule add -f https://github.com/vim-scripts/AutoComplPop vendor/AutoComplPop
+
+# echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
+# git submodule add -f https://github.com/ervandew/supertab vendor/supertab
+
 # echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
 # and host language servers. ] ..."
 # git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
@@ -124,4 +126,5 @@ git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 # git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
 git submodule update --init --recursive
+bin/composer update
 echo "Submodule installation recursive dependence [DONE]."
