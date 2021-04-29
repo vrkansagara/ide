@@ -1,7 +1,5 @@
-<?php 
-
+<?php
 declare(strict_types=1);
-
 define('PHP_START', microtime(true));
 
 require_once '/home/vallabh/.vim/vendor/autoload.php';
@@ -21,11 +19,5 @@ echo sprintf(
     microtime(true) - PHP_START
 ) . PHP_EOL;
 
-$test = new Client:
-/**
-*This is comment
-*/
-public function thisTestFunction(){
-	// body data
-}
-// iskdfj
+
+$client = new Client
