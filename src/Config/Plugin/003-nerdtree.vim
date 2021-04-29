@@ -93,6 +93,7 @@ endfunction
 " Only set of option when nedtree buffer is active or pointer in it.
 autocmd FileType nerdtree call SetNERDTreeOptions()
 function! SetNERDTreeOptions()
+	nnoremap <F5> :NERDTreeRefreshRoot<CR>
 	" nmap <buffer> <left> o
 	" nmap <buffer> <right> o
 	nmap <buffer> <S-right> T: <ESC>
