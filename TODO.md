@@ -1,5 +1,4 @@
 # List to todo
-
 - [x] Add multi select cursor
 - [x] code completion
 - [x] snippiest
