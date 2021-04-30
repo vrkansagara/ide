@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :-
@@ -19,8 +18,9 @@ augroup END
 
 
 " :autocmd FileType vim autocmd BufWritePost <buffer> call OnFileSave()
-" autocmd BufWritePre <buffer> :call OnFileSave()
-" autocmd BufWritePost <buffer> :call OnFileSave()
+" Pre = onLoad , Post = afterSave
+autocmd BufWritePre <buffer> :call OnFileSave()
+autocmd BufWritePost <buffer> :call OnFileSave()
 
 
 function! OnFileSave()
@@ -33,19 +33,19 @@ function! OnFileSave()
 	if ext == 'vim'
 		" Remove : from every first line
 		silent! %s/^\s*://
-		silent! %s/^map/nnoremap/
+		" silent! %s/^map/nnoremap/
+		" silent! %s/^imap/inoremap/
 		silent! %s/^nmap/nnoremap/
-		silent! %s/^imap/inoremap/
 		silent! %s/^cmap/cnoremap/
 
 	elseif extension == 'php'
 
 		" Remove closing tag(?>) from every *.php file only TODO
 		" PHP Performance (insted of " use ')
-		silent! %s/\"\([^"]*\)\"/'\1'/g
+		" silent! %s/\"\([^"]*\)\"/'\1'/g
 		" silent! %s/\s\+$//g
-		" silent! call PhpSortUse()
-		" silent! call PhpCsFixerFixFile()
+		silent! call PhpSortUse()
+		silent! call PhpCsFixerFixFile()
 	endif
 
 	" Remove white space from all file type
