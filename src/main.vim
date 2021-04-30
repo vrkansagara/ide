@@ -15,7 +15,8 @@ while c <= 'z'
   exec "imap \e".c." <A-".c.">"
   let c = nr2char(1+char2nr(c))
 endw
-set timeout ttimeoutlen=50
+set timeout ttimeoutlen=10
+set ttimeoutlen=10
 
 " The escape key is a long ways away. This maps it to the sequence 'kj'
 map! kj <Esc>
@@ -30,8 +31,18 @@ nnoremap <leader><leader> <C-^>
 " Press F2)
 nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
 
+" " Toggle visually showing all white space characters.
+noremap <S-F2> :set list!<CR>
+inoremap <S-F2> <C-o>:set list!<CR>
+cnoremap <S-F2> <C-c>:set list!<CR>
+
 " vim regex highlight (i.e. regexPattern = "nnoremap" ) [Require :set hlsearch]
 nnoremap <silent> <F3> yi":let @/ = @"<CR>
+
+"These next three lines are for the fuzzy search:
+set nocompatible      "Limit search to your project
+set path+=**          "Search all subdirectories and recursively
+set wildmenu          "Shows multiple matches on one line
 
 " Press <F12> for custom termina inside vim
 
@@ -175,3 +186,23 @@ au BufRead,BufNewFile *.md vim setlocal textwidth=80
 
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
+
+
+" Ensure tabs don't get converted to spaces in Makefiles.
+autocmd FileType make setlocal noexpandtab
+
+
+" Profile Vim by running this command once to start it and again to stop it.
+function! s:profile(bang)
+  if a:bang
+    profile pause
+    noautocmd qall
+  else
+    profile start /tmp/profile.log
+    profile func *
+    profile file *
+  endif
+endfunction
+
+command! -bang Profile call s:profile(<bang>0)
+
