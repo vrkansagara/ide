@@ -112,7 +112,7 @@ alias dcu='docker-compose up -dV --remove-orphan --force-recreate'
 alias dcd='docker-compose down'
 
 #File Manager related stuff #
-alias v='vim -u NONE -N -U NONE'
+alias v='vim -u NONE -N -U NONE '
 alias vi='cd ~/.vim && vim'
 
 alias www='cd ~/www'
