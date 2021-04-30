@@ -28,11 +28,18 @@ do
 
 	#check if AC is plugged in
 	if on_ac_power; then
+
 		#check if the battery level is over 90%
 		if [ $battery_level -ge 99 ]; then
-			notify-send -u critical "Please unplug your AC adapter" "Battery level: ${battery_level}% (charged above 99%)" -i battery-full-chargej
+			notify-send -u critical "Please unplug your AC adapter" "Battery
+			level: ${battery_level}% (charged above 99%)" -i battery-full-charged
 		fi
+
 	fi
+
 	echo "Current battery level is $battery_level"
+
+	#wait for 30 seconds before checking again
+	sleep 300
+
 done
-	sleep 30                                             #wait for 30 seconds before checking again
