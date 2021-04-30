@@ -19,7 +19,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 # sed -i 's/123/456/' FileName.anything. # Useful for replacing 123 with 456 value
 for i in *.php; do
 	echo "Find and replace started for 'NULL' with NULL for [ $i ] started"
-	sed -i 's/\x27NULL\x27/NULL/' $i
-	sed -i '/namespace Database\\Seeders;/d' $i
+	# sed -i 's/\x27NULL\x27/NULL/' $i
+	# sed -i '/namespace Database\\Seeders;/d' $i
 done
 
