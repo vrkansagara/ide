@@ -95,6 +95,9 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 echo "Installation of [ types "use" statements for you ] ..."
 git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
 
+echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
+git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
+
 # Unwanted / Disabled modules
 
 # echo "Installation of [Automatically opens popup menu for completions ] ..."
