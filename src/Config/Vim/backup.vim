@@ -1,7 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- IDE unsaved changes track with .vim/tmp directory
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " set nobackup " Disable backupfile
 " set noswapfile " Disable swapfile
@@ -12,7 +13,8 @@ set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
 set backup                        " enable backups
-"The swap file is updated after typing 200 characters or when you have not typed anything for four seconds.
+"The swap file is updated after typing 200 characters or when you have not typed
+"anything for four seconds.
 set swapfile                      " enable swaps
 set undodir=$HOME/.vim/data/undo     " undo files
 set backupdir=$HOME/.vim/data/backup " backups
