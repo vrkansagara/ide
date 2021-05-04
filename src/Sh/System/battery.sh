@@ -39,7 +39,5 @@ do
 
 	echo "Current battery level is $battery_level"
 
-	#wait for 30 seconds before checking again
-	sleep 300
-
+	sleep 300 # 5 minute
 done
