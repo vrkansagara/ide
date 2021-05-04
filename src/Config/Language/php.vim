@@ -22,6 +22,7 @@ autocmd BufNewFile,BufRead *.blade.php set ft=php
 
 function! PhpCsCheck()
     try
+        " exec "!./vendor/bin/phpcs ". expand('%:p')
         exec "!~/.vim/vendor/bin/phpcs ". expand('%:p')
     catch
         " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
@@ -41,7 +42,6 @@ function! PhpCsFix()
     endtry
     return 1
 endfunction
-" :set omnifunc=phpcomplete#CompletePHP
 
 "Sort PHP use statements ( This is already done using php-name
 "http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
