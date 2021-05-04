@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 error_reporting(E_ALL); ini_set('display_errors', '1'); ini_set('display_startup_errors', '1'); ini_set('log_errors', '1');
 
-echo sprintf("Swoole version is %s", swoole_version()) .PHP_EOL;
-echo sprintf("Swoole has total cpu [ %s ]", swoole_cpu_num()) . PHP_EOL;
+echo sprintf('Swoole version is %s', swoole_version()) .PHP_EOL;
+echo sprintf('Swoole has total cpu [ %s ]', swoole_cpu_num()) . PHP_EOL;
 
 
 exit;
@@ -25,7 +25,7 @@ Co\run(function() use($xTimes){
 			$sleepTime = 2;
 		}
 		sleep($sleepTime);
-		echo "Thread = $c Sleep $sleepTime "	.PHP_EOL;
+		echo 'Thread = $c Sleep $sleepTime '	.PHP_EOL;
 			for ($n = $xTimes; $n--;) {
 				echo $n . PHP_EOL;
 			}
