@@ -38,9 +38,9 @@ ${SUDO} rm -rfv ~/.cache/thumbnails
 ${SUDO} rm -rfv ~/.cache/mozilla
 
 #clear up system cache
-${SUDO} apt-get clean
-${SUDO} apt-get autoclean
-${SUDO} apt-get autoremove --purge 
+${SUDO} apt-get -y clean
+${SUDO} apt-get -y autoclean
+${SUDO} apt-get -y autoremove --purge 
 
 
 
