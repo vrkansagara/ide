@@ -58,3 +58,6 @@
 [submodule "vendor/vim-php-namespace"]
 	path = vendor/vim-php-namespace
 	url = https://github.com/arnaud-lb/vim-php-namespace.git
+[submodule "vendor/xmledit"]
+	path = vendor/xmledit
+	url = https://github.com/sukima/xmledit
