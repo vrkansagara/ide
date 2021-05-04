@@ -27,3 +27,8 @@ ${SUDO} apt-get update && ${SUDO} apt-get install elasticsearch
 elasticsearch   soft    nofile          65536
 elasticsearch   hard    nofile          65536
 elasticsearch   -       memlock         unlimited
+
+# /etc/security/limits.conf,
+# allow user 'elasticsearch' mlockall
+elasticsearch soft memlock unlimited
+elasticsearch hard memlock unlimited
