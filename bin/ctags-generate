@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 set -e
 
@@ -5,29 +6,37 @@ dir=$(pwd)
 name="tags"
 
 echo "Creating tags for directory '$dir' using alias '$name'"
-
+rm -rf $dir/$name
 exec ctags-exuberant -f $dir/$name \
-	--languages=PHP \
-	-R \
-	--totals=yes \
-	--tag-relative=yes \
-	# --fields=+aimS \
-	# --extra=+f \
-	--PHP-kinds=+cdfiv \
-	--exclude="\.svn" \
-	--exclude="\.git/" \
-	--exclude="node_modules/" \
-	--exclude="\DATA" \
-	--exclude="\composer" \
-	--exclude="\composer.phar" \
-	--exclude='*.js' \
-	--exclude='*.min.js' \
-	--exclude='*.phtml' \
-	--exclude='*.blade.php'
-	# --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\/f/' \
-	# --regex-PHP='/abstract class ([^ ]*)/\/c/' \
-	# --regex-PHP='/interface ([^ ]*)/\/c/' \
-	# --regex-PHP='/get([a-z|A-Z|0-9]+)Attribute/\1/' \
-	# --regex-PHP='/scope([a-z|A-Z|0-9]+)/\1/'
+-RV \
+--languages=php \
+--exclude=.git \
+--exclude=.node_modules \
+--exclude=vendorr \
+--exclude=bin \
+--exclude=data \
+--exclude=*.vim \
+--exclude=*.phtml \
+--exclude=*.blade.php \
+--exclude=*.phar \
+--exclude=*.js \
+--exclude=*.min.js \
+--exclude=*.css \
+--exclude=*.html \
+--exclude=composer \
+--append=no \
+--totals=yes \
+--tag-relative=yes
+--languages=PHP \
+--PHP-kinds=+vidfcv
 
-echo "ctag generation done. [DONE]"
+# --fields=+aimS \
+# --extra=+f \
+
+# --regex-PHP='/(abstract)?\s+class\s+([^ ]+)/\2/c/' \
+# --regex-PHP='/(static|abstract|public|protected|private)\s+(final\s+)?function\s+(\&\s+)?([^ (]+)/\4/f/' \
+# --regex-PHP='/interface\s+([^ ]+)/\1/i/' \
+# --regex-PHP='/\$([a-zA-Z_][a-zA-Z0-9_]*)/\1/v/'
+# --regex-PHP='/get([a-z|A-Z|0-9]+)Attribute/\1/' \
+# --regex-PHP='/scope([a-z|A-Z|0-9]+)/\1/'
+echo "ctags-execuberant generation done. [DONE]"
