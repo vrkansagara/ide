@@ -41,5 +41,4 @@ do
 
 	#wait for 300 seconds before checking again
 	sleep 300
-
 done
