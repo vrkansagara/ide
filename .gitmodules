@@ -34,12 +34,18 @@
 [submodule "vendor/nerdtree"]
 	path = vendor/nerdtree
 	url = https://github.com/preservim/nerdtree.git
-[submodule "vendor/coc.nvim"]
-	path = vendor/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
 [submodule "vendor/vim-visual-multi"]
 	path = vendor/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
+[submodule "vendor/tlib_vim"]
+	path = vendor/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "vendor/vim-addon-mw-utils"]
+	path = vendor/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vendor/vim-snipmate"]
+	path = vendor/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
 [submodule "vendor/vim-snippets"]
 	path = vendor/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
@@ -49,6 +55,9 @@
 [submodule "vendor/ack.vim"]
 	path = vendor/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vendor/emmet-vim"]
-	path = vendor/emmet-vim
-	url = https://github.com/mattn/emmet-vim.git
+[submodule "vendor/vim-php-namespace"]
+	path = vendor/vim-php-namespace
+	url = https://github.com/arnaud-lb/vim-php-namespace.git
+[submodule "vendor/xmledit"]
+	path = vendor/xmledit
+	url = https://github.com/sukima/xmledit
