@@ -1,6 +1,6 @@
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Note		 :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -183,7 +183,6 @@ set textwidth=80
 set colorcolumn=+1
 set wrapmargin=2
 au BufRead,BufNewFile *.md vim setlocal textwidth=80
-
 
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
