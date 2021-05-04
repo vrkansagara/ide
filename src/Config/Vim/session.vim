@@ -1,8 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" About:- session related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remember settings between sessions
 " set viminfo='400,f1,"500,h,/100,:100,<500
@@ -36,7 +36,7 @@ endfunction
 
 " Adding automatons for when entering or leaving Vim
 if(argc() == 0)
-	au VimEnter * nested :call LoadSession()
+	" au VimEnter * nested :call LoadSession()
 endif
 
-au VimLeave * :call MakeSession()
+" au VimLeave * :call MakeSession()
