@@ -1,0 +1,8 @@
+" plugin supertab
+"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
+
+let g:SuperTabLongestHighlight = 0
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
+
