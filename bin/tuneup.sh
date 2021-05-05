@@ -30,7 +30,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 #Clear Swap Space in Linux?
 # ${SUDO}  swapoff -a && ${SUDO} swapon -a
-
+${SUDO} ulimit -v 2147483648
 ${SUDO} rm -rfv ~/.cache/thumbnails
 # ${SUDO} rm -rfv ~/.mozillabackup
 # ${SUDO} cp -r -v ~/.mozilla ~/.mozillabackup
