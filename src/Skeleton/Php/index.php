@@ -19,5 +19,3 @@ echo sprintf(
     microtime(true) - PHP_START
 ) . PHP_EOL;
 
-
-$client = new Client
