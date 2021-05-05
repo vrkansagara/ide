@@ -40,7 +40,8 @@ ${SUDO} rm -rfv ~/.cache/mozilla
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 # https://gist.github.com/juanje/9861623
 #clear up system cache
-${SUDO} apt default-jre default-jdk cgroup-tools
+${SUDO} apt install default-jre default-jdk
+${SUDO} apt install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 ${SUDO} apt update
 ${SUDO} apt upgrade -V
 ${SUDO} apt-get -y clean
