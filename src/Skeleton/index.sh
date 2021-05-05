@@ -5,12 +5,7 @@ set -e # This setting is telling the script to exit on a command error.
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
-now() {
-	date +%Y.%m.%d-%H.%M.%S
-}
-echo now()
 
-exit;
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
