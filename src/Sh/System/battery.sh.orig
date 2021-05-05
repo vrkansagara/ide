@@ -39,6 +39,21 @@ do
 
 	echo "Current battery level is $battery_level"
 
+<<<<<<< HEAD
 	#wait for 300 seconds before checking again
 	sleep 300
+
+||||||| merged common ancestors
+	#wait for 30 seconds before checking again
+<<<<<<<<< Temporary merge branch 1
+	sleep 300 # 5 minute
+||||||||| 0705673
+	sleep 30
+=========
+	sleep 300
+>>>>>>>>> Temporary merge branch 2
+
+=======
+	sleep 300 # 5 minute
+>>>>>>> 495836981743e5e3ffc8645bfcdbfc4dd2398d69
 done
