@@ -30,6 +30,7 @@ ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
 
 #Clear Swap Space in Linux?
 ${SUDO}  swapoff -a && ${SUDO} swapon -a
+${SUDO} ulimit -v 2147483648
 
 ${SUDO} rm -rfv ~/.cache/thumbnails
 ${SUDO} rm -rfv ~/.mozillabackup
@@ -40,7 +41,8 @@ ${SUDO} rm -rfv ~/.cache/mozilla
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 # https://gist.github.com/juanje/9861623
 #clear up system cache
-${SUDO} apt default-jre default-jdk cgroup-tools
+${SUDO} apt install default-jre default-jdk
+${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 ${SUDO} apt update
 ${SUDO} apt upgrade -V
 ${SUDO} apt-get -y clean
@@ -60,5 +62,3 @@ ${SUDO} sysctl -w vm.vfs_cache_pressure=50
 #set ulimit to 2 GB for current user
 ulimit -v 2048000
 # find -name '*.sh' -exec ls -lA {} +
-
-
