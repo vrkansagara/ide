@@ -12,7 +12,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- VIM + COMPOSER installation/update
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Sub-module installation started at $CURRENT_DATE"
@@ -129,5 +129,10 @@ git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 # git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
 git submodule update --init --recursive --jobs 4
+
+bin/composer self-update
 bin/composer update
+
 echo "Submodule installation recursive dependence [DONE]."
+
+exit 1
