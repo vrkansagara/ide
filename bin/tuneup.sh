@@ -43,6 +43,7 @@ ${SUDO} rm -rfv ~/.cache/mozilla
 #clear up system cache
 ${SUDO} apt install default-jre default-jdk
 ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
+
 ${SUDO} apt update
 ${SUDO} apt upgrade -V
 ${SUDO} apt-get -y clean
@@ -56,7 +57,7 @@ ${SUDO} apt-get -y autoremove --purge
 # vm.swappiness=10
 # vm.vfs_cache_pressure=50
 
-${SUDO} sysctl -w vm.swappiness=10
+${SUDO} sysctl -w vm.swappiness=20
 ${SUDO} sysctl -w vm.vfs_cache_pressure=50
 
 #set ulimit to 2 GB for current user
