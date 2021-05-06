@@ -14,13 +14,13 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-${SUDO} apt install software-properties-common
+${SUDO} apt install -y software-properties-common
 ${SUDO} add-apt-repository ppa:ondrej/php
 ${SUDO} apt update
 
 for VERSION in 7.4 8.0;do
     for EXTENSION in fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug;do
-        ${SUDO} apt install php${VERSION}-${EXTENSION} -y
+        ${SUDO} apt install -y php${VERSION}-${EXTENSION}
     done
 done
 
