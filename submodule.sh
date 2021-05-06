@@ -12,7 +12,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Sub-module installation started at $CURRENT_DATE"
@@ -128,6 +128,6 @@ git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 # echo "Installation of [ fzf heart vim  ] ..."
 # git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
-git submodule update --init --recursive
+git submodule update --init --recursive --jobs 4
 bin/composer update
 echo "Submodule installation recursive dependence [DONE]."
