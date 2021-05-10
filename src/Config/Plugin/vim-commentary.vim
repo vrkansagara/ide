@@ -16,6 +16,8 @@ map <S-_> :Commentary<CR>k
 " Comment which having \ or // 
 autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType php setlocal commentstring=\/\/\%s
+autocmd FileType c setlocal commentstring=\/\/\%s
+autocmd FileType cpp setlocal commentstring=\/\/\%s
 
 " Comment which having # 
 autocmd FileType crontab setlocal commentstring=#\ %s
