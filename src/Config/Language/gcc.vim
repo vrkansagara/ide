@@ -15,11 +15,14 @@ au BufEnter *.h compiler gcc
 
 " This warning is enabled -Wall
 " autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc %
-autocmd FileType c noremap <C-M> :w!<CR>:!/usr/bin/gcc %
+" -Wall = Show all possible warning, -g = Include debug information
+autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc
+			\ -g
+			\ `pkg-config --cflags gtk+-3.0`
 			\ -Wall
 			\ -Wmissing-prototypes
 			\ -Wstrict-prototypes
 			\ -O2
 			\ -fomit-frame-pointer
 			\ -std=gnu89
-			\ -o /tmp/%.out && /tmp/%.out<CR>
+			\ -o /tmp/%.out % `pkg-config --libs gtk+-3.0` && /tmp/%.out<CR>
