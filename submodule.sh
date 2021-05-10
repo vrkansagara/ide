@@ -128,7 +128,7 @@ git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 # echo "Installation of [ fzf heart vim  ] ..."
 # git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
-git submodule update --init --recursive --jobs 4
+git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer self-update
 bin/composer update
