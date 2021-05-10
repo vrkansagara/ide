@@ -154,3 +154,8 @@ alias phpComposerRun='composer run-script serve --timeout 0'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+#Linux specific
+alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
+alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
+
