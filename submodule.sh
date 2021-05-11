@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
-
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
+
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
-if [ "(whoami)" != "root" ]; then
+SCRIPT=$(readlink -f "")
+SCRIPTDIR=$(dirname "$SCRIPT")
+
+if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- VIM + COMPOSER installation/update
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Sub-module installation started at $CURRENT_DATE"
@@ -78,25 +80,25 @@ echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
-git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
-git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
-git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
+# git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
+# git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
+# git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
-# ultisnips is based on python( I like minimal configuration )
-# git submodule add -f https://github.com/SirVer/ultisnips https://github.com/SirVer/ultisnips vendor/ultisnips
+echo "ultisnips is based on python( I like minimal configuration ) "
+git submodule add -f https://github.com/SirVer/ultisnips vendor/ultisnips
 
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 
-echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
+echo "Installation of [.......] ..."
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
-echo "Installation of [ types "use" statements for you ] ..."
-git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
+# echo "Installation of [ types "use" statements for you ] ..."
+# git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
 
-echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
-git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
+# echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
+# git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 
 # Unwanted / Disabled modules
 
@@ -106,9 +108,8 @@ git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 # echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
 # git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 
-# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
-# and host language servers. ] ..."
-# git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
+git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
@@ -131,8 +132,10 @@ git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer self-update
-bin/composer update
 
-echo "Submodule installation recursive dependence [DONE]."
+# bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
+bin/composer update -vv
 
-exit 1
+echo "Submodule installation recursive dependence .....................[DONE]."
+
+exit 0
