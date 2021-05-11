@@ -1,0 +1,62 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet maintainer "Shell script maintainer"
+#!/usr/bin/env bash
+
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
+export DEBIAN_FRONTEND=noninteractive
+
+if [ "$(whoami)" != "root" \]; then
+	SUDO=sudo
+fi
+
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :- ${1}
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+${2}
+endsnippet
+
+snippet confirmYesNo "Confirm yes/no input."
+read -r -p "${1} ? [Y/n\] " input
+case $input in
+	[yY\][eE\][sS\]|[yY\])
+		${2}
+;;
+	[nN\][oO\]|[nN\])
+		${3}
+	;;
+	*)
+		${4}
+exit 1
+;;
+esac
+${5}
+endsnippet
