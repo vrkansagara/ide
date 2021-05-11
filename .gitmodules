@@ -61,3 +61,6 @@
 [submodule "vendor/xmledit"]
 	path = vendor/xmledit
 	url = https://github.com/sukima/xmledit
+[submodule "vendor/coc.nvim"]
+	path = vendor/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git

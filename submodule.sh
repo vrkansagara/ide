@@ -83,20 +83,20 @@ git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/
 git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
-# ultisnips is based on python( I like minimal configuration )
-# git submodule add -f https://github.com/SirVer/ultisnips https://github.com/SirVer/ultisnips vendor/ultisnips
+echo "ultisnips is based on python( I like minimal configuration ) "
+git submodule add -f https://github.com/SirVer/ultisnips https://github.com/SirVer/ultisnips vendor/ultisnips
 
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 
-echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
+echo "Installation of [.......] ..."
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
-echo "Installation of [ types "use" statements for you ] ..."
-git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
+# echo "Installation of [ types "use" statements for you ] ..."
+# git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
 
-echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
-git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
+# echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
+# git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 
 # Unwanted / Disabled modules
 
@@ -106,9 +106,8 @@ git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 # echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
 # git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 
-# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode
-# and host language servers. ] ..."
-# git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
+git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
@@ -135,4 +134,4 @@ bin/composer update
 
 echo "Submodule installation recursive dependence [DONE]."
 
-exit 1
+exit 0
