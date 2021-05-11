@@ -85,8 +85,8 @@ echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snipp
 # git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
-echo "ultisnips is based on python( I like minimal configuration ) "
-git submodule add -f https://github.com/SirVer/ultisnips vendor/ultisnips
+# echo "ultisnips is based on python( I like minimal configuration ) "
+# git submodule add -f https://github.com/SirVer/ultisnips vendor/ultisnips
 
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
