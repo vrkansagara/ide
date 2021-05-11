@@ -41,7 +41,7 @@ ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
 mv $HOME/.vim/coc-settings.json.dist $HOME/.vim/coc-settings.json
 
 # Set sh and bin  directory executable
-${SUDO} chmod -R +x $HOME/.vim/src/sh/* $HOME/.vim/bin
+chmod -R +x $HOME/.vim/src/Sh/* $HOME/.vim/bin
 
 # Before leaving the script reset to current working directory
 cd $HOME
