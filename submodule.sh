@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
-export DEBIAN_FRONTEND=noninteractive
-
-if [ "(whoami)" != "root" ]; then
-	SUDO=sudo
-fi
 
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+export DEBIAN_FRONTEND=noninteractive
+
+SCRIPT=$(readlink -f "")
+SCRIPTDIR=$(dirname "$SCRIPT")
+
+if [ "$(whoami)" != "root" \]; then
+    SUDO=sudo
+fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -84,7 +86,7 @@ echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snipp
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
 echo "ultisnips is based on python( I like minimal configuration ) "
-git submodule add -f https://github.com/SirVer/ultisnips https://github.com/SirVer/ultisnips vendor/ultisnips
+git submodule add -f https://github.com/SirVer/ultisnips vendor/ultisnips
 
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
@@ -130,8 +132,10 @@ git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer self-update
-bin/composer update
 
-echo "Submodule installation recursive dependence [DONE]."
+# bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
+bin/composer update -vv
+
+echo "Submodule installation recursive dependence .....................[DONE]."
 
 exit 0
