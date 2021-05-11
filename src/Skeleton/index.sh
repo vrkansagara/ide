@@ -9,6 +9,9 @@ fi
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
+SCRIPT=$(readlink -f "$0")
+SCRIPTDIR=$(dirname "$SCRIPT")
+
 if ! command -v ls &> /dev/null
 then
 	echo "ls command not found"
