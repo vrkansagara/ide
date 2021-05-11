@@ -21,5 +21,5 @@ let g:snipMate.snippet_dirs = ['~/.vim/src/']
 " snipMate options
 " echo g:snipMate
 let g:snips_author = "Vallabh Kansagara"
-imap <C-T> <Plug>snipMateNextOrTrigger
-smap <C-T> <Plug>snipMateNextOrTrigger
+" imap <C-T> <Plug>snipMateNextOrTrigger
+" smap <C-T> <Plug>snipMateNextOrTrigger
