@@ -158,5 +158,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #Linux specific
 alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
 alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
-
 PROMPT='%(!.%{%F{yellow}%}.)$USER @ %{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
+alias setMyBrightnessAnother=" echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
