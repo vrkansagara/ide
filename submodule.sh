@@ -8,13 +8,13 @@ export DEBIAN_FRONTEND=noninteractive
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")
 
-if [ "$(whoami)" != "root" \]; then
-    SUDO=sudo
+if [ "$(whoami)" != "root" ]; then
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- VIM + COMPOSER installation/update
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Sub-module installation started at $CURRENT_DATE"
