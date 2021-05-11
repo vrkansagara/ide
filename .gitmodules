@@ -49,3 +49,6 @@
 [submodule "vendor/coc.nvim"]
 	path = vendor/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
+[submodule "vendor/ultisnips"]
+	path = vendor/ultisnips
+	url = https://github.com/SirVer/ultisnips
