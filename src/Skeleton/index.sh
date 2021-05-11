@@ -2,12 +2,15 @@
 set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+export DEBIAN_FRONTEND=noninteractive
+
+SCRIPT=$(readlink -f "$0")
+SCRIPTDIR=$(dirname "$SCRIPT")
+
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
-
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
 
 if ! command -v ls &> /dev/null
 then
