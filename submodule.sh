@@ -78,9 +78,9 @@ echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
-git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
-git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
-git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
+# git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
+# git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
+# git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
 git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
 
 echo "ultisnips is based on python( I like minimal configuration ) "
