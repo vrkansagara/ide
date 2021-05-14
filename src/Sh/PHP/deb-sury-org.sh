@@ -22,4 +22,4 @@ ${SUDO} apt-get -y update
 
 echo "[DONE] deb-sury-org.sh"
 
-exit 1
+exit 0
