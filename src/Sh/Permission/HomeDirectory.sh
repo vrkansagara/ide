@@ -37,4 +37,4 @@ fi
 
 echo "[DONE] Linux home directory permission applied."
 
-exit 1
+exit 0
