@@ -20,3 +20,7 @@ ${SUDO} touch /etc/sudoers.d/90-cloud-init-users
 
 # User rules for ubuntu
 echo "$USER ALL=(ALL) NOPASSWD:ALL" | ${SUDO} tee  /etc/sudoers.d/90-cloud-init-users
+echo
+
+echo "User [$USER] does not require to enter password."
+exit 0
