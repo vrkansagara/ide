@@ -19,6 +19,7 @@ echo "$USER is the only one is owning the $HOME/.ssh directory"
 ${SUDO} chown $USER:$USER -Rf $HOME/.ssh
 
 echo "Generating sample SSH key"
+cd $HOME/.ssh
 ssh-keygen -t ed25519 -C "hello@vrkansagara.in"
 ssh-keygen -t rsa -b 4096 -C "hello-world@vrkansagara.in"
 
