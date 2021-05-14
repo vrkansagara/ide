@@ -62,3 +62,10 @@ exit 1
 esac
 ${5}
 endsnippet
+snippet commandNotFound "Binary not found"
+if ! command -v ${1} &> /dev/null
+then
+	echo "${2} command not found"
+fi
+${3}
+endsnippet
