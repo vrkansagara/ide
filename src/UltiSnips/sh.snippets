@@ -32,9 +32,6 @@ snippet maintainer "Shell script maintainer"
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
-SCRIPT=$(readlink -f "$0")
-SCRIPTDIR=$(dirname "$SCRIPT")
-
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
