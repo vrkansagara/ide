@@ -23,7 +23,7 @@ ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essentia
 ${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
-${SUDO} apt-get install -y zsh guake ufw geany httrack
+${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc
 
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -35,7 +35,7 @@ echo "Installing network realated stuf "
 ${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois network-manager
 
 echo "System related stuff "
-${SUDO} apt-get install -y elinks htop ctags curl lsb-release
+${SUDO} apt-get install -y elinks htop ctags curl lsb-release remmina
 
 read -r -p "Do you want to install XFCE desktop ? [Y/n] " input
 case $input in
