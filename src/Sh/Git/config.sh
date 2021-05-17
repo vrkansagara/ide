@@ -52,8 +52,8 @@ git config --global alias.st status
 git config --global alias.last 'log -1 HEAD --stat'
 
 git config --global alias.unstage 'reset HEAD --'
-git config --global alias.resetHardHEAD 'reset --hard HEAD' 
-git config --global alias.resetClean 'clean -fd' 
+git config --global alias.resetHardHEAD 'reset --hard HEAD'
+git config --global alias.resetClean 'clean -fd'
 
 git config --global alias.st 'status -sb'
 git config --global alias.visual '!gitk'
