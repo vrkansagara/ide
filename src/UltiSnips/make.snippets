@@ -23,28 +23,18 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-
 snippet maintainer "Code maintainer" b
-// """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-//  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-//  License    :- See LICENSE file for copyright and license details.
-//  Note	   :- ${1}
-// """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :- ${1}
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# Warning!
+# Make sure you are only entering TAB characters, not mixtures of TAB
+# and spaces.
 ${2}
 endsnippet
 
-snippet sample "Sample of C program" b
-#include <stdio.h>
 
-/* This is a comment. */
-
-int main(int argc, char *argv[])
-{
-	int distance = 100;
-	//
-	// this is also a comment
-	printf("You are %d miles away.\n", distance);
-
-	return 0;
-}
+snippet cflage "Description" b
+CFLAGS=-Wall -g
 endsnippet
