@@ -25,4 +25,4 @@ autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc
 			\ -O2
 			\ -fomit-frame-pointer
 			\ -std=gnu89
-			\ -o /tmp/%.out % `pkg-config --libs gtk+-3.0` && /tmp/%.out<CR>
+			\ -o /tmp/%.out $(mysql_config --cflags) % $(mysql_config --libs) `pkg-config --libs gtk+-3.0` && /tmp/%.out<CR>
