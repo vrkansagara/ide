@@ -49,7 +49,7 @@ echo "password=$_db_password" >> $credentialsFile
 echo "host=$_db_host" >> $credentialsFile
 
 # define directory containing CSV files
-_csv_directory="/var/lib/mysql-files/csv"
+_csv_directory="/var/lib/mysql-files"
 
 if [ -d "${_csv_directory}" ]; then
 	echo "Creating CSV directory"
