@@ -24,7 +24,8 @@
 		"guzzlehttp/guzzle": "^7.3",
 		"mtdowling/jmespath.php": "^2.6",
 		"phpunit/phpunit": "^9.5",
-        "laminas/laminas-coding-standard": "^2.1"
+        "laminas/laminas-coding-standard": "^2.1",
+		"symfony/dom-crawler": "^5.2"
 	},
 	"support": {
 		"email": "vrkansagara@gmail.com",
