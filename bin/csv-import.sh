@@ -12,16 +12,16 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # -- SET GLOBAL slow_query_log = 'ON';
 # select @@slow_query_log
 # Performance Tip(1) :- More over you can define table definition into Mysql after first import
 # select * from tableName procedure analyse()
-# 
-# Performance Tip(2) :- open CSV with excel and do column wise = max(len(RANGE:RANGE)) 
+#
+# Performance Tip(2) :- open CSV with excel and do column wise = max(len(RANGE:RANGE))
 # and assign value to data type in mysql
-# 
+#
 # I personaly like (2) approach to complete this kind of job with +5 increment of data length for feature.
 
 
@@ -50,6 +50,11 @@ echo "host=$_db_host" >> $credentialsFile
 
 # define directory containing CSV files
 _csv_directory="/var/lib/mysql-files/csv"
+
+if [ -d "${_csv_directory}" ]; then
+	echo "Creating CSV directory"
+	${SUDO} mkdir -p ${_csv_directory}
+fi
 
 # go into directory
 cd $_csv_directory
