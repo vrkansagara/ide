@@ -16,7 +16,7 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+echo
 echo "Sub-module installation started at $CURRENT_DATE"
 
 cd ~/.vim
@@ -137,5 +137,5 @@ bin/composer self-update
 bin/composer update -vv
 
 echo "Submodule installation recursive dependence .....................[DONE]."
-
+echo
 exit 0
