@@ -4,7 +4,7 @@
 # set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
 
-if [ "$(whoami)" != "root" \]; then
+if [ "$(whoami)" != "root" ]; then
 	echo "This script only work with [root] user"
 	exit;
 fi
@@ -25,7 +25,7 @@ fi
 
 
 # define database connectivity
-_db="csv_quote"
+_db="csv_original"
 _db_user="root"
 _db_password="toor"
 _db_host="localhost"
@@ -64,7 +64,8 @@ _csv_files=`ls -1 *.csv`
 for _csv_file in ${_csv_files[@]}
 do
 
-	# echo 	"File processing started for :-  ${_csv_file}"
+	#Replace header line symbol from | to ,
+	sed -i "1s/|/,/g" $_csv_file
 
   # remove file extension
   _csv_file_extensionless=`echo $_csv_file | sed 's/\(.*\)\..*/\1/'`
@@ -103,12 +104,12 @@ eof
 	 --columns=$_header_columns_string \
 	 -u $_db_user \
 	 -p$_db_password \
-	 $_db $_csv_directory/$_csv_file > /dev/null 2>&1
+	 $_db $_csv_directory/$_csv_file
+	  # > /dev/null 2>&1
 
- done
+  done
 
- # rm $credentialsFile
- echo "CSV import [ DONE ] ."
-echo "====================CSV Import @end======================================"
-echo
- exit 0
+  rm $credentialsFile
+  echo "====================CSV Import @end======================================"
+  echo
+  exit 0
