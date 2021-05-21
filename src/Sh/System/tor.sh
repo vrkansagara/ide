@@ -11,17 +11,13 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo
-echo "Current setting is "
-${SUDO} cat /sys/module/hid_apple/parameters/fnmode
 
-${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 
-# echo options hid_apple fnmode=2 | ${SUDO} tee -a /etc/modprobe.d/hid_apple.conf
-# ${SUDO} update-initramfs -u -k all
-# ${SUDO} reboot # optional
+cd /tmp
+mkdir /tmp/applications
+cd /tmp/applications
+wget https://www.torproject.org/dist/torbrowser/10.5a15/tor-browser-linux64-10.5a15_en-US.tar.xz
+wget https://www.torproject.org/dist/torbrowser/10.5a15/tor-browser-linux64-10.5a15_en-US.tar.xz.asc
 
-echo "[DONE] MacBokAir Specific setting updated"
-exit 0

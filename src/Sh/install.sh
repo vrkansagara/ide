@@ -32,10 +32,11 @@ fi
 
 echo "Installing network realated stuf "
 # Use `nmtui=wireless command line`
-${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois network-manager
+${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois
+network-manager wicd wicd-wicd-cli wicd-gtk wicd-curses
 
 echo "System related stuff "
-${SUDO} apt-get install -y elinks htop ctags curl lsb-release remmina
+${SUDO} apt-get install -y elinks htop exuberant-ctags curl lsb-release remmina
 
 read -r -p "Do you want to install XFCE desktop ? [Y/n] " input
 case $input in
@@ -52,10 +53,10 @@ case $input in
  ;;
 esac
 
-cd /tmp
-wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz 
-${SUDO} rm -rf /usr/local/go
-${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+# cd /tmp
+# wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz 
+# ${SUDO} rm -rf /usr/local/go
+# ${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
 
 ${SUDO} apt-get install -y nginx nginx-full php
 ${SUDO} apt-get autoremove
