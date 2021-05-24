@@ -49,14 +49,19 @@ ${SUDO} /usr/sbin/cgconfigparser -l /etc/cgconfig.conf
 ${SUDO} /usr/sbin/cgrulesengd -vvv
 
 
-# ${SUDO} systemctl daemon-reload
-# ${SUDO} systemctl enable cgconfigparser
-# ${SUDO} systemctl enable cgrulesgend
-# ${SUDO} systemctl start cgconfigparser
-# ${SUDO} systemctl start cgrulesgend
+${SUDO} systemctl daemon-reload
+${SUDO} systemctl enable cgconfigparser
+${SUDO} systemctl enable cgrulesgend
+${SUDO} systemctl start cgconfigparser
+${SUDO} systemctl start cgrulesgend
 
 
 
 # check if cgroup’s are working properly
 # cat /sys/fs/cgroup/cpu/web2/tasks
 # cat /sys/fs/cgroup/memory/web2/tasks
+
+
+## vallabh @ vrkansagara.local ➜  .vim git:(master) mount | grep cgroup
+# cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+
