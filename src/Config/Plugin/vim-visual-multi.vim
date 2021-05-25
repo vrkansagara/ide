@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- visual-multi 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :- visual-multi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
