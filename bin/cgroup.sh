@@ -33,9 +33,9 @@ ${SUDO} apt-get install -y cgroup-tools cgroup-tools cgroupfs-mount libcgroup1
 
 if [ -f "/etc/cgconfig.conf" ]; then
 	# Backup of existing configuration if any
-	${SUDO} mv /etc/cgred.conf /etc/cgred-${CURRENT_DATE}.conf
 	${SUDO} mv /etc/cgconfig.conf /etc/cgconfig-${CURRENT_DATE}.conf
 	${SUDO} mv /etc/cgrules.conf /etc/cgrules-${CURRENT_DATE}.conf
+	${SUDO} mv /etc/cgred.conf /etc/cgred-${CURRENT_DATE}.conf
 fi
 
 # Copy default configuration file
