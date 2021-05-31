@@ -1,6 +1,6 @@
 
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
