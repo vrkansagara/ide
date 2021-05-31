@@ -43,6 +43,7 @@ case $input in
     [yY][eE][sS]|[yY])
 		echo "Install desktop manager"
 		${SUDO} apt-get install -y xfce4 xfce4-goodies
+		${SUDO} apt-get install --reinstall thunar-volman gvfs-backends go-mtpfs mtp gmtp
  ;;
     [nN][oO]|[nN])
  echo "Skipping...XFCE"
