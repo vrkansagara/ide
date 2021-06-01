@@ -29,11 +29,7 @@ fi
 # Add the following string inside of the GRUB_CMDLINE_LINUX_DEFAULT variable:
 # cgroup_enable=memory swapaccount=1
 
-${SUDO} apt-get install -y cgroup-tools cgroup-tools cgroupfs-mount libcgroup1 numactl
-
-if [ ! -d "/cgroup/cpu-n-ram" ]; then
-	${SUDO} mkdir -p /cgroup/cpu-n-ram
-fi
+${SUDO} apt-get install -y cgroup-tools cgroup-tools cgroupfs-mount libcgroup1
 
 if [ -f "/etc/cgconfig.conf" ]; then
 	# Backup of existing configuration if any
@@ -53,11 +49,11 @@ ${SUDO} /usr/sbin/cgconfigparser -l /etc/cgconfig.conf
 ${SUDO} /usr/sbin/cgrulesengd -vvv
 
 
-${SUDO} systemctl daemon-reload
-${SUDO} systemctl enable cgconfigparser
-${SUDO} systemctl enable cgrulesgend
-${SUDO} systemctl start cgconfigparser
-${SUDO} systemctl start cgrulesgend
+# ${SUDO} systemctl daemon-reload
+# ${SUDO} systemctl enable cgconfigparser
+# ${SUDO} systemctl enable cgrulesgend
+# ${SUDO} systemctl start cgconfigparser
+# ${SUDO} systemctl start cgrulesgend
 
 
 
@@ -68,4 +64,13 @@ ${SUDO} systemctl start cgrulesgend
 
 ## vallabh @ vrkansagara.local ➜  .vim git:(master) mount | grep cgroup
 # cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+
+# root@vrkansagara:~# ls /sys/fs/cgroup/
+# cgroup.controllers	cgroup.threads	       dev-mqueue.mount  memory.numa_stat		sys-kernel-debug.mount
+# cgroup.max.depth	cpu.pressure	       init.scope	 memory.pressure		sys-kernel-tracing.mount
+# cgroup.max.descendants	cpuset.cpus.effective  io.cost.model	 memory.stat			system.slice
+# cgroup.procs		cpuset.mems.effective  io.cost.qos	 -.mount			user.slice
+# cgroup.stat		cpu.stat	       io.pressure	 sys-fs-fuse-connections.mount
+# cgroup.subtree_control	dev-hugepages.mount    io.stat		 sys-kernel-config.mount
+
 
