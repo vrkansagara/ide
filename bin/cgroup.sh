@@ -29,7 +29,11 @@ fi
 # Add the following string inside of the GRUB_CMDLINE_LINUX_DEFAULT variable:
 # cgroup_enable=memory swapaccount=1
 
-${SUDO} apt-get install -y cgroup-tools cgroup-tools cgroupfs-mount libcgroup1
+${SUDO} apt-get install -y cgroup-tools cgroup-tools cgroupfs-mount libcgroup1 numactl
+
+if [ ! -d "/cgroup/cpu-n-ram" ]; then
+	${SUDO} mkdir -p /cgroup/cpu-n-ram
+fi
 
 if [ -f "/etc/cgconfig.conf" ]; then
 	# Backup of existing configuration if any
