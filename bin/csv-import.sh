@@ -25,7 +25,7 @@ fi
 
 
 # define database connectivity
-_db="csv_original"
+_db="csv_today_03"
 _db_user="root"
 _db_password="toor"
 _db_host="localhost"
@@ -99,7 +99,7 @@ eof
  # --fields-enclosed-by='"' \
  mysqlimport \
 	 --ignore-lines=1 \
-	 --fields-terminated-by=',' \
+	 --fields-terminated-by='|' \
 	 --lines-terminated-by="\n" \
 	 --columns=$_header_columns_string \
 	 -u $_db_user \
