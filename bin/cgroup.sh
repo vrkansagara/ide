@@ -18,19 +18,33 @@ fi
 # cgroup /sys/fs/cgroup cgroup defaults,blkio,net_cls,freezer,devices,cpuacct,cpu,cpuset,memory,clone_children 0 0
 
 
+# This will select only the mounts that are part of cgroup version 1, taking just
+# their mount points and then unmounting them.
+sudo mount -t cgroup | cut -f 3 -d ' ' | xargs sudo umount
+
+sudo mount -o remount,rw /sys/fs/cgroup
+# Delete the symlinks
+sudo find /sys/fs/cgroup -maxdepth 1 -type l -exec rm {} \;
+# Delete the empty directories
+# sudo find /sys/fs/cgroup/ -links 2 -type d -not -path '/sys/fs/cgroup/unified/*' -exec rmdir -v {} \;
+sudo mount -o remount,ro /sys/fs/cgroup
+
+
+# if cgroup is supported by your kernel
+	# grep "cgroup" /proc/filesystems
+
 # Add the following line to /etc/fstab:
 # cgroup /sys/fs/cgroup cgroup defaults
 # For a one-time thing, mount it manually:
-# mount -t cgroup cgroup /sys/fs/cgroup_enable
 # sudo  mount -t cgroup cgroup /sys/fs/cgroup
 
 #Edit kernel options in /etc/default/grub:
 # GRUB_CMDLINE_LINUX_DEFAULT="quiet cgroup_enable=memory,namespace"
 #update-grub
 
-# mount -t cgroup -o memory cgroup_memory /sys/fs/cgroup/memory
+# sudo mount -t cgroup -o memory cgroup_memory /sys/fs/cgroup/memory
 # And that's assuming that /sys/fs/cgroup is mounted at all.
-# mount -t tmpfs cgroup /sys/fs/cgroup
+# sudo mount -t tmpfs cgroup /sys/fs/cgroup
 
 # Need manual changes
 # Add the following string inside of the GRUB_CMDLINE_LINUX_DEFAULT variable:
@@ -52,20 +66,23 @@ OTHER_CMD=$(which def)
     exit 1;
  fi
 
-# ${SUDO} mkdir /cgroup/cpu-n-ram
-# ${SUDO} mkdir /sys/fs/cgroup/cpu-n-ram
-
 # From there, you can add tasks into your cgroup using the echo command:
 # echo $pid > /sys/fs/cgroup/memory/mycgroup/tasks
 # Finally, you can limit the memory usage to 1MB by:
 # echo 1M > /sys/fs/cgroup/memory/mycgroup/memory.max_usage_in_bytes
 
-# mount -t tmpfs cgroup_root /sys/fs/cgroup
-# mkdir /sys/fs/cgroup/cpuset
-# mount -t cgroup cpuset -o cpuset /sys/fs/cgroup/cpuset/
+sudo mount -t tmpfs cgroup_root /sys/fs/cgroup
+sudo mkdir /sys/fs/cgroup/cpuset
+sudo mkdir /sys/fs/cgroup/cpu
+sudo mkdir /sys/fs/cgroup/memory
+
+sudo mount -t cgroup cpuset -o cpuset /sys/fs/cgroup/cpuset/
+sudo mount -t cgroup memory -o cpu /sys/fs/cgroup/cpu/
+sudo mount -t cgroup memory -o memory /sys/fs/cgroup/memory/
 
 # Check weather the cgroup2 is mounted or not
 cat /proc/mounts | grep cgroup
+ls -lA /sys/fs/cgroup/
 
 # sudo mount -t cgroup -o cpu,memory,name=cgroup2 cgroup /sys/fs/cgroup
 
