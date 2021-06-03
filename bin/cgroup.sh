@@ -67,7 +67,7 @@ OTHER_CMD=$(which def)
 # Check weather the cgroup2 is mounted or not
 cat /proc/mounts | grep cgroup
 
-# ${SUDO} mount -t cgroup -o cpu,cpuset,memory - /cgroup/cpu-n-ram
+# sudo mount -t cgroup -o cpu,memory,name=cgroup2 cgroup /sys/fs/cgroup
 
 if [ -f "/etc/cgconfig.conf" ]; then
 	# Backup of existing configuration if any
