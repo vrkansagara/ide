@@ -31,13 +31,13 @@ fi
 
 
 YUM_CMD=$(which yum)
-APT_GET_CMD=$(which apt-get)
+APT_GET_CMD=$(which apt)
 OTHER_CMD=$(which def)
 
  if [[ ! -z $YUM_CMD ]]; then
-    ${SUDO} $YUM_PACKAGE_NAME libcgroup libcgroup-tools
+    ${SUDO} yum -y libcgroup libcgroup-tools
  elif [[ ! -z $APT_GET_CMD ]]; then
-   ${SUDO}  $DEB_PACKAGE_NAME libcgroup1 cgroup-tools cgroupfs-mount libcgroup1
+   ${SUDO}  apt install -y libcgroup1 cgroup-tools cgroupfs-mount
  elif [[ ! -z $OTHER_CMD ]]; then
     ${SUDO} $OTHER_CMD other-project-install
  else
@@ -45,6 +45,24 @@ OTHER_CMD=$(which def)
     exit 1;
  fi
 
+# ${SUDO} mkdir /cgroup/cpu-n-ram
+# ${SUDO} mkdir /sys/fs/cgroup/cpu-n-ram
+
+# From there, you can add tasks into your cgroup using the echo command:
+# echo $pid > /sys/fs/cgroup/memory/mycgroup/tasks
+# Finally, you can limit the memory usage to 1MB by:
+# echo 1M > /sys/fs/cgroup/memory/mycgroup/memory.max_usage_in_bytes
+
+# mount -t tmpfs cgroup_root /sys/fs/cgroup
+# mkdir /sys/fs/cgroup/cpuset
+# mount -t cgroup cpuset -o cpuset /sys/fs/cgroup/cpuset/
+
+${SUDO} umount /sys/fs/cgroup
+
+# Check weather the cgroup2 is mounted or not
+cat /proc/mounts | grep cgroup
+
+# ${SUDO} mount -t cgroup -o cpu,cpuset,memory - /cgroup/cpu-n-ram
 
 if [ -f "/etc/cgconfig.conf" ]; then
 	# Backup of existing configuration if any
@@ -64,12 +82,11 @@ ${SUDO} /usr/sbin/cgconfigparser -l /etc/cgconfig.conf
 ${SUDO} /usr/sbin/cgrulesengd -vvv
 
 
-# ${SUDO} systemctl daemon-reload
-# ${SUDO} systemctl enable cgconfigparser
-# ${SUDO} systemctl enable cgrulesgend
-# ${SUDO} systemctl start cgconfigparser
-# ${SUDO} systemctl start cgrulesgend
-
+${SUDO} systemctl daemon-reload
+${SUDO} systemctl enable cgconfigparser
+${SUDO} systemctl enable cgrulesgend
+${SUDO} systemctl start cgconfigparser
+${SUDO} systemctl start cgrulesgend
 
 
 # check if cgroup’s are working properly
@@ -87,5 +104,3 @@ ${SUDO} /usr/sbin/cgrulesengd -vvv
 # cgroup.procs		cpuset.mems.effective  io.cost.qos	 -.mount			user.slice
 # cgroup.stat		cpu.stat	       io.pressure	 sys-fs-fuse-connections.mount
 # cgroup.subtree_control	dev-hugepages.mount    io.stat		 sys-kernel-config.mount
-
-
