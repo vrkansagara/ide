@@ -14,37 +14,52 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo "Your current graphics driver is "
 
-lspci -vnn | grep -A12 VGA
+command=""
+value=""
+
+if [ $# -ge 2 ] ; then
+    # Two arguments: first is command, second is "value"
+    command=$1
+    value=$2
+else
+    if [ $# -eq 1 ] ; then
+        # One argument: use as command, and use default value to 5
+        command=$1
+        value=100
+    else
+        # Otherwise: prompt
+        echo "Please enter up/down for the brightness change:"
+        read command
+        echo "Enter brightness value:"
+        read value
+    fi
+fi
+
+# echo "Your current graphics driver is "
+# lspci -vnn | grep -A12 VGA
 
 # ls -lA /sys/class/backlight/
 
-defaultIncreseBy=500
-defaultDescreaseBy=1000
-
 curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
-
 userValueForBrightness=0
 
-case "$1" in
+case "$command" in
 	"up")
-		if [[ $curBrightness -eq 0 ]]; then
-			userValueForBrightness=1
-		else
-			userValueForBrightness=`expr $curBrightness + $defaultIncreseBy `
-		fi
+			userValueForBrightness=`expr $curBrightness + $value`
 	;;
 	"down")
-		if [[ $curBrightness -le 5 ]]; then
-			userValueForBrightness=3
-		else
-			userValueForBrightness=`expr $curBrightness - $defaultDescreaseBy`
+		userValueForBrightness=`expr $curBrightness - $value`
+		if [[ $userValueForBrightness -le 100 ]]; then
+			userValueForBrightness=100
 		fi
 	;;
 	*)
 		echo "Unsupported: \"$1\""
 		exit 1
 esac
+
+echo "Current brightness level is  => $curBrightness"
+echo "Current brightness change to => $userValueForBrightness"
 
 echo $userValueForBrightness | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness
