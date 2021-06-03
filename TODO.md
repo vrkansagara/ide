@@ -7,8 +7,9 @@
 - [x] Add snippiest configuration
 - [ ] Vim terminal scroll up and down should work
 - [x] While pasting long data into vim it taking log time (i.e. index.html content past into vim)
+- [ ] Find how to set key binding into Linux using binary
 resolved by using `<leader>p`
-- Add copy history plugin/mechanism 
+- Add copy history plugin/mechanism
 
 ## Print VIM environment
 
