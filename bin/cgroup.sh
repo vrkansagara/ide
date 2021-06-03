@@ -17,6 +17,13 @@ fi
 # /etc/fstab
 # cgroup /sys/fs/cgroup cgroup defaults,blkio,net_cls,freezer,devices,cpuacct,cpu,cpuset,memory,clone_children 0 0
 
+
+# Add the following line to /etc/fstab:
+# cgroup /sys/fs/cgroup cgroup defaults
+# For a one-time thing, mount it manually:
+# mount -t cgroup cgroup /sys/fs/cgroup_enable
+# sudo  mount -t cgroup cgroup /sys/fs/cgroup
+
 #Edit kernel options in /etc/default/grub:
 # GRUB_CMDLINE_LINUX_DEFAULT="quiet cgroup_enable=memory,namespace"
 #update-grub
@@ -56,8 +63,6 @@ OTHER_CMD=$(which def)
 # mount -t tmpfs cgroup_root /sys/fs/cgroup
 # mkdir /sys/fs/cgroup/cpuset
 # mount -t cgroup cpuset -o cpuset /sys/fs/cgroup/cpuset/
-
-${SUDO} umount /sys/fs/cgroup
 
 # Check weather the cgroup2 is mounted or not
 cat /proc/mounts | grep cgroup
