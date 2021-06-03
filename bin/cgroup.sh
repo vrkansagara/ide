@@ -29,7 +29,22 @@ fi
 # Add the following string inside of the GRUB_CMDLINE_LINUX_DEFAULT variable:
 # cgroup_enable=memory swapaccount=1
 
-${SUDO} apt-get install -y cgroup-tools cgroup-tools cgroupfs-mount libcgroup1
+
+YUM_CMD=$(which yum)
+APT_GET_CMD=$(which apt-get)
+OTHER_CMD=$(which def)
+
+ if [[ ! -z $YUM_CMD ]]; then
+    ${SUDO} $YUM_PACKAGE_NAME libcgroup libcgroup-tools
+ elif [[ ! -z $APT_GET_CMD ]]; then
+   ${SUDO}  $DEB_PACKAGE_NAME libcgroup1 cgroup-tools cgroupfs-mount libcgroup1
+ elif [[ ! -z $OTHER_CMD ]]; then
+    ${SUDO} $OTHER_CMD other-project-install
+ else
+    echo "error can't install package $PACKAGE"
+    exit 1;
+ fi
+
 
 if [ -f "/etc/cgconfig.conf" ]; then
 	# Backup of existing configuration if any
