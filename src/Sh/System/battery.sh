@@ -31,8 +31,7 @@ do
 
 		#check if the battery level is over 90%
 		if [ $battery_level -ge 99 ]; then
-			notify-send -u critical "Please unplug your AC adapter" "Battery
-			level: ${battery_level}% (charged above 99%)" -i battery-full-charged
+			notify-send -u critical "Please unplug your AC adapter" "Battery level: ${battery_level}% (charged above 99%)" -i battery-full-charged
 		fi
 
 	fi
