@@ -54,6 +54,17 @@ case "$command" in
 			userValueForBrightness=100
 		fi
 	;;
+	"set")
+		if [[ $curBrightness -le 100 ]]; then
+			userValueForBrightness=100
+			echo 1000 | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness
+
+		else
+			echo $value | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness
+
+		fi
+		exit;
+	;;
 	*)
 		echo "Unsupported: \"$1\""
 		exit 1
