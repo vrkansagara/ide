@@ -23,5 +23,14 @@ ${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 # ${SUDO} update-initramfs -u -k all
 # ${SUDO} reboot # optional
 
+echo 'Section "InputClass"
+        Identifier "libinput touchpad catchall"
+        MatchIsTouchpad "on"
+        MatchDevicePath "/dev/input/event*"
+        Driver "libinput"
+        Option "Tapping" "on"
+EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
+# systemctl restart lightdm
+
 echo "[DONE] MacBokAir Specific setting updated"
 exit 0
