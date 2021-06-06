@@ -26,10 +26,10 @@ else
     if [ $# -eq 1 ] ; then
         # One argument: use as command, and use default value to 5
         command=$1
-        value=100
+        value=1
     else
         # Otherwise: prompt
-		echo "Please enter up/down/set(Default=500) for the brightness change:"
+		echo "Please enter up/down/set(Default=100) for the brightness change:"
         read command
         echo "Enter brightness value:"
         read value
@@ -51,16 +51,16 @@ case "$command" in
 	;;
 	"down")
 		userValueForBrightness=`expr $curBrightness - $value`
-		if [[ $userValueForBrightness -le 100 ]]; then
-			userValueForBrightness=500
+		if [[ $userValueForBrightness -le 10 ]]; then
+			userValueForBrightness=100
 		fi
 	;;
 	"set")
-		if [[ $value -le 100 ]]; then
-			echo 1000 | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness
+		if [[ $value -le 10 ]]; then
+			echo 100| ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
 
 		else
-			echo $value | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness
+			echo $value | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
 
 		fi
 		exit;
@@ -72,4 +72,4 @@ esac
 
 echo "Current brightness change to => $userValueForBrightness"
 
-echo $userValueForBrightness | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness
+echo $userValueForBrightness | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
