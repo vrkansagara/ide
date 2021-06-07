@@ -23,6 +23,7 @@ ${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 # ${SUDO} update-initramfs -u -k all
 # ${SUDO} reboot # optional
 
+${SUDO} mkdir -p /etc/X11/xorg.conf.d
 echo 'Section "InputClass"
         Identifier "libinput touchpad catchall"
         MatchIsTouchpad "on"
