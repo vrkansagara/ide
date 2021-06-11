@@ -14,9 +14,12 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
+echo "Current brightness level is  => $curBrightness"
 
 command=""
 value=""
+minimumBrightness=15
 
 if [ $# -ge 2 ] ; then
     # Two arguments: first is command, second is "value"
@@ -41,9 +44,7 @@ fi
 
 # ls -lA /sys/class/backlight/
 
-curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
-echo "Current brightness level is  => $curBrightness"
-userValueForBrightness=0
+userValueForBrightness=1
 
 case "$command" in
 	"up")
@@ -52,12 +53,12 @@ case "$command" in
 	"down")
 		userValueForBrightness=`expr $curBrightness - $value`
 		if [[ $userValueForBrightness -le 10 ]]; then
-			userValueForBrightness=100
+			userValueForBrightness=$minimumBrightness
 		fi
 	;;
 	"set")
 		if [[ $value -le 10 ]]; then
-			echo 100| ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
+			echo $minimumBrightness | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
 
 		else
 			echo $value | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
@@ -71,5 +72,4 @@ case "$command" in
 esac
 
 echo "Current brightness change to => $userValueForBrightness"
-
 echo $userValueForBrightness | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
