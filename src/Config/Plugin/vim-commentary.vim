@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " commentary.vim
@@ -13,13 +13,14 @@
 map <C-_> :Commentary<CR>j
 map <S-_> :Commentary<CR>k
 
-" Comment which having \ or // 
+" Comment which having \ or //
 autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType php setlocal commentstring=\/\/\%s
 autocmd FileType c setlocal commentstring=\/\/\%s
 autocmd FileType cpp setlocal commentstring=\/\/\%s
+autocmd FileType cspel setlocal commentstring=\/\/\%s
 
-" Comment which having # 
+" Comment which having #
 autocmd FileType crontab setlocal commentstring=#\ %s
 autocmd FileType apache setlocal commentstring=#\ %s
 autocmd FileType zsh setlocal commentstring=#\ %s
