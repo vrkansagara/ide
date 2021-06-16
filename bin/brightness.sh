@@ -19,7 +19,7 @@ echo "Current brightness level is  => $curBrightness"
 
 command=""
 value=""
-minimumBrightness=15
+minimumBrightness=5
 
 if [ $# -ge 2 ] ; then
     # Two arguments: first is command, second is "value"
