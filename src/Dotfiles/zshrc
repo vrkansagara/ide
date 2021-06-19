@@ -1,5 +1,8 @@
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.vim/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$PATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -52,7 +55,7 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -129,15 +132,24 @@ alias la='ls -A'
 alias l='ls -CF'
 alias du='/usr/bin/du -sh  '
 
-alias ownIt='sudo chown -Rf $USER:$USER '
-alias ownItWithPermission='sudo chmod 0744 -Rf'
+# Git alias
+alias gWork='git config --global user.email "vallabh.kansagara@commercepundit.com"'
+alias gPersonal='git config --global user.email "vrkansagara@gmail.com"'
 
+## Linux Administator commands
+alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
+alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
-alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
-alias gWork='git config --global user.email "vallabh.kansagara@commercepundit.com"'
-alias gPersonal='git config --global user.email "vrkansagara@gmail.com"'
+alias ownIt='sudo chown -Rf $USER:$USER '
+alias ownItWithPermission='sudo chmod 0744 -Rf'
+alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
+alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
+PROMPT='%(!.%{%F{yellow}%}.)$USER @ %{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
+alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
+
 
 # PHP Aliases
 alias phpRun='php -S 0.0.0.0:12345 -d ./'
@@ -152,12 +164,3 @@ alias phpComposerRun='composer run-script serve --timeout 0'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-#Linux specific
-alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
-alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
-PROMPT='%(!.%{%F{yellow}%}.)$USER @ %{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
-alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
