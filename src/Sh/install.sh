@@ -32,8 +32,7 @@ fi
 
 echo "Installing network realated stuf "
 # Use `nmtui=wireless command line`
-${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois
-network-manager wicd wicd-wicd-cli wicd-gtk wicd-curses
+${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois network-manager wicd wicd-wicd-cli wicd-gtk wicd-curses
 
 echo "System related stuff "
 ${SUDO} apt-get install -y elinks htop exuberant-ctags curl lsb-release remmina
@@ -55,7 +54,7 @@ case $input in
 esac
 
 # cd /tmp
-# wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz 
+# wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
 # ${SUDO} rm -rf /usr/local/go
 # ${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
 
