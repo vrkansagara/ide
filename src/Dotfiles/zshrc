@@ -150,7 +150,7 @@ alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
 PROMPT='%(!.%{%F{yellow}%}.)$USER @ %{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
 alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
-
+alias myLimit="/usr/bin/cpulimit -l 30  "
 
 # PHP Aliases
 alias phpRun='php -S 0.0.0.0:12345 -d ./'
