@@ -21,9 +21,12 @@ fi
 # /usr/bin/cpulimit -l 20 ~/Application/robo3t-1.4.3-linux-x86_64-48f7dfd/bin/robo3t &
 /usr/bin/cpulimit -l 20 /snap/bin/skype &
 /usr/bin/cpulimit -l 20 /usr/bin/keepassxc &
+/usr/bin/cpulimit -l 20 /usr/share/teams/teams &
+/usr/bin/cpulimit -l 20 /usr/bin/obs &
 
 /usr/bin/cpulimit -l 10 /snap/bin/postman &
-# /usr/bin/cpulimit -l 10 /usr/bin/openfortigui &
+/usr/bin/cpulimit -l 10 /usr/bin/openfortigui &
+/usr/bin/cpulimit -l 5 /usr/bin/clipit &
 
 # cd /home/vallabh/htdocs/adminMongo
 # /usr/bin/cpulimit -l 10 /usr/local/bin/yarn start &

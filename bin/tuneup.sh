@@ -34,15 +34,15 @@ ${SUDO}  swapoff -a && ${SUDO} swapon -a
 ${SUDO} rm -rfv ~/.cache/thumbnails
 ${SUDO} rm -rfv ~/.mozilla
 ${SUDO} rm -rfv ~/.cache/mozilla
-${SUDO} rm -rfv ~/.config/google-chrome
+# ${SUDO} rm -rfv ~/.config/google-chrome
 
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
 
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 # https://gist.github.com/juanje/9861623
 #clear up system cache
-${SUDO} apt install default-jre default-jdk --no-install-recommends
-${SUDO} apt install --reinstall --no-install-recommends gnome-control-center
+# ${SUDO} apt install default-jre default-jdk --no-install-recommends
+# ${SUDO} apt install --reinstall --no-install-recommends gnome-control-center
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 
 ${SUDO} apt update
@@ -53,10 +53,10 @@ ${SUDO} apt-get -y autoremove --purge
 
 # /etc/sysctl.conf
 
-${SUDO} sysctl -w vm.swappiness=20
-${SUDO} sysctl -w vm.vfs_cache_pressure=50
+${SUDO} sysctl -w vm.swappiness=0
+${SUDO} sysctl -w vm.vfs_cache_pressure=0
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
-ulimit -v 8192000 # 8 GB for current user
-find -name '*.sh' -exec ls -lA {} +
+# ulimit -v 8192000 # 8 GB for current user
+# find -name '*.sh' -exec ls -lA {} +
