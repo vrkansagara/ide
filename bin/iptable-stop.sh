@@ -33,3 +33,20 @@ $ipt -t raw -X
 
 
 ${SUDO} iptables -L -n -v
+
+
+
+
+# Allow loopback
+iptables -I INPUT 1 -i lo -j ACCEPT
+
+# Allow DNS
+iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+
+# Now, allow connection to website serverfault.com on port 80
+iptables -A OUTPUT -p tcp -d gocomics.com --dport 443 -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Drop everything
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
