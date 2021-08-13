@@ -40,7 +40,7 @@ if [ ! -f "/usr/bin/docker-compose" ]; then
 	${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 fi
-
+${SUDO} sysctl -w vm.max_map_count=262144
 echo "[DONE] Docker compose script "
 
 curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
