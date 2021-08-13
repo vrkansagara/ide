@@ -1,6 +1,6 @@
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.vim/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$PATH
+export PATH=$HOME/bin:$HOME/.vim/bin:/usr/local/bin:$HOME/.composer/vendor/bin:/usr/local/go/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #
 # Path to your oh-my-zsh installation.
@@ -171,4 +171,4 @@ HOME=${HOME:-'/home/vallabh'}
 export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
 
-alias code="/usr/bin/cpulimit -l 40 /snap/bin/code"
+alias code="/usr/bin/cpulimit -l 40 /home/vallabh/Applications/code/code"
