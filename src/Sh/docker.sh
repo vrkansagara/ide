@@ -16,6 +16,13 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo " Docker related permission..."
+${SUDO} apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+${SUDO} curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 if [ -f "/usr/bin/docker" ]; then
 	${SUDO} chmod 666 /var/run/docker.sock
 	${SUDO} groupadd docker
@@ -28,9 +35,9 @@ fi
 
 
 if [ ! -f "/usr/bin/docker-compose" ]; then
-        ${SUDO} curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        ${SUDO} chmod +x /usr/local/bin/docker-compose
-        ${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+	${SUDO} curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	${SUDO} chmod +x /usr/local/bin/docker-compose
+	${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 fi
 
