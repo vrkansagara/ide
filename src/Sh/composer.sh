@@ -21,10 +21,11 @@ then
 fi
 
 composer global require --dev roave/security-advisories:dev-latest
+composer global require --dev phpro/grumphp
 composer global require friendsofphp/php-cs-fixer
 composer global require laminas/laminas-migration
 composer global require laravel/installer
 
-composer global update -v
+composer global update -vvv
 
 echo "Composer installation done with global package installation [DONE]."
