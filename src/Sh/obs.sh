@@ -12,13 +12,13 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Installation script for the wireshark.
+#  Note		  :- Installation of the obs.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} add-apt-repository ppa:wireshark-dev/stable
-${SUDO} apt-get update
-${SUDO} apt-get install wireshark
-${SUDO} dpkg-reconfigure wireshark-common
-${SUDO} adduser $USER wireshark
-${SUDO} usermod -a -G wireshark $USER
+${SUDO} apt install ffmpeg
+${SUDO} add-apt-repository ppa:obsproject/obs-studio
+${SUDO} apt install obs-studio
+${SUDO} apt install obs-studio
+
+
 
