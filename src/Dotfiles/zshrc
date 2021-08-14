@@ -112,10 +112,10 @@ alias ls='ls -lAlhtra'
 # sudo chmod +x /usr/local/bin/docker-compose
 # dc up -dV --build --remove-orphan --force-recreate
 alias dc='docker-compose '
-alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate'
-alias dcu='docker-compose up -dV --remove-orphan --force-recreate'
-alias dcd='docker-compose down'
-alias dcl='docker-compose logs --tail 50 --follow --timestamps'
+alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate '
+alias dcu='docker-compose up -dV --remove-orphan --force-recreate '
+alias dcd='docker-compose down '
+alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 
 #File Manager related stuff #
 
@@ -170,3 +170,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 HOME=${HOME:-'/home/vallabh'}
 export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
+
+alias code="/usr/bin/cpulimit -l 40 /home/vallabh/Applications/code/code"

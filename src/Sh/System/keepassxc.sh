@@ -17,5 +17,3 @@ fi
 
 ${SUDO} apt-get update
 ${SUDO} apt-get  install keepassxc
-
-
