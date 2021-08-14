@@ -23,8 +23,14 @@ ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essentia
 ${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
-${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc
+${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit
 
+echo "Guake specific issue fixing."
+${SUDO} apt-get install libutempter0
+
+echo "Installing nodejs "
+curl -fsSL https://deb.nodesource.com/setup_14.x | ${SUDO} -E bash -
+${SUDO} apt-get install -y nodejs
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
