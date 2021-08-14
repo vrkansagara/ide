@@ -67,6 +67,8 @@ esac
 ${SUDO} apt-get install -y nginx nginx-full php composer
 ${SUDO} apt-get autoremove
 
+echo "fs.inotify.max_user_watches=524288" | ${SUDO} tee -a /etc/sysctl.conf
+${SUDO} sysctl -p
 echo "[DONE] My required linux binary installation id done."
 
 exit 0
