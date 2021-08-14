@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
-
-set -e # This setting is telling the script to exit on a command error.
+# set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
+
+echo
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Note		  :- Installation script for my editor.
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # This directory name must not start with .vim
 BACKUP_DIRECTORY="${HOME}/.old/vim-${CURRENT_DATE}"
@@ -18,15 +24,15 @@ if [ ! -d "$BACKUP_DIRECTORY" ]; then
 	mkdir -p $BACKUP_DIRECTORY
 fi
 
+echo "Cloning the [vrkansagara/ide] vim configuration."
+git clone --recursive --branch master --depth 1 https://github.com/vrkansagara/ide.git ${CLONE_DIRECTORY}
+cd ${CLONE_DIRECTORY}
+
 echo "Creating backup of ~/.vim* to ${BACKUP_DIRECTORY}"
 if [ $(ls $HOME/.vim* | wc -l) != 0 ]; then
 	echo "Moving base vimrc config to back up folder"
 	mv -f $HOME/.vim*  $BACKUP_DIRECTORY
 fi
-
-echo "Cloning the [vrkansagar] vim configuration."
-git clone --recursive --branch master --depth 1 https://github.com/vrkansagara/ide.git ${CLONE_DIRECTORY}
-cd ${CLONE_DIRECTORY}
 
 # git pull --recurse-submodules
 git submodule update --init --recursive
@@ -47,3 +53,5 @@ chmod -R +x $HOME/.vim/src/Sh/* $HOME/.vim/bin
 cd $HOME
 
 echo "Installed the Ultimate Vim configuration of [vrkansagara] successfully! Enjoy :-)"
+
+exit 0
