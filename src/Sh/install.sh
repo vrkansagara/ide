@@ -23,7 +23,7 @@ ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essentia
 ${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
-${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit
+${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit jq
 
 echo "Guake specific issue fixing."
 ${SUDO} apt-get install libutempter0
@@ -65,6 +65,9 @@ esac
 # ${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
 
 ${SUDO} apt-get install -y nginx nginx-full php composer
+${SUDO} useradd $USER -g www-data
+${SUDO} chown -R $USER:www-data $HOME/htdocs $HOME/www
+
 ${SUDO} apt-get autoremove
 
 echo "fs.inotify.max_user_watches=524288" | ${SUDO} tee -a /etc/sysctl.conf
