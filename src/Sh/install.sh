@@ -15,6 +15,10 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 #  Note		  :- This is the system setup script.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+## Ubuntu specific
+# Do not upgrade to latest release
+${SUDO} sed -i 's/Prompt=.*/Prompt=never/' /etc/update-manager/release-upgrades
+
 # System specific stuff
 ${SUDO} apt-get install --reinstall ca-certificates
 
