@@ -62,12 +62,11 @@ sleep 5s # Waits 5 seconds.
 # ${SUDO} $ipt -A INPUT -s 3.6.0.0/15 -j DROP
 # ${SUDO} $ipt -A OUTPUT -p 53 -d datashield.in -j DROP
 
-${SUDO} $ipt -A INPUT -s fonts.gstatic.com -j DROP
-${SUDO} $ipt -A OUTPUT -d fonts.gstatic.com -j DROP
+# ${SUDO} $ipt -A INPUT -s fonts.gstatic.com -j DROP
+# ${SUDO} $ipt -A OUTPUT -d fonts.gstatic.com -j DROP
 
 ${SUDO} $ipt -L -n -v
 ${SUDO} $ipt -L --line-numbers
-
 
 exit 0
 
