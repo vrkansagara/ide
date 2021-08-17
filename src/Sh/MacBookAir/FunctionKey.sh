@@ -34,5 +34,10 @@ echo 'Section "InputClass"
 EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
 # systemctl restart lightdm
 
+
+echo "Print current system theme ( Default :- Ambiance )"
+gsettings get org.gnome.desktop.interface gtk-theme
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+
 echo "[DONE] MacBokAir Specific setting updated"
 exit 0
