@@ -143,6 +143,7 @@ alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
+alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
 alias ownIt='sudo chown -Rf $USER:$USER '
 alias ownItWithPermission='sudo chmod 0744 -Rf'
 alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
