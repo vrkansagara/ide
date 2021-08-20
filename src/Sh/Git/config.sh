@@ -4,7 +4,7 @@
 # set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
 
-if [ "$(whoami)" != "root" \]; then
+if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
