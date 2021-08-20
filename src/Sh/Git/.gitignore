@@ -38,4 +38,5 @@ clover.xml
 docker-compose.override.yml
 /DATA/
 
-
+#vs code ignore
+.vscode
