@@ -15,6 +15,26 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 #  Note		  :- This is the system setup script.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# https://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro
+${SUDO} apt-get install linux-image-$(uname -r|sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
+${SUDO} modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+${SUDO} modprobe wl
+
+# ${SUDO} sudo apt install --no-install-recommends --no-install-suggests \
+# vim geany git build-essential htop sudo xorg xserver-xorg xinit \
+# libxft-dev libxinerama-dev xbacklight wget curl zsh \
+# software-properties-common
+
+# echo 10 | sudo tee /sys/class/backlight/acpi_video0/brightness
+# echo 300 > /sys/class/backlight/intel_backlight/brightness
+
+
+
+
+## Ubuntu specific
+# Do not upgrade to latest release
+${SUDO} sed -i 's/Prompt=.*/Prompt=never/' /etc/update-manager/release-upgrades
+
 # System specific stuff
 ${SUDO} apt-get install --reinstall ca-certificates
 
@@ -23,8 +43,14 @@ ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essentia
 ${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
-${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc
+${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit jq
 
+echo "Guake specific issue fixing."
+${SUDO} apt-get install libutempter0
+
+echo "Installing nodejs "
+curl -fsSL https://deb.nodesource.com/setup_14.x | ${SUDO} -E bash -
+${SUDO} apt-get install -y nodejs
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -58,9 +84,14 @@ esac
 # ${SUDO} rm -rf /usr/local/go
 # ${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
 
-${SUDO} apt-get install -y nginx nginx-full php
+${SUDO} apt-get install -y nginx nginx-full php composer
+${SUDO} useradd $USER -g www-data
+${SUDO} chown -R $USER:www-data $HOME/htdocs $HOME/www
+
 ${SUDO} apt-get autoremove
 
+echo "fs.inotify.max_user_watches=524288" | ${SUDO} tee -a /etc/sysctl.conf
+${SUDO} sysctl -p
 echo "[DONE] My required linux binary installation id done."
 
-exit 1
+exit 0
