@@ -19,4 +19,3 @@ echo sprintf(
     $_SERVER['PHP_SELF'],
     microtime(true) - PHP_START
 ) . PHP_EOL;
-
