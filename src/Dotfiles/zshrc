@@ -112,10 +112,10 @@ alias ls='ls -lAlhtra'
 # sudo chmod +x /usr/local/bin/docker-compose
 # dc up -dV --build --remove-orphan --force-recreate
 alias dc='docker-compose '
-alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate'
-alias dcu='docker-compose up -dV --remove-orphan --force-recreate'
-alias dcd='docker-compose down'
-alias dcl='docker logs --tail 50 --follow --timestamps '
+alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate '
+alias dcu='docker-compose up -dV --remove-orphan --force-recreate '
+alias dcd='docker-compose down '
+alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 
 #File Manager related stuff #
 
@@ -143,6 +143,7 @@ alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
+alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
 alias ownIt='sudo chown -Rf $USER:$USER '
 alias ownItWithPermission='sudo chmod 0744 -Rf'
 alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
@@ -150,8 +151,8 @@ alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
 PROMPT='%(!.%{%F{yellow}%}.)$USER @ %{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
 alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
-
-
+alias myLimit="/usr/bin/cpulimit -l 30  "
+alias htop="/usr/bin/htop -u $USER"
 # PHP Aliases
 alias phpRun='php -S 0.0.0.0:12345 -d ./'
 alias phpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
@@ -165,3 +166,11 @@ alias phpComposerRun='composer run-script serve --timeout 0'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# BEGIN SNIPPET: Magento Cloud CLI configuration
+HOME=${HOME:-'/home/vallabh'}
+export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
+if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
+
+alias code="/usr/bin/cpulimit -l 40 /home/vallabh/Applications/code/code"
+alias postman="/usr/bin/cpulimit -l 10 /home/vallabh/Applications/Postman/Postman"
