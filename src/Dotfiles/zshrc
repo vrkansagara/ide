@@ -172,3 +172,4 @@ export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
 
 alias code="/usr/bin/cpulimit -l 40 /home/vallabh/Applications/code/code"
+alias postman="/usr/bin/cpulimit -l 10 /home/vallabh/Applications/Postman/Postman"
