@@ -47,7 +47,7 @@
             "sudo usermod -a -G www-data $USER",
             "sudo chgrp -R www-data storage bootstrap/cache",
             "sudo chmod -R ug+rwx storage bootstrap/cache",
-            "sudo chown -Rf $USER storage/logs/",
+            "sudo chown -Rf $USER storage/logs/"
         ],
         "permission-readonly": [
             "sudo find ./ -type f -exec chmod 644 {} \\;",
