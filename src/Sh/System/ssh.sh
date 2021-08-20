@@ -21,8 +21,8 @@ ${SUDO} chown $USER:$USER -Rf $HOME/.ssh
 echo "Generating sample SSH key"
 cd $HOME/.ssh
 echo
-ssh-keygen -t ed25519 -C "hello@vrkansagara.in"
-ssh-keygen -t rsa -b 4096 -C "hello-world@vrkansagara.in"
+# ssh-keygen -t ed25519 -C "hello@vrkansagara.in"
+# ssh-keygen -t rsa -b 4096 -C "hello-world@vrkansagara.in"
 
 echo "SSH must be with golden permission of SSH way"
 ${SUDO} chmod 0700 $HOME/.ssh
