@@ -14,7 +14,7 @@ fi
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 echo
-echo "Current setting is "
+echo "Current function mode setting is set as = "
 ${SUDO} cat /sys/module/hid_apple/parameters/fnmode
 
 ${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
@@ -23,6 +23,7 @@ ${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 # ${SUDO} update-initramfs -u -k all
 # ${SUDO} reboot # optional
 
+echo "Enabling tap to click for the MacBokAir track pad."
 ${SUDO} mkdir -p /etc/X11/xorg.conf.d
 echo 'Section "InputClass"
         Identifier "libinput touchpad catchall"
@@ -32,6 +33,11 @@ echo 'Section "InputClass"
         Option "Tapping" "on"
 EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
 # systemctl restart lightdm
+
+
+echo "Print current system theme ( Default :- Ambiance )"
+gsettings get org.gnome.desktop.interface gtk-theme
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 echo "[DONE] MacBokAir Specific setting updated"
 exit 0
