@@ -12,20 +12,13 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Linux home directory permission, Linux way !
+#  Note		  :- Installation script for the wireshark.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
-${SUDO} chown $USER:$USER -Rf $HOME
+${SUDO} add-apt-repository ppa:wireshark-dev/stable
+${SUDO} apt-get update
+${SUDO} apt-get install wireshark
+${SUDO} dpkg-reconfigure wireshark-common
+${SUDO} adduser $USER wireshark
+${SUDO} usermod -a -G wireshark $USER
 
-echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
-${SUDO} chmod 0755 -Rf $HOME
-
-echo "SSH must be with golden permission of SSH way"
-${SUDO} chmod 0700 $HOME/.ssh
-${SUDO} chmod 0600 $HOME/.ssh/id_*
-${SUDO} chmod 0700 $HOME/.ssh/*.pub
-
-echo "[DONE] Linux home directory permission applied."
-
-exit 0

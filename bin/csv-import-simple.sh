@@ -16,12 +16,13 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # define database connectivity
-_db="test"
+_db="tmp"
 _db_user="root"
 _db_password="toor"
 
 # define directory containing CSV files
-_csv_directory="/var/lib/mysql-files/"
+# _csv_directory="/var/lib/mysql-files/"
+_csv_directory="/tmp/csv-import/"
 
 # go into directory
 cd $_csv_directory
@@ -45,6 +46,8 @@ do
 
   # ensure table exists
   mysql -u $_db_user -p$_db_password $_db << eof
+  	 DROP TABLE IF EXISTS \`$_table_name\`;
+	-- TRUNCATE TABLE \`$_table_name\`;
     CREATE TABLE IF NOT EXISTS \`$_table_name\` (
       id int(11) NOT NULL auto_increment,
       PRIMARY KEY  (id)

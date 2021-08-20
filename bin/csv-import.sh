@@ -25,7 +25,7 @@ fi
 
 
 # define database connectivity
-_db="csv_today_03"
+_db="tmp"
 _db_user="root"
 _db_password="toor"
 _db_host="localhost"
