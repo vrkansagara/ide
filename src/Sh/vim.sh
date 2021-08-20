@@ -12,9 +12,9 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} add-apt-repository ppa:jonathonf/vim
+${SUDO} add-apt-repository -y ppa:jonathonf/vim
 ${SUDO} apt update
-${SUDO} apt install vim
+${SUDO} apt install -y --reinstall vim
