@@ -1,4 +1,4 @@
-# List to todo
+# List to to-do
 
 - [x] Add multi select cursor
 - [x] code completion
