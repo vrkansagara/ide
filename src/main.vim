@@ -205,3 +205,6 @@ function! s:profile(bang)
 endfunction
 
 command! -bang Profile call s:profile(<bang>0)
+
+let &t_TI = ""
+let &t_TE = ""
