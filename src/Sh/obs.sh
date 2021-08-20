@@ -12,20 +12,13 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Linux home directory permission, Linux way !
+#  Note		  :- Installation of the obs.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
-${SUDO} chown $USER:$USER -Rf $HOME
+${SUDO} apt install ffmpeg
+${SUDO} add-apt-repository ppa:obsproject/obs-studio
+${SUDO} apt install obs-studio
+${SUDO} apt install obs-studio
 
-echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
-${SUDO} chmod 0755 -Rf $HOME
 
-echo "SSH must be with golden permission of SSH way"
-${SUDO} chmod 0700 $HOME/.ssh
-${SUDO} chmod 0600 $HOME/.ssh/id_*
-${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
-echo "[DONE] Linux home directory permission applied."
-
-exit 0
