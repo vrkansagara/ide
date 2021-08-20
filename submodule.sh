@@ -136,6 +136,10 @@ bin/composer self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer update -vv
 
+cd vendor/coc.nvim
+npm i
+npm run build
+
 echo "Submodule installation recursive dependence .....................[DONE]."
 echo
 exit 0

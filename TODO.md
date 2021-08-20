@@ -9,6 +9,8 @@
 - [ ] Vim terminal scroll up and down should work
 - [x] While pasting long data into vim it taking log time (i.e. index.html content past into vim)
 - [ ] Find how to set key binding into Linux using binary
+- [ ] Issue fix :- [coc.nvim] build/index.js not found, please install dependencies and compile coc.nvim by: yarn install
+
 resolved by using `<leader>p`
 - Add copy history plugin/mechanism
 
