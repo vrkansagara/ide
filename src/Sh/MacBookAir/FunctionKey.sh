@@ -2,6 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
+echo ""
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
@@ -13,7 +14,27 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo
+# echo "Print current system theme ( Default :- Ambiance )"
+# gsettings get org.gnome.desktop.interface gtk-theme
+
+h=$(date +"%H")
+if [ $h -gt 6 -a $h -le 12 ]
+then
+	# echo good morning
+	gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+elif [ $h -gt 12 -a $h -le 16 ]
+then
+	# echo good afternoon
+	gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+elif [ $h -gt 16 -a $h -le 20 ]
+then
+	# echo good evening
+	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+else
+	# echo good night
+	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+fi
+
 echo "Current function mode setting is set as = "
 ${SUDO} cat /sys/module/hid_apple/parameters/fnmode
 
@@ -35,9 +56,6 @@ EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
 # systemctl restart lightdm
 
 
-echo "Print current system theme ( Default :- Ambiance )"
-gsettings get org.gnome.desktop.interface gtk-theme
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 echo "[DONE] MacBokAir Specific setting updated"
 exit 0
