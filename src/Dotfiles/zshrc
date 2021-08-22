@@ -177,4 +177,4 @@ alias postman="/usr/bin/cpulimit -l 10 /home/vallabh/Applications/Postman/Postma
 
 ## Build related stuff"
 # Build file should not have any unwanted variables.
-alias make="make --warn-undefined-variables -n"
+alias makee="make --warn-undefined-variables "
