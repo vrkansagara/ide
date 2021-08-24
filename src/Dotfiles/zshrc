@@ -140,6 +140,7 @@ alias gPersonal='git config --global user.email "vrkansagara@gmail.com"'
 ## Linux Administator commands
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
 alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
+alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
