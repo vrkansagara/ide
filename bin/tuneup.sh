@@ -95,7 +95,7 @@ ${SUDO} apt-get install procps
 
 # Inspect current date logs
 # ${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
-
+${SUDO} apt autoremove
 ${SUDO} apt update
 ${SUDO} apt upgrade -V
 ${SUDO} apt-get -y clean
