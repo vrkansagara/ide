@@ -26,6 +26,11 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
  # sudo sysctl vm.drop_caches=3
 # Note, we are using "echo 3", but it is not recommended in production instead
 # use "echo 1"
+
+# drop_caches
+# Writing to this will cause the kernel to drop clean caches, as well as
+# reclaimable slab objects like dentries and inodes.  Once dropped, their
+# memory becomes free.
 ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
 
 #Clear Swap Space in Linux?
@@ -38,25 +43,62 @@ ${SUDO} rm -rfv ~/.cache/mozilla
 
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
 
-# https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
+
+# /etc/sysctl.conf
+
+# swappiness
+# This control is used to define how aggressive the kernel will swap
+# memory pages.  Higher values will increase aggressiveness, lower values
+# decrease the amount of swap.  A value of 0 instructs the kernel not to
+# initiate swap until the amount of free and file-backed pages is less
+# than the high water mark in a zone.
+# The default value is 60.
+${SUDO} sysctl -w vm.swappiness=10
+
+# This percentage value controls the tendency of the kernel to reclaim
+# the memory which is used for caching of directory and inode objects (Default
+# =100)
+sysctl -n vm.vfs_cache_pressure
+${SUDO} sysctl -w vm.vfs_cache_pressure=500
+
+# Print default value
+# vm.dirty_background_ratio=10
+# vm.dirty_ratio=20
+sysctl -n vm.dirty_background_ratio
+${SUDO}sysctl -w vm.dirty_background_ratio=20
+
+${SUDO} sysctl -p
+
+
+#set ulimit to 2 GB for current user
+# ulimit -v 2048000
+# ulimit -v 8192000 # 8 GB for current user
+# find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
 #clear up system cache
 # ${SUDO} apt install default-jre default-jdk --no-install-recommends
 # ${SUDO} apt install --reinstall --no-install-recommends gnome-control-center
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 
+#Stoping unwanted services
+
+${SUDO} service bluetooth stop
+${SUDO} service php8.0-fpm stop
+${SUDO} service --status-all | grep +
+
+# Finally check with system log if any process is out of memory
+${SUDO} grep -i -r 'out of memory' /var/log/
+
+${SUDO} apt-get install procps
+# Print virtual memory status
+# ${SUDO} vmstat -sS M
+
+# Inspect current date logs
+# ${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
+
 ${SUDO} apt update
 ${SUDO} apt upgrade -V
 ${SUDO} apt-get -y clean
 ${SUDO} apt-get -y autoclean
 ${SUDO} apt-get -y autoremove --purge
-
-# /etc/sysctl.conf
-
-${SUDO} sysctl -w vm.swappiness=0
-${SUDO} sysctl -w vm.vfs_cache_pressure=0
-
-#set ulimit to 2 GB for current user
-# ulimit -v 2048000
-# ulimit -v 8192000 # 8 GB for current user
-# find -name '*.sh' -exec ls -lA {} +
+# https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
