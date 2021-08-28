@@ -55,7 +55,5 @@ echo 'Section "InputClass"
 EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
 # systemctl restart lightdm
 
-
-
 echo "[DONE] MacBokAir Specific setting updated"
 exit 0
