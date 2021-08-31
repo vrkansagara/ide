@@ -14,13 +14,13 @@ nnoremap <F12> :call Terminal()<cr>
 
 
 function Terminal()
-	let w = 80
-	let h = 24
+	let w = 120 " 80
+	let h = 30 " 24
 	let opts = {'hidden': 1, 'term_rows':h, 'term_cols':w}
 	let opts.term_kill = 'term'
 	let opts.norestore = 1
-	let opts.exit_cb = 'OnTermExit'
 	let bid = term_start(['zsh'], opts)
+	let opts.exit_cb = 'OnTermExit'
 
 	function! OnTermExit(job, message)
 		close
