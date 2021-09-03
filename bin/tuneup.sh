@@ -43,7 +43,6 @@ ${SUDO} rm -rfv ~/.cache/mozilla
 
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
 
-
 # /etc/sysctl.conf
 
 # swappiness
@@ -65,14 +64,18 @@ ${SUDO} sysctl -w vm.vfs_cache_pressure=500
 # vm.dirty_background_ratio=10
 # vm.dirty_ratio=20
 sysctl -n vm.dirty_background_ratio
-${SUDO}sysctl -w vm.dirty_background_ratio=20
+${SUDO} sysctl -w vm.dirty_background_ratio=20
+
+# Native file system watcher for Linux
+cat /proc/sys/fs/inotify/max_user_watches
+${SUDO} sysctl -w fs.inotify.max_user_watches = 524288
 
 ${SUDO} sysctl -p
 
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
-# ulimit -v 8192000 # 8 GB for current user
+${SUDO} ulimit -v 8192000 # 8 GB for current user
 # find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
 #clear up system cache
@@ -102,3 +105,8 @@ ${SUDO} apt-get -y clean
 ${SUDO} apt-get -y autoclean
 ${SUDO} apt-get -y autoremove --purge
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
+
+# Clean up journalctl (Free up some space)
+# journalctl --vacuum-size=500M
+${SUDO} journalctl --vacuum-time=2d
+
