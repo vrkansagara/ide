@@ -43,6 +43,8 @@ git config --global alias.undo 'reset --soft HEAD~1'
 git config --global alias.undoRemove 'reset --hard HEAD~1'
 git config --global alias.pushLog 'diff --stat --cached origin/master'
 git config --global alias.current 'rev-parse --verify HEAD'
+git config --global alias.conflicts 'diff --name-only --diff-filter=U'
+
 
 git config --global alias.co checkout
 git config --global alias.br branch

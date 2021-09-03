@@ -110,3 +110,5 @@ ${SUDO} apt-get -y autoremove --purge
 # journalctl --vacuum-size=500M
 ${SUDO} journalctl --vacuum-time=2d
 
+# Restart or bug fix of apt system
+gpgconf --kill gpg-agent
