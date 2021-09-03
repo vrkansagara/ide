@@ -15,6 +15,23 @@ fi
 #  Note		  :- Installation script for my editor.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+${SUDO} apt-get install gnupg2
+${SUDO} mkdir $HOME/.gnupg
+# To fix the " gpg: WARNING: unsafe permissions on homedir '/home/path/to/user/.gnupg' " error
+# Make sure that the .gnupg directory and its contents is accessibile by your user.
+${SUDO} chown -R $(whoami) ~/.gnupg/
+
+# Also correct the permissions and access rights on the directory
+${SUDO} chmod 600 ~/.gnupg/*
+${SUDO} chmod 700 ~/.gnupg
+# if things goes wrong then.
+gpgconf --kill gpg-agent
+
+# gpg --output public.pgp --armor --export username@email
+# gpg --output private.pgp --armor --export-secret-key username@email
+
+# gpg --default-new-key-algo rsa4096 --gen-key
+
 # This directory name must not start with .vim
 BACKUP_DIRECTORY="${HOME}/.old/vim-${CURRENT_DATE}"
 CLONE_DIRECTORY="/tmp/.vim-${CURRENT_DATE}"
