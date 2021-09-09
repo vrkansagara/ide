@@ -1,0 +1,56 @@
+{
+  "intelephense.licenceKey": "---YOUR---KEY",
+  "sh.enable": true,
+  "snippets.snipmate.enable": true,
+  "snippets.snipmate.author": "Vallabh Kansagara",
+  "snippets.ultisnips.directories": [
+    "~/.vim/src/UltiSnips"
+  ],
+  "snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
+  "snippets.extends": {
+    "php": [
+      "phtml",
+      "php"
+    ],
+    "cpp": [
+      "c",
+      "h"
+    ],
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript",
+      "js"
+    ]
+  },
+  "clangd.enabled": true,
+  "clangd": {
+    "command": "clangd",
+    "rootPatterns": [
+      "compile_flags.txt",
+      "compile_commands.json"
+    ],
+    "filetypes": [
+      "c",
+      "cc",
+      "cpp",
+      "c++",
+      "objc",
+      "objcpp"
+    ]
+  },
+  "cmake": {
+    "command": "cmake-language-server",
+    "filetypes": [
+      "cmake"
+    ],
+    "rootPatterns": [
+      "build/"
+    ],
+    "initializationOptions": {
+      "buildDirectory": "build"
+    }
+  },
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd"
+}
