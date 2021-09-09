@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
-
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
-export DEBIAN_FRONTEND=noninteractive
 
-if [ "(whoami)" != "root" ]; then
+echo ""
+export DEBIAN_FRONTEND=noninteractive
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+SCRIPT=$(readlink -f "")
+SCRIPTDIR=$(dirname "$SCRIPT")
+
+if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
  # 1. Clear PageCache only.
  # sync; echo 1 > /proc/sys/vm/drop_caches
@@ -109,6 +112,9 @@ ${SUDO} apt-get -y autoremove --purge
 # Clean up journalctl (Free up some space)
 # journalctl --vacuum-size=500M
 ${SUDO} journalctl --vacuum-time=2d
+
+# Clean up dmesg 
+${SUDO} dmesg -C
 
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
