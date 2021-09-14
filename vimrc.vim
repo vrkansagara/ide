@@ -22,7 +22,7 @@ try
 	"0-9,az,AZ order)
 	for f in split(glob('~/.vim/src/Config/Plugin/*.vim'), '\n')
 		if (filereadable(f))
-			exe 'source' f
+			" exe 'source' f
 		else
 			throw "File can not able to read " . f
 		endif
@@ -32,7 +32,7 @@ try
 	"order)
 	for f in split(glob('~/.vim/src/Config/Vim/*.vim'), '\n')
 		if (filereadable(f))
-			exe 'source' f
+			" exe 'source' f
 		else
 			throw "File can not able to read " . f
 		endif
@@ -42,7 +42,7 @@ try
 	"doesn't matter
 	for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
 		if (filereadable(f))
-			exe 'source' f
+			" exe 'source' f
 		else
 			throw "File can not able to read " . f
 		endif
