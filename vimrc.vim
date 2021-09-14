@@ -1,4 +1,3 @@
-
 set runtimepath+=$HOME/.vim/src
 function! VimErrorCaught()
 	if v:exception != ""
