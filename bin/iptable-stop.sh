@@ -19,7 +19,8 @@ fi
 SERVER_IP="192.168.1.3"
 
 echo "Stopping IPv4 firewall and allowing everyone..."
-ipt="/sbin/iptables"
+ipt=`which iptables `
+
 ## Failsafe - die if /sbin/iptables not found
 [ ! -x "$ipt" ] && { echo "$0: \"${ipt}\" command not found."; exit 1; }
 ${SUDO} $ipt -P INPUT ACCEPT
@@ -31,7 +32,7 @@ ${SUDO} $ipt -t nat -F
 ${SUDO} $ipt -t nat -X
 ${SUDO} $ipt -t mangle -F
 ${SUDO} $ipt -t mangle -X
-${SUDO} $ipt iptables -t raw -F
+${SUDO} $ipt -t raw -F
 ${SUDO} $ipt -t raw -X
 
 # How do I clear the DNS cache?
@@ -68,18 +69,19 @@ sleep 5s # Waits 5 seconds.
 ${SUDO} $ipt -L -n -v
 ${SUDO} $ipt -L --line-numbers
 
+echo "Iptables stop script done......"
 exit 0
 
 # Allow loopback
-iptables -I INPUT 1 -i lo -j ACCEPT
+${SUDO} $ipt -I INPUT 1 -i lo -j ACCEPT
 
 # Allow DNS
-iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+${SUDO} $ipt -A OUTPUT -p udp --dport 53 -j ACCEPT
 
 # Now, allow connection to website serverfault.com on port 80
-iptables -A OUTPUT -p tcp -d gocomics.com --dport 443 -j ACCEPT
-iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+${SUDO} $ipt  -A OUTPUT -p tcp -d gocomics.com --dport 443 -j ACCEPT
+${SUDO} $ipt  -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 # Drop everything
-iptables -P INPUT DROP
-iptables -P OUTPUT DROP
+${SUDO} $ipt  -P INPUT DROP
+${SUDO} $ipt  -P OUTPUT DROP
