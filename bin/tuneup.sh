@@ -132,3 +132,5 @@ fi
 
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
+
+exit 0
