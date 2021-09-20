@@ -121,5 +121,14 @@ ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
 # Clean up dmesg
 ${SUDO} dmesg -C
 
+if ! command -v earlyoom &> /dev/null
+then
+	${SUDO} apt install earlyoom
+	# EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
+fi
+
+
+
+
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
