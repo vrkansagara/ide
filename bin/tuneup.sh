@@ -118,7 +118,7 @@ ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
 ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
 
-# Clean up dmesg 
+# Clean up dmesg
 ${SUDO} dmesg -C
 
 # Restart or bug fix of apt system
