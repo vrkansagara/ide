@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
-
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
-export DEBIAN_FRONTEND=noninteractive
 
-if [ "(whoami)" != "root" ]; then
+echo ""
+export DEBIAN_FRONTEND=noninteractive
+CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+SCRIPT=$(readlink -f "")
+SCRIPTDIR=$(dirname "$SCRIPT")
+
+if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
  # 1. Clear PageCache only.
  # 2. Clear dentries and inodes.
@@ -114,6 +117,9 @@ ${SUDO} find /var/log -name "*.log" -type f -mtime +3 -delete
 ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
 ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
+
+# Clean up dmesg 
+${SUDO} dmesg -C
 
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
