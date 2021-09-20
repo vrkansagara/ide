@@ -80,13 +80,13 @@ ${SUDO} ulimit -v 8192000 # 8 GB for current user
 
 #Stoping unwanted services
 
-${SUDO} service bluetooth stop
-${SUDO} service virtualbox stop
-${SUDO} service mongodb stop
-${SUDO} service postgresql stop
-${SUDO} service mosquitto stop
-${SUDO} service php8.0-fpm stop
-${SUDO} service ufw stop
+${SUDO} systemctl stop  bluetooth
+${SUDO} systemctl stop  virtualbox
+${SUDO} systemctl stop  mongodb
+${SUDO} systemctl stop  postgresql
+${SUDO} systemctl stop  mosquitto
+${SUDO} systemctl stop  php8.0-fpm
+${SUDO} systemctl stop  ufw
 ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 ${SUDO} service --status-all | grep +
 
