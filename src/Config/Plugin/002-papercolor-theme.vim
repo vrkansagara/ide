@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :- Do not rename this file                                 "
@@ -16,7 +15,7 @@
 "	colorscheme PaperColor
 " endif
 
-"" Set default color scheme
+" Set default color scheme
 set bg=dark
 set background=dark
 colorscheme atom-dark-256
