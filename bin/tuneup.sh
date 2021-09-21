@@ -11,6 +11,7 @@ SCRIPTDIR=$(dirname "$SCRIPT")
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
+cd $SCRIPTDIR
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -70,7 +71,8 @@ ${SUDO} sysctl -p
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
-${SUDO} ulimit -v 8192000 # 8 GB for current user
+# ${SUDO} ulimit -v 8192000 # 8 GB for current user
+${SUDO} ulimit -v 4096000 # 8 GB for current user
 # find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
 #clear up system cache
@@ -111,7 +113,7 @@ ${SUDO} apt-get -y autoremove --purge
 # journalctl --vacuum-size=500M
 ${SUDO} journalctl --vacuum-time=30d
 
-$ You only need to delete files with “.log” extension and modified before 3 days
+# You only need to delete files with “.log” extension and modified before 3 days
 ${SUDO} find /var/log/nginx -type f -mtime +3 -delete
 ${SUDO} find /var/log -name "*.log" -type f -mtime +3 -delete
 ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
@@ -127,7 +129,10 @@ then
 	# EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
 fi
 
-
+# Remove old phpstome directories.
+rm -rf ~/.config/JetBrains/*
+rm -rf ~/.local/share/JetBrains/consentOptions
+rm -rf ~/.java/.userPrefs
 
 
 # Restart or bug fix of apt system
