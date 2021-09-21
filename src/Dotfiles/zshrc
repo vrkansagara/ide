@@ -164,7 +164,7 @@ alias phpRun='php -S 0.0.0.0:12345 -d ./'
 alias phpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 
 # File finder
-alias myFindFile="find / -type f  -name "
+alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
 # AWS Aliases
 alias awsMyInfo='curl http://169.254.169.254/latest/meta-data/'
