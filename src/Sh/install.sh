@@ -96,6 +96,8 @@ ${SUDO} sysctl -p
 # Adding current use to virtual box
 ${SUDO} adduser $USER vboxsf
 
+# reset htop configuration
+${SUDO} rm -rf $HOME/.config/htop/htoprc
 
 echo "[DONE] My required Linux binary installation id done."
 
