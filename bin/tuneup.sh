@@ -72,7 +72,7 @@ ${SUDO} sysctl -p
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
 # ${SUDO} ulimit -v 8192000 # 8 GB for current user
-${SUDO} ulimit -v 4096000 # 8 GB for current user
+${SUDO} ulimit -v 4096000 # 4 GB for current user
 # find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
 #clear up system cache
