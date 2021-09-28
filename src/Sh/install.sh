@@ -92,7 +92,10 @@ ${SUDO} apt-get autoremove
 
 echo "AllowRoot=root" | ${SUDO}  tee -a /etc/gdm3/custom.conf
 echo "AutomaticLogin=$(whoami)" | ${SUDO}  tee -a /etc/gdm3/custom.conf
-echo "greeter-show-manual-login=true" | ${SUDO} /etc/lightdm/lightdm.conf 
+echo "greeter-show-manual-login=true" | ${SUDO} /etc/lightdm/lightdm.conf
+
+# reset htop configuration
+${SUDO} rm -rf $HOME/.config/htop/htoprc
 
 echo "[DONE] My required Linux binary installation id done."
 
