@@ -28,9 +28,6 @@ ${SUDO} modprobe wl
 # echo 10 | sudo tee /sys/class/backlight/acpi_video0/brightness
 # echo 300 > /sys/class/backlight/intel_backlight/brightness
 
-
-
-
 ## Ubuntu specific
 # Do not upgrade to latest release
 ${SUDO} sed -i 's/Prompt=.*/Prompt=never/' /etc/update-manager/release-upgrades
@@ -90,12 +87,12 @@ ${SUDO} chown -R $USER:www-data $HOME/htdocs $HOME/www
 
 ${SUDO} apt-get autoremove
 
-echo "fs.inotify.max_user_watches=524288" | ${SUDO} tee -a /etc/sysctl.conf
-${SUDO} sysctl -p
-
 # Adding current use to virtual box
-${SUDO} adduser $USER vboxsf
+# ${SUDO} adduser $USER vboxsf
 
+echo "AllowRoot=root" | ${SUDO}  tee -a /etc/gdm3/custom.conf
+echo "AutomaticLogin=$(whoami)" | ${SUDO}  tee -a /etc/gdm3/custom.conf
+echo "greeter-show-manual-login=true" | ${SUDO} /etc/lightdm/lightdm.conf 
 
 echo "[DONE] My required Linux binary installation id done."
 
