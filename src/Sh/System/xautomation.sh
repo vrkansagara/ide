@@ -14,14 +14,17 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if ! command -v xte &> /dev/null
+then
+	${SUDO} apt install xautomation
+fi
 
-${SUDO} apt install ffmpeg
-${SUDO} add-apt-repository ppa:obsproject/obs-studio
-${SUDO} apt install obs-studio
+while true; do
+	xte "mousermove 0 0" "keydown Alt_L" "key Tab" "keyup Alt_L" "mousermove 50 50"
+	sleep 30
+	xte "mousermove 0 0" "keydown Alt_L" "key Tab" "keyup Alt_L" "mousermove 50 50"
+done
 
-echo "Installation of OBS studio is ...[DONE]"
-
-exit 0
