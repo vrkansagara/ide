@@ -11,6 +11,7 @@ SCRIPTDIR=$(dirname "$SCRIPT")
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
+cd $SCRIPTDIR
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -19,22 +20,15 @@ fi
 
 
  # 1. Clear PageCache only.
- # sync; echo 1 > /proc/sys/vm/drop_caches
- # sudo sysctl vm.drop_caches=1
  # 2. Clear dentries and inodes.
- # sync; echo 2 > /proc/sys/vm/drop_caches
- # sudo sysctl vm.drop_caches=2
  # 3. Clear PageCache, dentries and inodes.
- # sync; echo 3 > /proc/sys/vm/drop_caches
- # sudo sysctl vm.drop_caches=3
 # Note, we are using "echo 3", but it is not recommended in production instead
 # use "echo 1"
-
-# drop_caches
 # Writing to this will cause the kernel to drop clean caches, as well as
 # reclaimable slab objects like dentries and inodes.  Once dropped, their
 # memory becomes free.
-${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
+# ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
+${SUDO} sysctl vm.drop_caches=3
 
 #Clear Swap Space in Linux?
 ${SUDO}  swapoff -a && ${SUDO} swapon -a
@@ -43,7 +37,6 @@ ${SUDO} rm -rfv ~/.cache/thumbnails
 ${SUDO} rm -rfv ~/.mozilla
 ${SUDO} rm -rfv ~/.cache/mozilla
 # ${SUDO} rm -rfv ~/.config/google-chrome
-
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
 
 # /etc/sysctl.conf
@@ -73,12 +66,17 @@ ${SUDO} sysctl -w vm.dirty_background_ratio=20
 cat /proc/sys/fs/inotify/max_user_watches
 ${SUDO} sysctl -w fs.inotify.max_user_watches = 524288
 
+${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6 = 1
+${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
+${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6 = 1
+
 ${SUDO} sysctl -p
 
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
-${SUDO} ulimit -v 8192000 # 8 GB for current user
+# ${SUDO} ulimit -v 8192000 # 8 GB for current user
+${SUDO} ulimit -v 4096000 # 4 GB for current user
 # find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
 #clear up system cache
@@ -88,8 +86,14 @@ ${SUDO} ulimit -v 8192000 # 8 GB for current user
 
 #Stoping unwanted services
 
-${SUDO} service bluetooth stop
-${SUDO} service php8.0-fpm stop
+${SUDO} systemctl stop  bluetooth
+${SUDO} systemctl stop  virtualbox
+${SUDO} systemctl stop  mongodb
+${SUDO} systemctl stop  postgresql
+${SUDO} systemctl stop  mosquitto
+${SUDO} systemctl stop  php8.0-fpm
+${SUDO} systemctl stop  ufw
+${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 ${SUDO} service --status-all | grep +
 
 # Finally check with system log if any process is out of memory
@@ -111,10 +115,29 @@ ${SUDO} apt-get -y autoremove --purge
 
 # Clean up journalctl (Free up some space)
 # journalctl --vacuum-size=500M
-${SUDO} journalctl --vacuum-time=2d
+${SUDO} journalctl --vacuum-time=30d
 
-# Clean up dmesg 
+# You only need to delete files with “.log” extension and modified before 3 days
+${SUDO} find /var/log/nginx -type f -mtime +3 -delete
+${SUDO} find /var/log -name "*.log" -type f -mtime +3 -delete
+${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
+${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
+${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
+
+# Clean up dmesg
 ${SUDO} dmesg -C
+
+if ! command -v earlyoom &> /dev/null
+then
+	${SUDO} apt install earlyoom
+	# EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
+fi
+
+# Remove old phpstome directories.
+rm -rf ~/.config/JetBrains/*
+rm -rf ~/.local/share/JetBrains/consentOptions
+rm -rf ~/.java/.userPrefs
+
 
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
