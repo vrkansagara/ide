@@ -18,10 +18,17 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-${SUDO} apt install ffmpeg
-${SUDO} add-apt-repository ppa:obsproject/obs-studio
-${SUDO} apt install obs-studio
+Ref:- https://newbedev.com/disable-all-services-except-ssh
+Disable all services, except ssh
+emergency-net.target
 
-echo "Installation of OBS studio is ...[DONE]"
+[Unit]
+Description=Maintenance Mode with Networking and SSH
+Requires=maintenance.target systemd-networkd.service sshd.service
+After=maintenance.target systemd-networkd.service sshd.service
+AllowIsolate=yes
 
-exit 0
+# systemctl isolate maintenance.target
+
+# systemctl isolate multi-user.target
+
