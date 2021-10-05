@@ -14,8 +14,12 @@ set foldlevel=1
 " Folding
 " Toggle folding with spacebar instead of za
 " nnoremap <silent><nowait> <space> zM  " Close all folds
-nnoremap <silent><nowait> <space> za  " Open fold recursive under cursor
-nnoremap <silent><nowait> <space><space> zR " Open all fold of file
+" nnoremap <silent><nowait> <space> za  " Open fold recursive under cursor
+" nnoremap <silent><nowait> <space><space> zR " Open all fold of file
+
+"Toggle folding with spacebar instead of za
+nnoremap <silent><nowait> <space> za
+nnoremap <silent><nowait> <space><space> zR
 
 " Following will prevent vim from closing folds in a current pane when opening a
 " new pane.
