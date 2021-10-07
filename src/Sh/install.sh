@@ -88,7 +88,7 @@ ${SUDO} chown -R $USER:www-data $HOME/htdocs $HOME/www
 ${SUDO} apt-get autoremove
 
 # Adding current use to virtual box
-# ${SUDO} adduser $USER vboxsf
+${SUDO} adduser $USER vboxsf
 
 echo "AllowRoot=root" | ${SUDO}  tee -a /etc/gdm3/custom.conf
 echo "AutomaticLogin=$(whoami)" | ${SUDO}  tee -a /etc/gdm3/custom.conf
