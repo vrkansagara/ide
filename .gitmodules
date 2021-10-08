@@ -1,0 +1,27 @@
+[submodule "vendor/vim-pathogen"]
+	path = vendor/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "vendor/fugitive"]
+	path = vendor/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vendor/vim-sensible"]
+	path = vendor/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "vendor/vim-scriptease"]
+	path = vendor/vim-scriptease
+	url = https://github.com/tpope/vim-scriptease.git
+[submodule "vendor/vim-commentry"]
+	path = vendor/vim-commentry
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "vendor/vim-surround"]
+	path = vendor/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vendor/nerdtree"]
+	path = vendor/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "vendor/vim-visual-multi"]
+	path = vendor/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi.git
+[submodule "vendor/coc.nvim"]
+	path = vendor/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
