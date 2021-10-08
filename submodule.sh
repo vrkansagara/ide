@@ -41,22 +41,22 @@ ${SUDO} rm -rf bundle/*
 ${SUDO} rm -rf vendor/*
 
 echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
-# git submodule add -f https://github.com/tpope/vim-pathogen.git vendor/vim-pathogen
+git submodule add -f https://github.com/tpope/vim-pathogen.git vendor/vim-pathogen
 
 echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
-# git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
+git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
 echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
-# git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
+git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
 
 echo "Installation of [ scriptease.vim: A Vim plugin for Vim plugins    ] ..."
-# git submodule add -f https://github.com/tpope/vim-scriptease.git vendor/vim-scriptease
+git submodule add -f https://github.com/tpope/vim-scriptease.git vendor/vim-scriptease
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
-# git submodule add -f  https://github.com/tpope/vim-commentary.git vendor/vim-commentry
+git submodule add -f  https://github.com/tpope/vim-commentary.git vendor/vim-commentry
 
 echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
-# git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
+git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
 
 echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
 # git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
@@ -74,10 +74,10 @@ Markdown files with a syntax highlight that doesn't suck!  ] ..."
 # git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
 
 echo "Installation of [ A tree explorer plugin for vim. ] ..."
-# git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
+git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
-# git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
+git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
 # # git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
@@ -109,7 +109,7 @@ echo "Installation of [.......] ..."
 # # git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 
 echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-# # git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 # # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
