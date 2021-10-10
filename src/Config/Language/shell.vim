@@ -1,11 +1,12 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " .sh files as Shell script
-:autocmd BufNewFile,BufRead *.sh set ft=sh
+autocmd BufNewFile,BufRead *.sh set ft=sh
+
 " Disable automate comment insertation
 :autocmd FileType *.sh setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
