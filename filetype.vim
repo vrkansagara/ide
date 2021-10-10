@@ -1,3 +1,4 @@
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :-
@@ -15,7 +16,6 @@ augroup filetypedetect
 	au! BufRead,BufNewFile *.foo,*.bar,*.baz		setfiletype fooBarBaz
 	au! BufRead,BufNewFile nginx.conf	setfiletype nginx
 augroup END
-
 
 " :autocmd FileType vim autocmd BufWritePost <buffer> call OnFileSave()
 " Pre = onLoad , Post = afterSave
