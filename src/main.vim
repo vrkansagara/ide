@@ -1,9 +1,7 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Alt-letter will now be recognized by vi in a terminal as well as by gvim.
 " The timeout settings are used to work around the ambiguity with escape
 " sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than
@@ -22,11 +20,34 @@ set ttimeoutlen=10
 map! kj <Esc>
 inoremap kj <Esc>
 
+" With a map leader it's possible to do extra key combinations
+let mapleader = ","
+
+nnoremap <leader>v :tabedit $MYVIMRC<CR>
+nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
+
+" vimcasts #24
+" Auto-reload vimrc on save
+if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+" Reload vimrc configuration file
+nnoremap <leader>r :source $MYVIMRC<CR>
+" nnoremap <leader>r :source ~/.vim/vimrc.vim<CR>
+
 " Switch between the last two files (press two time leader)
 nnoremap <leader><leader> <C-^>
 
- " nnoremap <silent> <F1> Already set with guake terminal
+" "sudo" save: current file.
+cnoremap w!! w !sudo tee % >/dev/null
+nnoremap <leader>w :w<cr>
 
+" w! Save current file with sudo access
+" (useful for handling the permission-denied error)
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" nnoremap <silent> <F1> Already set with guake terminal
 " Do you absolutely hate trailing white space or tabs in your files? (Yes =
 " Press F2)
 nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
@@ -43,18 +64,6 @@ nnoremap <silent> <F3> yi":let @/ = @"<CR>
 set nocompatible      "Limit search to your project
 set path+=**          "Search all subdirectories and recursively
 set wildmenu          "Shows multiple matches on one line
-
-" Press <F12> for custom termina inside vim
-
-" With a map leader it's possible to do extra key combinations
-let mapleader = ","
-
-nnoremap <leader>v :tabedit $MYVIMRC<CR>
-nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
-
-" Reload vimrc configuration file
-nnoremap <leader>r :source $MYVIMRC<CR>
-" nnoremap <leader>r :source ~/.vim/vimrc.vim<CR>
 
 " " get off my lawn
 " nnoremap <up> :echoe "use k"<cr>
@@ -77,12 +86,6 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" vimcasts #24
-" Auto-reload vimrc on save
-if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
 " like <leader>q quite/close current file
 nnoremap <leader>q :confirm q<cr>
 
@@ -95,20 +98,12 @@ nnoremap <C-q> :confirm qa<cr>
 nnoremap <leader>Q :bufdo! bw<cr>
 " if user want to discard all the change and close all the files then they can use :qa!
 
-" "sudo" save: current file.
-cnoremap w!! w !sudo tee % >/dev/null
-nnoremap <leader>w :w<cr>
-
-" w! Save current file with sudo access
-" (useful for handling the permission-denied error)
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
-
 " Use UTF-8 encoding
 set encoding=utf-8
 
 " Set text width to 80 character only., I am not using at this time.
 " set textwidth=80
-set textwidth=0
+" set textwidth=0
 
 set tabstop=4
 set softtabstop=4
@@ -182,15 +177,15 @@ set scrolloff=3
 set textwidth=80
 set colorcolumn=+1
 set wrapmargin=2
-au BufRead,BufNewFile *.md vim setlocal textwidth=80
+
+" au BufRead,BufNewFile *.md vim setlocal textwidth=80
+" au BufRead,BufNewFile *.c *.cpp *.hc *.cpp *.h  vim setlocal textwidth=80
 
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
 
-
 " Ensure tabs don't get converted to spaces in Makefiles.
 autocmd FileType make setlocal noexpandtab
-
 
 " Profile Vim by running this command once to start it and again to stop it.
 function! s:profile(bang)
