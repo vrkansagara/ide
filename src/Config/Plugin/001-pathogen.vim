@@ -26,5 +26,12 @@ call pathogen#infect(s:vim_runtime.'/vendor/{}')
 
 call pathogen#helptags()
 
-" syntax on
-" filetype plugin indent on
+" Let syntax enable later on color scheme applyied.
+if exists("g:syntax_on")
+	syntax off
+endif
+
+" Enalbe file indent after plugin enables
+filetype plugin indent on
+
+
