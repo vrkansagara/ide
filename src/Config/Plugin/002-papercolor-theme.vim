@@ -22,21 +22,27 @@ colorscheme atom-dark-256
 let g:airline_theme='base16_google'
 
 " Let syntax enable after colour scheme apply for better highlight
-syntax enable
+syntax on
 
 nnoremap <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
 	try
 		if (&background == "light")
+			syntax off
 			let g:airline_theme='base16_google'
 			set background=dark
 			colorscheme atom-dark-256
+			syntax on
 		else
+			syntax off
 			let g:airline_theme='papercolor'
 			set background=light
 			colorscheme PaperColor
+			syntax on
 		endif
 	catch
 		throw exception
 	endtry
 endfunction
+
+
