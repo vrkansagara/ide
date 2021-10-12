@@ -16,11 +16,11 @@
 " endif
 
 " Set default color scheme
+syntax off
 set bg=dark
 set background=dark
 colorscheme atom-dark-256
 let g:airline_theme='base16_google'
-
 " Let syntax enable after colour scheme apply for better highlight
 syntax on
 
@@ -43,6 +43,4 @@ function! ChangeColorScheme()
 	catch
 		throw exception
 	endtry
-endfunction
-
-
+ endfunction
