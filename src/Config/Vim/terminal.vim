@@ -12,6 +12,12 @@ nnoremap <F12> :call Terminal()<cr>
 
 
 function Terminal()
+	function! OnTermExit(job, message)
+		close
+		" TODO: add some code to confirm that current window is a popup.
+		" TODO: prevent close other window by accident.
+	endfunction
+
 	let w = 80" 80
 	let h = 24" 24
 	let opts = {'hidden': 1, 'term_rows':h, 'term_cols':w}
@@ -20,11 +26,6 @@ function Terminal()
 	let bid = term_start(['zsh'], opts)
 	let opts.exit_cb = 'OnTermExit'
 
-	function! OnTermExit(job, message)
-		close
-		" TODO: add some code to confirm that current window is a popup.
-		" TODO: prevent close other window by accident.
-	endfunction
 
 	let opts = {'maxwidth':w, 'maxheight':h, 'minwidth':w, 'minheight':h}
 	let opts.wrap = 0
