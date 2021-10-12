@@ -14,9 +14,10 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- Set up script fot the ide project
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo ""
+
+echo " "
 echo "Sub-module installation started at $CURRENT_DATE"
 
 cd ~/.vim
@@ -59,8 +60,8 @@ git submodule add -f  https://github.com/tpope/vim-commentary.git vendor/vim-com
 # echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
 # git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
 
-# echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
-# git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
+echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
+git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
 
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
 git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
@@ -130,15 +131,16 @@ git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
 
 git submodule update --init --recursive --jobs 4  --remote --merge
 
-bin/composer selfupdate
+bin/composer2 self-update
 
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer update -vv
 
 cd vendor/coc.nvim
+${SUDO} npm install -g npm@latest
 npm i
 npm run build
 
 echo "Submodule installation recursive dependence .....................[DONE]."
-echo
+
 exit 0
