@@ -6,7 +6,6 @@
 
 
 nnoremap <leader>to :terminal ++rows=5<cr>
-
 inoremap <F12> :call Terminal()<cr>
 nnoremap <F12> :call Terminal()<cr>
 
@@ -18,8 +17,8 @@ function Terminal()
 		" TODO: prevent close other window by accident.
 	endfunction
 
-	let w = 80" 80
-	let h = 24" 24
+	let w = 80
+	let h = 24
 	let opts = {'hidden': 1, 'term_rows':h, 'term_cols':w}
 	let opts.term_kill = 'term'
 	let opts.norestore = 1
@@ -37,3 +36,16 @@ function Terminal()
 	let opts.resize = 0
 	let winid = popup_create(bid, opts)
 endfunction
+
+" function! ToggleProjectVK()
+" 	call ToggleTerm('zsh')
+" endfunction
+
+" function! ToggleTerm(cmd)
+" 	if empty(bufname(a:cmd))
+" 		call CreateCenteredFloatingWindow()
+" 		call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
+" 	else
+" 		bwipeout!
+" 	endif
+" endfunction
