@@ -20,11 +20,10 @@
 " -Wall = Show all possible warning, -g = Include debug information
 autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc
 			\ -g
-			\ `pkg-config --cflags gtk+-3.0`
 			\ -Wall
 			\ -Wmissing-prototypes
 			\ -Wstrict-prototypes
 			\ -O2
 			\ -fomit-frame-pointer
 			\ -std=gnu89
-			\ -o /tmp/%.out $(mysql_config --cflags) % $(mysql_config --libs) `pkg-config --libs gtk+-3.0` -lcurl && /tmp/%.out<CR>
+			\ -o /tmp/%.out % && clear && /tmp/%.out<CR>
