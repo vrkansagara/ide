@@ -4,6 +4,9 @@
 [submodule "vendor/vim-commentry"]
 	path = vendor/vim-commentry
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "vendor/papercolor-theme"]
+	path = vendor/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme.git
 [submodule "vendor/vim-airline"]
 	path = vendor/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
