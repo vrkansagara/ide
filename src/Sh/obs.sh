@@ -20,7 +20,7 @@ fi
 
 ${SUDO} apt install ffmpeg
 ${SUDO} add-apt-repository ppa:obsproject/obs-studio
-${SUDO} apt install obs-studio
+${SUDO} apt install --no-install-recommends obs-studio
 
 echo "Installation of OBS studio is ...[DONE]"
 
