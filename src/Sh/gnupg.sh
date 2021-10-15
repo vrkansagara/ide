@@ -17,7 +17,7 @@ fi
 #  Note		  :- 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install gnupg2
+${SUDO} apt-get install --no-install--recommends gnupg2
 ${SUDO} mkdir $HOME/.gnupg
 # To fix the " gpg: WARNING: unsafe permissions on homedir '/home/path/to/user/.gnupg' " error
 # Make sure that the .gnupg directory and its contents is accessibile by your user.
