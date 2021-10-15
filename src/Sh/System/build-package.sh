@@ -17,7 +17,7 @@ fi
 #  Note		  :- 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install build-essential fakeroot devscripts linux linux-image-$(uname -r)
+${SUDO} apt-get install --no-install-recommends build-essential fakeroot devscripts linux-image-$(uname -r)
 
-echo "deb-src http://archive.ubuntu.com/ubuntu $(lsb_release -cs) main" | ${SUDO} tee -a /etc/apt/sources.list
-echo "deb-src http://archive.ubuntu.com/ubuntu $(lsb_release -cs)-updates main" | ${SUDO} tee -a /etc/apt/sources.list
+# echo "deb-src http://archive.ubuntu.com/ubuntu $(lsb_release -cs) main" | ${SUDO} tee -a /etc/apt/sources.list
+# echo "deb-src http://archive.ubuntu.com/ubuntu $(lsb_release -cs)-updates main" | ${SUDO} tee -a /etc/apt/sources.list
