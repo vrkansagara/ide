@@ -13,6 +13,20 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+${SUDO} apt-get install --no-install-recommends software-properties-common git make ncurses-dev build-essential  libncurses5-dev \
+libgtk2.0-dev libatk1.0-dev \
+libcairo2-dev python-dev \
+python3-dev git
+
+mkdir -p ~/tmp/latest
+cd ~/tmp/latest
+# git clone https://github.com/vim/vim.git --depth 1 ~/tmp/latest/vim
+cd ~/tmp/latest/vim
+git reset --hard HEAD
+git clean -fd
+./configure --enable-pythoninterp --prefix=/usr
+make
+${SUDO} make install
 
 # ${SUDO} add-apt-repository -y ppa:jonathonf/vim
 # ${SUDO} apt update
