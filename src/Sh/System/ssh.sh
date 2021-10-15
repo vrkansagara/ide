@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
-
+echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
@@ -31,7 +31,8 @@ ${SUDO} chmod 0600 $HOME/.ssh/id_ed*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 eval "$(ssh-agent -s)"
-ssh-add
+ssh-add ~/.ssh/id_rsa*
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
+
 exit 0
