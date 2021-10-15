@@ -141,5 +141,5 @@ npm i
 npm run build
 
 echo "Submodule installation recursive dependence .....................[DONE]."
-echo
+
 exit 0
