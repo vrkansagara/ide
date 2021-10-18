@@ -31,8 +31,13 @@ ${SUDO} chmod 0600 $HOME/.ssh/id_ed*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa*
+ssh-add ~/.ssh/id_rsa_*
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
 
 exit 0
+
+" Host *
+" UseKeychain yes
+" AddKeysToAgent yes
+" IdentityFile ~/.ssh/id_rsa
