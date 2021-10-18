@@ -8,3 +8,4 @@ coc-settings.json
 tags
 .idea
 vendor/*
+/vendor/*
