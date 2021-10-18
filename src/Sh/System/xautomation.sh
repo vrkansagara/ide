@@ -19,7 +19,7 @@ fi
 
 if ! command -v xte &> /dev/null
 then
-	${SUDO} apt install xautomation
+	${SUDO} apt-get install -y xautomation
 fi
 
 while true; do
