@@ -22,6 +22,7 @@ echo 'Host *
 	UseKeychain yes
 	AddKeysToAgent yes
 	IdentityFile ~/.ssh/id_rsa
+	IdentityFile ~/.ssh/id_rsa_vrkansagara
 ' | ${SUDO} tee -a ~/.ssh/config > /dev/null
 
 ${SUDO} chown $USER:$USER -Rf $HOME/.ssh
