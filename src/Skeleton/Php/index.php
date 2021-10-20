@@ -1,6 +1,5 @@
 <?php
-
-declare(strict_types=1);
+               declare(strict_types=1);
 define('PHP_START', microtime(true));
 
 require_once '/home/vallabh/.vim/vendor/autoload.php';
