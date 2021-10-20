@@ -1,9 +1,8 @@
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.vim/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# export JAVA_AWT_WM_NONREPARENTING=1
-#
+export JAVA_AWT_WM_NONREPARENTING=1
+
 PROMPT='%(!.%{%F{yellow}%}.)$USER@%{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 
 # GPG Common problem solving
@@ -110,6 +109,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ls='ls -lAlhtra'
+alias ss='source ~/.zshrc'
 
 # Docker Related stuff #
 # sudo curl -L

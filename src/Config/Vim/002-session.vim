@@ -5,7 +5,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remember settings between sessions
-" set viminfo='400,f1,"500,h,/100,:100,<500
+set viminfo='400,f1,"500,h,/100,:100,<500
 
 " Why don't my plugins load when I use Vim sessions?
 set sessionoptions-=options
