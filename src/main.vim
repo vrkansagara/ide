@@ -202,5 +202,5 @@ endfunction
 command! -bang Profile call s:profile(<bang>0)
 
 " do not print unwanted character at vim while editing
-let &t_TI = " "
-let &t_TE = " "
+let &t_TI = ""
+let &t_TE = ""
