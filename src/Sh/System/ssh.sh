@@ -19,7 +19,6 @@ ${SUDO} apt-get install --no-install-recommends keychain
 echo "$USER is the only one is owning the $HOME/.ssh directory"
 
 echo 'Host *
-	UseKeychain yes
 	AddKeysToAgent yes
 	IdentityFile ~/.ssh/id_rsa
 	IdentityFile ~/.ssh/id_rsa_vrkansagara
@@ -41,6 +40,7 @@ ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 eval "$(ssh-agent -s)"
 ssh-add $HOME/.ssh/id_rsa_*
+gpg --import ~/.ssh/gnupg/vrkansagara.pgp
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
 
