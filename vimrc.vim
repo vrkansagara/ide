@@ -1,3 +1,5 @@
+" setting term to xterm
+set term=xterm
 set runtimepath+=$HOME/.vim/src
 function! VimErrorCaught()
 	if v:exception != ""
