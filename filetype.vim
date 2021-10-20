@@ -20,8 +20,8 @@ augroup END
 
 " :autocmd FileType vim autocmd BufWritePost <buffer> call OnFileSave()
 " Pre = onLoad , Post = afterSave
-autocmd BufWritePre <buffer> :call OnFileSave()
-autocmd BufWritePost <buffer> :call OnFileSave()
+" autocmd BufWritePre <buffer> :call OnFileSave()
+" autocmd BufWritePost <buffer> :call OnFileSave()
 
 
 function! OnFileSave()

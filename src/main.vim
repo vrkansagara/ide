@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- Main configuration file for the VIM(init)
+" Note       :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alt-letter will now be recognized by vi in a terminal as well as by gvim.
 " The timeout settings are used to work around the ambiguity with escape
@@ -204,3 +204,8 @@ command! -bang Profile call s:profile(<bang>0)
 " do not print unwanted character at vim while editing
 let &t_TI = ""
 let &t_TE = ""
+
+" https://github.com/vim/vim/issues/993#issuecomment-255651605
+" set Vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
