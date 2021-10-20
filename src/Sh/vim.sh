@@ -20,6 +20,7 @@ fi
 # ${SUDO} apt install -y --reinstall --no-install-recommends vim
 # exit 0
 
+${SUDO} rm -rf /usr/local/bin/vim /usr/share/vim/
 ${SUDO} apt-get -y --no-install-recommends build-dep vim libxtst-dev libx11-dev libxt-dev libsm-dev libxpm-dev
 mkdir /tmp/clone
 cd /tmp/clone
@@ -29,7 +30,7 @@ cd vim
 ${SUDO} make distclean
 
 ./configure \
-	--disable-acl                             \
+	--disable-acl \
 	--disable-darwin                          \
 	--disable-gpm                             \
 	--disable-gtk2-check                      \
@@ -45,21 +46,22 @@ ${SUDO} make distclean
 	--disable-xim                             \
 	--disable-xsmp							  \
 
-	--enable-cscope \
+	--enable-cscope                           \
 	--enable-fontset                          \
 	--enable-multibyte                        \
 	--enable-perlinterp                       \
-	--enable-luainterp \
+	--enable-luainterp                        \
 	--enable-python3interp=yes                \
 	--enable-pythoninterp=yes                 \
 	--enable-rubyinterp=yes                   \
 	--enable-fail-if-missing                  \
 
-	--with-features=normal \
-	--enable-gui=auto \
+	--with-features=normal                    \
+	--enable-gui=auto                         \
+	--enable-gui=gtk2 \
 
 	--with-x                                  \
-	--with-compiledby="Vallabh Kansagara <vrkansagara@gmail.com>"           \ 
+	--with-compiledby="Vallabh Kansagara <vrkansagara@gmail.com>" \
 	--with-vim-name=vi                        \
 	--with-features=huge                      \
 
