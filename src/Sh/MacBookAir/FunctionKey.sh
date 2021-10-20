@@ -2,7 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo ""
+echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
@@ -59,4 +59,5 @@ EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
 ${SUDO} sh -c "echo 7 4 1 7 > /proc/sys/kernel/printk"
 
 echo "[DONE] MacBokAir Specific setting updated"
+
 exit 0
