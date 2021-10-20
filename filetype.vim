@@ -9,6 +9,7 @@
 " If vim not detect file type user can add it manually
 " Vim script
 if exists("did_load_filetypes")
+	echoerr "did_load_filetype"
 	finish
 endif
 
@@ -53,8 +54,9 @@ function! OnFileSave()
 
 endfunction
 
+" How to pipe vim buffer contents via shell command and write output to split
+" window
 command! FW call FilterToNewWindow('myscript')
-
 function! FilterToNewWindow(script)
 	let TempFile = tempname()
 	let SaveModified = &modified
