@@ -2,7 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo ""
+echo " "
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
@@ -138,8 +138,8 @@ rm -rf ~/.config/JetBrains/*
 rm -rf ~/.local/share/JetBrains/consentOptions
 rm -rf ~/.java/.userPrefs
 
-
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
 
+echo "Tune of system is ....... [DONE]"
 exit 0
