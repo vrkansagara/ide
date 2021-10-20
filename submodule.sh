@@ -57,6 +57,9 @@ git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 
+echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
+git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
+
 # echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
 # git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
@@ -91,9 +94,6 @@ git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 # echo "ultisnips is based on python( I like minimal configuration ) "
 # git submodule add -f https://github.com/SirVer/ultisnips vendor/ultisnips
 
-# echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
-# git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
-
 # echo "Installation of [ types "use" statements for you ] ..."
 # # git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
 
@@ -125,16 +125,15 @@ git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 
 # As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 # echo "Installation of [ A command-line fuzzy finder   ] ..."
-# # git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
+# git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
 # echo "Installation of [ fzf heart vim  ] ..."
-# # git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
+# git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
 
 git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer2 self-update
-
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
-bin/composer update -vv
+bin/composer2 update -vv
 
 # cd vendor/coc.nvim
 # ${SUDO} npm install -g npm@latest
