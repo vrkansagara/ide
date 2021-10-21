@@ -31,8 +31,9 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 
 " vimcasts #24
 " Auto-reload vimrc on save
+" hotreload not require, I will do on my own.
 if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
+    " autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " Reload vimrc configuration file
@@ -186,9 +187,6 @@ set wrapmargin=2
 
 " set complete=.,w,b,u,t,kspell
 " CTRL + o and CTRL+i back
-
-" Ensure tabs don't get converted to spaces in Makefiles.
-autocmd FileType make setlocal noexpandtab
 
 " Profile Vim by running this command once to start it and again to stop it.
 function! s:profile(bang)
