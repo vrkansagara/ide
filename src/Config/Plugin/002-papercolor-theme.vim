@@ -23,7 +23,8 @@ let g:airline_theme='base16_google'
 " Let syntax enable after colour scheme apply for better highlight
 syntax on
 
-map <F5> :call ChangeColorScheme()<CR>
+" I wanted to use F5 key for filetype so comment it
+" map <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
 	try
 		if (&background == "light")
