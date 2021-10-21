@@ -10,7 +10,6 @@ set foldnestmax=10
 set foldenable   " All folds are closed as per foldlevel
 set foldlevel=1
 
-
 " Folding
 " Toggle folding with spacebar instead of za
 " nnoremap <silent><nowait> <space> zM  " Close all folds
@@ -34,6 +33,8 @@ autocmd FileType python setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s
 
 autocmd FileType php	setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
 autocmd FileType php	setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
+
+autocmd FileType conf   setlocal nofoldenable
 
 " Toggle method used for folding
 nnoremap mm :call ToggleFoldMethod()<CR>

@@ -7,6 +7,9 @@
 
 " autocmd BufNewFile,BufRead *.c *.cpp *.h set ft=c
 
+" Ensure tabs don't get converted to spaces in Makefiles.
+autocmd FileType make setlocal noexpandtab
+
 " au BufEnter *.c compiler gcc
 " au BufEnter *.cpp compiler gcc
 " au BufEnter *.h compiler gcc
