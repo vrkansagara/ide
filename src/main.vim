@@ -54,7 +54,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " nnoremap <silent> <F1> Already set with guake terminal
 " Do you absolutely hate trailing white space or tabs in your files? (Yes =
 " Press F2)
-nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
+nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>:echom "White space trimed"<CR>
 
 " " Toggle visually showing all white space characters.
 noremap <S-F2> :set list!<CR>
