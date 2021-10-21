@@ -10,8 +10,8 @@
 " run file with PHP CLI (CTRL-m) ( called as ENTER)
 autocmd FileType php noremap <C-m> :w!<CR>:! echo -e'\033[0m'<CR>:!php %<CR>
 
-autocmd FileType php  nnoremap <F8> :! echo -e'\033[0m'<CR>:call PhpCsCheck()<CR>
-autocmd FileType php  nnoremap <F9> :! echo -e'\033[0m'<CR>:call PhpCsFix()<CR>
+autocmd FileType php  nnoremap <F8> :! echo -e'\033[0m' <CR>:call PhpCsCheck()<CR>
+autocmd FileType php  nnoremap <F9> :! echo -e'\033[0m' <CR>:call PhpCsFix()<CR>
 
 " .inc, phpt, phtml, phps files as PHP
 autocmd BufNewFile,BufRead *.inc set ft=php
@@ -28,7 +28,6 @@ function! PhpCsCheck()
         " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
         throw :exception
     endtry
-    return 1
 endfunction
 
 
@@ -40,7 +39,6 @@ function! PhpCsFix()
         " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
         throw :exception
     endtry
-    return 1
 endfunction
 
 "Sort PHP use statements ( This is already done using php-name
