@@ -7,7 +7,9 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " setting term to xterm
 set term=xterm
 set t_Co=256
+
 set runtimepath+=$HOME/.vim/src
+
 function! VimErrorCaught()
 	if v:exception != ""
 		echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
