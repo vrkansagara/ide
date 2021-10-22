@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- GCC compiler related configuration.
+" Note       :- GCC compiler related configuration.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -22,19 +22,19 @@ autocmd FileType make setlocal noexpandtab
 " autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc %
 " -Wall = Show all possible warning, -g = Include debug information
 autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc
-			\ -g
-			\ -Wall
-			\ -Wmissing-prototypes
-			\ -Wstrict-prototypes
-			\ -O2
-			\ -fomit-frame-pointer
-			\ -std=gnu89
-			\ -o /tmp/%.out % && clear && /tmp/%.out<CR>
+            \ -g
+            \ -Wall
+            \ -Wmissing-prototypes
+            \ -Wstrict-prototypes
+            \ -O2
+            \ -fomit-frame-pointer
+            \ -std=gnu89
+            \ -o /tmp/%.out % && clear && /tmp/%.out<CR>
 
 " This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5c()
-	" Call F2 which is trim whitespace for all file type
-	exe "normal \<F2>"
-	" Indent whole file
-	exe "normal gg=G``"
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+    " Indent whole file
+    exe "normal gg=G``"
 endfunction
