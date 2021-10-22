@@ -21,7 +21,10 @@ fi
 # exit 0
 
 ${SUDO} rm -rf /usr/local/bin/vim /usr/share/vim/
-${SUDO} apt-get -y --no-install-recommends build-dep vim libxtst-dev libx11-dev libxt-dev libsm-dev libxpm-dev
+${SUDO} apt-get -y --no-install-recommends build-dep vim libxtst-dev libx11-dev libxt-dev libsm-dev libxpm-dev ack ack-grep
+
+exit
+
 mkdir /tmp/clone
 cd /tmp/clone
 git clone https://github.com/vim/vim --depth 1 -b master
