@@ -43,4 +43,4 @@ function! ChangeColorScheme()
 	catch
 		throw exception
 	endtry
- endfunction
+endfunction
