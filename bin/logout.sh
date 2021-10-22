@@ -19,6 +19,7 @@ fi
 #				 root users.
 
 echo "Current user is going to logout $USER  "
+
 sleep 5
 
 kill -9 -1
