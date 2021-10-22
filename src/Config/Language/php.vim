@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- PHP Related stuff
+" Note       :- PHP Related stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PHP parser check (CTRL + l)
@@ -44,3 +44,11 @@ endfunction
 "Sort PHP use statements ( This is already done using php-name
 "http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
 " vmap <Leader>su ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
+
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5php()
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+    " Indent whole file
+    exe "normal gg=G"
+endfunction
