@@ -60,6 +60,9 @@ git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
+echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
+git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+
 # echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
 # git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
@@ -108,9 +111,6 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 # echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
 # # git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 
-# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-# git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
-
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 # # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
 
@@ -135,10 +135,10 @@ bin/composer2 self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer2 update -vv
 
-# cd vendor/coc.nvim
-# ${SUDO} npm install -g npm@latest
-# npm i
-# npm run build
+cd vendor/coc.nvim
+${SUDO} npm install -g npm@latest
+npm i
+npm run build
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 
