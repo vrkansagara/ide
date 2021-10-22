@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -18,7 +18,7 @@
 " :diffg LO  " get from LOCAL
 
 if ! &diff
-	finish
+    finish
 endif
 
 " diff mode

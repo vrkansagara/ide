@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set foldmethod=indent
@@ -31,8 +31,8 @@ autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
 autocmd FileType c      setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
 autocmd FileType python setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
 
-autocmd FileType php	setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
-autocmd FileType php	setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
+autocmd FileType php    setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
+autocmd FileType php    setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
 
 autocmd FileType conf   setlocal nofoldenable
 
@@ -40,11 +40,11 @@ autocmd FileType conf   setlocal nofoldenable
 nnoremap mm :call ToggleFoldMethod()<CR>
 
 function! ToggleFoldMethod()
-	if &foldmethod == 'indent'
-		set foldmethod=marker
-		echo "foldmethod=marker"
-	else
-		set foldmethod=indent
-		echo "foldmethod=indent"
-	endif
+    if &foldmethod == 'indent'
+        set foldmethod=marker
+        echo "foldmethod=marker"
+    else
+        set foldmethod=indent
+        echo "foldmethod=indent"
+    endif
 endfunction
