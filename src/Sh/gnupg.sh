@@ -14,7 +14,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ${SUDO} apt-get install -y --reinstall --no-install-recommends gnupg2
