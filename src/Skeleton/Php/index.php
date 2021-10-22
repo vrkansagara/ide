@@ -20,3 +20,7 @@ echo sprintf(
     $_SERVER['PHP_SELF'],
     microtime(true) - PHP_START
 ) . PHP_EOL;
+
+$dt =" I am new date string";
+
+echo (string) "This is date $dt";
