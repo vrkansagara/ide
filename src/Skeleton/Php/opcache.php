@@ -289,15 +289,15 @@ class OpCacheDataModel
 
 $dataModel = new OpCacheDataModel();
 ?>
-<!DOCTYPE html>
-<meta charset="utf-8">
-<html>
-<head>
+    <!DOCTYPE html>
+    <meta charset="utf-8">
+    <html>
+    <head>
     <style>
-        body {
-            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-            margin: 0;
-            padding: 0;
+    body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
         }
 
         #container {
@@ -307,83 +307,83 @@ $dataModel = new OpCacheDataModel();
         }
 
         h1 {
-            padding: 10px 0;
+        padding: 10px 0;
         }
 
         table {
-            border-collapse: collapse;
+        border-collapse: collapse;
         }
 
         tbody tr:nth-child(even) {
-            background-color: #eee;
+        background-color: #eee;
         }
 
         p.capitalize {
-            text-transform: capitalize;
+        text-transform: capitalize;
         }
 
         .tabs {
-            position: relative;
-            float: left;
-            width: 60%;
+        position: relative;
+        float: left;
+        width: 60%;
         }
 
         .tab {
-            float: left;
+        float: left;
         }
 
         .tab label {
-            background: #eee;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            margin-left: -1px;
-            position: relative;
-            left: 1px;
+        background: #eee;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        margin-left: -1px;
+        position: relative;
+        left: 1px;
         }
 
         .tab [type=radio] {
-            display: none;
+        display: none;
         }
 
         .tab th, .tab td {
-            padding: 8px 12px;
+        padding: 8px 12px;
         }
 
         .content {
-            position: absolute;
-            top: 28px;
-            left: 0;
-            background: white;
-            border: 1px solid #ccc;
-            height: 450px;
-            width: 100%;
-            overflow: auto;
+        position: absolute;
+        top: 28px;
+        left: 0;
+        background: white;
+        border: 1px solid #ccc;
+        height: 450px;
+        width: 100%;
+        overflow: auto;
         }
 
         .content table {
-            width: 100%;
+        width: 100%;
         }
 
         .content th, .tab:nth-child(3) td {
-            text-align: left;
+        text-align: left;
         }
 
         .content td {
-            text-align: right;
+        text-align: right;
         }
 
         .clickable {
-            cursor: pointer;
+        cursor: pointer;
         }
 
         [type=radio]:checked ~ label {
-            background: white;
-            border-bottom: 1px solid white;
-            z-index: 2;
+        background: white;
+        border-bottom: 1px solid white;
+        z-index: 2;
         }
 
         [type=radio]:checked ~ label ~ .content {
-            z-index: 1;
+        z-index: 1;
         }
 
         #graph {
@@ -458,11 +458,11 @@ $dataModel = new OpCacheDataModel();
         }
 
         label {
-            cursor: pointer;
+        cursor: pointer;
         }
     </style>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.1/d3.v3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.1/d3.v3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>
 var hidden = {};
 function toggleVisible(head, row) {
