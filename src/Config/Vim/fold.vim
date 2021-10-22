@@ -40,11 +40,11 @@ autocmd FileType conf   setlocal nofoldenable
 nnoremap mm :call ToggleFoldMethod()<CR>
 
 function! ToggleFoldMethod()
-    if &foldmethod == 'indent'
-        set foldmethod=marker
-        echo "foldmethod=marker"
-    else
-        set foldmethod=indent
-        echo "foldmethod=indent"
-    endif
+	if &foldmethod == 'indent'
+		set foldmethod=marker
+		echo "foldmethod=marker"
+	else
+		set foldmethod=indent
+		echo "foldmethod=indent"
+	endif
 endfunction
