@@ -17,3 +17,10 @@ autocmd BufNewFile,BufRead *.sh set ft=sh
 " ":autocmd FileType sh noremap <C-m> :w!<CR>:!chmod +x %<CR>:! clear && sh %<CR>
 :autocmd FileType sh noremap <C-m> :w!<CR>:! clear<CR>:!chmod +x %<CR>:! %:p<CR>
 
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5sh()
+	" Call F2 which is trim whitespace for all file type
+	exe "normal \<F2>"
+	" Indent whole file
+	exe "normal gg=G``"
+endfunction
