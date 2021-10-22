@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " .sh files as Shell script
@@ -19,8 +19,8 @@ autocmd BufNewFile,BufRead *.sh set ft=sh
 
 " This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5sh()
-	" Call F2 which is trim whitespace for all file type
-	exe "normal \<F2>"
-	" Indent whole file
-	exe "normal gg=G``"
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+    " Indent whole file
+    exe "normal gg=G``"
 endfunction
