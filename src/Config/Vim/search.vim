@@ -23,10 +23,10 @@ set smartcase
 
 
 function! s:VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
+	let temp = @@
+	norm! gvy
+	let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+	let @@ = temp
 endfunction
 
 " Vim pr0n: Visual search mappings(  search for the word under the cursor, press *=next,#=previous )
