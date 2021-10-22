@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-,
+" Note       :-,
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Once CtrlP is open:
@@ -51,13 +51,13 @@ let g:ctrlp_use_caching = 1
 
 "This will require to avoid duplication of tabs or open as buffer
 let g:ctrlp_prompt_mappings = {
-			\ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-			\ 'AcceptSelection("t")': ['<cr>'],
-			\ }
+            \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+            \ 'AcceptSelection("t")': ['<cr>'],
+            \ }
 
 let g:ctrlp_max_height = 15
 let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|.DS_Store|bundle)$',
-			\ 'file': '\v\.(swap|so|log|tags)$',
-			\ }
+            \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|.DS_Store|bundle)$',
+            \ 'file': '\v\.(swap|so|log|tags)$',
+            \ }
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
