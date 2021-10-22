@@ -2,7 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo
+echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
@@ -15,6 +15,8 @@ fi
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# Using Ubuntu
-curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
-${SUDO} apt-get install -y nodejs
+# Using Linux
+curl -sL install-node.now.sh/lts | ${SUDO} bash -
+# curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
+# curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} bash -
+# ${SUDO} apt-get install --yes --no-install-recommends  nodejs
