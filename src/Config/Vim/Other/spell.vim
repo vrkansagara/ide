@@ -26,8 +26,8 @@ hi  SpellRare cterm=underline ctermfg=none ctermbg=none term=Reverse gui=undercu
 
 " File type specific autocmd
 if exists("spellfile")
-	autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
-	autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_gb
+    autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=en_gb
 endif
 
 " Autocomplete with dictionary words when spell check is on
