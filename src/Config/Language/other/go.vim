@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PHP parser check (CTRL + l)
