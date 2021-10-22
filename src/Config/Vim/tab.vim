@@ -43,11 +43,11 @@ nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " Open last closed tab into split for fast navigation
 augroup bufclosetrack
-  au!
-  autocmd WinLeave * let g:lastWinName = @%
+	au!
+	autocmd WinLeave * let g:lastWinName = @%
 augroup END
 function! LastWindow()
-  exe "split " . g:lastWinName
+	exe "split " . g:lastWinName
 endfunction
 
 " command -nargs=0 LastWindow call LastWindow()
