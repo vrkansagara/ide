@@ -16,15 +16,8 @@ fi
 
 # Change system dns to public dns
 
-echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
-echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
-echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf
+echo "nameserver 1.1.1.1" | tee /etc/resolv.conf
+echo "nameserver 8.8.8.8" | tee -a /etc/resolv.conf
+echo "nameserver 8.8.4.4" | tee -a /etc/resolv.conf
 
-exit
-
-cd /tmp
-mkdir /tmp/applications
-cd /tmp/applications
-wget https://www.torproject.org/dist/torbrowser/10.5a15/tor-browser-linux64-10.5a15_en-US.tar.xz
-wget https://www.torproject.org/dist/torbrowser/10.5a15/tor-browser-linux64-10.5a15_en-US.tar.xz.asc
-
+chattr +i /etc/resolv.conf
