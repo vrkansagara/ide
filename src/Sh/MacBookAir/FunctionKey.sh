@@ -22,19 +22,19 @@ ${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
 h=$(date +"%H")
 if [ $h -gt 6 -a $h -le 12 ]
 then
-	# echo good morning
-	gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+	echo good morning
+	# gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 12 -a $h -le 16 ]
 then
-	# echo good afternoon
-	gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+	echo good afternoon
+	# gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 16 -a $h -le 20 ]
 then
-	# echo good evening
-	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+	echo good evening
+	# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 else
-	# echo good night
-	gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+	echo good night
+	# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 fi
 
 echo "Current function mode setting is set as = "
