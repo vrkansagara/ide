@@ -30,3 +30,11 @@ autocmd FileType c noremap <C-M> :w!<CR>:! mkdir -p /tmp/%<CR>:!/usr/bin/gcc
 			\ -fomit-frame-pointer
 			\ -std=gnu89
 			\ -o /tmp/%.out % && clear && /tmp/%.out<CR>
+
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5c()
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+    " Indent whole file
+    exe "normal gg=G"
+endfunction
