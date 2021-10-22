@@ -16,3 +16,6 @@
 [submodule "vendor/ack.vim"]
 	path = vendor/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "vendor/coc.nvim"]
+	path = vendor/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
