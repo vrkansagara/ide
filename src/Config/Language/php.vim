@@ -21,24 +21,24 @@ autocmd BufNewFile,BufRead *.phps set ft=php
 autocmd BufNewFile,BufRead *.blade.php set ft=php
 
 function! PhpCsCheck()
-	try
-		" exec "!./vendor/bin/phpcs ". expand('%:p')
-		exec "!~/.vim/vendor/bin/phpcs ". expand('%:p')
-	catch
-		" echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
-		throw :exception
-	endtry
+    try
+        " exec "!./vendor/bin/phpcs ". expand('%:p')
+        exec "!~/.vim/vendor/bin/phpcs ". expand('%:p')
+    catch
+        " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
+        throw :exception
+    endtry
 endfunction
 
 
 function! PhpCsFix()
-	try
-		call PhpCsCheck()
-		exec "!~/.vim/vendor/bin/phpcbf ". expand('%:p')
-	catch
-		" echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
-		throw :exception
-	endtry
+    try
+        call PhpCsCheck()
+        exec "!~/.vim/vendor/bin/phpcbf ". expand('%:p')
+    catch
+        " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
+        throw :exception
+    endtry
 endfunction
 
 "Sort PHP use statements ( This is already done using php-name
@@ -47,8 +47,8 @@ endfunction
 
 " This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5php()
-	" Call F2 which is trim whitespace for all file type
-	exe "normal \<F2>"
-	" reindent whole file without losing current " position
-	exe "normal gg=G``"
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+    " reindent whole file without losing current " position
+    exe "normal gg=G``"
 endfunction
