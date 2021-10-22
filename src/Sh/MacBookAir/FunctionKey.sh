@@ -49,11 +49,11 @@ ${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 echo "Enabling tap to click for the MacBokAir track pad."
 ${SUDO} mkdir -p /etc/X11/xorg.conf.d
 echo 'Section "InputClass"
-        Identifier "libinput touchpad catchall"
-        MatchIsTouchpad "on"
-        MatchDevicePath "/dev/input/event*"
-        Driver "libinput"
-        Option "Tapping" "on"
+Identifier "libinput touchpad catchall"
+MatchIsTouchpad "on"
+MatchDevicePath "/dev/input/event*"
+Driver "libinput"
+Option "Tapping" "on"
 EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
 # systemctl restart lightdm
 

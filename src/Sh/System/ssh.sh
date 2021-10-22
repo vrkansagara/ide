@@ -19,9 +19,9 @@ ${SUDO} apt-get install --no-install-recommends keychain
 echo "$USER is the only one is owning the $HOME/.ssh directory"
 
 echo 'Host *
-	AddKeysToAgent yes
-	IdentityFile ~/.ssh/id_rsa
-	IdentityFile ~/.ssh/id_rsa_vrkansagara
+AddKeysToAgent yes
+IdentityFile ~/.ssh/id_rsa
+IdentityFile ~/.ssh/id_rsa_vrkansagara
 ' | ${SUDO} tee -a ~/.ssh/config > /dev/null
 
 ${SUDO} chown $USER:$USER -Rf $HOME/.ssh
