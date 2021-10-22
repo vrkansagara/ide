@@ -16,9 +16,6 @@ endw
 set timeout ttimeoutlen=10
 set ttimeoutlen=10
 
-nnoremap <Tab> >>
-nnoremap <S-Tab> <<
-
 " The escape key is a long ways away. This maps it to the sequence 'kj'
 map! kj <Esc>
 inoremap kj <Esc>
