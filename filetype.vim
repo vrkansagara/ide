@@ -76,6 +76,15 @@ function! CallLanguageSpecifiF5()
 	"(2)  Or use the buffer list (caution, every buffer will be affected):
 	":bufdo normal gg=G
 	" :wall
+	" (3) How to open files with pattern recursively in vim and execute one
+	" command
+	" :args /yourfolder/myfile*
+	" :args /yourfolder/**/myfile*
+	" :args /yourfolder/**/*.c
+	" :argdo tabe " Open all marked files into tabs
+	" :argdo normal gg=G``  " vim style indent all files
+	" :wall " write all modified files
+
 
 	let ext = &filetype " php, conf
 	let file_name = expand('%:t:r')
