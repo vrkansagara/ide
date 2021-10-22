@@ -15,7 +15,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install --no-install-recommends -y gnupg2 
+${SUDO} apt-get install --no-install-recommends -y gnupg2
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
