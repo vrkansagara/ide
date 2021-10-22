@@ -34,9 +34,9 @@ do
 			notify-send -u critical "Please unplug your AC adapter" "Battery level: ${battery_level}% (charged above 99%)" -i battery-full-charged
 		fi
 
-	fi
+		fi
 
-	echo "Current battery level is $battery_level"
+		echo "Current battery level is $battery_level"
 
 	#wait for 300 seconds before checking again
 	sleep 300
