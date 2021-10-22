@@ -17,6 +17,8 @@ fi
 # echo "Print current system theme ( Default :- Ambiance )"
 # gsettings get org.gnome.desktop.interface gtk-theme
 
+${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
+
 h=$(date +"%H")
 if [ $h -gt 6 -a $h -le 12 ]
 then
