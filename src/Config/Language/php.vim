@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :- PHP Related stuff
@@ -49,6 +48,10 @@ endfunction
 function! RefreshF5php()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
+
     " reindent whole file without losing current " position
     exe "normal gg=G``"
+
+    " PHP Performance (insted of " use ')
+    " silent! %s/\"\([^"]*\)\"/'\1'/g
 endfunction
