@@ -9,9 +9,9 @@
 " 50ms will count as separate keys. That should be enough time to distinguish
 let c='a'
 while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
+	exec "set <A-".c.">=\e".c
+	exec "imap \e".c." <A-".c.">"
+	let c = nr2char(1+char2nr(c))
 endw
 set timeout ttimeoutlen=10
 set ttimeoutlen=10
@@ -33,7 +33,7 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 " Auto-reload vimrc on save
 " hotreload not require, I will do on my own.
 if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
+	autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " Reload vimrc configuration file
@@ -190,14 +190,14 @@ set wrapmargin=2
 
 " Profile Vim by running this command once to start it and again to stop it.
 function! s:profile(bang)
-  if a:bang
-    profile pause
-    noautocmd qall
-  else
-    profile start /tmp/profile.log
-    profile func *
-    profile file *
-  endif
+	if a:bang
+		profile pause
+		noautocmd qall
+	else
+		profile start /tmp/profile.log
+		profile func *
+		profile file *
+	endif
 endfunction
 
 command! -bang Profile call s:profile(<bang>0)
