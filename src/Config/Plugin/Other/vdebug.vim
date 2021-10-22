@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- vdebug VdebugSetUp
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note       :- vdebug VdebugSetUp
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:vdebug_options = {'ide_key': 'vim-xdebug'}
