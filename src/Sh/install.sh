@@ -62,18 +62,18 @@ ${SUDO} apt-get install -y elinks htop exuberant-ctags curl lsb-release remmina
 
 read -r -p "Do you want to install XFCE desktop ? [Y/n] " input
 case $input in
-    [yY][eE][sS]|[yY])
+	[yY][eE][sS]|[yY])
 		echo "Install desktop manager"
 		${SUDO} apt-get install -y xfce4 xfce4-goodies
 		${SUDO} apt-get install --reinstall thunar-volman gvfs-backends go-mtpfs mtp gmtp
- ;;
-    [nN][oO]|[nN])
- echo "Skipping...XFCE"
-       ;;
-    *)
- echo "Invalid input..."
- exit 1
- ;;
+		;;
+	[nN][oO]|[nN])
+		echo "Skipping...XFCE"
+		;;
+	*)
+		echo "Invalid input..."
+		exit 1
+		;;
 esac
 
 # cd /tmp
