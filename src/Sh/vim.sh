@@ -67,5 +67,5 @@ ${SUDO} make distclean
 
 	--prefix=/usr
 
-make
-${SUDO} make install
+	make
+	${SUDO} make install
