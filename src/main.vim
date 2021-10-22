@@ -33,7 +33,7 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 " Auto-reload vimrc on save
 " hotreload not require, I will do on my own.
 if has("autocmd")
-    " autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " Reload vimrc configuration file
@@ -131,7 +131,7 @@ set shortmess +=I
 " Calling quit will prompt you to save unsaved buffers anyways.
 set hidden
 
-" Disable mouse usage to make life easier a developer
+" Disable mouse usage to make life easier for developer
 set mouse-=a
 
 " Allow better terminal/mouse integration
