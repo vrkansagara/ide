@@ -2,7 +2,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File name  :- 001-pathogen.vim                                        "
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- Do not rename of file                                   "
+" Note       :- Do not rename of file                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable pathogen bundles
@@ -28,7 +28,7 @@ call pathogen#helptags()
 
 " Let syntax enable later on color scheme applyied.
 if exists("g:syntax_on")
-	syntax off
+    syntax off
 endif
 
 " Enalbe file indent after plugin enables
