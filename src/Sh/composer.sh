@@ -25,16 +25,16 @@ then
 
 	mv composer.phar composer
 	${SUDO} mv composer /usr/local/bin
-fi
+	fi
 
-composer global require --dev roave/security-advisories:dev-latest
-composer global require --dev phpro/grumphp
-composer global require --dev friendsofphp/php-cs-fixer
-composer global require laminas/laminas-migration
-composer global require laravel/installer
+	composer global require --dev roave/security-advisories:dev-latest
+	composer global require --dev phpro/grumphp
+	composer global require --dev friendsofphp/php-cs-fixer
+	composer global require laminas/laminas-migration
+	composer global require laravel/installer
 
-composer global update -v
+	composer global update -v
 
-echo "Composer installation done with global package installation [DONE]."
+	echo "Composer installation done with global package installation [DONE]."
 
-exit 0
+	exit 0
