@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :-
@@ -12,7 +11,6 @@
 " Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
 " Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
 
-"
 " Give more space for displaying messages.
 set cmdheight=2
 
@@ -20,13 +18,16 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-    " Recently vim can merge signcolumn and number column into one
-    set signcolumn=number
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
 else
-    set signcolumn=yes
+  set signcolumn=yes
 endif
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -186,4 +187,5 @@ let g:coc_global_extensions = [
             \'coc-xml',
             \'coc-markdownlint',
             \'coc-psalm',
-            \'coc-spell-checker']
+            \'coc-spell-checker'
+]
