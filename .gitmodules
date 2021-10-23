@@ -19,3 +19,6 @@
 [submodule "vendor/coc.nvim"]
 	path = vendor/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
+[submodule "vendor/coc-clangd"]
+	path = vendor/coc-clangd
+	url = https://github.com/clangd/coc-clangd.git
