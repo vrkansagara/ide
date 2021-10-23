@@ -19,6 +19,9 @@
 [submodule "vendor/coc.nvim"]
 	path = vendor/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
-[submodule "vendor/coc-clangd"]
-	path = vendor/coc-clangd
-	url = https://github.com/clangd/coc-clangd.git
+[submodule "vendor/vim-gitgutter"]
+	path = vendor/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "vendor/vdebug"]
+	path = vendor/vdebug
+	url = https://github.com/vim-vdebug/vdebug.git
