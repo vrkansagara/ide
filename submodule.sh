@@ -63,6 +63,9 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
 git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
+echo "Installation of [ clangd extension for coc.nvim]"
+git submodule add -f https://github.com/clangd/coc-clangd.git vendor/coc-clangd
+
 # echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
 # git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
