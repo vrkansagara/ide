@@ -14,6 +14,11 @@
 " => Load pathogen paths
 """"""""""""""""""""""""""""""
 
+" Let syntax enable later on color scheme applyied.
+if exists("g:syntax_on")
+    syntax off
+endif
+
 " Call "filetype off" first to ensure that bundle ftplugins can be added to the
 " path before we re-enable it later in the vimrc.
 filetype off
@@ -26,12 +31,5 @@ call pathogen#infect(s:vim_runtime.'/vendor/{}')
 
 call pathogen#helptags()
 
-" Let syntax enable later on color scheme applyied.
-if exists("g:syntax_on")
-    syntax off
-endif
-
 " Enalbe file indent after plugin enables
 filetype plugin indent on
-
-
