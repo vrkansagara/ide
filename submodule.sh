@@ -63,8 +63,14 @@ git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
 git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
-echo "Installation of [ clangd extension for coc.nvim]"
-git submodule add -f https://github.com/clangd/coc-clangd.git vendor/coc-clangd
+echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
+git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
+
+echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
+git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
+
+# # echo "Installation of [ clangd extension for coc.nvim]"
+# git submodule add -f https://github.com/clangd/coc-clangd.git vendor/coc-clangd
 
 # echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
 # git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
@@ -81,9 +87,6 @@ git submodule add -f https://github.com/clangd/coc-clangd.git vendor/coc-clangd
 # echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
 # git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
 # git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
-
-# echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
-# git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
 
 # echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!  ] ..."
 # git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
@@ -119,9 +122,6 @@ git submodule add -f https://github.com/clangd/coc-clangd.git vendor/coc-clangd
 
 # echo "Installation of [ Go development plugin for Vim ] ..."
 # # git submodule add -f https://github.com/fatih/vim-go.git vendor/vim-go
-
-# echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
-# git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
 
 # # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
