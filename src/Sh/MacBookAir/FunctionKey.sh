@@ -17,7 +17,7 @@ fi
 # echo "Print current system theme ( Default :- Ambiance )"
 # gsettings get org.gnome.desktop.interface gtk-theme
 
-${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
+# ${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
 
 h=$(date +"%H")
 if [ $h -gt 6 -a $h -le 12 ]
@@ -48,6 +48,7 @@ ${SUDO} bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 
 echo "Enabling tap to click for the MacBokAir track pad."
 ${SUDO} mkdir -p /etc/X11/xorg.conf.d
+
 echo 'Section "InputClass"
 Identifier "libinput touchpad catchall"
 MatchIsTouchpad "on"
