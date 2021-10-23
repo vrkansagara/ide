@@ -15,7 +15,9 @@
 " endif
 
 " Set default color scheme
-syntax off
+if exists("g:syntax_on")
+	syntax off
+endif
 set bg=dark
 set background=dark
 colorscheme atom-dark-256
@@ -26,21 +28,21 @@ syntax on
 " I wanted to use F5 key for filetype so comment it
 " map <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
-    try
-        if (&background == "light")
-            syntax off
-            let g:airline_theme='base16_google'
-            set background=dark
-            colorscheme atom-dark-256
-            syntax on
-        else
-            syntax off
-            let g:airline_theme='papercolor'
-            set background=light
-            colorscheme PaperColor
-            syntax on
-        endif
-    catch
-        throw exception
-    endtry
+	try
+		if (&background == "light")
+			syntax off
+			let g:airline_theme='base16_google'
+			set background=dark
+			colorscheme atom-dark-256
+			syntax on
+		else
+			syntax off
+			let g:airline_theme='papercolor'
+			set background=light
+			colorscheme PaperColor
+			syntax on
+		endif
+	catch
+		throw exception
+	endtry
 endfunction
