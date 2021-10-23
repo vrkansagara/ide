@@ -166,10 +166,11 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" \'coc-git',
 let g:coc_global_extensions = [
             \'coc-vimlsp',
-            \'coc-git',
             \'coc-clangd',
+			\'coc-cmake',
             \'coc-sh',
             \'coc-phpls',
             \'coc-go',
@@ -187,5 +188,5 @@ let g:coc_global_extensions = [
             \'coc-xml',
             \'coc-markdownlint',
             \'coc-psalm',
-            \'coc-spell-checker'
-]
+            \'coc-spell-checker',
+			\'@yaegassy/coc-intelephense']
