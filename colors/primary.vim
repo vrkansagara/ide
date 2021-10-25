@@ -22,74 +22,74 @@
 
 hi clear
 if exists('syntax_on')
-  syntax reset
+	syntax reset
 endif
 let g:colors_name = 'primary'
 let s:disable_italic = get(g:,'colorscheme_primary_disable_italic', 0)
 
 if (has('gui_running'))  "Graphical Vim
-  "Set color palette with RGB colors
-  let s:RED    = '#EA4335'
-  let s:GREEN  = '#34A853'
-  let s:YELLOW = '#FBBC05'
-  let s:BLUE   = '#4285F4'
-  let s:BLACK  = '#000000'
-  let s:DGREY  = '#656565'
-  let s:LGREY  = '#EEEEEE'
-  let s:WHITE  = '#FFFFFF'
+	"Set color palette with RGB colors
+	let s:RED    = '#EA4335'
+	let s:GREEN  = '#34A853'
+	let s:YELLOW = '#FBBC05'
+	let s:BLUE   = '#4285F4'
+	let s:BLACK  = '#000000'
+	let s:DGREY  = '#656565'
+	let s:LGREY  = '#EEEEEE'
+	let s:WHITE  = '#FFFFFF'
 
-  "Set gui mode and italics
-  let s:M = 'gui'
-  let s:I = s:disable_italic ? 'none' : 'italic'
+	"Set gui mode and italics
+	let s:M = 'gui'
+	let s:I = s:disable_italic ? 'none' : 'italic'
 
 else                     "Console Vim
-  if &t_Co == 256
-    "Set color palette with 256 colors
-    let s:RED    = '167'
-    let s:GREEN  = '71'
-    let s:YELLOW = '220'
-    let s:BLUE   = '69'
-    let s:BLACK  = '16'
-    let s:DGREY  = '241'
-    let s:LGREY  = '255'
-    let s:WHITE  = '231'
-  else
-    "Set color palette with color names
-    let s:RED    = 'red'
-    let s:GREEN  = 'green'
-    let s:YELLOW = 'yellow'
-    let s:BLUE   = 'blue'
-    let s:BLACK  = 'black'
-    let s:DGREY  = 'grey'
-    let s:LGREY  = 'grey'
-    let s:WHITE  = 'white'
-  endif
+	if &t_Co == 256
+		"Set color palette with 256 colors
+		let s:RED    = '167'
+		let s:GREEN  = '71'
+		let s:YELLOW = '220'
+		let s:BLUE   = '69'
+		let s:BLACK  = '16'
+		let s:DGREY  = '241'
+		let s:LGREY  = '255'
+		let s:WHITE  = '231'
+	else
+		"Set color palette with color names
+		let s:RED    = 'red'
+		let s:GREEN  = 'green'
+		let s:YELLOW = 'yellow'
+		let s:BLUE   = 'blue'
+		let s:BLACK  = 'black'
+		let s:DGREY  = 'grey'
+		let s:LGREY  = 'grey'
+		let s:WHITE  = 'white'
+	endif
 
-  "Set terminal mode and italics (if supported)
-  let s:M = 'cterm'
-  let s:I = 'none'
-  if !s:disable_italic
-    let s:terms = ['rxvt', 'gnome-terminal']
-    for s:term in s:terms
-      if $TERM_PROGRAM =~ s:term
-        let s:I = 'italic'
-      endif
-    endfor
-  endif
+	"Set terminal mode and italics (if supported)
+	let s:M = 'cterm'
+	let s:I = 'none'
+	if !s:disable_italic
+		let s:terms = ['rxvt', 'gnome-terminal']
+		for s:term in s:terms
+			if $TERM_PROGRAM =~ s:term
+				let s:I = 'italic'
+			endif
+		endfor
+	endif
 
 endif
 
 "Reverse greyscale for light vs dark modes
 if &background == 'dark'
-  let s:GREY0  = s:WHITE
-  let s:GREY1  = s:LGREY
-  let s:GREY2  = s:DGREY
-  let s:BG     = s:BLACK
+	let s:GREY0  = s:WHITE
+	let s:GREY1  = s:LGREY
+	let s:GREY2  = s:DGREY
+	let s:BG     = s:BLACK
 else  "light
-  let s:GREY0  = s:BLACK
-  let s:GREY1  = s:DGREY
-  let s:GREY2  = s:LGREY
-  let s:BG     = s:WHITE
+	let s:GREY0  = s:BLACK
+	let s:GREY1  = s:DGREY
+	let s:GREY2  = s:LGREY
+	let s:BG     = s:WHITE
 endif
 
 
@@ -169,30 +169,30 @@ exe 'hi PmenuSBar    '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY0.' '.s:M.'=none'
 exe 'hi PmenuThumb   '.s:M.'bg='.s:GREY0.' '.s:M.'fg='.s:BG   .' '.s:M.'=none'
 
 if (has('gui_running') || &t_Co == 256)
-  exe 'hi Visual       '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.'NONE' .' '.s:M.'=none'
-  exe 'hi Pmenu        '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY0.' '.s:M.'=none'
-  exe 'hi Linenr       '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
-  exe 'hi VertSplit    '.s:M.'bg='.s:GREY1.' '.s:M.'fg='.s:GREY2.' '.s:M.'=none'
-  exe 'hi StatusLine   '.s:M.'bg='.s:GREY1.' '.s:M.'fg='.s:GREY2.' '.s:M.'=bold'
-  exe 'hi StatusLineNC '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
-  exe 'hi Folded       '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
-  exe 'hi FoldColumn   '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
+	exe 'hi Visual       '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.'NONE' .' '.s:M.'=none'
+	exe 'hi Pmenu        '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY0.' '.s:M.'=none'
+	exe 'hi Linenr       '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
+	exe 'hi VertSplit    '.s:M.'bg='.s:GREY1.' '.s:M.'fg='.s:GREY2.' '.s:M.'=none'
+	exe 'hi StatusLine   '.s:M.'bg='.s:GREY1.' '.s:M.'fg='.s:GREY2.' '.s:M.'=bold'
+	exe 'hi StatusLineNC '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
+	exe 'hi Folded       '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
+	exe 'hi FoldColumn   '.s:M.'bg='.s:GREY2.' '.s:M.'fg='.s:GREY1.' '.s:M.'=none'
 else
-  "Eight-color console Vim only supports one shade of grey, so when the FG and
-  "BG should both be shades of grey, console Vim must do it differently.
-  if &background =='dark'
-    let s:GREYX = s:BLACK
-    let s:GREYY = s:GREY1
-  else
-    let s:GREYX = s:GREY1
-    let s:GREYY = s:BLACK
-  endif
-  exe 'hi Visual       '.s:M.'bg='.s:GREYY.' '.s:M.'fg='.'NONE' .' '.s:M.'=none'
-  exe 'hi Pmenu        '.s:M.'bg='.s:GREYY.' '.s:M.'fg='.s:GREYX.' '.s:M.'=none'
-  exe 'hi Linenr       '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
-  exe 'hi VertSplit    '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
-  exe 'hi StatusLine   '.s:M.'bg='.s:GREYY.' '.s:M.'fg='.s:GREYX.' '.s:M.'=bold'
-  exe 'hi StatusLineNC '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
-  exe 'hi Folded       '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
-  exe 'hi FoldColumn   '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
+	"Eight-color console Vim only supports one shade of grey, so when the FG and
+	"BG should both be shades of grey, console Vim must do it differently.
+	if &background =='dark'
+		let s:GREYX = s:BLACK
+		let s:GREYY = s:GREY1
+	else
+		let s:GREYX = s:GREY1
+		let s:GREYY = s:BLACK
+	endif
+	exe 'hi Visual       '.s:M.'bg='.s:GREYY.' '.s:M.'fg='.'NONE' .' '.s:M.'=none'
+	exe 'hi Pmenu        '.s:M.'bg='.s:GREYY.' '.s:M.'fg='.s:GREYX.' '.s:M.'=none'
+	exe 'hi Linenr       '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
+	exe 'hi VertSplit    '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
+	exe 'hi StatusLine   '.s:M.'bg='.s:GREYY.' '.s:M.'fg='.s:GREYX.' '.s:M.'=bold'
+	exe 'hi StatusLineNC '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
+	exe 'hi Folded       '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
+	exe 'hi FoldColumn   '.s:M.'bg='.s:GREYX.' '.s:M.'fg='.s:GREYY.' '.s:M.'=none'
 endif

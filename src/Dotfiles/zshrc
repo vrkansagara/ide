@@ -1,8 +1,10 @@
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.vim/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-# export JAVA_AWT_WM_NONREPARENTING=1
+export JAVA_AWT_WM_NONREPARENTING=1
+
+PROMPT='%(!.%{%F{yellow}%}.)$USER@%{$fg[white]%}%M %{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
 # GPG Common problem solving
 export GPG_TTY=$(tty)
 #
@@ -109,6 +111,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ls='ls -lAlhtra'
+alias ss='source ~/.zshrc'
 
 # Docker Related stuff #
 # sudo curl -L
@@ -127,6 +130,8 @@ alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 # Vim debug mode vim -u NONE --startuptime vim-NONE.log
 alias v='vim -u NONE -N -U NONE'
 alias vi='cd ~/.vim && vim'
+alias vim='/usr/bin/vim --startuptime /tmp/vim-startup.log'
+alias vimDebug="/usr/bin/vim --cmd 'profile start /tmp/vim-profiling.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
 
 alias www='cd ~/www'
 alias htdocs='cd ~/htdocs'
@@ -151,26 +156,32 @@ alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
 alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
+# sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
 alias ownIt='sudo chown -Rf $USER:$USER '
 alias ownItWithPermission='sudo chmod 0744 -Rf'
 alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
 alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
 alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
 alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
-alias myLimit="/usr/bin/cpulimit -l 30  "
-alias htop="/usr/bin/htop -u $USER"
+alias myLimit="/usr/bin/cpulimit -c 30  "
+alias myHtop="/usr/bin/htop -u $USER "
+alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
+
 # PHP Aliases
-alias phpRun='php -S 0.0.0.0:12345 -d ./'
-alias phpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
+alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
+alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 
 # File finder
 alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
+# -r = recursive -n= line numer -w match whole world -e=pattern used for search
+alias myFindTextIntoDirectory="grep -rnw -e "
+
 # AWS Aliases
-alias awsMyInfo='curl http://169.254.169.254/latest/meta-data/'
+alias myaAsMyInfo='curl http://169.254.169.254/latest/meta-data/'
 
 # PHP Laminas server
-alias phpComposerRun='composer run-script serve --timeout 0'
+alias myPhpComposerRun='composer run-script serve --timeout 0'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -187,3 +198,26 @@ alias postman="/usr/bin/cpulimit -l 10 /home/vallabh/Applications/Postman/Postma
 ## Build related stuff"
 # Build file should not have any unwanted variables.
 alias makee="make --warn-undefined-variables "
+alias gcc="gcc -g "
+alias gdb="sudo gdb "
+
+alias lkm="cd ~/git/vrkansagara/lkm/src"
+alias lkmLog="sudo tail -f /var/log/syslog"
+alias lkmCrash="echo 'sudo /usr/bin/crash /var/crash/202110071450/dump.202110071450 /usr/lib/debug/boot/vmlinux-5.4.0-88-generic'"
+alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -eS ~/.zsh_history_bad > ~/.zsh_history && fc -R ~/.zsh_history"
+
+
+
+
+function myNotifySend() {
+    #Detect the name of the display in use
+    local display=":$(ls /tmp/.X11-unix/* | sed 's#/tmp/.X11-unix/X##' | head -n 1)"
+
+    #Detect the user using such display
+    local user=$(who | grep '('$display')' | awk '{print $1}' | head -n 1)
+
+    #Detect the id of the user
+    local uid=$(id -u $user)
+
+    sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "$@"
+}
