@@ -8,19 +8,27 @@ export DEBIAN_FRONTEND=noninteractive
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
-
+echo ""
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+${SUDO} apt-get install --no-install-recommends keychain
+
 echo "$USER is the only one is owning the $HOME/.ssh directory"
+
+echo 'Host *
+AddKeysToAgent yes
+IdentityFile ~/.ssh/id_rsa
+IdentityFile ~/.ssh/id_rsa_vrkansagara
+' | ${SUDO} tee -a ~/.ssh/config > /dev/null
 
 ${SUDO} chown $USER:$USER -Rf $HOME/.ssh
 
 echo "Generating sample SSH key"
 cd $HOME/.ssh
-echo
+
 # ssh-keygen -t ed25519 -C "hello@vrkansagara.in"
 # ssh-keygen -t rsa -b 4096 -C "hello-world@vrkansagara.in"
 
@@ -31,7 +39,8 @@ ${SUDO} chmod 0600 $HOME/.ssh/id_ed*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa_*
+ssh-add $HOME/.ssh/id_rsa_*
+gpg --import ~/.ssh/gnupg/vrkansagara.pgp
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
 

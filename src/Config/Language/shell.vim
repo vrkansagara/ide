@@ -1,11 +1,12 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " .sh files as Shell script
-:autocmd BufNewFile,BufRead *.sh set ft=sh
+autocmd BufNewFile,BufRead *.sh set ft=sh
+
 " Disable automate comment insertation
 :autocmd FileType *.sh setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -16,3 +17,10 @@
 " ":autocmd FileType sh noremap <C-m> :w!<CR>:!chmod +x %<CR>:! clear && sh %<CR>
 :autocmd FileType sh noremap <C-m> :w!<CR>:! clear<CR>:!chmod +x %<CR>:! %:p<CR>
 
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5sh()
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+    " Indent whole file
+    exe "normal gg=G``"
+endfunction
