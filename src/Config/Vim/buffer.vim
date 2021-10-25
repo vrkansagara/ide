@@ -26,11 +26,11 @@
 "changes and continue working, or save all changes and exit Vim. It is also
 "possible to quit all (discard changes).
 
-" :wa	write all changed files (save all changes), and keep working
-" :xa	exit all (save all changes and close Vim)
-" :wqa	same as :xa
-" :qa	quit all (close Vim, but not if there are unsaved changes)
-" :qa!	quit all (close Vim without saving—discard any changes)
+" :wa   write all changed files (save all changes), and keep working
+" :xa   exit all (save all changes and close Vim)
+" :wqa  same as :xa
+" :qa   quit all (close Vim, but not if there are unsaved changes)
+" :qa!  quit all (close Vim without saving—discard any changes)
 " The :wa and :xa commands only write a file when its buffer has been changed.
 " By contrast, the :w command always writes the current buffer to its file (use
 " :update to save the current buffer only if it has been changed).
