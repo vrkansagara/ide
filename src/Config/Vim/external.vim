@@ -1,15 +1,10 @@
-" This will work with external program
 
-" Pass the current file data to the external file
-command! FW call FilterToNewWindow('myscript')
-function! FilterToNewWindow(script)
-    let TempFile = tempname()
-    let SaveModified = &modified
-    exe 'w ' . TempFile
-    let &modified = SaveModified
-    exe 'split ' . TempFile
-    exe '%! ' . a:script
-endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-nnoremap gX :silent :execute "!xdg-open" expand('%:p:h') . "/" . expand("<cfile>") " &"<cr>
+" execute external command and past standarad output in insert mode ( CTRL+R a )
+" @a is the register name
+let @a = system("ls -lhtr")
+let @p = system('uname -a && lsb_release -a')
