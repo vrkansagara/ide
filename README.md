@@ -13,7 +13,7 @@ Developer User :- If there is vim there is geek.
 
 ## Basic Installation
 
-`vim` is installed by running one of the following commands in your terminal.
+`IDE` is installed by running one of the following commands in your terminal.
 You can install this via the command-line with
 either `curl`, `wget` or another similar tool.
 
@@ -34,34 +34,15 @@ You can simply run bellow command to update, this project
  sh ./submodule.sh
 ```
 
-#### Awesome for this project
-
-- Shortcuts
-- Debug information
-- Developer use case
-- Todo / Fix
-- New feature / Removal of things
-
-## Find file(s) - CtrlP
-
-~~~bash
-<Ctrl+P> Find file(s)
-
-<leader>b Find into curent buffer
-
-<leader>. Find ctags symbole
-
-<leader>` Most recent open fil(s)
-~~~
-
 #### Documents
 
 [Docs](src/Docs/README.md)
 
-#### Do's and dont's
+#### Do's and don't
 
-Do not use `CTRL+S` this is standard terminal suspension
+- Do not use `CTRL+S` this is standard terminal suspension
 command (Press `CTRL+Q` will resume)
+- vim -c "redir >> /tmp/vim-shortcuts.log" -c "map" -c "redir END" -c "qa" 
 
 #### VIM Screen
 
@@ -76,6 +57,5 @@ command (Press `CTRL+Q` will resume)
 I would like take issue and pull request regarding this project and
 love to answer if anything on this. I would be more happy if you have on this.
 
-#
-Made with :heart: in India
+### Made with :heart: in India
 <img src="src/Images/India.svg" width="20" height="20">

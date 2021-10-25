@@ -2,7 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo ""
+echo " "
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
@@ -14,13 +14,12 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-${SUDO} apt install ffmpeg
 ${SUDO} add-apt-repository ppa:obsproject/obs-studio
-${SUDO} apt install --no-install-recommends obs-studio
+${SUDO} apt-get install --yes --no-install-recommends ffmpeg obs-studio
 
 echo "Installation of OBS studio is ...[DONE]"
 
