@@ -100,3 +100,8 @@ function! SetNERDTreeOptions()
     call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
 endfunction
 
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5nerdtree()
+    exe ":NERDTreeRefreshRoot"
+endfunction
+
