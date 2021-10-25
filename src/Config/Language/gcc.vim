@@ -1,11 +1,12 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :- GCC compiler related configuration.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" autocmd BufNewFile,BufRead *.c *.cpp *.h set ft=c
+augroup filetypedetect
+    au! BufRead,BufNewFile *.c,*.cpp,*.h	setfiletype c
+augroup END
 
 " Ensure tabs don't get converted to spaces in Makefiles.
 autocmd FileType make setlocal noexpandtab
