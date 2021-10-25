@@ -11,9 +11,16 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+# Change system dns to public dns
+
+echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
+echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
+echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf
+
+exit
 
 cd /tmp
 mkdir /tmp/applications
