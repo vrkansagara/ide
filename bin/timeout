@@ -284,13 +284,13 @@ sub update_time
 	my $cumulative_time = 0;
 
 	foreach_applicable_process($pgrp,$watchfor,sub { my ($pid,$grp,$cmd) = @_;
-		# If hires_proc_runtime doesn't return a value (the $pid died before it tried), we keep the old value of time.  The error is not greater than ualarm interval.
-		my ($pid_time,$pid_cum_time) = hires_proc_runtime($pid);
-		if (defined $pid_time){
-			printf STDERR "timeout: pid $pid own $pid_time kids $pid_cum_time\n" if $debug;
-			$cumulative_time += $pid_time + $pid_cum_time;
-		}
-	});
+			# If hires_proc_runtime doesn't return a value (the $pid died before it tried), we keep the old value of time.  The error is not greater than ualarm interval.
+			my ($pid_time,$pid_cum_time) = hires_proc_runtime($pid);
+			if (defined $pid_time){
+				printf STDERR "timeout: pid $pid own $pid_time kids $pid_cum_time\n" if $debug;
+				$cumulative_time += $pid_time + $pid_cum_time;
+			}
+		});
 
 	my $result = {prev_total => $timeinfo->{total}, total => $cumulative_time, ticks_stale => ($timeinfo->{ticks_stale} || 0)};
 
@@ -308,8 +308,8 @@ sub update_memory
 	my ($pgrp) = @_;
 	my $result = 0;
 	foreach_applicable_process($pgrp,$watchfor,sub { my ($pid,$grp,$cmd,$vsz) = @_;
-		$result += $vsz;
-	});
+			$result += $vsz;
+		});
 	return $result;
 }
 
@@ -319,8 +319,8 @@ sub update_memory_rss
 	my ($pgrp) = @_;
 	my $result = 0;
 	foreach_applicable_process($pgrp,$watchfor,sub { my ($pid,$grp,$cmd,$vsz,$rss) = @_;
-		$result += $rss;
-	});
+			$result += $rss;
+		});
 	return $result;
 }
 
@@ -335,20 +335,20 @@ sub signal_to_process_group_safely
 		while ($new_kids_spawned) {
 			$new_kids_spawned = 0;
 			foreach_applicable_process($pgrp,$watchfor,sub { my ($pid) = @_;
-				return if $sent_to{$pid};
-				$sent_to{$pid} = 1;
-				$new_kids_spawned = 1;
-				kill SIGSTOP, $pid;
-			});
+					return if $sent_to{$pid};
+					$sent_to{$pid} = 1;
+					$new_kids_spawned = 1;
+					kill SIGSTOP, $pid;
+				});
 		}
 		# Now all the controlled processes are stopped, we send them the signal we want
 		foreach_applicable_process($pgrp,$watchfor,sub { my ($pid) = @_;
-			kill $signal, $pid;
-		});
+				kill $signal, $pid;
+			});
 		# Continue the proccesses, so that they can process the signal handler
 		foreach_applicable_process($pgrp,$watchfor,sub { my ($pid) = @_;
-			kill SIGCONT, $pid;
-		});
+				kill SIGCONT, $pid;
+			});
 	}else{
 		# it's still unclear to me if there won't be a delay between catching signals in different processes when a signal is sent to a whole group.
 		kill SIGSTOP, -$pgrp;
@@ -384,30 +384,30 @@ sub update_info_by_ucmd
 
 	# Collect times and commands of the processes that satisfy the patterns given to the $strpat
 	foreach_applicable_process($pgrp,$watchfor,sub { my ($pid,$grp,$ucmd) = @_;
-		# Search process by pattern
-		foreach my $key(keys %{$strpat}) {
-			# NOTE that one pattern may match only one of these: either children or not children.  That's used to avoid confusion
-			if ($ucmd =~ m/$key/) {
-				# Calculate proctime only for the matching processes
-				my ($proctime,$kidstime) = hires_proc_runtime($pid);
-				# If PID is dead, just don't set %alive for it making time info intact.  Its time info will be reconciled later.
-				if ($proctime){
-					$strpat->{$key}->{pids}->{$pid}->{ptime} = $proctime;
-					$strpat->{$key}->{pids}->{$pid}->{ucmd} = $ucmd;
-					$alive{$pid} = 1;
-				}
-			}elsif(($key =~ /^CHILD/) && ("CHILD:$ucmd" =~ m/$key/)){
-				# Calculate proctime only for the matching processes
-				my ($proctime,$kidstime) = hires_proc_runtime($pid);
-				# If PID is dead, just don't set %alive for it making time info intact.  Its time info will be reconciled later.
-				if ($kidstime){
-					$strpat->{$key}->{pids}->{$pid}->{ptime} = $kidstime;
-					$strpat->{$key}->{pids}->{$pid}->{ucmd} = "CHILD:$ucmd";
-					$alive{$pid} = 1;
+			# Search process by pattern
+			foreach my $key(keys %{$strpat}) {
+				# NOTE that one pattern may match only one of these: either children or not children.  That's used to avoid confusion
+				if ($ucmd =~ m/$key/) {
+					# Calculate proctime only for the matching processes
+					my ($proctime,$kidstime) = hires_proc_runtime($pid);
+					# If PID is dead, just don't set %alive for it making time info intact.  Its time info will be reconciled later.
+					if ($proctime){
+						$strpat->{$key}->{pids}->{$pid}->{ptime} = $proctime;
+						$strpat->{$key}->{pids}->{$pid}->{ucmd} = $ucmd;
+						$alive{$pid} = 1;
+					}
+				}elsif(($key =~ /^CHILD/) && ("CHILD:$ucmd" =~ m/$key/)){
+					# Calculate proctime only for the matching processes
+					my ($proctime,$kidstime) = hires_proc_runtime($pid);
+					# If PID is dead, just don't set %alive for it making time info intact.  Its time info will be reconciled later.
+					if ($kidstime){
+						$strpat->{$key}->{pids}->{$pid}->{ptime} = $kidstime;
+						$strpat->{$key}->{pids}->{$pid}->{ucmd} = "CHILD:$ucmd";
+						$alive{$pid} = 1;
+					}
 				}
 			}
-		}
-	});
+		});
 
 	# Calculate full time for each pattern
 	for my $key(keys %{$strpat}) {
@@ -494,7 +494,7 @@ sub limits_exceeded
 	if (defined $timelimit && $timeinfo->{total} > $timelimit){
 		return 'TIMEOUT';
 	}elsif (defined $ticklimit && $kill_stale && $timeinfo->{ticks_stale} > $ticklimit) {
-	# Sometimes the controlling process may inherently hang up.  Then we don't interrupt it.
+		# Sometimes the controlling process may inherently hang up.  Then we don't interrupt it.
 		return 'HANGUP';
 	}elsif (defined $memlimit && $meminfo > $memlimit){
 		return 'MEM';

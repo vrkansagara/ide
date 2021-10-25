@@ -17,15 +17,15 @@ fi
 echo 'Current architecture is :- ' $(dpkg --print-architecture)
 
 ${SUDO} apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-${SUDO} wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
-${SUDO} apt-key add openvpn-repo-pkg-key.pub
-${SUDO} wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$(lsb_release -cs).list
-# [arch=amd64]
-${SUDO} apt update
-sleep(3)
-${SUDO} apt install openvpn3
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg \
+	lsb-release
+	${SUDO} wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+	${SUDO} apt-key add openvpn-repo-pkg-key.pub
+	${SUDO} wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$(lsb_release -cs).list
+	# [arch=amd64]
+	${SUDO} apt update
+	sleep(3)
+	${SUDO} apt install openvpn3
