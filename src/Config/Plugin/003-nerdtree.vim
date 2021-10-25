@@ -1,7 +1,6 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Space conflicts with code folding.
@@ -25,21 +24,21 @@ let NERDTreeCustomOpenArgs = {'file':{'where':'t'}}
 " let NERDTreeCustomOpenArgs = {'file': {'reuse':'currenttab', 'where':'p', 'keepopen':1, 'stay':1}}
 " \ '^vendor$',
 let NERDTreeIgnore = [
-			\'.netrwhist',
-			\ '.NERDTreeBookmarks',
-			\ '^node_modules$',
-			\ '^.DS_Store$',
-			\ '^.idea$',
-			\ '^.git$',
-			\ '^.coffee$',
-			\ '^bundle$']
+            \'.netrwhist',
+            \ '.NERDTreeBookmarks',
+            \ '^node_modules$',
+            \ '^.DS_Store$',
+            \ '^.idea$',
+            \ '^.git$',
+            \ '^.coffee$',
+            \ '^bundle$']
 
 " Let always open bookmark with file explore
 let NERDTreeShowBookmarks=1
 
 " This will look for the opening of vim directory(git ignore global)
 " if filereadable(".NERDTreeBookmarks")
-    " let g:NERDTreeBookmarksFile = ".NERDTreeBookmarks"
+" let g:NERDTreeBookmarksFile = ".NERDTreeBookmarks"
 " endif
 
 " Open explorer to the right side
@@ -67,37 +66,42 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 " This function will open NERDTree into current buffer, supper easy for
 " current directory
 function! NERDTreeToggleInCurDir()
-	"If NERDTree is open in the current buffer
-	if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-		exe ":NERDTreeClose"
-	else
-		if (expand("%:t") != '')
-			exe ":NERDTreeFind"
-		else
-			exe ":NERDTreeToggle"
-		endif
-	endif
+    "If NERDTree is open in the current buffer
+    if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+        exe ":NERDTreeClose"
+    else
+        if (expand("%:t") != '')
+            exe ":NERDTreeFind"
+        else
+            exe ":NERDTreeToggle"
+        endif
+    endif
 endfunction
 
 
 function NERDTreeMyOpenFile(node)
-	" autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
+    " autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
     call a:node.activate({'reuse': 'currenttab', 'where': 'p'})
 endfunction
 
 function NERDTreeMyOpenInTab(node)
-	" call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
+    " call NERDTreeAddKeyMap({ 'key': 'o', 'callback': 'NERDTreeMyOpenFile', 'scope': 'FileNode', 'override': 1 })
     call a:node.open({'reuse': "all", 'where': 't'})
 endfunction
 
 " Only set of option when nedtree buffer is active or pointer in it.
 autocmd FileType nerdtree call SetNERDTreeOptions()
 function! SetNERDTreeOptions()
-	nnoremap <F5> :NERDTreeRefreshRoot<CR>
-	" nmap <buffer> <left> o
-	" nmap <buffer> <right> o
-	nmap <buffer> <S-right> T: <ESC>
-	" autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
-	call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+    " nnoremap <F5> :NERDTreeRefreshRoot<CR>
+    " nmap <buffer> <left> o
+    " nmap <buffer> <right> o
+    nmap <buffer> <S-right> T: <ESC>
+    " autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+    call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+endfunction
+
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5nerdtree()
+    exe ":NERDTreeRefreshRoot"
 endfunction
 

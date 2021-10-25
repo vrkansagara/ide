@@ -2,7 +2,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File name  :- 001-pathogen.vim                                        "
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- Do not rename of file                                   "
+" Note       :- Do not rename of file                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable pathogen bundles
@@ -13,6 +13,11 @@
 """"""""""""""""""""""""""""""
 " => Load pathogen paths
 """"""""""""""""""""""""""""""
+
+" Let syntax enable later on color scheme applyied.
+if exists("g:syntax_on")
+    syntax off
+endif
 
 " Call "filetype off" first to ensure that bundle ftplugins can be added to the
 " path before we re-enable it later in the vimrc.
@@ -26,5 +31,5 @@ call pathogen#infect(s:vim_runtime.'/vendor/{}')
 
 call pathogen#helptags()
 
-" syntax on
-" filetype plugin indent on
+" Enalbe file indent after plugin enables
+filetype plugin indent on
