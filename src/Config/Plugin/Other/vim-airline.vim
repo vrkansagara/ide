@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara " 
-" Note		 :- 
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "  The information in Section Z looks like this:
@@ -16,9 +16,9 @@ let g:airline_disable_statusline=0
 
 " " First line ensures we can have full spectrum of colors
 " if has('gui_running') || &term =='linux' || &t_Co < 256
-" 	let g:airline_solarized_bg='dark'
+"   let g:airline_solarized_bg='dark'
 " else
-" 	let g:airline_solarized_bg='light'
+"   let g:airline_solarized_bg='light'
 " endif
 
 let g:airline#extensions#tagbar#enabled=1
