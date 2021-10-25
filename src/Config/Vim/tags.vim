@@ -14,7 +14,6 @@
 
 nnoremap <C-\> :split<CR>:exec("tag ".expand("<cword>"))<CR>
 
-
 " set tags^=./tags
 " set tags^=./tags
 
@@ -49,4 +48,3 @@ set tags^=./tags;
 " :tnext
 " Search tag by other tag commands
 " :tag num
-
