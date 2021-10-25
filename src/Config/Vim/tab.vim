@@ -70,10 +70,10 @@ nnoremap <leader>T :call LastWindow()<cr>
 
 " Keyboard tab , shift-tab
 " https://vim.fandom.com/wiki/Shifting_blocks_visually
-nnoremap <Tab> >>
-nnoremap <S-Tab> <<
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-inoremap <S-Tab> <C-D>
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+" nnoremap <Tab> >>
+" nnoremap <S-Tab> <<
+" nnoremap <Tab> >>_
+" nnoremap <S-Tab> <<_
+" inoremap <S-Tab> <C-D>
+" vnoremap <Tab> >gv
+" vnoremap <S-Tab> <gv
