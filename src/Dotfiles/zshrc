@@ -161,22 +161,25 @@ alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
 alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
 alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
 alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
-alias myLimit="/usr/bin/cpulimit -l 30  "
-alias htop="/usr/bin/htop -u $USER"
+alias myLimit="/usr/bin/cpulimit -c 30  "
+alias myHtop="/usr/bin/htop -u $USER "
+alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
+
 # PHP Aliases
-alias phpRun='php -S 0.0.0.0:12345 -d ./'
-alias phpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
+alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
+alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 
 # File finder
 alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
 # -r = recursive -n= line numer -w match whole world -e=pattern used for search
 alias myFindTextIntoDirectory="grep -rnw -e "
+
 # AWS Aliases
-alias awsMyInfo='curl http://169.254.169.254/latest/meta-data/'
+alias myaAsMyInfo='curl http://169.254.169.254/latest/meta-data/'
 
 # PHP Laminas server
-alias phpComposerRun='composer run-script serve --timeout 0'
+alias myPhpComposerRun='composer run-script serve --timeout 0'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -200,3 +203,19 @@ alias lkm="cd ~/git/vrkansagara/lkm/src"
 alias lkmLog="sudo tail -f /var/log/syslog"
 alias lkmCrash="echo 'sudo /usr/bin/crash /var/crash/202110071450/dump.202110071450 /usr/lib/debug/boot/vmlinux-5.4.0-88-generic'"
 alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -eS ~/.zsh_history_bad > ~/.zsh_history && fc -R ~/.zsh_history"
+
+
+
+
+function myNotifySend() {
+    #Detect the name of the display in use
+    local display=":$(ls /tmp/.X11-unix/* | sed 's#/tmp/.X11-unix/X##' | head -n 1)"
+
+    #Detect the user using such display
+    local user=$(who | grep '('$display')' | awk '{print $1}' | head -n 1)
+
+    #Detect the id of the user
+    local uid=$(id -u $user)
+
+    sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "$@"
+}
