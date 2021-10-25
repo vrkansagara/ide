@@ -21,9 +21,9 @@ ${SUDO} sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main"
 ${SUDO} apt-get -y update
 
 for VERSION in 7.4 8.0;do
-    for EXTENSION in fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug;do
-        ${SUDO} apt install -y php${VERSION}-${EXTENSION}
-    done
+	for EXTENSION in fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug;do
+		${SUDO} apt install -y php${VERSION}-${EXTENSION}
+	done
 done
 
 echo "[DONE] deb-sury-org.sh"
