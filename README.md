@@ -40,8 +40,9 @@ You can simply run bellow command to update, this project
 
 #### Do's and don't
 
-Do not use `CTRL+S` this is standard terminal suspension
+- Do not use `CTRL+S` this is standard terminal suspension
 command (Press `CTRL+Q` will resume)
+- vim -c "redir >> /tmp/vim-shortcuts.log" -c "map" -c "redir END" -c "qa" 
 
 #### VIM Screen
 
