@@ -3,8 +3,8 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
-
-if [ "$(whoami)" != "root" \]; then
+echo " "
+if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
