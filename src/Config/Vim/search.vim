@@ -13,6 +13,7 @@ vnoremap / /\v
 set highlight=lub
 nnoremap <leader>s :set hlsearch<CR>
 nnoremap <leader>S :set nohlsearch<CR>
+
 set incsearch
 set showmatch
 
@@ -22,11 +23,12 @@ set smartcase
 
 
 function! s:VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
+	let temp = @@
+	norm! gvy
+	let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+	let @@ = temp
 endfunction
+
 " Vim pr0n: Visual search mappings(  search for the word under the cursor, press *=next,#=previous )
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
