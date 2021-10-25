@@ -23,6 +23,10 @@ inoremap kj <Esc>
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 
+" execute external command and past standarad output in insert mode ( CTRL+R a )
+" @a is the register name
+let @a = system("ls -lhtr")
+
 nnoremap <leader>v :tabedit $MYVIMRC<CR>
 nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 
@@ -37,10 +41,7 @@ endif
 nnoremap <leader>r :source $MYVIMRC<CR>
 " nnoremap <leader>r :source ~/.vim/vimrc.vim<CR>
 
-" Switch between the last two files (press two time leader)
-nnoremap <leader><leader> <C-^>
-
-" "sudo" save: current file.
+"sudo" save: current file.
 cnoremap w!! w !sudo tee % >/dev/null
 nnoremap <leader>w :w<cr>
 
