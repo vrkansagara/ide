@@ -66,14 +66,8 @@ git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
 git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
 
-# echo "Installation of [ Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)  ] ..."
-# git submodule add -f https://github.com/vim-vdebug/vdebug.git vendor/vdebug
-
-# # echo "Installation of [ clangd extension for coc.nvim]"
-# git submodule add -f https://github.com/clangd/coc-clangd.git vendor/coc-clangd
-
-# echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
-# git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
+echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
+git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
