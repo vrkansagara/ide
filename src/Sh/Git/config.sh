@@ -15,6 +15,8 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+${SUDO} apt-get install --no-install-recommends -y gnupg2
+
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 # Run script to local directory
@@ -37,6 +39,8 @@ git config --global user.name "Vallabh Kansagara"
 git config --global help.autocorrect 0
 git config --global credential.helper store
 
+git config --global gpg.program gpg2
+git config --global commit.gpgsign true
 git config --global alias.ls 'config --global -l'
 git config --global alias.ll 'log --oneline'
 git config --global alias.undo 'reset --soft HEAD~1'
