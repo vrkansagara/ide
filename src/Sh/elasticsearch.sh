@@ -20,7 +20,7 @@ ${SUDO} apt-get install apt-transport-https
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | ${SUDO} tee /etc/apt/sources.list.d/elastic-7.x.list
 ${SUDO} apt-get update && ${SUDO} apt-get install elasticsearch
 
-
+exit;
 
 # /etc/security/limits.conf
 # Ensure ElasticSearch can open files and lock memory!
