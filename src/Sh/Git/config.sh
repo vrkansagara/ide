@@ -41,6 +41,7 @@ git config --global merge.tool vimdiff
 git config --global mergetool.prompt false
 git config --global user.name "Vallabh Kansagara"
 
+git config --global alias.add-unmerged  '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`'
 git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.cm 'commit -m'
@@ -48,6 +49,7 @@ git config --global alias.co checkout
 git config --global alias.conflicts 'diff --name-only --diff-filter=U'
 git config --global alias.current 'rev-parse --verify HEAD'
 git config --global alias.dv 'difftool -t vimdiff -y'
+git config --global alias.edit-unmerged '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; vim `f`'
 git config --global alias.gc 'gc --prune=now --aggressive'
 git config --global alias.last 'log -1 HEAD --stat'
 git config --global alias.ll 'log --oneline'
