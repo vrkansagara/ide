@@ -25,3 +25,6 @@
 [submodule "vendor/fugitive"]
 	path = vendor/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vendor/vim-visual-multi"]
+	path = vendor/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi.git
