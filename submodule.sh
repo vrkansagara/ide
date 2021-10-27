@@ -54,6 +54,7 @@ git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/pa
 echo "Installation of [ A tree explorer plugin for vim. ] ..."
 git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
 
+# As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
 
@@ -72,6 +73,10 @@ git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
+echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
+git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
+git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
+
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
 
@@ -80,10 +85,6 @@ git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-vi
 
 # echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
 # git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
-
-# echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
-# git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
-# git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
 
 # echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!  ] ..."
 # git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
@@ -104,7 +105,6 @@ git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-vi
 # # git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
 
 # Unwanted / Disabled modules
-
 # echo "Installation of [Automatically opens popup menu for completions ] ..."
 # # git submodule add -f https://github.com/vim-scripts/AutoComplPop vendor/AutoComplPop
 
@@ -120,7 +120,6 @@ git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-vi
 # # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
-# As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 # echo "Installation of [ A command-line fuzzy finder   ] ..."
 # git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
 # echo "Installation of [ fzf heart vim  ] ..."
