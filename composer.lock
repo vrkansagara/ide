@@ -554,16 +554,16 @@
         },
         {
             "name": "laravel/installer",
-            "version": "v4.2.8",
+            "version": "v4.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/installer.git",
-                "reference": "da5e8b471d87c0b4762c3a0a4c35f09521b48db9"
+                "reference": "47f1c438baa476e5dfd64ba44d8919b611c16607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/installer/zipball/da5e8b471d87c0b4762c3a0a4c35f09521b48db9",
-                "reference": "da5e8b471d87c0b4762c3a0a4c35f09521b48db9",
+                "url": "https://api.github.com/repos/laravel/installer/zipball/47f1c438baa476e5dfd64ba44d8919b611c16607",
+                "reference": "47f1c438baa476e5dfd64ba44d8919b611c16607",
                 "shasum": ""
             },
             "require": {
@@ -604,9 +604,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/installer/issues",
-                "source": "https://github.com/laravel/installer/tree/v4.2.8"
+                "source": "https://github.com/laravel/installer/tree/v4.2.9"
             },
-            "time": "2021-08-17T15:44:23+00:00"
+            "time": "2021-10-26T15:56:44+00:00"
         },
         {
             "name": "maennchen/zipstream-php",

@@ -69,6 +69,9 @@ git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gi
 echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
 git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
+echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
+git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
+
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
 
@@ -84,9 +87,6 @@ git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
 
 # echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!  ] ..."
 # git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
-
-# echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
-# git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
 # echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
 # # git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
