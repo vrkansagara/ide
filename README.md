@@ -57,6 +57,5 @@ command (Press `CTRL+Q` will resume)
 I would like take issue and pull request regarding this project and
 love to answer if anything on this. I would be more happy if you have on this.
 
-
 ## Made with :heart: in India
 <img src="src/Images/India.svg" width="20" height="20">
