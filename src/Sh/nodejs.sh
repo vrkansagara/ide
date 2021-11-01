@@ -17,6 +17,7 @@ fi
 
 # Using Linux
 curl -sL install-node.now.sh/lts | ${SUDO} bash -
+
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} bash -
 # ${SUDO} apt-get install --yes --no-install-recommends  nodejs

@@ -17,23 +17,28 @@ fi
 # echo "Print current system theme ( Default :- Ambiance )"
 # gsettings get org.gnome.desktop.interface gtk-theme
 
-# ${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
+${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
+
 h=$(date +"%H")
 if [ $h -gt 6 -a $h -le 12 ]
 then
 	echo good morning
+	~/.vim/bin/brightness.sh set 900
 	# brightness.sh set 30000
 	# gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 12 -a $h -le 16 ]
 then
 	echo good afternoon
+	~/.vim/bin/brightness.sh set 700
 	# gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 16 -a $h -le 20 ]
 then
 	echo good evening
+	~/.vim/bin/brightness.sh set 500
 	# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 else
 	echo good night
+	~/.vim/bin/brightness.sh set 300
 	# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 fi
 
@@ -56,11 +61,11 @@ MatchDevicePath "/dev/input/event*"
 Driver "libinput"
 Option "Tapping" "on"
 EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
-# systemctl restart lightdm
+# ${SUDO} systemctl restart lightdm
 
 # helpful into kernel developmen
 ${SUDO} sh -c "echo 7 4 1 7 > /proc/sys/kernel/printk"
 
-echo "[DONE] MacBokAir Specific setting updated"
+echo "MacBokAir Specific setting updated ... [DONE]"
 
 exit 0
