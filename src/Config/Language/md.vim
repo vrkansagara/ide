@@ -4,5 +4,11 @@
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:gitgutter_map_keys = 0
-set signcolumn=yes
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5markdown()
+	" Call F2 which is trim whitespace for all file type
+	" exe "normal \<F2>"
+	" Indent whole file
+	exe "normal gg=G``"
+endfunction
+
