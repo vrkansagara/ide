@@ -14,6 +14,5 @@ fi
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 ${SUDO} apt-get update
 ${SUDO} apt-get  install keepassxc
