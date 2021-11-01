@@ -24,3 +24,4 @@ fc-cache -f -v
 
 
 echo "Fira code font installation [Done]."
+exit 0
