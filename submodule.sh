@@ -132,7 +132,10 @@ bin/composer2 self-update
 bin/composer2 update -vv
 
 cd vendor/coc.nvim
+${SUDO} rm -rf ~/.config/coc/extensions
+
 ${SUDO} npm install -g npm@latest
+${SUDO} npm i intelephense -g
 npm i
 npm run build
 
