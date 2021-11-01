@@ -4,6 +4,12 @@
 [submodule "vendor/vim-commentry"]
 	path = vendor/vim-commentry
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "vendor/vim-surround"]
+	path = vendor/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vendor/fugitive"]
+	path = vendor/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vendor/papercolor-theme"]
 	path = vendor/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme.git
@@ -22,9 +28,6 @@
 [submodule "vendor/vim-gitgutter"]
 	path = vendor/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "vendor/fugitive"]
-	path = vendor/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vendor/vim-visual-multi"]
 	path = vendor/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
@@ -34,6 +37,3 @@
 [submodule "vendor/vim-airline-theme"]
 	path = vendor/vim-airline-theme
 	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule "vendor/vim-surround"]
-	path = vendor/vim-surround
-	url = https://github.com/tpope/vim-surround.git
