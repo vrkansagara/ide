@@ -28,14 +28,14 @@ inoremap <C-Right> <ESC>:tabn<CR>
 " inoremap <C-Down> <ESC>:tablast<CR>
 
 " In tty right and left key will not work
-nnoremap <leader>tp :tabp<CR>
-inoremap <leader>tp <ESC>:tabp<CR>
-nnoremap <leader>tn :tabn<CR>
-inoremap <leader>tn <ESC>:tabn<CR>
-nnoremap <leader>tf :tabfirst<CR>
-inoremap <leader>tf <ESC>:tabfirst<CR>
-nnoremap <leader>tl :tablast<CR>
-inoremap <leader>tl <ESC>:tablast<CR>
+nnoremap <leader>tp :tabp<CR>:cd %:p:h<cr>:pwd<cr>
+inoremap <leader>tp <ESC>:tabp<CR>:cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>tn :tabn<CR>:cd %:p:h<cr>:pwd<cr>
+inoremap <leader>tn <ESC>:tabn<CR>:cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>tf :tabfirst<CR>:cd %:p:h<cr>:pwd<cr>
+inoremap <leader>tf <ESC>:tabfirst<CR>:cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>tl :tablast<CR>:cd %:p:h<cr>:pwd<cr>
+inoremap <leader>tl <ESC>:tablast<CR>:cd %:p:h<cr>:pwd<cr>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory

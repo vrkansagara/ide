@@ -34,3 +34,6 @@
 [submodule "vendor/vim-airline-theme"]
 	path = vendor/vim-airline-theme
 	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "vendor/vim-surround"]
+	path = vendor/vim-surround
+	url = https://github.com/tpope/vim-surround.git
