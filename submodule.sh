@@ -48,6 +48,12 @@ git submodule add -f https://github.com/tpope/vim-pathogen.git vendor/vim-pathog
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git submodule add -f  https://github.com/tpope/vim-commentary.git vendor/vim-commentry
 
+echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
+git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
+
+echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
+git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
+
 echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
 git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
 
@@ -67,9 +73,6 @@ git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
 git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
 
-echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
-git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
-
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
@@ -82,9 +85,6 @@ git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendo
 
 # echo "Installation of [ scriptease.vim: A Vim plugin for Vim plugins    ] ..."
 # git submodule add -f https://github.com/tpope/vim-scriptease.git vendor/vim-scriptease
-
-# echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
-# git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
 
 # echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!  ] ..."
 # git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
