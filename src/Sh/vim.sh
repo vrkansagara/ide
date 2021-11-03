@@ -14,38 +14,27 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- VIM compile from source.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-${SUDO} apt-get install --no-install-recommends software-properties-common git make ncurses-dev build-essential  libncurses5-dev \
-libgtk2.0-dev libatk1.0-dev \
-libcairo2-dev python-dev \
-python3-dev git
+${SUDO} apt-get purge vim vim-runtime gvim
+${SUDO} apt-get build-dep vim vim-common vim-gtk vim-runtime gvim
 
-mkdir -p ~/tmp/latest
-cd ~/tmp/latest
-# git clone https://github.com/vim/vim.git --depth 1 ~/tmp/latest/vim
-cd ~/tmp/latest/vim
+# ${SUDO} apt-get install --yes --no-install-recommends software-properties-common
+# git make ncurses-dev build-essential  libncurses5-dev \
+# libgtk2.0-dev libatk1.0-dev \
+# libcairo2-dev python-dev \
+# python3-dev git build-dep vim libxtst-dev libx11-dev libxt-dev libsm-dev \
+# libxpm-dev ack ack-grep
+
+TMPDIRECOTORY="$HOME/tmp/latest"
+mkdir -p ${TMPDIRECOTORY}
+
+git clone https://github.com/vim/vim.git --depth 1 -b master ${TMPDIRECOTORY}
+cd "${TMPDIRECOTORY}/vim"
+git stash
 git reset --hard HEAD
 git clean -fd
-./configure --enable-pythoninterp --prefix=/usr
-make
-${SUDO} make install
 
-# ${SUDO} add-apt-repository -y ppa:jonathonf/vim
-# ${SUDO} apt update
-# ${SUDO} apt install -y --reinstall --no-install-recommends vim
-# exit 0
-
-${SUDO} rm -rf /usr/local/bin/vim /usr/share/vim/
-${SUDO} apt-get -y --no-install-recommends build-dep vim libxtst-dev libx11-dev libxt-dev libsm-dev libxpm-dev ack ack-grep
-
-exit
-
-mkdir /tmp/clone
-cd /tmp/clone
-git clone https://github.com/vim/vim --depth 1 -b master
-cd vim
 
 ${SUDO} make distclean
-
 ./configure \
 	--disable-acl \
 	--disable-darwin                          \
@@ -85,4 +74,5 @@ ${SUDO} make distclean
 	--prefix=/usr
 
 	make
+	${SUDO} rm -rf /usr/local/bin/vim /usr/share/vim/
 	${SUDO} make install
