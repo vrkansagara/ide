@@ -130,8 +130,8 @@ alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 # Vim debug mode vim -u NONE --startuptime vim-NONE.log
 alias v='vim -u NONE -N -U NONE'
 alias vi='cd ~/.vim && vim'
-alias vim='/usr/bin/vim --startuptime /tmp/vim-startup.log'
-alias vimDebug="/usr/bin/vim --cmd 'profile start /tmp/vim-profiling.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
+alias vim='vim --startuptime /tmp/vim-startup.log'
+alias vimDebug="vim --cmd 'profile start /tmp/vim-profiling.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
 
 alias www='cd ~/www'
 alias htdocs='cd ~/htdocs'
