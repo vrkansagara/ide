@@ -130,9 +130,9 @@ git submodule update --init --recursive --jobs 4  --remote --merge
 bin/composer2 self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer2 update -vv
+${SUDO} rm -rf ~/.config/coc/extensions
 
 cd vendor/coc.nvim
-${SUDO} rm -rf ~/.config/coc/extensions
 
 ${SUDO} npm install -g npm@latest
 ${SUDO} npm i intelephense -g
