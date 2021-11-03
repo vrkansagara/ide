@@ -12,17 +12,10 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- VIM compile from source.
+#  Note       :- VIM compile from source.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ${SUDO} apt-get purge vim vim-runtime gvim
 ${SUDO} apt-get build-dep vim vim-common vim-gtk vim-runtime gvim
-
-# ${SUDO} apt-get install --yes --no-install-recommends software-properties-common
-# git make ncurses-dev build-essential  libncurses5-dev \
-# libgtk2.0-dev libatk1.0-dev \
-# libcairo2-dev python-dev \
-# python3-dev git build-dep vim libxtst-dev libx11-dev libxt-dev libsm-dev \
-# libxpm-dev ack ack-grep
 
 TMPDIRECOTORY="$HOME/tmp/latest"
 mkdir -p ${TMPDIRECOTORY}
@@ -32,7 +25,6 @@ cd "${TMPDIRECOTORY}/vim"
 git stash
 git reset --hard HEAD
 git clean -fd
-
 
 ${SUDO} make distclean
 ./configure \
