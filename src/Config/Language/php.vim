@@ -52,6 +52,9 @@ function! RefreshF5php()
     " reindent whole file without losing current " position
     exe "normal gg=G``"
 
+	" Call intelephense to refresh php (Manyally) not needed if it auto
+	exe "CocCommand intelephense.index.workspace"
+
     " PHP Performance (insted of " use ')
     " silent! %s/\"\([^"]*\)\"/'\1'/g
 endfunction
