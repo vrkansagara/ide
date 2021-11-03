@@ -8,7 +8,6 @@
 " Debug language server :- :CocList services  , CocRestart
 " :CocInstall coc-json coc-tsserver coc-phpls
 "
-"
 " Use :CocList snippets to open snippets list.
 " Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
 " Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
