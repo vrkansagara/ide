@@ -14,12 +14,14 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- VIM compile from source.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-${SUDO} apt-get purge vim vim-runtime gvim
-${SUDO} apt-get build-dep vim vim-common vim-gtk vim-runtime gvim
+
+${SUDO} apt update
+APT_PACKAGE_TARGET="vim-gtk" # Ubuntu
+${SUDO} apt-get purge  ${APT_PACKAGE_TARGET}
+${SUDO} apt-get build-dep ${APT_PACKAGE_TARGET}
 
 TMPDIRECOTORY="$HOME/tmp/latest"
 mkdir -p ${TMPDIRECOTORY}
-
 git clone https://github.com/vim/vim.git --depth 1 -b master ${TMPDIRECOTORY}
 cd "${TMPDIRECOTORY}/vim"
 git stash
@@ -43,7 +45,6 @@ ${SUDO} make distclean
 	--disable-workshop                        \
 	--disable-xim                             \
 	--disable-xsmp							  \
-
 	--enable-cscope                           \
 	--enable-fontset                          \
 	--enable-multibyte                        \
@@ -53,16 +54,13 @@ ${SUDO} make distclean
 	--enable-pythoninterp=yes                 \
 	--enable-rubyinterp=yes                   \
 	--enable-fail-if-missing                  \
-
 	--with-features=normal                    \
 	--enable-gui=auto                         \
 	--enable-gui=gtk2 \
-
 	--with-x                                  \
 	--with-compiledby="Vallabh Kansagara <vrkansagara@gmail.com>" \
 	--with-vim-name=vi                        \
 	--with-features=huge                      \
-
 	--prefix=/usr
 
 	make
