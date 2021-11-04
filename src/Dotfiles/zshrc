@@ -130,7 +130,7 @@ alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 # Vim debug mode vim -u NONE --startuptime vim-NONE.log
 alias v='vim -u NONE -N -U NONE'
 alias vi='cd ~/.vim && vim'
-alias vim='vim --startuptime /tmp/vim-startup.log'
+alias viml='vim --startuptime /tmp/vim-startup.log'
 alias vimDebug="vim --cmd 'profile start /tmp/vim-profiling.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
 
 alias www='cd ~/www'
@@ -220,4 +220,35 @@ function myNotifySend() {
     local uid=$(id -u $user)
 
     sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "$@"
+}
+
+
+
+which_term(){
+    term=$(ps -p $(ps -p $$ -o ppid=) -o args=);
+    found=0;
+    case $term in
+        *gnome-terminal*)
+            found=1
+            echo "gnome-terminal " $(dpkg -l gnome-terminal | awk '/^ii/{print $3}')
+            ;;
+        *lxterminal*)
+            found=1
+            echo "lxterminal " $(dpkg -l lxterminal | awk '/^ii/{print $3}')
+            ;;
+        rxvt*)
+            found=1
+            echo "rxvt " $(dpkg -l rxvt | awk '/^ii/{print $3}')
+            ;;
+        ## Try and guess for any others
+        *)
+            for v in '-version' '--version' '-V' '-v'
+            do
+                $term "$v" &>/dev/null && eval $term $v && found=1 && break
+            done
+            ;;
+    esac
+    ## If none of the version arguments worked, try and get the
+    ## package version
+    [ $found -eq 0 ] && echo "$term " $(dpkg -l $term | awk '/^ii/{print $3}')
 }
