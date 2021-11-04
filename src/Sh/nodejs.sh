@@ -15,6 +15,7 @@ fi
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+${SUDO} apt-get install curl 
 # Using Linux
 curl -sL install-node.now.sh/lts | ${SUDO} bash -
 
