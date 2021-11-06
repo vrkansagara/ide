@@ -40,7 +40,7 @@ git config --global merge.conflictstyle diff3
 git config --global merge.tool vimdiff
 git config --global mergetool.prompt false
 git config --global user.name "Vallabh Kansagara"
-git config --global user.signingkey 489E1DB687B7E675
+git config --global user.signingkey 8BA6E7ABD8112B3E
 
 git config --global alias.add-unmerged  '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`'
 git config --global alias.br branch
