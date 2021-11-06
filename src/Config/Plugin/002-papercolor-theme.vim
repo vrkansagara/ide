@@ -14,6 +14,14 @@
 "   colorscheme PaperColor
 " endif
 
+" https://github.com/vim/vim/issues/993#issuecomment-255651605
+" set Vim-specific sequences for RGB colors
+if exists('+termguicolors')
+	" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " set termguicolors
+endif
+
 " Set default color scheme
 if exists("g:syntax_on")
 	syntax off
