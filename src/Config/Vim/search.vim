@@ -3,7 +3,6 @@
 " Maintainer:- Vallabh Kansagara — @vrkansagara
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " Turn on "very magic" regex status by default for searches.
 " :he /magic for more information
 nnoremap / /\v
