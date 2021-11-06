@@ -31,3 +31,9 @@
 [submodule "vendor/vim-visual-multi"]
 	path = vendor/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
+[submodule "vendor/vim-airline"]
+	path = vendor/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vendor/vim-airline-theme"]
+	path = vendor/vim-airline-theme
+	url = https://github.com/vim-airline/vim-airline-themes.git
