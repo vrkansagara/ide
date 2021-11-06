@@ -1,0 +1,98 @@
+{
+	"intelephense.files.exclude": [
+		"**/.git/**",
+		"**/.svn/**",
+		"**/.hg/**",
+		"**/CVS/**",
+		"**/.DS_Store/**",
+		"**/node_modules/**",
+		"**/bower_components/**",
+		"**/vendor/**/{Tests,tests}/**",
+		"**/.history/**",
+		"**/vendor/**/vendor/**"
+	],
+	"phpls.enable": true,
+	"phpls.trace.server": "/tmp/phpls.log",
+	"psalm.enable": true,
+	"psalm.configPaths": [
+		"~/.vim/psalm.xml",
+		"psalm.xml",
+		"psalm.xml.dist"
+	],
+	"psalm.psalmScriptPath": ~/.vim/vendor/bin/psalm-language-server,
+	"coc.preferences.jumpCommand": "tabe",
+	"sh.enable":true,
+	"snippets.snipmate.enable": true,
+	"snippets.snipmate.author": "Vallabh Kansagara",
+	"snippets.ultisnips.directories": [
+		"~/.vim/src/UltiSnips"
+	],
+	"snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
+	"snippets.extends": {
+		"php": [
+			"phtml",
+			"php"
+		],
+		"cpp": [
+			"c",
+			"h"
+		],
+		"javascriptreact": [
+			"javascript"
+		],
+		"typescript": [
+			"javascript",
+			"js"
+		]
+	},
+	"clangd.enabled":true,
+	"clangd": {
+		"command": "clangd",
+		"rootPatterns": [
+			"compile_flags.txt",
+			"compile_commands.json"
+		],
+		"filetypes": [
+			"c",
+			"cc",
+			"cpp",
+			"c++",
+			"objc",
+			"objcpp"
+		]
+	},
+	"cmake": {
+		"command": "cmake-language-server",
+		"filetypes": [
+			"cmake"
+		],
+		"rootPatterns": [
+			"build/"
+		],
+		"initializationOptions": {
+			"buildDirectory": "build"
+		}
+	},
+	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
+	"cSpell.enabled":true,
+	"cSpell.showStatus":true,
+	"cSpell.language": "en",
+	"cSpell.numSuggestions": 8,
+	"cSpell.minWordLength": 4,
+	"cSpell.enabledLanguageIds": [
+		"go",
+		"markdown",
+		"php",
+		"plaintext",
+		"yml"
+	],
+	"cSpell.ignorePaths": [
+		"node_modules",
+		"**/node_modules",
+		"**/node_modules/**",
+		"node_modules/**",
+		".git",
+		"**/vendor/",
+		"vendor/*"
+	]
+}
