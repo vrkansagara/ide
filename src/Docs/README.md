@@ -22,6 +22,3 @@ W – go to the next WORD.
 H – Go to the first line of current screen.
 M – Go to the middle line of current screen.
 L – Go to the last line of current screen.
-
-
-
