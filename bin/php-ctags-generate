@@ -1,15 +1,16 @@
-
 #!/usr/bin/env bash
-set -e
+#set -e
+#set -x
 
 dir=$(pwd)
 name="tags"
 
 echo "Creating tags for directory '$dir' using alias '$name'"
 rm -rf $dir/$name
+
 exec ctags-exuberant -f $dir/$name \
--RV \
---languages=php \
+-R \
+--languages=PHP \
 --exclude=.git \
 --exclude=.node_modules \
 --exclude=vendorr \
@@ -24,10 +25,9 @@ exec ctags-exuberant -f $dir/$name \
 --exclude=*.css \
 --exclude=*.html \
 --exclude=composer \
---append=no \
+--append=yes \
 --totals=yes \
---tag-relative=yes
---languages=PHP \
+--tag-relative=yes \
 --PHP-kinds=+vidfcv
 
 # --fields=+aimS \
@@ -39,4 +39,5 @@ exec ctags-exuberant -f $dir/$name \
 # --regex-PHP='/\$([a-zA-Z_][a-zA-Z0-9_]*)/\1/v/'
 # --regex-PHP='/get([a-z|A-Z|0-9]+)Attribute/\1/' \
 # --regex-PHP='/scope([a-z|A-Z|0-9]+)/\1/'
+
 echo "ctags-execuberant generation done. [DONE]"
