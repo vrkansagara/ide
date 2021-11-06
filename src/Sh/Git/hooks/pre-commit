@@ -1,0 +1,33 @@
+#!/bin/bash
+
+git config user.name "Vallabh Kansagara"
+git config user.email "vrkansagara@gmail.com"
+
+RESTORE='\033[0m'
+RED='\033[00;31m'
+YELLOW='\033[00;33m'
+BLUE='\033[00;34m'
+
+FORBIDDEN=( '<<<<<<< HEAD' '>>>>>>> origin/' '>>>>>>> upstream/' '=======' )
+FOUND=''
+
+for j in "${FORBIDDEN[@]}"
+do
+  for i in `git diff --cached --name-only`
+  do
+    if echo `git show :$i` | grep -q "$j"; then
+	FOUND+="${BLUE}$i ${RED}contains ${RESTORE}\"$j\"${RESTORE}\n"
+    fi
+  done
+done
+
+# if FOUND is not empty, REJECT the COMMIT
+# PRINT the results (colorful-like)
+
+if [[ ! -z $FOUND ]]; then
+  printf "${YELLOW}COMMIT REJECTED\n"
+  printf "$FOUND"
+  exit 1
+fi
+echo 'Git pre-commit process is clear.'
+exit 0
