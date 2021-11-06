@@ -76,9 +76,9 @@ git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gi
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
-echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
-git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
-git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
+# echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
+# git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
+# git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible

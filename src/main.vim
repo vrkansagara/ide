@@ -16,6 +16,24 @@ endw
 set timeout ttimeoutlen=10
 set ttimeoutlen=10
 
+" https://github.com/vim/vim/issues/993#issuecomment-255651605
+" set Vim-specific sequences for RGB colors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" setting term to xterm ( let's use the termianal basic information)
+" No need to set basic information as I am using `st` terminal
+" set term=xterm
+" set t_Co=256
+if &term =~ '^st' || &term =~ '^screen'
+	" https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux/402084#402084
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 " The escape key is a long ways away. This maps it to the sequence 'kj'
 map! kj <Esc>
 inoremap kj <Esc>
