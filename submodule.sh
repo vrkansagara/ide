@@ -76,9 +76,9 @@ git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gi
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
 
-# echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
-# git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
-# git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
+echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
+git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
+git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
@@ -129,15 +129,18 @@ git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer2 self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
-bin/composer2 update -vv
-${SUDO} rm -rf ~/.config/coc/extensions
+bin/composer2 update
 
+# ${SUDO} rm -rf ~/.config/coc/extensions
 cd vendor/coc.nvim
-
 ${SUDO} npm install -g npm@latest
 ${SUDO} npm i intelephense -g
 npm i
 npm run build
+
+# update coc-nvim plugines
+echo "Wait for 2 minutes, coc-nvim plugines is started updating"
+vim -c 'CocUpdateSync|q'
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 
