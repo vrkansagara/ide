@@ -252,3 +252,8 @@ which_term(){
     ## package version
     [ $found -eq 0 ] && echo "$term " $(dpkg -l $term | awk '/^ii/{print $3}')
 }
+
+
+# VIM plugines debug
+export NVIM_COC_LOG_LEVEL=debug
+export NVIM_COC_LOG_FILE=/tmp/coc-nvim.log
