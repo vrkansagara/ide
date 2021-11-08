@@ -52,6 +52,9 @@ function! RefreshF5php()
     " reindent whole file without losing current " position
     exe "normal gg=G``"
 
+    " Clear messages for better visibility (for vim)
+    exec "messages clear"
+
 	" Call intelephense to refresh php (Manyally) not needed if it auto
 	exe "CocCommand intelephense.index.workspace"
 
