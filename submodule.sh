@@ -131,16 +131,18 @@ bin/composer2 self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer2 update
 
-# ${SUDO} rm -rf ~/.config/coc/extensions
+${SUDO} rm -rf ~/.config/coc
 cd vendor/coc.nvim
-${SUDO} npm install -g npm@latest
-${SUDO} npm i intelephense -g
+${SUDO} npm i -g npm@latest
+${SUDO} npm i -g intelephense@latest
 npm i
 npm run build
 
 # update coc-nvim plugines
-echo "Wait for 2 minutes, coc-nvim plugines is started updating"
-vim -c 'CocUpdateSync|q'
+# echo "Wait for 2 minutes, coc-nvim plugines is started updating"
+# vim -c 'CocUpdateSync|q'
+# npm install -g yarn
+# yarn set version latest
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 
