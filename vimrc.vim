@@ -1,4 +1,5 @@
-
+set term=xterm
+set t_Co=256
 set runtimepath+=$HOME/.vim/src
 
 function! VimErrorCaught()

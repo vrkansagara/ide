@@ -1,4 +1,5 @@
 {
+	"intelephense.licenceKey": "00G0LOCUFLZL55P",
     "phpls.enable": true,
     "phpls.trace.server": "/tmp/phpls.log",
     "psalm.enable": true,
@@ -7,7 +8,7 @@
         "psalm.xml",
         "psalm.xml.dist"
     ],
-    "psalm.psalmScriptPath": ~/.vim/vendor/bin/psalm-language-server,
+    "psalm.psalmScriptPath": "~/.vim/vendor/bin/psalm-language-server",
     "coc.preferences.jumpCommand": "tabe",
     "sh.enable":true,
     "snippets.snipmate.enable": true,
