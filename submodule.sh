@@ -68,7 +68,7 @@ echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
 git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
 
 echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-git submodule add -f https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+git submodule add -f -b release https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
 
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
 git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
