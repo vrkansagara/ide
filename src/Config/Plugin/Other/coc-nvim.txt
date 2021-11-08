@@ -178,16 +178,33 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " \'coc-vetur',
 " \'coc-xml',
 " \'coc-markdownlint',
+" \'coc-snippets',
+" \'coc-clangd',
+" \'coc-sh',
+" \'coc-html',
+" \'coc-css',
+" \'coc-json',
+" \'coc-yaml',
+" \'coc-sh',
+" \'coc-spell-checker',
+" \'coc-psalm',
+" \'coc-clangd',
+" \'coc-sh',
+" \'coc-html',
+" \'coc-css',
+" \'coc-json',
+" \'coc-yaml',
+" \'coc-sh',
+" \'coc-spell-checker',
+" \'coc-psalm',
+" \'@yaegassy/coc-intelephense']
 let g:coc_global_extensions = [
-            \'coc-clangd',
-            \'coc-sh',
-            \'coc-html',
-            \'coc-css',
-            \'coc-json',
-            \'coc-yaml',
-            \'coc-sh',
-            \'coc-snippets',
-            \'coc-spell-checker',
-            \'coc-phpls',
-            \'coc-psalm',
-            \'@yaegassy/coc-intelephense']
+            \'coc-phpls']
+
+" let g:node_client_debug = 1
+" let $NODE_CLIENT_LOG_FILE = '/tmp/coc-nvim.log'
+let g:coc_node_args = ['--nolazy', '--inspect=6045']
+" use command `yarn global dir` in your terminal to checkout yarn global directory.
+let g:coc_node_args = ['-r', expand('~/.config/yarn/global/node_modules/source-map-support/register')]
+
+
