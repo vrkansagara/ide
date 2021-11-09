@@ -17,18 +17,14 @@ fi
 #  Note		  :- Set up script fot the ide project
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-echo " "
-echo "Sub-module installation started at $CURRENT_DATE"
-
-cd ~/.vim
-
-read -r -p 'Do you want to remove git modules[Y/n]?' input
+function remove_submodule(){
+	read -r -p 'Do you want to remove git modules[Y/n]?' input
 case $input in [yY][eE][sS]|[yY])
 	echo "Install desktop manager"
 	${SUDO} chown $USER -Rf .
-	rm -rf .gitmodules
-	touch .gitmodules
-	rm -rf ./.git/modules/*
+	rm -rf .git --depth=1 modules
+	touch .git --depth=1 modules
+	rm -rf ./.git --depth=1 /modules/*
 	;;
 [nN][oO]|[nN])
 	echo "Skipping...Removal of git sub module"
@@ -38,92 +34,100 @@ case $input in [yY][eE][sS]|[yY])
 	exit 1
 	;;
 esac
+}
 
-${SUDO} rm -rf bundle/*
+echo " "
+echo "Sub-module installation started at $CURRENT_DATE"
+CLONE_DIRECTORY="$HOME/.vim/pack/vendor/start/"
+
 ${SUDO} rm -rf vendor/*
+${SUDO} rm -rf ${CLONE_DIRECTORY}/*
+cd ${CLONE_DIRECTORY}
 
 echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
-git submodule add -f https://github.com/tpope/vim-pathogen.git vendor/vim-pathogen
+git clone https://github.com/tpope/vim-pathogen.git --depth=1 
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
-git submodule add -f  https://github.com/tpope/vim-commentary.git vendor/vim-commentry
+git clone https://github.com/tpope/vim-commentary.git --depth=1 
 
 echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
-git submodule add -f https://github.com/tpope/vim-surround.git vendor/vim-surround
+git clone https://github.com/tpope/vim-surround.git --depth=1 
 
 echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
-git submodule add -f https://github.com/tpope/vim-fugitive.git vendor/fugitive
+git clone https://github.com/tpope/vim-fugitive.git --depth=1 
 
 echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
-git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git vendor/papercolor-theme
+git clone https://github.com/NLKNguyen/papercolor-theme.git --depth=1 
 
 echo "Installation of [ A tree explorer plugin for vim. ] ..."
-git submodule add -f https://github.com/preservim/nerdtree.git vendor/nerdtree
+git clone https://github.com/preservim/nerdtree.git --depth=1 
 
 # As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
-git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git vendor/ctrlp.vim
+git clone https://github.com/ctrlpvim/ctrlp.vim.git --depth=1  
 
 echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
-git submodule add -f https://github.com/mileszs/ack.vim.git vendor/ack.vim
+git clone https://github.com/mileszs/ack.vim.git --depth=1 
 
 echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-git submodule add -f -b release https://github.com/neoclide/coc.nvim.git vendor/coc.nvim
+git clone --branch release https://github.com/neoclide/coc.nvim.git --depth=1 
 
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
-git submodule add -f https://github.com/airblade/vim-gitgutter.git vendor/vim-gitgutter
+git clone https://github.com/airblade/vim-gitgutter.git --depth=1
 
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
-git submodule add -f https://github.com/mg979/vim-visual-multi.git vendor/vim-visual-multi
+git clone https://github.com/mg979/vim-visual-multi.git --depth=1
 
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
-git submodule add -f https://github.com/vim-airline/vim-airline.git vendor/vim-airline
-git submodule add -f https://github.com/vim-airline/vim-airline-themes.git vendor/vim-airline-theme
+git clone https://github.com/vim-airline/vim-airline.git --depth=1
+git clone https://github.com/vim-airline/vim-airline-themes.git --depth=1
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
-# git submodule add -f https://github.com/tpope/vim-sensible.git vendor/vim-sensible
+# git clone https://github.com/tpope/vim-sensible.git --depth=1  vendor/vim-sensible
 
 # echo "Installation of [ scriptease.vim: A Vim plugin for Vim plugins    ] ..."
-# git submodule add -f https://github.com/tpope/vim-scriptease.git vendor/vim-scriptease
+# git clone https://github.com/tpope/vim-scriptease.git --depth=1  vendor/vim-scriptease
 
 # echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!  ] ..."
-# git submodule add -f https://github.com/gabrielelana/vim-markdown.git vendor/vim-markdown
+# git clone https://github.com/gabrielelana/vim-markdown.git --depth=1  vendor/vim-markdown
 
 # echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
-# # git submodule add -f https://github.com/tomtom/tlib_vim.git vendor/tlib_vim
-# # git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git vendor/vim-addon-mw-utils
-# # git submodule add -f https://github.com/garbas/vim-snipmate.git vendor/vim-snipmate
-# # git submodule add -f https://github.com/honza/vim-snippets.git vendor/vim-snippets
+# # git clone https://github.com/tomtom/tlib_vim.git --depth=1  vendor/tlib_vim
+# # git clone https://github.com/MarcWeber/vim-addon-mw-utils.git --depth=1  vendor/vim-addon-mw-utils
+# # git clone https://github.com/garbas/vim-snipmate.git --depth=1  vendor/vim-snipmate
+# # git clone https://github.com/honza/vim-snippets.git --depth=1  vendor/vim-snippets
 
 # echo "ultisnips is based on python( I like minimal configuration ) "
-# git submodule add -f https://github.com/SirVer/ultisnips vendor/ultisnips
+# git clone https://github.com/SirVer/ultisnips vendor/ultisnips
 
 # echo "Installation of [ types "use" statements for you ] ..."
-# # git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git vendor/vim-php-namespace
+# # git clone https://github.com/arnaud-lb/vim-php-namespace.git --depth=1  vendor/vim-php-namespace
 
 # echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
-# # git submodule add -f https://github.com/sukima/xmledit vendor/xmledit
+# # git clone https://github.com/sukima/xmledit vendor/xmledit
 
 # Unwanted / Disabled modules
 # echo "Installation of [Automatically opens popup menu for completions ] ..."
-# # git submodule add -f https://github.com/vim-scripts/AutoComplPop vendor/AutoComplPop
+# # git clone https://github.com/vim-scripts/AutoComplPop vendor/AutoComplPop
 
 # echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
-# # git submodule add -f https://github.com/ervandew/supertab vendor/supertab
+# # git clone https://github.com/ervandew/supertab vendor/supertab
 
 # echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
-# # git submodule add -f https://github.com/mattn/emmet-vim.git vendor/emmet-vim
+# # git clone https://github.com/mattn/emmet-vim.git --depth=1  vendor/emmet-vim
 
 # echo "Installation of [ Go development plugin for Vim ] ..."
-# # git submodule add -f https://github.com/fatih/vim-go.git vendor/vim-go
+# # git clone https://github.com/fatih/vim-go.git --depth=1  vendor/vim-go
 
-# # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
-# # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
+# # #git clone https://github.com/junegunn/goyo.vim bundle/goyo.vim
+# # #git clone https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
 # echo "Installation of [ A command-line fuzzy finder   ] ..."
-# git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
+# git clone-f  https://github.com/junegunn/fzf vendor/fzf
 # echo "Installation of [ fzf heart vim  ] ..."
-# git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
+# git clone-f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
+
+cd "$HOME/.vim"
 
 git submodule update --init --recursive --jobs 4  --remote --merge
 
