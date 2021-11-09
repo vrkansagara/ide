@@ -1,6 +1,3 @@
-syntax on
-filetype plugin indent on
-
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -167,9 +164,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-
-
 let g:coc_global_extensions = [
+			\'@yaegassy/coc-intelephense',
 			\'coc-clangd',
 			\'coc-css',
 			\'coc-git',
@@ -178,6 +174,7 @@ let g:coc_global_extensions = [
 			\'coc-json',
 			\'coc-julia',
 			\'coc-markdownlint',
+			\'coc-phpls',
 			\'coc-psalm',
 			\'coc-pyright',
 			\'coc-python',
@@ -189,7 +186,4 @@ let g:coc_global_extensions = [
 			\'coc-vimlsp',
 			\'coc-xml',
 			\'coc-yaml',
-			\'@yaegassy/coc-intelephense'
 			\ ]
-
-
