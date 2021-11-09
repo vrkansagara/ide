@@ -56,7 +56,7 @@ function! RefreshF5php()
     exec "messages clear"
 
 	" Call intelephense to refresh php (Manyally) not needed if it auto
-	exe "CocCommand intelephense.index.workspace"
+	" exe "CocCommand intelephense.index.workspace"
 
     " PHP Performance (insted of " use ')
     " silent! %s/\"\([^"]*\)\"/'\1'/g
