@@ -1,5 +1,5 @@
 {
-	"intelephense.licenceKey": "00G0LOCUFLZL55P",
+	"intelephense.licenceKey": "--secret-key--",
     "phpls.enable": true,
     "phpls.trace.server": "/tmp/phpls.log",
     "psalm.enable": true,
