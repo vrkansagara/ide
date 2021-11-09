@@ -1,13 +1,15 @@
-" set term=xterm
-" set t_Co=256
+set term=xterm
+set t_Co=256
 set runtimepath+=$HOME/.vim/src
 
 function! VimErrorCaught()
+
 	if v:exception != ""
 		echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
 	else
 		echo 'Nothing caught\n'
 	endif
+
 endfunction
 
 try
@@ -15,9 +17,9 @@ try
 	"(Priority = 0) Initialization vim path loader ( VIM 8 default)
 	" silent !mkdir -p ~/.vim/pack/
 	" if empty(glob('~/.vim/autoload/plug.vim'))
-		" silent !mkdir -p ~/.vim/autoload
-		" silent !curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-		" silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	" silent !mkdir -p ~/.vim/autoload
+	" silent !curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	" silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	" endif
 
 	"(Priority = 1) Initialization of vim
@@ -25,6 +27,7 @@ try
 
 	"(Priority = 2) VIM distributed plugin configuration override(load into
 	"0-9,az,AZ order)
+
 	for f in split(glob('~/.vim/src/Config/Plugin/*.vim'), '\n')
 		if (filereadable(f))
 			exe 'source' f
