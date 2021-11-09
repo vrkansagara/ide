@@ -30,7 +30,8 @@ cd $SCRIPTDIR
 # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
 ${SUDO} sysctl vm.drop_caches=3
 
-#Clear Swap Space in Linux?
+# Clear Swap Space in Linux?
+# ${SUDO}  swapoff -a && ${SUDO} swapon -a
 ${SUDO}  swapoff -a && ${SUDO} swapon -a
 
 ${SUDO} rm -rfv ~/.cache/thumbnails
@@ -38,7 +39,7 @@ ${SUDO} rm -rfv ~/.mozilla
 ${SUDO} rm -rfv ~/.cache/mozilla
 # ${SUDO} rm -rfv ~/.config/google-chrome
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
-
+exit;
 # /etc/sysctl.conf
 
 # swappiness
@@ -53,8 +54,11 @@ ${SUDO} sysctl -w vm.swappiness=10
 # This percentage value controls the tendency of the kernel to reclaim
 # the memory which is used for caching of directory and inode objects (Default
 # =100)
+# vfs_cache_pressure – Controls the kernel’s tendency to reclaim the memory,
+# which is used for caching of directory and inode objects. (default = 100,
+# recommend value 50 to 200)
 sysctl -n vm.vfs_cache_pressure
-${SUDO} sysctl -w vm.vfs_cache_pressure=500
+${SUDO} sysctl -w vm.vfs_cache_pressure=200
 
 # Print default value
 # vm.dirty_background_ratio=10
