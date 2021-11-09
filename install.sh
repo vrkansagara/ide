@@ -35,11 +35,13 @@ if [ $(ls $HOME/.vim* | wc -l) != 0 ]; then
 fi
 
 # git pull --recurse-submodules
-git submodule update --init --recursive
+# git submodule update --init --recursive
 mv ${CLONE_DIRECTORY} $HOME/.vim
+mkdir -p "$HOME/.vim/pack/vendor/start/"
+sh -c "$HOME/.vim/submodule.sh"
 
-echo "Set up pathogen for vim run time path."
-mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# echo "Set up pathogen for vim run time path."
+# mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 echo "Adding symbolic link for better git tracking of project"
 ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
