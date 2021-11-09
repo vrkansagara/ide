@@ -7,10 +7,12 @@
 " Ref: - https://github.com/vim/vim/blob/master/runtime/filetype.vim
 " If vim not detect file type user can add it manually
 " Vim script
+" Listen very carefully, I will say this only once
 if exists("did_load_filetypes")
-    echoerr "did_load_filetype"
-    finish
+    " echoerr "Filetypes does not exists with this vim"
+"    finish
 endif
+" let did_load_filetypes = 1
 
 augroup filetypedetect
     au! BufRead,BufNewFile *.foo,*.bar,*.baz        setfiletype fooBarBaz
