@@ -25,7 +25,7 @@ if [ ! -d "$BACKUP_DIRECTORY" ]; then
 fi
 
 echo "Cloning the [vrkansagara/ide] vim configuration."
-git clone --recursive --branch master --depth 1 https://github.com/vrkansagara/ide.git ${CLONE_DIRECTORY}
+git clone --recursive --branch master --depth 1 git@github.com:vrkansagara/ide.git ${CLONE_DIRECTORY}
 cd ${CLONE_DIRECTORY}
 
 echo "Creating backup of ~/.vim* to ${BACKUP_DIRECTORY}"
@@ -44,9 +44,9 @@ sh -c "$HOME/.vim/submodule.sh"
 # mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 echo "Adding symbolic link for better git tracking of project"
+mv $HOME/.vim/coc-settings.dist.json $HOME/.vim/coc-settings.json
 ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
 ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
-mv $HOME/.vim/coc-settings.json.dist $HOME/.vim/coc-settings.json
 
 # Set sh and bin  directory executable
 chmod -R +x $HOME/.vim/src/Sh/* $HOME/.vim/bin
