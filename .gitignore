@@ -4,7 +4,6 @@
 *.log
 bundle/
 data/spell/*
-coc-settings.json
 tags
 .idea
 vendor/*
