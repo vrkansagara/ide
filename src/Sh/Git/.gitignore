@@ -3,6 +3,7 @@
 *.swp
 .netrwhist
 .NERDTreeBookmarks
+.vim/coc-settings.json
 
 
 #if any log(s)
