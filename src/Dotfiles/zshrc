@@ -1,3 +1,6 @@
+# VIM plugines debug
+export NVIM_COC_LOG_LEVEL=debug
+export NVIM_COC_LOG_FILE=/tmp/coc-nvim.log
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.vim/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -254,6 +257,3 @@ which_term(){
 }
 
 
-# VIM plugines debug
-export NVIM_COC_LOG_LEVEL=debug
-export NVIM_COC_LOG_FILE=/tmp/coc-nvim.log
