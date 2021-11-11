@@ -46,9 +46,8 @@ sh -c "$HOME/.vim/submodule.sh"
 echo "Adding symbolic link for better git tracking of project"
 mv $HOME/.vim/coc-settings.dist.json $HOME/.vim/coc-settings.json
 ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
-ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
-ln -s $HOME/.vim/src/Dotfiles/bash_aliases $HOME/.bash_aliases
 ln -s $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
+
 # Set sh and bin  directory executable
 chmod -R +x $HOME/.vim/src/Sh/* $HOME/.vim/bin
 
