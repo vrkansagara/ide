@@ -95,7 +95,7 @@ fi
 
 #### VRKANSAGARA @START
 source $HOME/.vim/src/Dotfiles/shell/bash_export
-source $HOME/.vim/src/Dotfiles/shell/bash_color
+source $HOME/.vim/src/Dotfiles/shell/bash_color.sh
 source $HOME/.vim/src/Dotfiles/shell/bash_aliases
 source $HOME/.vim/src/Dotfiles/shell/git_aliases
 source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
