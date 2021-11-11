@@ -1,6 +1,7 @@
 #vim specific swap
 *~
 *.swp
+*.swo
 *.log
 bundle/
 data/spell/*
