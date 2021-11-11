@@ -7,8 +7,7 @@
 " autocmd FileType php noremap <C-l> :w!<cr>:! echo -e "\033[0m" && /usr/bin/clear<CR>:!php -l %<CR>
 
 " run file with PHP CLI (CTRL-m) ( called as ENTER)
-autocmd FileType php noremap <C-m> :w!<CR>:! echo -e'\033[0m'<CR>:!php %<CR>
-
+autocmd FileType php noremap <C-m> :w!<CR>:! echo '\033[0m'<CR>:!php %<CR>
 autocmd FileType php  nnoremap <F8> :! echo -e'\033[0m' <CR>:call PhpCsCheck()<CR>
 autocmd FileType php  nnoremap <F9> :! echo -e'\033[0m' <CR>:call PhpCsFix()<CR>
 
