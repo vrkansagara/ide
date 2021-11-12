@@ -1,3 +1,9 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " :bd          - deletes the current buffer, error if there are unwritten
 " changes
 " :bd!         - deletes the current buffer, no error if unwritten changes
@@ -37,3 +43,6 @@
 
 " Warning: If you enter :qa!, Vim will discard all changes without asking "are
 " you sure?".
+
+" h special-buffers
+command! Scratch new | setlocal buftype=nofile bufhidden=hide noswapfile
