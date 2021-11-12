@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
@@ -46,23 +46,23 @@ cd ${CLONE_DIRECTORY}
 
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
-git clone https://github.com/tpope/vim-commentary.git --depth=1 
+git clone https://github.com/tpope/vim-commentary.git --depth=1
 
 echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
-git clone https://github.com/tpope/vim-surround.git --depth=1 
+git clone https://github.com/tpope/vim-surround.git --depth=1
 
 echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
-git clone https://github.com/tpope/vim-fugitive.git --depth=1 
+git clone https://github.com/tpope/vim-fugitive.git --depth=1
 
 # As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
-git clone https://github.com/ctrlpvim/ctrlp.vim.git --depth=1  
+git clone https://github.com/ctrlpvim/ctrlp.vim.git --depth=1
 
 echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
-git clone https://github.com/mileszs/ack.vim.git --depth=1 
+git clone https://github.com/mileszs/ack.vim.git --depth=1
 
 echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-git clone --branch release https://github.com/neoclide/coc.nvim.git --depth=1 
+git clone --branch release https://github.com/neoclide/coc.nvim.git --depth=1
 
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
 git clone https://github.com/airblade/vim-gitgutter.git --depth=1
@@ -75,11 +75,11 @@ git clone https://github.com/vim-airline/vim-airline.git --depth=1
 git clone https://github.com/vim-airline/vim-airline-themes.git --depth=1
 
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
-# git clone https://github.com/tpope/vim-pathogen.git --depth=1 
+# git clone https://github.com/tpope/vim-pathogen.git --depth=1
 # echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
-# git clone https://github.com/NLKNguyen/papercolor-theme.git --depth=1 
+# git clone https://github.com/NLKNguyen/papercolor-theme.git --depth=1
 # echo "Installation of [ A tree explorer plugin for vim. ] ..."
-# git clone https://github.com/preservim/nerdtree.git --depth=1 
+# git clone https://github.com/preservim/nerdtree.git --depth=1
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git clone https://github.com/tpope/vim-sensible.git --depth=1  vendor/vim-sensible
