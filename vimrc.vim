@@ -1,7 +1,7 @@
 set term=xterm
 set t_Co=256
 set runtimepath+=$HOME/.vim/src
-" set runtimepath=$HOME/.vim/src
+" set runtimepath=$HOME/.vim/src,usr/share/vim/
 
 function! VimErrorCaught()
 
