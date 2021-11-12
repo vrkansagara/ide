@@ -2,6 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
+echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
@@ -17,7 +18,7 @@ fi
 #  Note		  :- Set up script fot the ide project
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function remove_submodule(){
+remove_submodule(){
 	read -r -p 'Do you want to remove git modules[Y/n]?' input
 case $input in [yY][eE][sS]|[yY])
 	echo "Install desktop manager"
@@ -36,7 +37,6 @@ case $input in [yY][eE][sS]|[yY])
 esac
 }
 
-echo " "
 echo "Sub-module installation started at $CURRENT_DATE"
 CLONE_DIRECTORY="$HOME/.vim/pack/vendor/start/"
 
@@ -44,8 +44,6 @@ ${SUDO} rm -rf vendor/*
 ${SUDO} rm -rf ${CLONE_DIRECTORY}/*
 cd ${CLONE_DIRECTORY}
 
-echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
-git clone https://github.com/tpope/vim-pathogen.git --depth=1 
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git clone https://github.com/tpope/vim-commentary.git --depth=1 
@@ -55,12 +53,6 @@ git clone https://github.com/tpope/vim-surround.git --depth=1
 
 echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
 git clone https://github.com/tpope/vim-fugitive.git --depth=1 
-
-echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
-git clone https://github.com/NLKNguyen/papercolor-theme.git --depth=1 
-
-echo "Installation of [ A tree explorer plugin for vim. ] ..."
-git clone https://github.com/preservim/nerdtree.git --depth=1 
 
 # As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
@@ -81,6 +73,13 @@ git clone https://github.com/mg979/vim-visual-multi.git --depth=1
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
 git clone https://github.com/vim-airline/vim-airline.git --depth=1
 git clone https://github.com/vim-airline/vim-airline-themes.git --depth=1
+
+# echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
+# git clone https://github.com/tpope/vim-pathogen.git --depth=1 
+# echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
+# git clone https://github.com/NLKNguyen/papercolor-theme.git --depth=1 
+# echo "Installation of [ A tree explorer plugin for vim. ] ..."
+# git clone https://github.com/preservim/nerdtree.git --depth=1 
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git clone https://github.com/tpope/vim-sensible.git --depth=1  vendor/vim-sensible
@@ -136,7 +135,7 @@ bin/composer2 self-update
 bin/composer2 update
 
 ${SUDO} rm -rf ~/.config/coc
-cd vendor/coc.nvim
+cd $HOME/.vim/pack/vendor/start/coc.nvim
 ${SUDO} npm i -g npm@latest
 ${SUDO} npm i -g intelephense@latest
 npm i
