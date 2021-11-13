@@ -1,8 +1,8 @@
-set term=xterm
-set t_Co=256
 set runtimepath+=$HOME/.vim/src
-" set runtimepath=$HOME/.vim/src,usr/share/vim/
 
+" set runtimepath=$HOME/.vim/src,usr/share/vim/
+" set term=xterm
+" set t_Co=256
 " Clear screen set t_te="^[[H^[2J"
 " :default one  t_te=^[[?1049l^[[23;0;0t
 " set t_te="^[[?1049l^[[23;0;0t"
