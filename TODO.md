@@ -12,6 +12,7 @@
 - [ ] Issue fix :- [coc.nvim] build/index.js not found, please install dependencies and compile coc.nvim by: yarn install
 - [ ] while opening a large file and swtch between ctrl next/previous it take much time to load
 - [ ] How to revert single change/current file using ( vim-fugitive /vim-gitgutter )
+- [ ] Yank not working while switching between different terminal(, y works)
 
 resolved by using `<leader>p`
 - Add copy history plugin/mechanism
