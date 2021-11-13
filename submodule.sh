@@ -39,11 +39,10 @@ esac
 
 echo "Sub-module installation started at $CURRENT_DATE"
 CLONE_DIRECTORY="$HOME/.vim/pack/vendor/start/"
-
 ${SUDO} rm -rf vendor/*
 ${SUDO} rm -rf ${CLONE_DIRECTORY}/*
+mkdir -p ${CLONE_DIRECTORY}
 cd ${CLONE_DIRECTORY}
-
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git clone https://github.com/tpope/vim-commentary.git --depth=1
