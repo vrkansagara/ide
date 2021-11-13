@@ -16,8 +16,14 @@ let g:netrw_list_hide="^\.sw.*$,^\.*\.sw.*$,^\..*\.un[~]$"
 " open files in left window by default
 " let g:netrw_chgwin=1
 let g:netrw_browse_split = 3
-" Value in percentage
-let g:netrw_winsize = 55
+
+let g:netrw_fastbrowse    = 2
+let g:netrw_altv          = 1
+let g:netrw_keepdir       = 0
+let g:netrw_liststyle     = 2
+let g:netrw_retmap        = 1
+let g:netrw_silent        = 1
+let g:netrw_special_syntax= 1
 
 " remap shift-enter to fire up the sidebar
 "nnoremap <silent> <S-CR> :rightbelow 20vs<CR>:e .<CR>
@@ -33,6 +39,26 @@ let g:netrw_winsize = 55
 " Open file explorer at top side
 " :nnoremap <leader>nn :Hex! .<cr>
 
+" Define mappings.
+augroup NetrwOpenMultiTabGroup
+autocmd!
+autocmd Filetype netrw vnoremap <buffer> <silent> <expr> t ":call NetrwOpenMultiTab(" . line(".") . "," . "v:count)\<CR>"
+autocmd Filetype netrw vnoremap <buffer> <silent> <expr> T ":call NetrwOpenMultiTab(" . line(".") . "," . (( v:count == 0) ? '' : v:count) . ")\<CR>"
+augroup END
+
+let g:netrw_banner = 0
+let g:netrw_list_hide = '^\.\.\=/\=$,.DS_Store,.idea,.git,__pycache__,venv,node_modules,*\.o,*\.pyc,.*\.swp'
+let g:netrw_hide = 1
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 40
+let g:NetrwIsOpen=0
+
+" Per default, netrw leaves unmodified buffers open.  This autocommand
+" deletes netrw's buffer once it's hidden (using ':q;, for example)
+autocmd FileType netrw setl bufhidden=delete  " or use :qa!
+
+" Add your own mapping. For example:
+nnoremap <silent><leader><space> :call ToggleNetrw()<CR>
 " https://vi.stackexchange.com/a/13351/2917
 function! NetrwOpenMultiTab(current_line,...) range
 " Get the number of lines.
@@ -75,25 +101,6 @@ endif
 execute command
 endfunction
 
-" Define mappings.
-augroup NetrwOpenMultiTabGroup
-autocmd!
-autocmd Filetype netrw vnoremap <buffer> <silent> <expr> t ":call NetrwOpenMultiTab(" . line(".") . "," . "v:count)\<CR>"
-autocmd Filetype netrw vnoremap <buffer> <silent> <expr> T ":call NetrwOpenMultiTab(" . line(".") . "," . (( v:count == 0) ? '' : v:count) . ")\<CR>"
-augroup END
-
-let g:netrw_banner = 0
-let g:netrw_list_hide = '^\.\.\=/\=$,.DS_Store,.idea,.git,__pycache__,venv,node_modules,*\.o,*\.pyc,.*\.swp'
-let g:netrw_hide = 1
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_liststyle = 4
-let g:netrw_winsize = 40
-let g:NetrwIsOpen=0
-
-" Per default, netrw leaves unmodified buffers open.  This autocommand
-" deletes netrw's buffer once it's hidden (using ':q;, for example)
-autocmd FileType netrw setl bufhidden=delete  " or use :qa!
 
 function! ToggleNetrw()
 	if g:NetrwIsOpen
@@ -111,5 +118,3 @@ while (i >= 1)
 	endif
 	endfunction
 
-	" Add your own mapping. For example:
-	nnoremap <silent><leader><space> :call ToggleNetrw()<CR>
