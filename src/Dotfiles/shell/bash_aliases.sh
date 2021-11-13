@@ -76,13 +76,6 @@ alias myPhpComposerRun='composer run-script serve --timeout 0'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# BEGIN SNIPPET: Magento Cloud CLI configuration
-HOME=${HOME:-'/home/vallabh'}
-export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
-if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi # END SNIPPET
-
-# alias code="/usr/bin/cpulimit -l 40 $HOME/Applications/code/code"
-# alias postman="/usr/bin/cpulimit -l 10 $HOME/Applications/Postman/Postman"
 
 ## Build related stuff"
 # Build file should not have any unwanted variables.

@@ -10,7 +10,7 @@
 " hide netrw top message
 let g:netrw_banner=1
 " tree listing by default
-let g:netrw_liststyle=3
+let g:netrw_liststyle=1
 " hide vim swap files
 let g:netrw_list_hide="^\.sw.*$,^\.*\.sw.*$,^\..*\.un[~]$"
 " open files in left window by default
@@ -20,7 +20,6 @@ let g:netrw_browse_split = 3
 let g:netrw_fastbrowse    = 2
 let g:netrw_altv          = 1
 let g:netrw_keepdir       = 0
-let g:netrw_liststyle     = 2
 let g:netrw_retmap        = 1
 let g:netrw_silent        = 1
 let g:netrw_special_syntax= 1
