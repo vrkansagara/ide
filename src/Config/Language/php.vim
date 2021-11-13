@@ -49,7 +49,8 @@ function! RefreshF5php()
     exe "normal \<F2>"
 
     " reindent whole file without losing current " position
-    exe "normal gg=G``"
+    " exe "normal gg=G``"
+	execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
     exec "messages clear"

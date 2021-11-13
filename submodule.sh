@@ -39,8 +39,24 @@ esac
 
 echo "Sub-module installation started at $CURRENT_DATE"
 CLONE_DIRECTORY="$HOME/.vim/pack/vendor/start/"
+remove_vim_vendor_module(){
+	read -r -p 'Do you want to remove VIM vendor,php copmoser, coc vendor [Y/n]?' input
+case $input in [yY][eE][sS]|[yY])
+${SUDO} rm -rf ~/.config/coc
 ${SUDO} rm -rf vendor/*
 ${SUDO} rm -rf ${CLONE_DIRECTORY}/*
+	;;
+[nN][oO]|[nN])
+	echo "Skipping...Removal of git sub module"
+	;;
+*)
+	echo "Invalid input..."
+	exit 1
+	;;
+esac
+}
+
+remove_vim_vendor_module
 mkdir -p ${CLONE_DIRECTORY}
 cd ${CLONE_DIRECTORY}
 
@@ -72,6 +88,12 @@ git clone https://github.com/mg979/vim-visual-multi.git --depth=1
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
 git clone https://github.com/vim-airline/vim-airline.git --depth=1
 git clone https://github.com/vim-airline/vim-airline-themes.git --depth=1
+
+echo "Installation of [ A Vim plugin for Prettier ] ..."
+git clone git@github.com:prettier/vim-prettier.git --depth=1
+cd ${CLONE_DIRECTORY}/vim-prettier
+yarn
+cd ${CLONE_DIRECTORY}
 
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
 # git clone https://github.com/tpope/vim-pathogen.git --depth=1
@@ -133,7 +155,6 @@ bin/composer2 self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer2 update
 
-${SUDO} rm -rf ~/.config/coc
 cd $HOME/.vim/pack/vendor/start/coc.nvim
 ${SUDO} npm i -g npm@latest
 ${SUDO} npm i -g intelephense@latest
