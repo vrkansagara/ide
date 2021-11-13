@@ -1,4 +1,3 @@
-#
 # Aliases
 # (sorted alphabetically)
 #
