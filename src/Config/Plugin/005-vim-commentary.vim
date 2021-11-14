@@ -34,4 +34,4 @@ autocmd FileType zsh setlocal commentstring=#\ %s
 autocmd FileType dockerfile setlocal commentstring=#\ %s
 autocmd FileType gitconfig setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
-
+autocmd FileType conf setlocal commentstring=#\ %s
