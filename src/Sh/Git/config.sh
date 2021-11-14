@@ -36,9 +36,11 @@ git config --global credential.helper store
 git config --global diff.tool vimdiff
 git config --global gpg.program gpg
 git config --global help.autocorrect 0
+git config --global init.defaultBranch master
 git config --global merge.conflictstyle diff3
 git config --global merge.tool vimdiff
 git config --global mergetool.prompt false
+git config --global pull.rebase false
 git config --global user.name "Vallabh Kansagara"
 git config --global user.signingkey 8BA6E7ABD8112B3E
 
