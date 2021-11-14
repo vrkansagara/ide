@@ -7,7 +7,7 @@
 " autocmd FileType php noremap <C-l> :w!<cr>:! echo -e "\033[0m" && /usr/bin/clear<CR>:!php -l %<CR>
 
 " run file with PHP CLI (CTRL-m) ( called as ENTER)
-autocmd FileType php noremap <C-m> :w!<CR>:! echo '\033[0m'<CR>:!php %<CR>
+" autocmd FileType php noremap <C-m> :w!<CR>:! echo '\033[0m'<CR>:!php %<CR>
 autocmd FileType php  nnoremap <F8> :! echo -e'\033[0m' <CR>:call PhpCsCheck()<CR>
 autocmd FileType php  nnoremap <F9> :! echo -e'\033[0m' <CR>:call PhpCsFix()<CR>
 
@@ -49,7 +49,8 @@ function! RefreshF5php()
     exe "normal \<F2>"
 
     " reindent whole file without losing current " position
-    exe "normal gg=G``"
+    " exe "normal gg=G``"
+	execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
     exec "messages clear"
@@ -59,4 +60,10 @@ function! RefreshF5php()
 
     " PHP Performance (insted of " use ')
     " silent! %s/\"\([^"]*\)\"/'\1'/g
+endfunction
+
+" This function is dynamically called by hiting enter for filetype
+function! Runphp()
+    let file_name = expand('%p')
+	exe "!php " . file_name
 endfunction
