@@ -16,10 +16,10 @@ nnoremap <leader>t :tabnew<cr>
 " :imap <C-t> <ESC>:tabnew<CR>
 " :nmap <C-w> :tabclose<CR>
 " :imap <C-w> <ESC>:tabclose<CR>
-nnoremap <C-Left> :tabp<CR>
-inoremap <C-Left> <ESC>:tabp<CR>
-nnoremap <C-Right> :tabn<CR>
-inoremap <C-Right> <ESC>:tabn<CR>
+nnoremap <C-Left> :tabp<CR>:call OnTabSwitch()<cr>
+inoremap <C-Left> <ESC>:tabp<CR>:call OnTabSwitch()<cr>
+nnoremap <C-Right> :tabn<CR>:call OnTabSwitch()<cr>
+inoremap <C-Right> <ESC>:tabn<CR>:call OnTabSwitch()<cr>
 
 " Conflicts with multi cursor
 " nnoremap <C-Up> :tabfirst<CR>
@@ -28,14 +28,14 @@ inoremap <C-Right> <ESC>:tabn<CR>
 " inoremap <C-Down> <ESC>:tablast<CR>
 
 " In tty right and left key will not work
-nnoremap <leader>tp :tabp<CR>:cd %:p:h<cr>:pwd<cr>
-inoremap <leader>tp <ESC>:tabp<CR>:cd %:p:h<cr>:pwd<cr>
-nnoremap <leader>tn :tabn<CR>:cd %:p:h<cr>:pwd<cr>
-inoremap <leader>tn <ESC>:tabn<CR>:cd %:p:h<cr>:pwd<cr>
-nnoremap <leader>tf :tabfirst<CR>:cd %:p:h<cr>:pwd<cr>
-inoremap <leader>tf <ESC>:tabfirst<CR>:cd %:p:h<cr>:pwd<cr>
-nnoremap <leader>tl :tablast<CR>:cd %:p:h<cr>:pwd<cr>
-inoremap <leader>tl <ESC>:tablast<CR>:cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>tp :tabp<CR>:call OnTabSwitch()<cr> 
+inoremap <leader>tp <ESC>:tabp<CR>:call OnTabSwitch()<cr> 
+nnoremap <leader>tn :tabn<CR>:call OnTabSwitch()<cr> 
+inoremap <leader>tn <ESC>:tabn<CR>:call OnTabSwitch()<cr> 
+nnoremap <leader>tf :tabfirst<CR>:call OnTabSwitch()<cr> 
+inoremap <leader>tf <ESC>:tabfirst<CR>:call OnTabSwitch()<cr> 
+nnoremap <leader>tl :tablast<CR>:call OnTabSwitch()<cr> 
+inoremap <leader>tl <ESC>:tablast<CR>:call OnTabSwitch()<cr> 
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -77,3 +77,10 @@ nnoremap <leader>T :call LastWindow()<cr>
 " inoremap <S-Tab> <C-D>
 " vnoremap <Tab> >gv
 " vnoremap <S-Tab> <gv
+
+function! OnTabSwitch()
+	"Fold all except current cursor and keep cursor position
+	exe "normal mazMzv`a"
+	"Switch to the current file directory, easy on netrw and NERDTree if any.
+	exe "normal !cd pwd"
+endfunction
