@@ -22,7 +22,7 @@ function Terminal()
 	let opts = {'hidden': 1, 'term_rows':h, 'term_cols':w}
 	let opts.term_kill = 'term'
 	let opts.norestore = 1
-	let bid = term_start(['zsh'], opts)
+	let bid = term_start(['bash'], opts)
 	let opts.exit_cb = 'OnTermExit'
 
 
@@ -38,7 +38,7 @@ function Terminal()
 endfunction
 
 " function! ToggleProjectVK()
-" 	call ToggleTerm('zsh')
+" 	call ToggleTerm('bash')
 " endfunction
 
 " function! ToggleTerm(cmd)
