@@ -1,4 +1,3 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :-
@@ -6,9 +5,9 @@
 
 set foldmethod=indent
 set foldnestmax=10
-set nofoldenable " All folds are open
-" set foldenable   " All folds are closed as per foldlevel
-set foldlevel=1
+" set nofoldenable " All folds are open
+set foldenable   " All folds are closed as per foldlevel
+set foldlevel=2
 
 " Folding
 " Toggle folding with spacebar instead of za
@@ -30,21 +29,20 @@ autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
 " set foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*'.&commentstring[0]
 autocmd FileType c      setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
 autocmd FileType python setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
-
 autocmd FileType php    setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
 autocmd FileType php    setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
-
 autocmd FileType conf   setlocal nofoldenable
+autocmd FileType json	setlocal foldmethod=syntax
 
 " Toggle method used for folding
 nnoremap mm :call ToggleFoldMethod()<CR>
 
 function! ToggleFoldMethod()
-    if &foldmethod == 'indent'
-        set foldmethod=marker
-        echo "foldmethod=marker"
-    else
-        set foldmethod=indent
-        echo "foldmethod=indent"
-    endif
-endfunction
+	if &foldmethod == 'indent'
+	set foldmethod=marker
+	echo "foldmethod=marker"
+	else
+	set foldmethod=indent
+	echo "foldmethod=indent"
+	endif
+	endfunction
