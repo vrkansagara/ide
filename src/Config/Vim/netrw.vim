@@ -117,3 +117,10 @@ while (i >= 1)
 	endif
 	endfunction
 
+" This function is dynamically called by Pressing F5 by (filetype.vim)
+function! RefreshF5netrw()
+	exe "normal \<c-l>"
+	" if &ft ==# "netrw"
+	" your code here
+	" endif
+	endfunction
