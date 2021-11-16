@@ -41,3 +41,10 @@ docker-compose.override.yml
 
 #vs code ignore
 .vscode
+
+#WordPress Specific
+wp-config.php
+
+#Laravel Specific
+.env
+
