@@ -26,6 +26,7 @@ endif
 if exists("g:syntax_on")
 	syntax off
 endif
+set t_Co=256
 set bg=dark
 set background=dark
 colorscheme atom-dark-256
@@ -33,6 +34,11 @@ let g:airline_theme='base16_google'
 " Let syntax enable after colour scheme apply for better highlight
 syntax on
 
+" set runtimepath=$HOME/.vim/src,usr/share/vim/
+" set term=xterm
+" Clear screen set t_te="^[[H^[2J"
+" :default one  t_te=^[[?1049l^[[23;0;0t
+" set t_te="^[[?1049l^[[23;0;0t"
 " I wanted to use F5 key for filetype so comment it
 " map <F5> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
