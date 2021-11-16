@@ -1,14 +1,22 @@
+// """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+//  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+//  License    :- See LICENSE file for copyright and license details.
+//  Note	   :-
+// """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 #include <stdio.h>
 
-int main(){
-    int i;
-    printf("hello world !");
+int main(void){
+	int i;
 
-    for (i= 0; i < 10;++i ) {
-        printf("\n I am number  [%d]",i);
-    }
+	printf("Hello, world !!");
 
-    return 0;
+	for (i= 0; i < 15;++i ) {
+		printf("\n I am number  [%d]",i);
+	}
+
+	return 0;
+
 }
 
 
