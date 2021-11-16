@@ -92,6 +92,19 @@ debian_chroot=$(cat /etc/debian_chroot)
 	if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 	. /etc/bash_completion
 	fi
+# https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
+ssh-add -l &>/dev/null
+if [ "$?" == 2 ]; then
+  test -r ~/.ssh-agent && \
+    eval "$(<~/.ssh-agent)" >/dev/null
+
+  ssh-add -l &>/dev/null
+  if [ "$?" == 2 ]; then
+    (umask 066; ssh-agent > ~/.ssh-agent)
+    eval "$(<~/.ssh-agent)" >/dev/null
+    ssh-add
+  fi
+fi
 
 #### VRKANSAGARA @START
 	source $HOME/.vim/src/Dotfiles/shell/bash_aliases.sh
