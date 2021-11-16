@@ -100,3 +100,5 @@ debian_chroot=$(cat /etc/debian_chroot)
 	source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
 	# source $HOME/.vim/src/Dotfiles/shell/bash_improvement.sh
 	source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
