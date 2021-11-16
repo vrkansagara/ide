@@ -129,6 +129,8 @@ ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
 
 # Clean up dmesg
+# dmesg: read kernel buffer failed: Permission denied
+${SUDO} sysctl kernel.dmesg_restrict=0
 ${SUDO} dmesg -C
 
 if ! command -v earlyoom &> /dev/null
