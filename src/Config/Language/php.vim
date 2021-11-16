@@ -64,6 +64,6 @@ endfunction
 
 " This function is dynamically called by hiting enter for filetype
 function! Runphp()
-    let file_name = expand('%p')
+    let file_name = expand('%:p')
 	exe "!php " . file_name
 endfunction
