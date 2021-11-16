@@ -18,6 +18,7 @@ fi
 ${SUDO} apt-get install curl 
 # Using Linux
 curl -sL install-node.now.sh/lts | ${SUDO} bash -
+curl --compressed -o- -L https://yarnpkg.com/install.sh | ${SUDO} bash
 
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} bash -
