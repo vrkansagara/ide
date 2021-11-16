@@ -9,7 +9,7 @@ SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -19,5 +19,4 @@ fi
 
 bold=$(tput bold)
 normal=$(tput sgr0)
-
 echo "this is ${bold}bold${normal} but this isn't"
