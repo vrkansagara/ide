@@ -34,6 +34,8 @@ try
 		endif
 	endfor
 
+	execute "packloadall"
+
 	"(Priority = 3) Override VIM built in functionality(load into 0-9,az,AZ
 	"order)
 	for f in split(glob('~/.vim/src/Config/Vim/*.vim'), '\n')
