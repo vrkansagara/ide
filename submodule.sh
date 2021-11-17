@@ -156,10 +156,9 @@ bin/composer2 self-update
 bin/composer2 update
 
 cd $HOME/.vim/pack/vendor/start/coc.nvim
-${SUDO} npm i -g npm@latest
-${SUDO} npm i -g intelephense@latest
+${SUDO} npm i -g npm@latest intelephense@latest livereloadx
 npm i
-npm run build
+# npm run build
 
 # update coc-nvim plugines
 # echo "Wait for 2 minutes, coc-nvim plugines is started updating"
