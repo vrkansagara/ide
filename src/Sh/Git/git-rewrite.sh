@@ -26,10 +26,33 @@ fi
 #    [--original <namespace>] [-d <directory>] [-f | --force]
 #    [--] [<rev-list options>…]
 
-
+# cd ~/.vim/
+# cd ~/git/vrkansagara/dwm
+cd ~/git/vrkansagara/LaraOutPress
 export FILTER_BRANCH_SQUELCH_WARNING=1
 
-git filter-branch --env-filter '
+update_signature(){
+# vrkansagara gpg signature
+# curl -sL https://gist.githubusercontent.com/vrkansagara/862e1ea96091ddf01d8e3f0786eefae8/raw/bcc458eb4b2c0eb441aaf7a56f385bc6cd4cb25a/vrkansagara.gpg | gpg --import
+# 
+# export GPGKEY=8BA6E7ABD8112B3E
+
+git filter-branch --force --commit-filter '
+if [ "$GIT_COMMITTER_EMAIL" = "vrkansagara@gmail.com" ];
+then git commit-tree -S "$@";
+else git commit-tree "$@";
+fi
+
+if [ "$GIT_AUTHOR_EMAIL" = "vrkansagara@gmail.com" ];
+then git commit-tree -S "$@";
+else git commit-tree "$@";
+fi
+' --tag-name-filter cat -- --branches --tags
+# ' HEAD
+}
+
+update_email(){
+	git filter-branch --env-filter '
 OLD_EMAIL="vallabh@vrkansagara.local"
 CORRECT_EMAIL="vrkansagara@gmail.com"
 CORRECT_NAME="Vallabh Kansagara"
@@ -38,15 +61,11 @@ if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
 then
 export GIT_COMMITTER_NAME="$CORRECT_NAME"
 export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-# git commit-tree -S "$@";
 fi
 
 if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
 then
 export GIT_AUTHOR_NAME="$CORRECT_NAME"
 export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-# git commit-tree -S "$@";
 fi
-
 ' --tag-name-filter cat -- --branches --tags
-# ' -- --all
