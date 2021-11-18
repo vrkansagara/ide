@@ -63,9 +63,20 @@ function! RefreshF5php()
     " silent! %s/\"\([^"]*\)\"/'\1'/g
 endfunction
 
-" This function is dynamically called by hiting enter for filetype
+	" This function is dynamically called by hiting enter for filetype
 function! Runphp()
-    let file_name = expand('%:p')
-	exe "!php " . file_name
-endfunction
+	let fileName = expand('%:t') " file name only (with extention)
+	let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+	let filePath = expand('%:p') " Absolute to filepath
+	let directoryPath = expand('%:p:h') " Absolute to directory
 
+	" Write current file
+	execute "silent! w!"
+
+	" Clear terminal color, clean screen, run object
+	execute "silent! echo -e '\033[0m' && clear"
+
+	" run php file using unix less to pip the output
+	execute "!php " . filePath . " | less"
+
+	endfunction
