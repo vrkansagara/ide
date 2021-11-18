@@ -1,6 +1,7 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About:- window related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note		 :- window related configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitbelow
 set splitright
