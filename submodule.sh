@@ -95,6 +95,9 @@ cd ${CLONE_DIRECTORY}/vim-prettier
 yarn
 cd ${CLONE_DIRECTORY}
 
+echo "Installation of [ types "use" statements for you ] ..."
+git clone git@github.com:arnaud-lb/vim-php-namespace.git --depth=1
+
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
 # git clone https://github.com/tpope/vim-pathogen.git --depth=1
 # echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
@@ -120,8 +123,6 @@ cd ${CLONE_DIRECTORY}
 # echo "ultisnips is based on python( I like minimal configuration ) "
 # git clone https://github.com/SirVer/ultisnips vendor/ultisnips
 
-# echo "Installation of [ types "use" statements for you ] ..."
-# # git clone https://github.com/arnaud-lb/vim-php-namespace.git --depth=1  vendor/vim-php-namespace
 
 # echo "Installation of [A filetype plugin for VIM to help edit XML files ] ..."
 # # git clone https://github.com/sukima/xmledit vendor/xmledit
