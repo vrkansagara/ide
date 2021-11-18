@@ -6,39 +6,23 @@
 	"intelephense.diagnostics.enable": false,
 	"intelephense.completion.maxItems": 25,
 	"intelephense.completion.insertUseDeclaration": true,
-    "phpls.enable": true,
-    "phpls.trace.server": "/tmp/phpls.log",
-    "psalm.enable": true,
-    "psalm.configPaths": [
-        "~/.vim/psalm.xml",
-        "psalm.xml",
-        "psalm.xml.dist"
-    ],
-    "psalm.phpExecutablePath": "~/.vim/vendor/bin/psalm-language-server",
-    "coc.preferences.jumpCommand": "tabe",
-    "sh.enable":true,
-    "snippets.snipmate.enable": true,
-    "snippets.snipmate.author": "Vallabh Kansagara",
-    "snippets.ultisnips.directories": [
-        "~/.vim/src/UltiSnips"
-    ],
-    "snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
-    "snippets.extends": {
-        "php": [
-            "phtml",
-            "php"
-        ],
-        "cpp": [
-            "c",
-            "h"
-        ],
-        "javascriptreact": [
-            "javascript"
-        ],
-        "typescript": [
-            "javascript",
-            "js"
-        ]
-    },
-    "clangd.enabled":true
+	"phpls.enable": true,
+	"phpls.trace.server": "/tmp/phpls.log",
+	"psalm.enable": true,
+	"psalm.configPaths": ["~/.vim/psalm.xml", "psalm.xml", "psalm.xml.dist"],
+	"psalm.phpExecutablePath": "~/.vim/vendor/bin/psalm-language-server",
+	"coc.preferences.jumpCommand": "tabe",
+	"sh.enable": true,
+	"snippets.snipmate.enable": true,
+	"snippets.snipmate.author": "Vallabh Kansagara",
+	"snippets.ultisnips.directories": ["~/.vim/src/UltiSnips"],
+	"snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
+	"snippets.extends": {
+		"php": ["phtml", "php"],
+		"cpp": ["c", "h"],
+		"javascriptreact": ["javascript"],
+		"typescript": ["javascript", "js"]
+	},
+	"clangd.enabled": true,
+	"php.executablePath": "/usr/bin/php7.4"
 }
