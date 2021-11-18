@@ -50,6 +50,7 @@ function! RefreshF5php()
 
     " reindent whole file without losing current " position
     " exe "normal gg=G``"
+	execute "silent! call PhpSortUse()"
 	execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
@@ -67,3 +68,4 @@ function! Runphp()
     let file_name = expand('%:p')
 	exe "!php " . file_name
 endfunction
+

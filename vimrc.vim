@@ -34,6 +34,7 @@ try
 		endif
 	endfor
 
+	" necessary to load all package
 	execute "packloadall"
 
 	"(Priority = 3) Override VIM built in functionality(load into 0-9,az,AZ
