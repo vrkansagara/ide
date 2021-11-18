@@ -46,9 +46,10 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 " vimcasts #24
 " Auto-reload vimrc on save
 " hotreload not require, I will do on my own.
-if has("autocmd")
-	autocmd bufwritepost .vimrc source $MYVIMRC
-endif
+" I like manual refresh (NO AUTO)
+" if has("autocmd")
+	" autocmd bufwritepost .vimrc source $MYVIMRC
+" endif
 
 " Reload vimrc configuration file
 nnoremap <leader>r :source $MYVIMRC<CR>
