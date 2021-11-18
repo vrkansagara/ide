@@ -1,6 +1,6 @@
 set runtimepath+=$HOME/.vim/src
 
-function! VimErrorCaught()
+function! VimErrorCaught() abort
 
 	if v:exception != ""
 		echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
@@ -34,9 +34,6 @@ try
 		endif
 	endfor
 
-	" necessary to load all package
-	execute "packloadall"
-
 	"(Priority = 3) Override VIM built in functionality(load into 0-9,az,AZ
 	"order)
 	for f in split(glob('~/.vim/src/Config/Vim/*.vim'), '\n')
@@ -55,6 +52,11 @@ try
 		else
 			throw "File can not able to read " . f
 		endif
+	endfor
+
+	" Loading helptags FIX
+	for f in split(glob('~/.vim/pack/vendor/start/*/doc'), '\n')
+		exe "silent! helptags ". f
 	endfor
 
 	" Before passing access to user , it must be light background.

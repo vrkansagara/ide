@@ -61,3 +61,11 @@ let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(swap|so|log|tags)$',
             \ }
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
+
+" Use ag if available for quicker searches
+if executable('ag')
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+endif
