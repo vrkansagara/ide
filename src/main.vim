@@ -68,6 +68,30 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Press F2)
 nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>:echom "White space trimed"<CR>
 
+function! HighlightRepeats() range
+"Ref :-  https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor/28690847
+"Singler liner :--- :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+
+  echom "Dublicate lines are highlighted"
+endfunction
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+nnoremap <silent> <F1> :HighlightRepeats<cr>
+
 " " Toggle visually showing all white space characters.
 noremap <S-F2> :set list!<CR>
 inoremap <S-F2> <C-o>:set list!<CR>

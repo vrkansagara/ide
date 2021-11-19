@@ -48,9 +48,9 @@ function! RefreshF5php()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
 
-    " reindent whole file without losing current " position
-    " exe "normal gg=G``"
 	execute "silent! call PhpSortUse()"
+
+	"Re-index whole file	
 	execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
@@ -61,6 +61,11 @@ function! RefreshF5php()
 
     " PHP Performance (insted of " use ')
     " silent! %s/\"\([^"]*\)\"/'\1'/g
+
+    " reindent whole file without losing current " position
+    " execute "normal gg=G``"
+	" Do not loose the cursor possition
+    execute "normal ``"
 endfunction
 
 	" This function is dynamically called by hiting enter for filetype
@@ -77,6 +82,6 @@ function! Runphp()
 	execute "silent! echo -e '\033[0m' && clear"
 
 	" run php file using unix less to pip the output
-	execute "!php " . filePath . " | less"
+	execute "!php " . filePath
 
 	endfunction
