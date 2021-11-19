@@ -29,8 +29,6 @@ myNotifySend() {
 		sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "$@"
 }
 
-
-
 which_term(){
 	term=$(ps -p $(ps -p $$ -o ppid=) -o args=);
 	found=0;
