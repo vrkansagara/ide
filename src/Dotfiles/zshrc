@@ -1,5 +1,33 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export JAVA_AWT_WM_NONREPARENTING=1
+
+# BEGIN SNIPPET: Magento Cloud CLI configuration
+HOME=${HOME:-'/home/vallabh'}
+export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
+if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi
+# END SNIPPET
+
+# GPG Common problem solving
+export GPG_TTY=$(tty)
+
+# VIM plugines debug
+export NVIM_COC_LOG_LEVEL=debug
+export NVIM_COC_LOG_FILE=/tmp/coc-nvim.log
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+else
+   export EDITOR='vim'
+fi
+
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -80,17 +108,17 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -100,3 +128,111 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
+
+# ssh-add -l &>/dev/null
+# if [ "$?" == 2 ]; then
+#   test -r ~/.ssh-agent && \
+#     eval "$(<~/.ssh-agent)" >/dev/null
+
+#   ssh-add -l &>/dev/null
+#   if [ "$?" == 2 ]; then
+#     (umask 066; ssh-agent > ~/.ssh-agent)
+#     eval "$(<~/.ssh-agent)" >/dev/null
+#     ssh-add
+#   fi
+# fi
+
+#### VRKANSAGARA @START
+alias ss='source ~/.zshrc'
+alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
+alias ll='/bin/ls -lhtraF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Docker Related stuff #
+# sudo curl -L
+# "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname
+# -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
+# dc up -dV --build --remove-orphan --force-recreate
+alias dc='docker-compose '
+alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate '
+alias dcu='docker-compose up -dV --remove-orphan --force-recreate '
+alias dcd='docker-compose down '
+alias dcl='docker-compose logs --follow --timestamps --tail 50 '
+
+#File Manager related stuff #
+
+# Vim debug mode vim -u NONE --startuptime vim-NONE.log
+alias v='vim -u NONE -N -U NONE'
+alias vi='cd ~/.vim && vim'
+alias viml='vim --startuptime /tmp/vim-startup.log'
+alias vimDebug="vim --cmd 'profile start /tmp/vim-profiling.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
+
+alias www='cd ~/www'
+alias htdocs='cd ~/htdocs'
+alias gh='cd ~/git'
+
+alias du='/usr/bin/du -sh  '
+
+# Git alias
+alias gWork='git config --global user.email "vallabh.kansagara@commercepundit.com"'
+alias gwork='git config user.email "vallabh.kansagara@commercepundit.com"'
+alias gPersonal='git config --global user.email "vrkansagara@gmail.com"'
+alias gpersonal='git config user.email "vrkansagara@gmail.com"'
+
+## Linux Administator commands
+alias myDmesgWatch='watch "dmesg | tail -20"'
+alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
+alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
+alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
+alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
+alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
+alias myIp="echo $(hostname -I | awk '{print $1}')"
+alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
+# sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
+alias ownIt='sudo chown -Rf $USER:$USER '
+alias ownItWithPermission='sudo chmod 0744 -Rf'
+alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
+alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
+alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
+alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
+alias myLimit="/usr/bin/cpulimit -c 30  "
+alias myHtop="/usr/bin/htop -u $USER "
+alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
+
+# PHP Aliases
+alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
+alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
+
+# File finder
+alias myFindFile="sudo find / -type f  -name "
+alias myFindDirectory="find / -type d  -name "
+# -r = recursive -n= line numer -w match whole world -e=pattern used for search
+alias myFindTextIntoDirectory="grep -rnw -e "
+
+# AWS Aliases
+alias myaAsMyInfo='curl http://169.254.169.254/latest/meta-data/'
+
+# PHP Laminas server
+alias myPhpComposerRun='composer run-script serve --timeout 0'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+## Build related stuff"
+# Build file should not have any unwanted variables.
+alias makev="make --warn-undefined-variables "
+alias gcc="gcc -g "
+alias gdb="sudo gdb "
+
+alias lkmLog="sudo tail -f /var/log/syslog"
+alias lkmCrash="echo 'sudo /usr/bin/crash /var/crash/202110071450/dump.202110071450 /usr/lib/debug/boot/vmlinux-5.4.0-88-generic'"
+alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -eS ~/.zsh_history_bad > ~/.zsh_history && fc -R ~/.zsh_history"
+
+source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
+
