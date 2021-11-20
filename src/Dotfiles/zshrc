@@ -2,6 +2,9 @@
 export PATH="$HOME/bin:$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export JAVA_AWT_WM_NONREPARENTING=1
+# export TERM=xterm
+alias ssh='env TERM=xterm ssh'
+alias htop='env TERM=xterm htop -u $USER'
 
 # BEGIN SNIPPET: Magento Cloud CLI configuration
 HOME=${HOME:-'/home/vallabh'}
