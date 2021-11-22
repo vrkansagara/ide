@@ -1,10 +1,9 @@
-# If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export JAVA_AWT_WM_NONREPARENTING=1
-# export TERM=xterm
-alias ssh='env TERM=xterm ssh'
-alias htop='env TERM=xterm htop -u $USER'
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
+
+# export PATH=$(getconf PATH) # reset system default
+# export PATH="$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # BEGIN SNIPPET: Magento Cloud CLI configuration
 HOME=${HOME:-'/home/vallabh'}
@@ -12,35 +11,33 @@ export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi
 # END SNIPPET
 
-# GPG Common problem solving
-export GPG_TTY=$(tty)
-
-# VIM plugines debug
+## VIM plugines debug
 export NVIM_COC_LOG_LEVEL=debug
 export NVIM_COC_LOG_FILE=/tmp/coc-nvim.log
 
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# Used for the phpStorm program and java application to work with DWM
+export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
+export AWT_TOOLKIT=MToolkit
+wmname LG3D
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
-else
-   export EDITOR='vim'
-fi
-
+# export DISPLAY=:0
+# Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
+# export TERM=xterm
+# Remote sessin would be xterm base (Avoide st-256 issue at remote)
+alias ssh='env TERM=xterm ssh'
+export GPG_TTY=$(tty)
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/home/vallabh/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="agnoster"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -102,13 +99,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
+plugins=(git laravel)
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -117,7 +112,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='vim'
+  export EDITOR='mvim'
 fi
 
 # Compilation flags
@@ -132,8 +127,8 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
 
+# https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
 # ssh-add -l &>/dev/null
 # if [ "$?" == 2 ]; then
 #   test -r ~/.ssh-agent && \
@@ -237,5 +232,4 @@ alias lkmLog="sudo tail -f /var/log/syslog"
 alias lkmCrash="echo 'sudo /usr/bin/crash /var/crash/202110071450/dump.202110071450 /usr/lib/debug/boot/vmlinux-5.4.0-88-generic'"
 alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -eS ~/.zsh_history_bad > ~/.zsh_history && fc -R ~/.zsh_history"
 
-source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
-
+# source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
