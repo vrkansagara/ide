@@ -19,10 +19,9 @@
 	"snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
 	"snippets.extends": {
 		"php": ["phtml", "php"],
-		"cpp": ["c", "h"],
+		"cpp": ["c", "h","cpp"],
 		"javascriptreact": ["javascript"],
-		"typescript": ["javascript", "js"]
+		"typescript": ["javascript", "js","ts"]
 	},
-	"clangd.enabled": true,
-	"php.executablePath": "/usr/bin/php7.4"
+	"clangd.enabled": true
 }

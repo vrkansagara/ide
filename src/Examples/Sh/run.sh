@@ -14,7 +14,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- https://tldp.org/LDP/abs/html/io-redirection.html
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 bold=$(tput bold)
