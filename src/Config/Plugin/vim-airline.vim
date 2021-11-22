@@ -30,3 +30,5 @@ let g:airline_detect_spell=0
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+" Set theme
+let g:airline_theme='base16_google'
