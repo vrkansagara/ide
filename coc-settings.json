@@ -1,5 +1,5 @@
 {
-	"intelephense.environment.documentRoot": "./public/index.php",
+	"intelephense.environment.documentRoot": "index.php",
 	"intelephense.enable": true,
 	"intelephense.maxMemory": 512,
 	"intelephense.progress.enable": true,
