@@ -32,6 +32,11 @@ declare(strict_types=1);
 ${1}
 endsnippet
 
+snippet phpPerformance "PHP performance snippest"
+	define('PHP_START', microtime(true)); ${1}
+	echo sprintf( '[ %s ] take %2.5f milliseconds  to complete', $_SERVER['PHP_SELF'], microtime(true) - PHP_START) . PHP_EOL; ${2}
+endsnippet
+
 snippet dbge "Add error reporting"
 error_reporting(E_ALL); ini_set('display_errors', '1'); ini_set('display_startup_errors', '1'); ini_set('log_errors', '1');
 endsnippet
