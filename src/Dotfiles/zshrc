@@ -1,3 +1,20 @@
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
+## VIM plugines debug
+export NVIM_COC_LOG_LEVEL=debug
+export NVIM_COC_LOG_FILE="/tmp/coc-nvim.log"
+
+# Used for the phpStorm program and java application to work with DWM
+export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
+export AWT_TOOLKIT=MToolkit
+# wmname LG3D
+
+# export DISPLAY=:0
+# Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
+# export TERM=xterm
+# Remote sessin would be xterm base (Avoide st-256 issue at remote)
+alias ssh='env TERM=xterm ssh'
+export GPG_TTY=$(tty)
 # If you come from bash you might have to change your $PATH.
 export PATH="$(getconf PATH)" # reset system default
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
@@ -111,25 +128,6 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #### VRKANSAGARA @START
-# set -e # This setting is telling the script to exit on a command error.
-# set -x # You refer to a noisy script.(Used to debugging)
-
-
-## VIM plugines debug
-export NVIM_COC_LOG_LEVEL=debug
-export NVIM_COC_LOG_FILE="/tmp/coc-nvim.log"
-
-# Used for the phpStorm program and java application to work with DWM
-export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
-export AWT_TOOLKIT=MToolkit
-# wmname LG3D
-
-# export DISPLAY=:0
-# Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
-# export TERM=xterm
-# Remote sessin would be xterm base (Avoide st-256 issue at remote)
-alias ssh='env TERM=xterm ssh'
-export GPG_TTY=$(tty)
 # https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
 # ssh-add -l &>/dev/null
 # if [ "$?" == 2 ]; then
@@ -143,6 +141,7 @@ export GPG_TTY=$(tty)
 #     ssh-add
 #   fi
 # fi
+
 alias ss='source ~/.zshrc'
 alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
 alias ll='/bin/ls -lhtraF'
