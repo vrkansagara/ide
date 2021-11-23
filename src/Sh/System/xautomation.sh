@@ -27,4 +27,3 @@ while true; do
 	sleep 30
 	xte "mousermove 0 0" "keydown Alt_L" "key Tab" "keyup Alt_L" "mousermove 50 50"
 done
-

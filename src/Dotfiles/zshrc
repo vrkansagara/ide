@@ -1,33 +1,14 @@
-# set -e # This setting is telling the script to exit on a command error.
-# set -x # You refer to a noisy script.(Used to debugging)
-
-# export PATH=$(getconf PATH) # reset system default
-# export PATH="$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# If you come from bash you might have to change your $PATH.
+export PATH="$(getconf PATH)" # reset system default
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # BEGIN SNIPPET: Magento Cloud CLI configuration
 HOME=${HOME:-'/home/vallabh'}
 export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi
 # END SNIPPET
-
-## VIM plugines debug
-export NVIM_COC_LOG_LEVEL=debug
-export NVIM_COC_LOG_FILE=/tmp/coc-nvim.log
-
-# Used for the phpStorm program and java application to work with DWM
-export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
-export AWT_TOOLKIT=MToolkit
-wmname LG3D
-
-# export DISPLAY=:0
-# Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
-# export TERM=xterm
-# Remote sessin would be xterm base (Avoide st-256 issue at remote)
-alias ssh='env TERM=xterm ssh'
-export GPG_TTY=$(tty)
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/vallabh/.oh-my-zsh"
@@ -99,24 +80,26 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git laravel)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export MANPATH="/usr/local/man:$MANPATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -127,7 +110,26 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#### VRKANSAGARA @START
+# set -e # This setting is telling the script to exit on a command error.
+# set -x # You refer to a noisy script.(Used to debugging)
 
+
+## VIM plugines debug
+export NVIM_COC_LOG_LEVEL=debug
+export NVIM_COC_LOG_FILE="/tmp/coc-nvim.log"
+
+# Used for the phpStorm program and java application to work with DWM
+export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
+export AWT_TOOLKIT=MToolkit
+# wmname LG3D
+
+# export DISPLAY=:0
+# Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
+# export TERM=xterm
+# Remote sessin would be xterm base (Avoide st-256 issue at remote)
+alias ssh='env TERM=xterm ssh'
+export GPG_TTY=$(tty)
 # https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
 # ssh-add -l &>/dev/null
 # if [ "$?" == 2 ]; then
@@ -141,8 +143,6 @@ export ARCHFLAGS="-arch x86_64"
 #     ssh-add
 #   fi
 # fi
-
-#### VRKANSAGARA @START
 alias ss='source ~/.zshrc'
 alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
 alias ll='/bin/ls -lhtraF'
@@ -219,8 +219,7 @@ alias myPhpComposerRun='composer run-script serve --timeout 0'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 ## Build related stuff"
 # Build file should not have any unwanted variables.
