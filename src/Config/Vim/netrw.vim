@@ -1,31 +1,35 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
+" Note		 :- netrw-quickmap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Map ,n to open netrw in the current working directory
-" nnoremap <Leader>n :edit .<CR>
+nnoremap <Leader>n :edit .<CR>
 
 " hide netrw top message
 let g:netrw_banner=1
 " tree listing by default
-let g:netrw_liststyle=1
+let g:netrw_liststyle=3
 " hide vim swap files
 let g:netrw_list_hide="^\.sw.*$,^\.*\.sw.*$,^\..*\.un[~]$"
 " open files in left window by default
-" let g:netrw_chgwin=1
-let g:netrw_browse_split = 3
-
-let g:netrw_fastbrowse    = 2
 let g:netrw_altv          = 1
+let g:netrw_browse_split = 3
+let g:netrw_chgwin=1
+let g:netrw_fastbrowse    = 2
 let g:netrw_keepdir       = 0
 let g:netrw_retmap        = 1
 let g:netrw_silent        = 1
+let g:netrw_sort_by		  ="name"
+let g:netrw_sort_direction="normal"
+let g:netrw_sort_options = "i"
 let g:netrw_special_syntax= 1
+let g:netrw_localcopydircmd = 'cp -rv'
+hi! link netrwMarkFile Search
 
 " remap shift-enter to fire up the sidebar
-"nnoremap <silent> <S-CR> :rightbelow 20vs<CR>:e .<CR>
+" nnoremap <silent> <S-CR> :rightbelow 20vs<CR>:e .<CR>
 " the same remap as above - may be necessary in some distros
 "nnoremap <silent> <C-M> :rightbelow 20vs<CR>:e .<CR>
 " remap control-enter to open files in new tab
