@@ -199,6 +199,7 @@ alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0
 alias myLimit="/usr/bin/cpulimit -c 30  "
 alias myHtop="/usr/bin/htop -u $USER "
 alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
+alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
 
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
