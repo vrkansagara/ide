@@ -14,7 +14,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- x automatin of keyboard and mouse
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if ! command -v xte &> /dev/null
@@ -23,7 +23,7 @@ then
 fi
 
 while true; do
-	xte "mousermove 0 0" "keydown Alt_L" "key Tab" "keyup Alt_L" "mousermove 50 50"
-	sleep 30
-	xte "mousermove 0 0" "keydown Alt_L" "key Tab" "keyup Alt_L" "mousermove 50 50"
+	xte  "keydown Super_L" "key Tab" "key Tab" "keyup Super_L"
+	sleep 5
+	xte  "keydown Super_L" "key Tab" "keyup Super_L"
 done

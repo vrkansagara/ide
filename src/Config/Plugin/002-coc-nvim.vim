@@ -164,7 +164,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" \'coc-clangd',
 " \'coc-css',
 " \'coc-git',
 " \'coc-go',
@@ -172,16 +171,17 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " \'coc-julia',
 " \'coc-markdownlint',
 " \'coc-phpls',
-" \'coc-psalm',
 " \'coc-pyright',
 " \'coc-python',
-" \'coc-vimlsp',
 " \'coc-xml',
 " \'coc-yaml',
-let g:coc_global_extensions = [
-			\'@yaegassy/coc-intelephense',
-			\'coc-json',
-			\'coc-sh',
-			\'coc-snippets',
-			\'coc-tsserver',
-			\ ]
+	let g:coc_global_extensions = [
+		\'@yaegassy/coc-intelephense',
+		\'coc-json',
+		\'coc-sh',
+		\'coc-snippets',
+		\'coc-tsserver',
+		\'coc-clangd',
+		\'coc-psalm',
+		\'coc-vimlsp',
+		\ ]
