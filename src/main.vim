@@ -186,6 +186,7 @@ set nofixendofline
 " Switch CWD to the directory of the open buffer:
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 nnoremap <leader>tmp :cd /tmp<cr>:pwd<cr>
+nnoremap <leader>git :cd ~/git<cr>:pwd<cr>
 
 " Keybindings for movement in insert mode
 inoremap <leader>0 <Esc>I
