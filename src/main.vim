@@ -141,10 +141,7 @@ nnoremap <leader>Q :bufdo! bw<cr>
 " Use UTF-8 encoding
 set encoding=utf-8
 
-" Set text width to 80 character only., I am not using at this time.
-" set textwidth=80
-" set textwidth=0
-
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -218,6 +215,7 @@ set scrolloff=3
 
 " Set column size to 80 character (standard size)
 " " Make it obvious where 80 characters is ( Reformat it:gq)                   i
+" Set text width to 80 character only., I am not using at this time.
 set textwidth=80
 set colorcolumn=+1
 set wrapmargin=2

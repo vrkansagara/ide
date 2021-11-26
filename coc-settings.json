@@ -6,7 +6,6 @@
 	"intelephense.diagnostics.enable": false,
 	"intelephense.completion.maxItems": 25,
 	"intelephense.completion.insertUseDeclaration": true,
-	"intelephense.path": "$HOME/tmp",
 	"psalm.trace.server": "messages",
 	"psalm.enable": true,
 	"psalm.configPaths": ["~/.vim/psalm.xml", "psalm.xml", "psalm.xml.dist"],

@@ -57,7 +57,7 @@
             "@cs-check",
             "@test"
         ],
-        "cs-check": "./vendor/bin/phpcs",
+        "cs-check": "./vendor/bin/phpcs -s ",
         "cs-fix": "./vendor/bin/phpcbf --standard=./phpcs.xml",
         "test": [
             "./vendor/bin/phpunit --testdox --colors=always",
