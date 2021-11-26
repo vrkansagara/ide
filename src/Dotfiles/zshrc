@@ -22,13 +22,13 @@ export PATH="$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # BEGIN SNIPPET: Magento Cloud CLI configuration
-HOME=${HOME:-'/home/vallabh'}
+HOME=${HOME:-"/home/$USER"}
 export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi
 # END SNIPPET
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/vallabh/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
