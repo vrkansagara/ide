@@ -28,7 +28,7 @@ echo "Current directory is $(pwd)"
 echo "Git configuration started on ${CURRENT_DATE}"
 # Git config list
 
-git config --global commit.gpgsign false
+git config --global commit.gpgsign true
 git config --global core.editor vim
 git config --global core.excludesFile '~/.gitignore'
 git config --global core.fileMode false
