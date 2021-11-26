@@ -1,5 +1,4 @@
 #!/bin/bash
-
 git config user.name "Vallabh Kansagara"
 git config user.email "vrkansagara@gmail.com"
 
@@ -29,5 +28,11 @@ if [[ ! -z $FOUND ]]; then
   printf "$FOUND"
   exit 1
 fi
+composer validate --strict
+composer run cs-check
+composer run cs-fix
+composer update
+composer run test
+
 echo 'Git pre-commit process is clear.'
 exit 0

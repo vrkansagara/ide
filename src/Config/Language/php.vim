@@ -21,7 +21,7 @@ autocmd BufNewFile,BufRead *.blade.php set ft=php
 function! PhpCsCheck()
     try
         " exec "!./vendor/bin/phpcs ". expand('%:p')
-        exec "!~/.vim/vendor/bin/phpcs ". expand('%:p')
+        exec "!~/.vim/vendor/bin/phpcs -s ". expand('%:p')
     catch
         " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
         throw :exception
@@ -51,7 +51,7 @@ function! RefreshF5php()
 	execute "silent! call PhpSortUse()"
 
 	"Re-index whole file	
-	execute "PrettierAsync"
+	" execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
     exec "messages clear"
@@ -64,6 +64,9 @@ function! RefreshF5php()
 
     " reindent whole file without losing current " position
     " execute "normal gg=G``"
+
+execute "retab"
+
 	" Do not loose the cursor possition
     execute "normal ``"
 endfunction

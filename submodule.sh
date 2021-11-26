@@ -89,21 +89,22 @@ echo "Installation of [ lean & mean status/tabline for vim that's light as air  
 git clone https://github.com/vim-airline/vim-airline.git --depth=1
 git clone https://github.com/vim-airline/vim-airline-themes.git --depth=1
 
-echo "Installation of [ A Vim plugin for Prettier ] ..."
-git clone git@github.com:prettier/vim-prettier.git --depth=1
-cd ${CLONE_DIRECTORY}/vim-prettier
-yarn
-cd ${CLONE_DIRECTORY}
-
 echo "Installation of [ types "use" statements for you ] ..."
 git clone git@github.com:arnaud-lb/vim-php-namespace.git --depth=1
+
+# echo "Installation of [ A Vim plugin for Prettier ] ..."
+# git clone git@github.com:prettier/vim-prettier.git --depth=1
+# cd ${CLONE_DIRECTORY}/vim-prettier
+# yarn
+# cd ${CLONE_DIRECTORY}
 
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
 # git clone https://github.com/tpope/vim-pathogen.git --depth=1
 # echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
 # git clone https://github.com/NLKNguyen/papercolor-theme.git --depth=1
-# echo "Installation of [ A tree explorer plugin for vim. ] ..."
-# git clone https://github.com/preservim/nerdtree.git --depth=1
+
+echo "Installation of [ A tree explorer plugin for vim. ] ..."
+git clone https://github.com/preservim/nerdtree.git --depth=1
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git clone https://github.com/tpope/vim-sensible.git --depth=1  vendor/vim-sensible
