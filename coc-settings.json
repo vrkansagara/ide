@@ -1,13 +1,20 @@
 {
-	"intelephense.environment.documentRoot": "index.php",
+	"intelephense.environment.documentRoot": "public/index.php",
 	"intelephense.enable": true,
 	"intelephense.maxMemory": 512,
 	"intelephense.progress.enable": true,
-	"intelephense.diagnostics.enable": false,
-	"intelephense.completion.maxItems": 25,
+	"intelephense.diagnostics.enable": true,
+	"intelephense.completion.maxItems": 1000,
 	"intelephense.completion.insertUseDeclaration": true,
+    "intelephense.path": "/tmp/",
+    "intelephense.trace.server": "verbose",
+    "intelephense.files.associations": [
+        "*.php",
+        "*.phtml"
+    ],
+    "intelephense.format.enable": true,
 	"psalm.trace.server": "messages",
-	"psalm.enable": true,
+	"psalm.enable": false,
 	"psalm.configPaths": ["~/.vim/psalm.xml", "psalm.xml", "psalm.xml.dist"],
 	"psalm.phpExecutablePath": "~/.vim/vendor/bin/psalm-language-server",
 	"coc.preferences.jumpCommand": "tabe",
@@ -22,5 +29,6 @@
 		"javascriptreact": ["javascript"],
 		"typescript": ["javascript", "js","ts"]
 	},
-	"clangd.enabled": true
+	"clangd.enabled": true,
+    "tsserver.trace.server": "verbose"
 }

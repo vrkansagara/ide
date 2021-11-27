@@ -7,7 +7,5 @@ bundle/
 data/spell/*
 tags
 .idea
-vendor/*
 /vendor/*
 /data/*
-/pack/vendor/*
