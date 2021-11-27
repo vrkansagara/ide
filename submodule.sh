@@ -157,9 +157,10 @@ bin/composer2 self-update
 # bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 bin/composer2 update
 
+${SUDO} rm -rf $HOME/.config/coc
 cd $HOME/.vim/pack/vendor/start/coc.nvim
 ${SUDO} npm i -g npm@latest intelephense@latest livereloadx
-npm i
+# npm i
 # npm run build
 
 # update coc-nvim plugines

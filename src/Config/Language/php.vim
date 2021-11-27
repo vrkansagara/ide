@@ -48,16 +48,16 @@ function! RefreshF5php()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
 
-	execute "silent! call PhpSortUse()"
+    execute "silent! call PhpSortUse()"
 
-	"Re-index whole file	
-	" execute "PrettierAsync"
+    "Re-index whole file    
+    " execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
     exec "messages clear"
 
-	" Call intelephense to refresh php (Manyally) not needed if it auto
-	" exe "CocCommand intelephense.index.workspace"
+    " Call intelephense to refresh php (Manyally) not needed if it auto
+    " exe "CocCommand intelephense.index.workspace"
 
     " PHP Performance (insted of " use ')
     " silent! %s/\"\([^"]*\)\"/'\1'/g
@@ -67,24 +67,26 @@ function! RefreshF5php()
 
 execute "retab"
 
-	" Do not loose the cursor possition
+    " Do not loose the cursor possition
     execute "normal ``"
 endfunction
 
-	" This function is dynamically called by hiting enter for filetype
+    " This function is dynamically called by hiting enter for filetype
 function! Runphp()
-	let fileName = expand('%:t') " file name only (with extention)
-	let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
-	let filePath = expand('%:p') " Absolute to filepath
-	let directoryPath = expand('%:p:h') " Absolute to directory
+    let fileName = expand('%:t') " file name only (with extention)
+    let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+    let filePath = expand('%:p') " Absolute to filepath
+    let directoryPath = expand('%:p:h') " Absolute to directory
 
-	" Write current file
-	execute "silent! w!"
+    execute "retab"
 
-	" Clear terminal color, clean screen, run object
-	execute "silent! echo -e '\033[0m' && clear"
+    " Write current file
+    execute "silent! w!"
 
-	" run php file using unix less to pip the output
-	execute "!php " . filePath
+    " Clear terminal color, clean screen, run object
+    execute "silent! echo -e '\033[0m' && clear"
 
-	endfunction
+    " run php file using unix less to pip the output
+    execute "!php " . filePath
+
+    endfunction
