@@ -4,7 +4,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PHP parser check (CTRL + l)
-" autocmd FileType php noremap <C-l> :w!<cr>:!php -l %<CR>
+" autocmd FileType php noremap <C-l> :w%!<cr>!php -l %<CR>
+autocmd FileType php noremap <Leader>l :w!<CR>:!php -l %<CR>
 
 " run file with PHP CLI (CTRL-m) ( called as ENTER)
 " autocmd FileType php noremap <C-m> :w!<CR>:! echo '\033[0m'<CR>:!php %<CR>
@@ -70,13 +71,12 @@ function! Runphp()
     let filePath = expand('%:p') " Absolute to filepath
     let directoryPath = expand('%:p:h') " Absolute to directory
 
-    execute "retab"
-
     " Write current file
+    execute "silent! retab" 
     execute "silent! w!"
 
     " Clear terminal color, clean screen, run object
-    execute "silent! echo -e '\033[0m' && clear"
+    execute "silent! !echo -e '\033[0m' && clear"
 
     " run php file using unix less to pip the output
     execute "!php " . filePath
