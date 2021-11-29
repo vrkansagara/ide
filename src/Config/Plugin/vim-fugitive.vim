@@ -1,7 +1,8 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- :help fugitive
+" Note       :- :help fugitive
+" Url        :-  https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Fugitive Conflict Resolution

@@ -31,5 +31,4 @@ function! Runvim()
 	" Clear terminal color(failback of previous result)
 	execute "silent! echo -e '\033[0m' "
 
-
 	endfunction

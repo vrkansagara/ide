@@ -4,7 +4,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " PHP parser check (CTRL + l)
-" autocmd FileType php noremap <C-l> :w!<cr>:! echo -e "\033[0m" && /usr/bin/clear<CR>:!php -l %<CR>
+" autocmd FileType php noremap <C-l> :w!<cr>:!php -l %<CR>
 
 " run file with PHP CLI (CTRL-m) ( called as ENTER)
 " autocmd FileType php noremap <C-m> :w!<CR>:! echo '\033[0m'<CR>:!php %<CR>
@@ -48,27 +48,19 @@ function! RefreshF5php()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
 
+    execute "retab"
     execute "silent! call PhpSortUse()"
-
-    "Re-index whole file    
-    " execute "PrettierAsync"
 
     " Clear messages for better visibility (for vim)
     exec "messages clear"
 
     " Call intelephense to refresh php (Manyally) not needed if it auto
-    " exe "CocCommand intelephense.index.workspace"
-
-    " PHP Performance (insted of " use ')
-    " silent! %s/\"\([^"]*\)\"/'\1'/g
+    exe "CocCommand intelephense.index.workspace"
 
     " reindent whole file without losing current " position
-    " execute "normal gg=G``"
-
-execute "retab"
-
+    execute "normal gg=G``"
     " Do not loose the cursor possition
-    execute "normal ``"
+    " execute "normal ``"
 endfunction
 
     " This function is dynamically called by hiting enter for filetype

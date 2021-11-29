@@ -1,34 +1,53 @@
 {
-	"intelephense.environment.documentRoot": "public/index.php",
-	"intelephense.enable": true,
-	"intelephense.maxMemory": 512,
-	"intelephense.progress.enable": true,
-	"intelephense.diagnostics.enable": true,
-	"intelephense.completion.maxItems": 1000,
-	"intelephense.completion.insertUseDeclaration": true,
-    "intelephense.path": "/tmp/",
-    "intelephense.trace.server": "verbose",
-    "intelephense.files.associations": [
-        "*.php",
-        "*.phtml"
+  "intelephense.maxMemory": 1024,
+  "intelephense.enable": true,
+  "intelephense.progress.enable": true,
+  "intelephense.diagnostics.enable": true,
+  "intelephense.completion.maxItems": 100,
+  "intelephense.completion.insertUseDeclaration": true,
+  "intelephense.trace.server": "verbose",
+  "intelephense.files.associations": [
+    "*.php",
+    "*.phtml"
+  ],
+  "intelephense.format.enable": true,
+  "psalm.trace.server": "messages",
+  "psalm.enable": false,
+  "psalm.configPaths": [
+    "~/.vim/psalm.xml",
+    "psalm.xml",
+    "psalm.xml.dist"
+  ],
+  "psalm.phpExecutablePath": "~/.vim/vendor/bin/psalm-language-server",
+  "coc.preferences.jumpCommand": "tabe",
+  "sh.enable": true,
+  "json.enable": true,
+  "tsserver.enable": true,
+  "snippets.snipmate.enable": true,
+  "snippets.snipmate.author": "Vallabh Kansagara",
+  "snippets.ultisnips.directories": [
+    "~/.vim/src/UltiSnips"
+  ],
+  "snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
+  "snippets.extends": {
+    "php": [
+      "phtml",
+      "php"
     ],
-    "intelephense.format.enable": true,
-	"psalm.trace.server": "messages",
-	"psalm.enable": false,
-	"psalm.configPaths": ["~/.vim/psalm.xml", "psalm.xml", "psalm.xml.dist"],
-	"psalm.phpExecutablePath": "~/.vim/vendor/bin/psalm-language-server",
-	"coc.preferences.jumpCommand": "tabe",
-	"sh.enable": true,
-	"snippets.snipmate.enable": true,
-	"snippets.snipmate.author": "Vallabh Kansagara",
-	"snippets.ultisnips.directories": ["~/.vim/src/UltiSnips"],
-	"snippets.userSnippetsDirectory": "~/.vim/src/UltiSnips",
-	"snippets.extends": {
-		"php": ["phtml", "php"],
-		"cpp": ["c", "h","cpp"],
-		"javascriptreact": ["javascript"],
-		"typescript": ["javascript", "js","ts"]
-	},
-	"clangd.enabled": true,
-    "tsserver.trace.server": "verbose"
+    "cpp": [
+      "c",
+      "h",
+      "cpp"
+    ],
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript",
+      "js",
+      "ts"
+    ]
+  },
+  "clangd.enabled": true,
+  "tsserver.trace.server": "verbose"
 }
