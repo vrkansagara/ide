@@ -1,39 +1,37 @@
-[submodule "vendor/vim-pathogen"]
-	path = vendor/vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
-[submodule "vendor/vim-commentry"]
-	path = vendor/vim-commentry
+[submodule "pack/vendor/start/vim-commentary"]
+	path = pack/vendor/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vendor/vim-surround"]
-	path = vendor/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "vendor/fugitive"]
-	path = vendor/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vendor/papercolor-theme"]
-	path = vendor/papercolor-theme
-	url = https://github.com/NLKNguyen/papercolor-theme.git
-[submodule "vendor/nerdtree"]
-	path = vendor/nerdtree
-	url = https://github.com/preservim/nerdtree.git
-[submodule "vendor/ctrlp.vim"]
-	path = vendor/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
-[submodule "vendor/ack.vim"]
-	path = vendor/ack.vim
-	url = https://github.com/mileszs/ack.vim.git
-[submodule "vendor/coc.nvim"]
-	path = vendor/coc.nvim
+[submodule "pack/vendor/start/coc-nvim"]
+	path = pack/vendor/start/coc-nvim
 	url = https://github.com/neoclide/coc.nvim.git
-[submodule "vendor/vim-gitgutter"]
-	path = vendor/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "vendor/vim-visual-multi"]
-	path = vendor/vim-visual-multi
+	branch = release
+[submodule "pack/vendor/start/vim-visual-multi"]
+	path = pack/vendor/start/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi.git
-[submodule "vendor/vim-airline"]
-	path = vendor/vim-airline
+[submodule "pack/vendor/start/vim-surround"]
+	path = pack/vendor/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/vendor/start/vim-fugitive"]
+	path = pack/vendor/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/vendor/start/ctrlp"]
+	path = pack/vendor/start/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "pack/vendor/start/ack"]
+	path = pack/vendor/start/ack
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "pack/vendor/start/vim-gitgutter"]
+	path = pack/vendor/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "pack/vendor/start/vim-airline"]
+	path = pack/vendor/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "vendor/vim-airline-theme"]
-	path = vendor/vim-airline-theme
+[submodule "pack/vendor/start/vim-airline-themes"]
+	path = pack/vendor/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "pack/vendor/start/vim-php-namespace"]
+	path = pack/vendor/start/vim-php-namespace
+	url = git@github.com:arnaud-lb/vim-php-namespace.git
+[submodule "pack/vendor/start/nerdtree"]
+	path = pack/vendor/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
