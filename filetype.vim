@@ -37,11 +37,13 @@ function! OnFileSave()
         silent! %s/^\s*://
         " silent! %s/^map/nnoremap/
         " silent! %s/^imap/inoremap/
-        silent! %s/^nmap/nnoremap/
-        silent! %s/^cmap/cnoremap/
+        
+        "nmap <-> nnoremap make issue with coc-nvim , so disable it
+        " silent! %s/^nmap/nnoremap/
+        " silent! %s/^cmap/cnoremap/
 
     elseif extension == 'php'
-        exe "normal \<F5>"
+        " exe "normal \<F5>"
         " Remove closing tag(?>) from every *.php file only TODO
         " PHP Performance (insted of " use ')
         " silent! %s/\"\([^"]*\)\"/'\1'/g

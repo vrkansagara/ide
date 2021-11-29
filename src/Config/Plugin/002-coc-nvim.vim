@@ -1,9 +1,9 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- 
+" Note		 :- Do not change nmap to nnoremap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:coc_disable_startup_warning = 1
+let g:coc_disable_startup_warning = 1
+let g:coc_user_config = {}
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
@@ -67,8 +67,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :call CocAction('jumpDefinition','split')<cr>
+" nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gy :call CocAction('typeDefinition','split')<cr>
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -171,24 +173,24 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" \'coc-css',
 " \'coc-git',
-" \'coc-go',
-" \'coc-html',
-" \'coc-julia',
-" \'coc-markdownlint',
-" \'coc-phpls',
-" \'coc-pyright',
-" \'coc-python',
-" \'coc-xml',
-" \'coc-yaml',
-    " \'coc-snippets',
-	let g:coc_global_extensions = [
+    " \'coc-phpls',
+    " \'coc-css',
+    " \'coc-pyright',
+let g:coc_global_extensions = [
 		\'@yaegassy/coc-intelephense',
+		\'coc-clangd',
 		\'coc-json',
+		\'coc-psalm',
 		\'coc-sh',
 		\'coc-tsserver',
-		\'coc-clangd',
-		\'coc-psalm',
 		\'coc-vimlsp',
+        \'coc-snippets',
+        \'coc-go',
+        \'coc-html',
+        \'coc-julia',
+        \'coc-markdownlint',
+        \'coc-python',
+        \'coc-xml',
+        \'coc-yaml',
 		\ ]

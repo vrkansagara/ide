@@ -1,9 +1,7 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-,
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "Once CtrlP is open:
 "Press <F5> to purge the cache for the current directory to get new files,
 "remove deleted files and apply new ignore options.
@@ -21,11 +19,6 @@
 " Use this option to specify how the newly created file is to be opened when
 " pressing <c-y>: >
 " let g:ctrlp_open_new_file = 'v'
-" <
-" t - in a new tab.
-" h - in a new horizontal split.
-" v - in a new vertical split.
-" r - in the current window.
 
 " Quickly find and open a file in the CWD
 " let g:ctrlp_map = '<C-f>'
@@ -60,7 +53,7 @@ let g:ctrlp_custom_ignore = {
             \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|.DS_Store|bundle)$',
             \ 'file': '\v\.(swap|so|log|tags)$',
             \ }
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:50'
 
 " Use ag if available for quicker searches
 if executable('ag')
@@ -69,3 +62,6 @@ if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 endif
+
+let g:ctrlp_tabpage_position = 'ac'
+let g:ctrlp_switch_buffer = 'Et'
