@@ -24,7 +24,7 @@ remove_vim_vendor_module(){
 
 	read -r -p 'Do you want to remove VIM vendor,php copmoser, coc vendor [Y/n]?' input
 case $input in [yY][eE][sS]|[yY])
-${SUDO} rm -rf ~/.config/coc
+# ${SUDO} rm -rf ~/.config/coc
 ${SUDO} rm -rf vendor/*
 ${SUDO} rm -rf ${CLONE_DIRECTORY}/*
 ${SUDO} rm -rf .gitmodules
@@ -46,6 +46,11 @@ esac
 
 remove_vim_vendor_module
 mkdir -p ${CLONE_DIRECTORY}
+
+echo "Installation of [ A command-line fuzzy finder   ] ..."
+git submodule add -f  https://github.com/junegunn/fzf pack/vendor/start/fzf
+echo "Installation of [ fzf heart vim  ] ..."
+git submodule add -f  https://github.com/junegunn/fzf.vim pack/vendor/start/fzf.vim
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git submodule add -f https://github.com/tpope/vim-commentary.git pack/vendor/start/vim-commentary
@@ -130,11 +135,6 @@ git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start
 # #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
 # #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
 
-# echo "Installation of [ A command-line fuzzy finder   ] ..."
-# git submodule add -f  https://github.com/junegunn/fzf vendor/fzf
-# echo "Installation of [ fzf heart vim  ] ..."
-# git submodule add -f  https://github.com/junegunn/fzf.vim vendor/fzf.vim
-
 cd "$HOME/.vim"
 
 git submodule update --init --recursive --jobs 4  --remote --merge &
@@ -142,7 +142,6 @@ git submodule update --init --recursive --jobs 4  --remote --merge &
 bin/composer self-update
 bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 
-${SUDO} rm -rf $HOME/.config/coc
 cd $HOME/.vim/pack/vendor/start/coc.nvim
 ${SUDO} npm i -g npm@latest intelephense@latest livereloadx
 # npm i
