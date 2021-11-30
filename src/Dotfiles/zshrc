@@ -10,7 +10,7 @@ setopt interactive_comments
 # History in cache directory:
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTFILE=~/.cache/zsh/history
+# HISTFILE=~/.vim/data/cache/zsh
 
 ## VIM plugines debug
 export NVIM_COC_LOG_LEVEL=debug
@@ -124,7 +124,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='vim'
 fi
 
 # Compilation flags

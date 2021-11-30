@@ -7,5 +7,5 @@
 nnoremap <C-g> :GFiles<CR>
 
 " Open file window using fzf
-nnoremap <C-p> :Files<CR>
+nnoremap <C-f> :Files<CR>
 
