@@ -22,12 +22,13 @@ ${SUDO} apt-get install --no-install-recommends -y gnupg2
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
+
 # Run script to local directory
 echo "Current directory is $(pwd)"
+mv $HOME/.gitconfig /tmp
 
-echo "Git configuration started on ${CURRENT_DATE}"
 # Git config list
-
+echo "Git configuration started on ${CURRENT_DATE}"
 git config --global commit.gpgsign true
 git config --global core.editor vim
 git config --global core.excludesFile '~/.gitignore'
@@ -64,7 +65,7 @@ git config --global alias.resetClean 'clean -fd'
 git config --global alias.resetHardHEAD 'reset --hard HEAD'
 git config --global alias.rv 'remote -v'
 git config --global alias.st 'status -sb'
-git config --global alias.st status
+git config --global alias.stashList 'stash list --pretty=format:"%C(red)%h%C(reset) - %C(dim yellow)(%C(bold magenta)%gd%C(dim yellow))%C(reset) %<(70,trunc)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)"'
 git config --global alias.undo 'reset --soft HEAD~1'
 git config --global alias.undoRemove 'reset --hard HEAD~1'
 git config --global alias.unstage 'reset HEAD --'
@@ -73,5 +74,5 @@ git config --global alias.work 'config --global user.email vallabh.kansagara@com
 git config --global alias.workLocal 'config user.email vallabh.kansagara@commercepundit.com'
 
 # Tee command append to file multiple time TODO
-cat .gitignore | tee -a /tmp/.gitignore-global > /dev/null
+cat .gitignore | tee /tmp/.gitignore-global > /dev/null
 sed 's/\r//' /tmp/.gitignore-global | sort -u > ~/.gitignore
