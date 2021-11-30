@@ -15,7 +15,6 @@ fi
 #  Github	  :- https://github.com/xflux-gui/fluxgui
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 ${SUDO} add-apt-repository ppa:nathan-renniewaldock/flux
 ${SUDO} apt-get update
 ${SUDO} apt-get install -y fluxgui
