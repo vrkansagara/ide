@@ -1,0 +1,11 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Note       :-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Open git file window
+nnoremap <C-g> :GFiles<CR>
+
+" Open file window using fzf
+nnoremap <C-p> :Files<CR>
+

@@ -2,6 +2,14 @@
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :- Do not change nmap to nnoremap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" (1) curl -sL install-node.now.sh/lts | bash
+" Debug language server :- :CocList services
+" :CocInstall coc-json coc-tsserver
+"
+" Use :CocList snippets to open snippets list.
+" Use :CocCommand snippets.editSnippets to edit user snippet of current filetype.
+" Use :CocCommand snippets.openSnippetFiles to open snippet files of current filetype.
+
 let g:coc_disable_startup_warning = 1
 let g:coc_user_config = {}
 
@@ -199,3 +207,10 @@ let g:coc_global_extensions = [
         \'coc-xml',
         \'coc-yaml',
 		\ ]
+
+" use command `yarn global dir` in your terminal to checkout yarn global directory.
+" let g:coc_node_args = ['-r', expand('~/.config/yarn/global/node_modules/source-map-support/register')]
+" let g:node_client_debug = 1
+" let $NODE_CLIENT_LOG_FILE = '/tmp/coc-nvim.log'
+" let g:coc_node_args = ['--nolazy', '--inspect=6045']
+

@@ -9,9 +9,9 @@
 " 50ms will count as separate keys. That should be enough time to distinguish
 let c='a'
 while c <= 'z'
-	exec "set <A-".c.">=\e".c
-	exec "imap \e".c." <A-".c.">"
-	let c = nr2char(1+char2nr(c))
+    exec "set <A-".c.">=\e".c
+    exec "imap \e".c." <A-".c.">"
+    let c = nr2char(1+char2nr(c))
 endwhile
 set timeout ttimeoutlen=10
 set ttimeoutlen=10
@@ -21,7 +21,7 @@ set ttimeoutlen=10
 " set term=xterm
 " set t_Co=256
 if &term =~ '^st' || &term =~ '^screen'
-	" https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux/402084#402084
+    " https://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux/402084#402084
     " tmux will send xterm-style keys when its xterm-keys option is on
     execute "set <xUp>=\e[1;*A"
     execute "set <xDown>=\e[1;*B"
@@ -48,7 +48,7 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 " hotreload not require, I will do on my own.
 " I like manual refresh (NO AUTO)
 " if has("autocmd")
-	" autocmd bufwritepost .vimrc source $MYVIMRC
+    " autocmd bufwritepost .vimrc source $MYVIMRC
 " endif
 
 " Reload vimrc configuration file
@@ -229,14 +229,14 @@ set expandtab
 
 " Profile Vim by running this command once to start it and again to stop it.
 function! s:profile(bang)
-	if a:bang
-		profile pause
-		noautocmd qall
-	else
-		profile start /tmp/profile.log
-		profile func *
-		profile file *
-	endif
+    if a:bang
+        profile pause
+        noautocmd qall
+    else
+        profile start /tmp/profile.log
+        profile func *
+        profile file *
+    endif
 endfunction
 
 command! -bang Profile call s:profile(<bang>0)
