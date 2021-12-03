@@ -14,7 +14,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Sub-module installation started at $CURRENT_DATE"
@@ -142,16 +142,12 @@ git submodule update --init --recursive --jobs 4  --remote --merge &
 bin/composer self-update
 bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
 
-cd $HOME/.vim/pack/vendor/start/coc.nvim
-${SUDO} npm i -g npm@latest intelephense@latest livereloadx
-# npm i
-# npm run build
+${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
+yarn set version latest
 
 # update coc-nvim plugines
-# echo "Wait for 2 minutes, coc-nvim plugines is started updating"
-# vim -c 'CocUpdateSync|q'
-# npm install -g yarn
-# yarn set version latest
+echo "Wait for 2 minutes, coc-nvim plugines is started updating"
+vim -c 'CocUpdateSync|q'
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 
