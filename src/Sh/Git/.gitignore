@@ -47,4 +47,5 @@ wp-config.php
 
 #Laravel Specific
 .env
-
+Envoy.blade.php
+/vendor/
