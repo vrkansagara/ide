@@ -149,7 +149,7 @@ set ttyfast
 set showcmd
 set showmode
 set wildmenu
-set wildmode=list:longest
+set wildmode="list:longest"
 
 " Added 2005-03-23 Based on http://www.perlmonks.org/index.pl?node_id=441738
 set smarttab

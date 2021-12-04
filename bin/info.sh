@@ -12,7 +12,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Know about your system.
+#  Note		  :- Know about your system information.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "Current memory usage (Used/Available)"
@@ -29,7 +29,13 @@ aplay -l
 amixer
 cat /proc/asound/cards
 inxi -Fxz
+
+sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
+
 # create a 10 second output, 30 fps (300 frames total), with a frame size of 640x360 (testsrc.mpg)
 ffmpeg -f lavfi -i testsrc=duration=10:size=1280x720:rate=30 /tmp/testsrc.mpg
 
-sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
+
+echo "System information testing script ....[DONE]."
+
+exit 0

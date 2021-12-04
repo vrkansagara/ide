@@ -72,6 +72,7 @@
     },
 	"require-dev": {
 		"laminas/laminas-coding-standard": "^2.3",
-		"vimeo/psalm": "^4.12"
+		"vimeo/psalm": "^4.12",
+		"laravel/envoy": "*"
 	}
 }

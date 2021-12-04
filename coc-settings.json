@@ -49,5 +49,6 @@
     ]
   },
   "clangd.enabled": true,
-  "tsserver.trace.server": "verbose"
+  "tsserver.trace.server": "verbose",
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
 }
