@@ -37,7 +37,13 @@
 	url = https://github.com/vim-airline/vim-airline-themes.git
 [submodule "pack/vendor/start/vim-php-namespace"]
 	path = pack/vendor/start/vim-php-namespace
-	url = git@github.com:arnaud-lb/vim-php-namespace.git
+	url = https://github.com/arnaud-lb/vim-php-namespace.git
 [submodule "pack/vendor/start/nerdtree"]
 	path = pack/vendor/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/vendor/start/emmnet-vim"]
+	path = pack/vendor/start/emmnet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "pack/vendor/start/vim-prettier"]
+	path = pack/vendor/start/vim-prettier
+	url = https://github.com/prettier/vim-prettier.git
