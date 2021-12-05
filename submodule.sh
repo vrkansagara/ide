@@ -14,11 +14,13 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- VIM dependecies setup using git submodule + vim manager
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 echo "Sub-module installation started at $CURRENT_DATE"
+VIM_DIRECTORY="$HOME/.vim/"
 CLONE_DIRECTORY="$HOME/.vim/pack/vendor/start/"
+
+cd ${VIM_DIRECTORY}
 
 remove_vim_vendor_module(){
 
@@ -82,16 +84,19 @@ git submodule add -f https://github.com/vim-airline/vim-airline.git pack/vendor/
 git submodule add -f https://github.com/vim-airline/vim-airline-themes.git pack/vendor/start/vim-airline-themes
 
 echo "Installation of [ types "use" statements for you ] ..."
-git submodule add -f git@github.com:arnaud-lb/vim-php-namespace.git pack/vendor/start/vim-php-namespace
+git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git pack/vendor/start/vim-php-namespace
 
 echo "Installation of [ A tree explorer plugin for vim. ] ..."
 git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start/nerdtree
 
-# echo "Installation of [ A Vim plugin for Prettier ] ..."
-# git submodule add -f git@github.com:prettier/vim-prettier.git --depth=1
-# cd ${CLONE_DIRECTORY}/vim-prettier
-# yarn
-# cd ${CLONE_DIRECTORY}
+echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
+git submodule add -f https://github.com/mattn/emmet-vim.git pack/vendor/start/emmnet-vim
+
+echo "Installation of [ A Vim plugin for Prettier ] ..."
+git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier
+cd ${CLONE_DIRECTORY}/vim-prettier 
+yarn install --frozen-lockfile --production
+cd ${VIM_DIRECTORY}
 
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
 # git submodule add -f https://github.com/tpope/vim-pathogen.git --depth=1
@@ -126,28 +131,20 @@ git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start
 # echo "Installation of [ Perform all your vim insert mode completions with Tab ] ..."
 # git submodule add -f https://github.com/ervandew/supertab vendor/supertab
 
-# echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
-# git submodule add -f https://github.com/mattn/emmet-vim.git --depth=1  vendor/emmet-vim
 
 # echo "Installation of [ Go development plugin for Vim ] ..."
 # git submodule add -f https://github.com/fatih/vim-go.git --depth=1  vendor/vim-go
 
-# #git submodule add -f https://github.com/junegunn/goyo.vim bundle/goyo.vim
-# #git submodule add -f https://github.com/amix/vim-zenroom2 bundle/vim-zenroom2
-
-cd "$HOME/.vim"
-
 git submodule update --init --recursive --jobs 4  --remote --merge &
 
 bin/composer self-update
-bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction  --no-dev
-
+bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev &
 ${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
 yarn set version latest
 
 # update coc-nvim plugines
-echo "Wait for 2 minutes, coc-nvim plugines is started updating"
-vim -c 'CocUpdateSync|q'
+# echo "Wait for 2 minutes, coc-nvim plugines is started updating"
+# vim -c 'CocUpdateSync|q'
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 

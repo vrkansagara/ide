@@ -1,9 +1,12 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if !has("terminal")
+    echomsg "There is no terminal available"
+   finish
+endif
 
 nnoremap <leader>tt :terminal ++rows=25<cr>
 nnoremap <leader>to :terminal ++rows=5<cr>
@@ -32,7 +35,7 @@ function! OnTermExit(job, message)
     let opts.title = 'VRKANSAGARA-Terminal'
     let opts.close = 'button'
     let opts.border = [2,2,2,2,2,2,2,2,2]
-    let opts.drag = 0
+    let opts.drag = 1
     let opts.resize = 1
 let winid = popup_create(bid, opts)
     endfunction

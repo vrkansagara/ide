@@ -64,7 +64,7 @@ ZSH_THEME="agnoster"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -250,3 +250,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 bindkey -s '^r' 'history | fzf\n'
 bindkey -s '^p' 'ps -aux | fzf\n'
+
+# [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
