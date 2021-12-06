@@ -23,6 +23,8 @@ git clone https://github.com/openswoole/swoole-src.git --depth=1 --branch 4.8.1
 cd swoole-src
 
 ${SUDO} make clean
+git clean -fd
+git reset --hard HEAD
 
 phpize  && \
             ./configure --enable-openssl \
@@ -40,7 +42,6 @@ ${SUDO} bash -c "echo 'extension=openswoole' >> $(php -i | grep /.+/php.ini -oE)
 ${SUDO} make test
 
 php --ri openswoole
-
 
 echo "swoole.sh installatiuon .....[DONE]"
 
