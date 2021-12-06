@@ -144,7 +144,7 @@ then
 fi
 
 # Remove old phpstome directories.
-rm -rf ~/.config/JetBrains/*
+rm -rf  ~/.config/JetBrains ~/.local/share/JetBrains  ~/.cache/JetBrains ~/.cache/JetBrains
 rm -rf ~/.local/share/JetBrains/consentOptions
 rm -rf ~/.java/.userPrefs
 
