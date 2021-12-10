@@ -47,3 +47,6 @@
 [submodule "pack/vendor/start/vim-prettier"]
 	path = pack/vendor/start/vim-prettier
 	url = https://github.com/prettier/vim-prettier.git
+[submodule "pack/vendor/start/vimproject"]
+	path = pack/vendor/start/vimproject
+	url = https://github.com/tbknl/vimproject.git

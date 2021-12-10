@@ -4,7 +4,7 @@
 .netrwhist
 .NERDTreeBookmarks
 .vim/coc-settings.json
-
+.vimproject 
 
 #if any log(s)
 *.log

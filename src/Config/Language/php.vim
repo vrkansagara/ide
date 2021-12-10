@@ -17,7 +17,7 @@ autocmd BufNewFile,BufRead *.inc set ft=php
 autocmd BufNewFile,BufRead *.phpt set ft=php
 autocmd BufNewFile,BufRead *.phtml set ft=php
 autocmd BufNewFile,BufRead *.phps set ft=php
-autocmd BufNewFile,BufRead *.blade.php set ft=php
+autocmd BufNewFile,BufRead *.blade.php set ft=blade
 
 function! PhpCsCheck()
     try
