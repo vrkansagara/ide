@@ -92,9 +92,12 @@ git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start
 echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
 git submodule add -f https://github.com/mattn/emmet-vim.git pack/vendor/start/emmnet-vim
 
+echo "Installation of [  Managing project settings for Vim  ] ..."
+git submodule add -f https://github.com/tbknl/vimproject.git pack/vendor/start/vimproject
+
 echo "Installation of [ A Vim plugin for Prettier ] ..."
 git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier
-cd ${CLONE_DIRECTORY}/vim-prettier 
+cd ${CLONE_DIRECTORY}/vim-prettier
 yarn install --frozen-lockfile --production
 cd ${VIM_DIRECTORY}
 

@@ -188,7 +188,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " \'coc-git',
     " \'coc-phpls',
-    " \'coc-css',
     " \'coc-pyright',
 let g:coc_global_extensions = [
 		\'@yaegassy/coc-intelephense',
@@ -198,15 +197,17 @@ let g:coc_global_extensions = [
 		\'coc-sh',
 		\'coc-tsserver',
 		\'coc-vimlsp',
-        \'coc-snippets',
+        \'coc-blade',
         \'coc-go',
         \'coc-html',
         \'coc-julia',
         \'coc-markdownlint',
         \'coc-python',
+        \'coc-snippets',
         \'coc-xml',
         \'coc-yaml',
-		\ ]
+        \'coc-css',
+        \'coc-html']
 
 " use command `yarn global dir` in your terminal to checkout yarn global directory.
 " let g:coc_node_args = ['-r', expand('~/.config/yarn/global/node_modules/source-map-support/register')]
