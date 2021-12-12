@@ -38,6 +38,9 @@ phpunit.xml
 clover.xml
 docker-compose.override.yml
 /DATA/
+psalm.xml
+grumphp-grumpy.txt
+grumphp-happy.txt
 
 #vs code ignore
 .vscode

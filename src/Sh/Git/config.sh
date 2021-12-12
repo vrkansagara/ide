@@ -18,7 +18,7 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-${SUDO} apt-get install --no-install-recommends -y gnupg2
+${SUDO} apt-get install --no-install-recommends -y gnupg2  git-flow
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
