@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57ede0fea4df0d2b81f42804dc8b6d4a",
+    "content-hash": "d59acb818bb97e5b2d5419203f6ca55f",
     "packages": [
         {
             "name": "composer/pcre",
@@ -771,6 +771,74 @@
             "time": "2021-10-06T17:43:30+00:00"
         },
         {
+            "name": "laminas/laminas-component-installer",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laminas/laminas-component-installer.git",
+                "reference": "33c35798f72a1efbb6aeef154d09290319c22a22"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laminas/laminas-component-installer/zipball/33c35798f72a1efbb6aeef154d09290319c22a22",
+                "reference": "33c35798f72a1efbb6aeef154d09290319c22a22",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": "^7.4 || ~8.0.0 || ~8.1.0"
+            },
+            "conflict": {
+                "zendframework/zend-component-installer": "*"
+            },
+            "require-dev": {
+                "composer/composer": "^2.1.9",
+                "laminas/laminas-coding-standard": "~2.3.0",
+                "malukenho/docheader": "^0.1.6",
+                "mikey179/vfsstream": "^1.6.10",
+                "phpunit/phpunit": "^9.5.5",
+                "psalm/plugin-phpunit": "^0.16.1",
+                "vimeo/psalm": "^4.10",
+                "webmozart/assert": "^1.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Laminas\\ComponentInstaller\\ComponentInstaller"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laminas\\ComponentInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Composer plugin for injecting modules and configuration providers into application configuration",
+            "homepage": "https://laminas.dev",
+            "keywords": [
+                "component installer",
+                "composer",
+                "laminas",
+                "plugin"
+            ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-component-installer/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-component-installer/issues",
+                "rss": "https://github.com/laminas/laminas-component-installer/releases.atom",
+                "source": "https://github.com/laminas/laminas-component-installer"
+            },
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2021-12-02T17:34:54+00:00"
+        },
+        {
             "name": "laminas/laminas-migration",
             "version": "1.3.0",
             "source": {
@@ -827,16 +895,16 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "bf180a382393e7db5c1e8d0f2ec0c4af9c724baf"
+                "reference": "88bf037259869891afce6504cacc4f8a07b24d0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/bf180a382393e7db5c1e8d0f2ec0c4af9c724baf",
-                "reference": "bf180a382393e7db5c1e8d0f2ec0c4af9c724baf",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/88bf037259869891afce6504cacc4f8a07b24d0f",
+                "reference": "88bf037259869891afce6504cacc4f8a07b24d0f",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +953,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-09-03T17:53:30+00:00"
+            "time": "2021-12-21T14:34:37+00:00"
         },
         {
             "name": "laravel/installer",
@@ -1686,16 +1754,16 @@
         },
         {
             "name": "phpmd/phpmd",
-            "version": "2.11.0",
+            "version": "2.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "3637949092e6471aeaeca66bc6c016f45e459e24"
+                "reference": "08b60a2eb7e14c23f46ff8865b510ae08b75d0fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/3637949092e6471aeaeca66bc6c016f45e459e24",
-                "reference": "3637949092e6471aeaeca66bc6c016f45e459e24",
+                "url": "https://api.github.com/repos/phpmd/phpmd/zipball/08b60a2eb7e14c23f46ff8865b510ae08b75d0fd",
+                "reference": "08b60a2eb7e14c23f46ff8865b510ae08b75d0fd",
                 "shasum": ""
             },
             "require": {
@@ -1757,7 +1825,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/phpmd",
                 "issues": "https://github.com/phpmd/phpmd/issues",
-                "source": "https://github.com/phpmd/phpmd/tree/2.11.0"
+                "source": "https://github.com/phpmd/phpmd/tree/2.11.1"
             },
             "funding": [
                 {
@@ -1765,7 +1833,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-29T14:05:52+00:00"
+            "time": "2021-12-17T11:25:43+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
@@ -5604,16 +5672,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.6.1",
+            "version": "3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "f268ca40d54617c6e06757f83f699775c9b3ff2e"
+                "reference": "5e4e71592f69da17871dba6e80dd51bce74a351a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/f268ca40d54617c6e06757f83f699775c9b3ff2e",
-                "reference": "f268ca40d54617c6e06757f83f699775c9b3ff2e",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/5e4e71592f69da17871dba6e80dd51bce74a351a",
+                "reference": "5e4e71592f69da17871dba6e80dd51bce74a351a",
                 "shasum": ""
             },
             "require": {
@@ -5656,7 +5724,7 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2021-10-11T04:00:11+00:00"
+            "time": "2021-12-12T21:44:58+00:00"
         },
         {
             "name": "vimeo/psalm",
