@@ -2,12 +2,12 @@
 # set -x # You refer to a noisy script.(Used to debugging)
 
 # Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
+# autoload -U colors && colors	# Load colors
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 
-COMPOSER_PROCESS_TIMEOUT=5000 
+COMPOSER_PROCESS_TIMEOUT=5000
 
 # History in cache directory:
 HISTSIZE=10000000
@@ -19,9 +19,9 @@ export NVIM_COC_LOG_LEVEL=debug
 export NVIM_COC_LOG_FILE="/tmp/coc-nvim.log"
 
 # Used for the phpStorm program and java application to work with DWM
-# export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
-# export AWT_TOOLKIT=MToolkit
-wmname LG3D
+export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to change your $PATH.
+export AWT_TOOLKIT=MToolkit
+# wmname LG3D
 
 # export DISPLAY=:0
 # Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
@@ -253,6 +253,5 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 bindkey -s '^r' 'history | fzf\n'
 bindkey -s '^p' 'ps -aux | fzf\n'
 bindkey -s '^h' 'htop -u $USER \n'
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

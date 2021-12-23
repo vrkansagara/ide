@@ -79,10 +79,10 @@ function! Runphp()
     execute "silent! !echo -e '\033[0m' && clear"
 
     " run php file using unix less to pip the output
-    " execute \"!php " . filePath
+    execute "!php " . filePath
 
     " past output using "xp
-    execute "!fzf | " . system("php " . shellescape(filePath))
+    " execute "!fzf | " . system("php " . shellescape(filePath))
 
 
     endfunction
