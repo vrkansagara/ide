@@ -4,14 +4,14 @@
 # Enable colors and change prompt:
 # autoload -U colors && colors	# Load colors
 setopt autocd		# Automatically cd into typed directory.
-stty stop undef		# Disable ctrl-s to freeze terminal.
-setopt interactive_comments
+# stty stop undef		# Disable ctrl-s to freeze terminal.
+# setopt interactive_comments
 
 COMPOSER_PROCESS_TIMEOUT=5000
 
 # History in cache directory:
-HISTSIZE=10000000
-SAVEHIST=10000000
+# HISTSIZE=10000000
+# SAVEHIST=10000000
 # HISTFILE=~/.vim/data/cache/zsh
 
 ## VIM plugines debug
