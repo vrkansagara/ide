@@ -57,8 +57,8 @@ git submodule add -f  https://github.com/junegunn/fzf.vim pack/vendor/start/fzf.
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git submodule add -f https://github.com/tpope/vim-commentary.git pack/vendor/start/vim-commentary
 
-echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim
+# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
+# git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim
 
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git pack/vendor/start/vim-visual-multi
@@ -95,10 +95,10 @@ git submodule add -f https://github.com/mattn/emmet-vim.git pack/vendor/start/em
 echo "Installation of [  Managing project settings for Vim  ] ..."
 git submodule add -f https://github.com/tbknl/vimproject.git pack/vendor/start/vimproject
 
-echo "Installation of [ A Vim plugin for Prettier ] ..."
-git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier
-cd ${CLONE_DIRECTORY}/vim-prettier
-yarn install --frozen-lockfile --production
+# echo "Installation of [ A Vim plugin for Prettier ] ..."
+# git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier
+# cd ${CLONE_DIRECTORY}/vim-prettier
+# yarn install --frozen-lockfile --production
 cd ${VIM_DIRECTORY}
 
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
