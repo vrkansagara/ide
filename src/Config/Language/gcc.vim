@@ -2,10 +2,8 @@
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :- GCC compiler related configuration.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 augroup filetypedetect
-au! BufRead,BufNewFile *.c,*.cpp,*.h    setfiletype c
+    au! BufRead,BufNewFile *.c,*.cpp,*.h    setfiletype c
 augroup END
 
 " Ensure tabs don't get converted to spaces in Makefiles.
@@ -37,9 +35,9 @@ function Libsort()
     let lineNumber = line('.') - 1
     execute '1,' . lineNumber . '!sort -u'
     normal 'f
-    endfunction
+endfunction
 
-    " This function is dynamically called by Pressing F5 by (filetype.vim)
+" This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5c()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
@@ -52,9 +50,9 @@ function! RefreshF5c()
 
     " Indent whole file
     exe "normal gg=G``"
-    endfunction
+endfunction
 
-    " This function is dynamically called by Pressing F5 by (filetype.vim)
+" This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5make()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
@@ -65,9 +63,9 @@ function! RefreshF5make()
     " Indent whole file
     exe "normal gg=G``"
 
-    endfunction
+endfunction
 
-    " This function is dynamically called by hiting enter for filetype
+" This function is dynamically called by hiting enter for filetype
 function! Runc()
     let fileName = expand('%:t') " file name only (with extention)
     let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
@@ -93,9 +91,9 @@ function! Runc()
 
     " Clear terminal color, clean screen, run object
     execute "! echo -e '\033[0m' && clear && " . outputpath
-    endfunction
+endfunction
 
-    " This function is dynamically called by hiting enter for filetype
+" This function is dynamically called by hiting enter for filetype
 function! Runmake()
     let fileName = expand('%:t') " file name only (with extention)
     let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
@@ -108,4 +106,4 @@ function! Runmake()
     " Clear terminal color, clean screen, run object
     execute "! echo -e '\033[0m' && clear && ake clean "
 
-       endfunction
+endfunction
