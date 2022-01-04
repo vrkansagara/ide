@@ -35,11 +35,10 @@ ${SUDO} sysctl vm.drop_caches=3
 ${SUDO}  swapoff -a && ${SUDO} swapon -a
 
 ${SUDO} rm -rfv ~/.cache/thumbnails
-${SUDO} rm -rfv ~/.mozilla
-${SUDO} rm -rfv ~/.cache/mozilla
+# ${SUDO} rm -rfv ~/.mozilla
+# ${SUDO} rm -rfv ~/.cache/mozilla
 # ${SUDO} rm -rfv ~/.config/google-chrome
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
-exit;
 # /etc/sysctl.conf
 
 # swappiness
@@ -57,13 +56,13 @@ ${SUDO} sysctl -w vm.swappiness=10
 # vfs_cache_pressure – Controls the kernel’s tendency to reclaim the memory,
 # which is used for caching of directory and inode objects. (default = 100,
 # recommend value 50 to 200)
-sysctl -n vm.vfs_cache_pressure
+${SUDO} sysctl -n vm.vfs_cache_pressure
 ${SUDO} sysctl -w vm.vfs_cache_pressure=200
 
 # Print default value
 # vm.dirty_background_ratio=10
 # vm.dirty_ratio=20
-sysctl -n vm.dirty_background_ratio
+${SUDO} sysctl -n vm.dirty_background_ratio
 ${SUDO} sysctl -w vm.dirty_background_ratio=20
 
 # Native file system watcher for Linux
@@ -81,6 +80,7 @@ ${SUDO} sysctl -p
 # ulimit -v 2048000
 # ${SUDO} ulimit -v 8192000 # 8 GB for current user
 ${SUDO} ulimit -v 4096000 # 4 GB for current user
+
 # find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
 #clear up system cache
@@ -144,9 +144,9 @@ then
 fi
 
 # Remove old phpstome directories.
-rm -rf  ~/.config/JetBrains ~/.local/share/JetBrains  ~/.cache/JetBrains ~/.cache/JetBrains
-rm -rf ~/.local/share/JetBrains/consentOptions
-rm -rf ~/.java/.userPrefs
+# rm -rf  ~/.config/JetBrains ~/.local/share/JetBrains  ~/.cache/JetBrains ~/.cache/JetBrains
+# rm -rf ~/.local/share/JetBrains/consentOptions
+# rm -rf ~/.java/.userPrefs
 
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
