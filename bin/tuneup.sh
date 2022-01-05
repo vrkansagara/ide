@@ -135,7 +135,7 @@ ${SUDO} dmesg -C
 
 # Clean up old journal older then 2 day
 # journalctl --vacuum-size=500M
-journalctl --vacuum-time=2d
+${SUDO} journalctl --vacuum-time=2d
 
 if ! command -v earlyoom &> /dev/null
 then
