@@ -103,18 +103,18 @@ ${SUDO} service --status-all | grep +
 # Finally check with system log if any process is out of memory
 ${SUDO} grep -i -r 'out of memory' /var/log/
 
-${SUDO} apt-get install procps
+${SUDO} apt-get install procps --no-install-recommends --yes
 # Print virtual memory status
 # ${SUDO} vmstat -sS M
 
 # Inspect current date logs
 # ${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
 ${SUDO} apt autoremove
-${SUDO} apt update
-${SUDO} apt upgrade -V
-${SUDO} apt-get -y clean
-${SUDO} apt-get -y autoclean
-${SUDO} apt-get -y autoremove --purge
+${SUDO} apt update --yes --no-install-recommends
+${SUDO} apt upgrade --yes --no-install-recommends -v
+${SUDO} apt-get --yes clean
+${SUDO} apt-get --yes autoclean
+${SUDO} apt-get --yes --purge  autoremove
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 
 # Clean up journalctl (Free up some space)
