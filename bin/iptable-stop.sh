@@ -23,7 +23,7 @@ ${SUDO} ln -sf /lib/systemd/system/systemd-resolved.service /etc/systemd/system/
 SERVER_IP="192.168.1.3"
 
 echo "Stopping IPv4 firewall and allowing everyone..."
-Ipt="/usr/sbin/iptables"
+ipt="iptables"
 
 ## Failsafe - die if /sbin/iptables not found
 ${SUDO} $ipt -P INPUT ACCEPT
