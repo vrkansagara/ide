@@ -23,8 +23,8 @@ then
 fi
 
 while true; do
-    sleep 2
+    sleep 30
 	xte  "keydown Super_L" "key Tab" "key Tab" "keyup Super_L"
 	sleep 30
 	xte  "keydown Super_L" "key Tab" "keyup Super_L"
-Done
+done
