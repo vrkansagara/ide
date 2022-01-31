@@ -2,7 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo
+echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
@@ -16,6 +16,7 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "SSH must be with golden permission of SSH way"
+${SUDO} chmod a+trwx /tmp
 ${SUDO} chmod 0700 $HOME/.ssh
 ${SUDO} chmod 0600 $HOME/.ssh/id_*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub

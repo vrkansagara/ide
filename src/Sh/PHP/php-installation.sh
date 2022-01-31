@@ -27,7 +27,7 @@ ${SUDO} apt install --no-install--recommends --yes \
 php-pear \
 software-properties-common
 
-for VERSION in 5.5 7.4 8.0;do
+for VERSION in 5.5 5.6 7.4 8.0;do
 	for EXTENSION in dev fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl;do
 		${SUDO} apt install --no-install-recommends --yes php${VERSION}-${EXTENSION}
 	done

@@ -198,6 +198,7 @@ alias gpersonal='git config user.email "vrkansagara@gmail.com"'
 ## Linux Administator commands
 alias myDmesgWatch='watch "dmesg | tail -20"'
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
+alias myListeN="sudo netstat -natp"
 alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
