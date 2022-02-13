@@ -110,11 +110,12 @@ ${SUDO} apt-get install procps preload --no-install-recommends
 # Inspect current date logs
 # ${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
 ${SUDO} apt autoremove
-${SUDO} apt update --yes --no-install-recommends
-${SUDO} apt upgrade --yes --no-install-recommends -v
 ${SUDO} apt-get --yes clean
 ${SUDO} apt-get --yes autoclean
 ${SUDO} apt-get --yes --purge  autoremove
+${SUDO} apt-get update --yes --no-install-recommends
+${SUDO} apt-get upgrade --yes -v
+# ${SUDO} apt upgrade --yes --no-install-recommends -v
 # echo "Acquire::Languages "none";" | ${SUDO} tee -a /etc/apt/apt.conf.d/00aptitude
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 

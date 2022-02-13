@@ -26,10 +26,7 @@ echo "Stopping IPv4 firewall and allowing everyone..."
 ipt="/usr/sbin/iptables"
 
 ## Failsafe - die if /sbin/iptables not found
-${SUDO} $ipt -P INPUT ACCEPT
 [ ! -x "$ipt" ] && { echo "$0: \"${ipt}\" command not found."; exit 1; }
-${SUDO} $ipt -P FORWARD ACCEPT
-${SUDO} $ipt -P OUTPUT ACCEPT
 ${SUDO} $ipt -F
 ${SUDO} $ipt -X
 ${SUDO} $ipt -t nat -F
@@ -38,6 +35,9 @@ ${SUDO} $ipt -t mangle -F
 ${SUDO} $ipt -t mangle -X
 ${SUDO} $ipt -t raw -F
 ${SUDO} $ipt -t raw -X
+${SUDO} $ipt -P INPUT ACCEPT
+${SUDO} $ipt -P FORWARD ACCEPT
+${SUDO} $ipt -P OUTPUT ACCEPT
 
 # How do I clear the DNS cache?
 ${SUDO} systemd-resolve --flush-caches
