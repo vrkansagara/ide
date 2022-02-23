@@ -27,17 +27,20 @@ ipt="/usr/sbin/iptables"
 
 ## Failsafe - die if /sbin/iptables not found
 [ ! -x "$ipt" ] && { echo "$0: \"${ipt}\" command not found."; exit 1; }
-${SUDO} $ipt -F
-${SUDO} $ipt -X
+${SUDO} $ipt -t filter -F
+${SUDO} $ipt -t filter -X
 ${SUDO} $ipt -t nat -F
 ${SUDO} $ipt -t nat -X
 ${SUDO} $ipt -t mangle -F
 ${SUDO} $ipt -t mangle -X
 ${SUDO} $ipt -t raw -F
 ${SUDO} $ipt -t raw -X
-${SUDO} $ipt -P INPUT ACCEPT
-${SUDO} $ipt -P FORWARD ACCEPT
-${SUDO} $ipt -P OUTPUT ACCEPT
+${SUDO} $ipt -t security -F
+${SUDO} $ipt -t security -X
+${SUDO} $ipt -F
+${SUDO} $ipt -X
+${SUDO} $ipt -P INPUT ACCEPT && ${SUDO} $ipt -P FORWARD ACCEPT && ${SUDO} $ipt -P OUTPUT ACCEPT
+${SUDO} $ipt -L
 
 # How do I clear the DNS cache?
 ${SUDO} systemd-resolve --flush-caches
