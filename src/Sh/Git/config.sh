@@ -61,7 +61,6 @@ git config --global alias.ls 'config --global -l'
 git config --global alias.lsIgnored 'ls-files . --ignored --exclude-standard --others'
 git config --global alias.lsUntracked 'ls-files . --ignored --exclude-standard --others'
 git config --global alias.meCommit 'rev-list --count'
-git config --global alias.personal 'config user.email vrkansagara@gmail.com'
 git config --global alias.pushLog 'diff --stat --cached origin/master'
 git config --global alias.resetClean 'clean -fd'
 git config --global alias.resetHardHEAD 'reset --hard HEAD'
@@ -72,8 +71,13 @@ git config --global alias.undo 'reset --soft HEAD~1'
 git config --global alias.undoRemove 'reset --hard HEAD~1'
 git config --global alias.unstage 'reset HEAD --'
 git config --global alias.visual '!gitk'
-git config --global alias.work 'config --global user.email vallabh.kansagara@commercepundit.com'
-git config --global alias.workLocal 'config user.email vallabh.kansagara@commercepundit.com'
+git config --global alias.personal 'config --global user.email vrkansagara@gmail.com'
+git config --global alias.personalLocal 'config user.email vrkansagara@gmail.com'
+git config --global alias.work 'config --global user.email v.kansagara@easternenterprise.com'
+git config --global alias.workLocal 'config user.email v.kansagara@easternenterprise.com'
+
+# The unauthenticated git protocol on port 9418 is no longer supported
+git config --global url."https://".insteadOf git://
 
 # Tee command append to file multiple time TODO
 cat .gitignore | tee /tmp/.gitignore-global > /dev/null

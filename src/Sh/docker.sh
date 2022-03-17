@@ -43,5 +43,5 @@ ${SUDO} apt-get install \
 		${SUDO} sysctl -w vm.max_map_count=262144
 		echo "[DONE] Docker compose script "
 
-		curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
-		DRY_RUN=1 sh /tmp/get-docker.sh
+		# curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+		# DRY_RUN=1 sh /tmp/get-docker.sh
