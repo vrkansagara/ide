@@ -252,7 +252,7 @@ alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
-bindkey -s '^r' 'history | fzf\n'
+# bindkey -s '^r' 'history | fzf\n'
 bindkey -s '^p' 'ps -aux | fzf\n'
 bindkey -s '^h' 'htop -u $USER \n'
 

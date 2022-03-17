@@ -9,26 +9,26 @@ SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+    SUDO=sudo
 fi
 cd $SCRIPTDIR
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- This is standard linux tune up script
+#  Note       :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
  # 1. Clear PageCache only.
  # 2. Clear dentries and inodes.
  # 3. Clear PageCache, dentries and inodes.
-# Note, we are using "echo 3", but it is not recommended in production instead
-# use "echo 1"
-# Writing to this will cause the kernel to drop clean caches, as well as
-# reclaimable slab objects like dentries and inodes.  Once dropped, their
-# memory becomes free.
-# ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
-${SUDO} sysctl vm.drop_caches=3
+ # Note, we are using "echo 3", but it is not recommended in production instead
+ # use "echo 1"
+ # Writing to this will cause the kernel to drop clean caches, as well as
+ # reclaimable slab objects like dentries and inodes.  Once dropped, their
+ # memory becomes free.
+ # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
+ ${SUDO} sysctl vm.drop_caches=3
 
 # Clear Swap Space in Linux?
 # ${SUDO}  swapoff -a && ${SUDO} swapon -a
@@ -78,8 +78,9 @@ ${SUDO} sysctl -p
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
+${SUDO} ulimit -v 12582912 # 12 GB for current user
 # ${SUDO} ulimit -v 8192000 # 8 GB for current user
-${SUDO} ulimit -v 4096000 # 4 GB for current user
+# ${SUDO} ulimit -v 4096000 # 4 GB for current user
 
 # find -name '*.sh' -exec ls -lA {} +
 # https://gist.github.com/juanje/9861623
@@ -141,8 +142,8 @@ ${SUDO} journalctl --vacuum-time=2d
 
 if ! command -v earlyoom &> /dev/null
 then
-	${SUDO} apt install earlyoom
-	# EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
+    ${SUDO} apt install earlyoom
+    # EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
 fi
 
 # Remove old phpstome directories.
