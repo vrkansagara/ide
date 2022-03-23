@@ -97,7 +97,7 @@ ${SUDO} systemctl stop  mongodb
 ${SUDO} systemctl stop  postgresql
 ${SUDO} systemctl stop  mosquitto
 ${SUDO} systemctl stop  php8.0-fpm
-${SUDO} systemctl stop  ufw
+# ${SUDO} systemctl stop  ufw
 ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 ${SUDO} service --status-all | grep +
 
