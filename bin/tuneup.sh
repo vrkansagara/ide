@@ -97,8 +97,9 @@ ${SUDO} systemctl stop  mongodb
 ${SUDO} systemctl stop  postgresql
 ${SUDO} systemctl stop  mosquitto
 ${SUDO} systemctl stop  php8.0-fpm
-# ${SUDO} systemctl stop  ufw
-${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
+${SUDO} systemctl stop  ufw
+${SUDO} systemctl stop disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
+${SUDO} systemctl stop  qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
 # Finally check with system log if any process is out of memory
