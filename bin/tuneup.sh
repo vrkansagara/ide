@@ -67,14 +67,13 @@ ${SUDO} sysctl -w vm.dirty_background_ratio=20
 
 # Native file system watcher for Linux
 cat /proc/sys/fs/inotify/max_user_watches
-${SUDO} sysctl -w fs.inotify.max_user_watches = 524288
+${SUDO} sysctl -w fs.inotify.max_user_watches=524288
 
-${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6 = 1
-${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
-${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6 = 1
+${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
+${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
+${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
 ${SUDO} sysctl -p
-
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
@@ -86,20 +85,21 @@ ${SUDO} ulimit -v 12582912 # 12 GB for current user
 # https://gist.github.com/juanje/9861623
 #clear up system cache
 # ${SUDO} apt install default-jre default-jdk --no-install-recommends
-# ${SUDO} apt install --reinstall --no-install-recommends gnome-control-center
+${SUDO} apt install --reinstall --no-install-recommends gnome-control-center
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 
 #Stoping unwanted services
 
-${SUDO} systemctl stop  bluetooth
-${SUDO} systemctl stop  virtualbox
-${SUDO} systemctl stop  mongodb
-${SUDO} systemctl stop  postgresql
-${SUDO} systemctl stop  mosquitto
-${SUDO} systemctl stop  php8.0-fpm
-${SUDO} systemctl stop  ufw
-${SUDO} systemctl stop disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
-${SUDO} systemctl stop  qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+${SUDO} systemctl stop bluetooth
+${SUDO} systemctl stop virtualbox
+${SUDO} systemctl stop mongodb
+${SUDO} systemctl stop postgresql
+${SUDO} systemctl stop mosquitto
+${SUDO} systemctl stop php8.0-fpm
+${SUDO} systemctl stop ufw
+# ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
+${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+# ${SUDO} systemctl disable qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
 # Finally check with system log if any process is out of memory
@@ -156,4 +156,5 @@ fi
 gpgconf --kill gpg-agent
 
 echo "Tune of system is ....... [DONE]"
+
 exit 0
