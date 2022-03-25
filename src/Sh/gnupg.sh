@@ -50,3 +50,6 @@ gpg --list-secret-keys --keyid-format LONG
 
 # Auto-sign all commits globaly
 git config --global commit.gpgsign true
+
+${SUDO} killall gpg-agent
+echo "test" | gpg --clearsign

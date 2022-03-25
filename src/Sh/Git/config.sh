@@ -9,12 +9,12 @@ SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
