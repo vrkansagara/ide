@@ -39,7 +39,9 @@ ${SUDO} chmod 0600 $HOME/.ssh/id_ed*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 eval "$(ssh-agent -s)"
-ssh-add $HOME/.ssh/id_rsa_*
+ssh-add $HOME/.ssh/id_rsa
+ssh-add $HOME/.ssh/id_rsa_vrkansagara
+
 gpg --import ~/.ssh/gnupg/vrkansagara.pgp
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
