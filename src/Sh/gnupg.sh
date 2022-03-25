@@ -51,5 +51,11 @@ gpg --list-secret-keys --keyid-format LONG
 # Auto-sign all commits globaly
 git config --global commit.gpgsign true
 
+# Kill running gpg-agent( os will start it again)
 ${SUDO} killall gpg-agent
+
+# Export gpg as tty to avoide confusion( Warning :- you have to add into dot # file)
+export GPG_TTY=$(tty)
+
+# Lets test it
 echo "test" | gpg --clearsign
