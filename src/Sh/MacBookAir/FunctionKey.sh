@@ -7,12 +7,12 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # echo "Print current system theme ( Default :- Ambiance )"
 # gsettings get org.gnome.desktop.interface gtk-theme
@@ -22,24 +22,24 @@ ${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
 h=$(date +"%H")
 if [ $h -gt 6 -a $h -le 12 ]
 then
-	echo good morning
-	~/.vim/bin/brightness.sh set 900
-	# brightness.sh set 30000
-	# gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+    echo good morning
+    ~/.vim/bin/brightness.sh set 900
+    # brightness.sh set 30000
+    # gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 12 -a $h -le 16 ]
 then
-	echo good afternoon
-	~/.vim/bin/brightness.sh set 700
-	# gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
+    echo good afternoon
+    ~/.vim/bin/brightness.sh set 700
+    # gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 16 -a $h -le 20 ]
 then
-	echo good evening
-	~/.vim/bin/brightness.sh set 500
-	# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+    echo good evening
+    ~/.vim/bin/brightness.sh set 500
+    # gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 else
-	echo good night
-	~/.vim/bin/brightness.sh set 300
-	# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+    echo good night
+    ~/.vim/bin/brightness.sh set 300
+    # gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 fi
 
 echo "Current function mode setting is set as = "
