@@ -98,8 +98,8 @@ ${SUDO} systemctl stop mosquitto
 ${SUDO} systemctl stop php8.0-fpm
 ${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
-${SUDO} systemctl start qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
-# ${SUDO} systemctl disable qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+# ${SUDO} systemctl start qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
 # Finally check with system log if any process is out of memory
@@ -156,5 +156,7 @@ fi
 gpgconf --kill gpg-agent
 
 echo "Tune of system is ....... [DONE]"
+
+gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 exit 0

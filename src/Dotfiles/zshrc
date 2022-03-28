@@ -454,6 +454,10 @@ alias gpersonal='git config user.email "vrkansagara@gmail.com"'
 alias myDmesgWatch='watch "dmesg | tail -20"'
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
 alias myListeN="sudo netstat -natp"
+alias myWatch="sudo watch ss -tp"
+alias myWatchN="sudo netstat -A inet -p"
+alias myWatchWho="sudo netstat -A inet -p | grep '^tcp' | grep '/' | sed 's_.*/__' | sort | uniq"
+alias myWatchWhO="sudo ss -tp | grep -v Recv-Q | sed -e 's/.*users:((\"//' -e 's/\".*$//' | sort | uniq"
 alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
