@@ -98,7 +98,7 @@ ${SUDO} systemctl stop mosquitto
 ${SUDO} systemctl stop php8.0-fpm
 ${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
-${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+${SUDO} systemctl start qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 # ${SUDO} systemctl disable qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
