@@ -171,6 +171,9 @@ gpgconf --kill gpg-agent
 
 echo "Tune of system is ....... [DONE]"
 
+# Enable secound into clock
 gsettings set org.gnome.desktop.interface clock-show-seconds true
+# Enable week number into calender
+gsettings set org.gnome.desktop.interface clock-show-weekday true
 # https://klaver.it/linux/sysctl.conf
 exit 0
