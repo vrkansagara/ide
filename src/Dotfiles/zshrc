@@ -252,7 +252,7 @@ if [ -f /etc/zsh_command_not_found ]; then
 fi
 
 
-## Original VRKANSAGARA start from bellow 
+## Original VRKANSAGARA start from bellow
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
@@ -424,6 +424,8 @@ alias l='ls -CF'
 # -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 # sudo chmod +x /usr/local/bin/docker-compose
 # dc up -dV --build --remove-orphan --force-recreate
+alias d='docker '
+alias de='docker exec -it '
 alias dc='docker-compose '
 alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate '
 alias dcu='docker-compose up -dV --remove-orphan --force-recreate '
