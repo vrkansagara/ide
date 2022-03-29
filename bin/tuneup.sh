@@ -17,7 +17,8 @@ cd $SCRIPTDIR
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+# Give *.sh to execute permission for the working directory
+${SUDO} find -name '*.sh' -exec ls -lA {} +
 
  # 1. Clear PageCache only.
  # 2. Clear dentries and inodes.
@@ -30,16 +31,16 @@ cd $SCRIPTDIR
  # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
  ${SUDO} sysctl vm.drop_caches=3
 
-# Clear Swap Space in Linux?
-# ${SUDO}  swapoff -a && ${SUDO} swapon -a
-${SUDO}  swapoff -a && ${SUDO} swapon -a
-
+# Clear program cache/remove
 ${SUDO} rm -rfv ~/.cache/thumbnails
 # ${SUDO} rm -rfv ~/.mozilla
 # ${SUDO} rm -rfv ~/.cache/mozilla
 # ${SUDO} rm -rfv ~/.config/google-chrome
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
 # /etc/sysctl.conf
+
+# Clear Swap Space in Linux?
+${SUDO}  swapoff -a && ${SUDO} swapon -a
 
 # swappiness
 # This control is used to define how aggressive the kernel will swap
@@ -48,6 +49,7 @@ ${SUDO} rm -rfv ~/.cache/thumbnails
 # initiate swap until the amount of free and file-backed pages is less
 # than the high water mark in a zone.
 # The default value is 60.
+# For redis instance it should be 1
 ${SUDO} sysctl -w vm.swappiness=10
 
 # This percentage value controls the tendency of the kernel to reclaim
@@ -59,11 +61,17 @@ ${SUDO} sysctl -w vm.swappiness=10
 ${SUDO} sysctl -n vm.vfs_cache_pressure
 ${SUDO} sysctl -w vm.vfs_cache_pressure=200
 
+# OOM (Out of Memory) Default = 0, Redis=1
+${SUDO} sysctl -w vm.overcommit_memory=0
+
 # Print default value
 # vm.dirty_background_ratio=10
 # vm.dirty_ratio=20
 ${SUDO} sysctl -n vm.dirty_background_ratio
-${SUDO} sysctl -w vm.dirty_background_ratio=20
+${SUDO} sysctl -w vm.dirty_background_ratio=5
+${SUDO} sysctl -w vm.dirty_ratio=10
+# Keep at least 128MB of free RAM space available
+${SUDO} sysctl -w vm.min_free_kbytes=128000
 
 # Native file system watcher for Linux
 cat /proc/sys/fs/inotify/max_user_watches
@@ -73,7 +81,20 @@ ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
 ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
 ${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
+# Clean up dmesg
+# dmesg: read kernel buffer failed: Permission denied
+${SUDO} sysctl kernel.dmesg_restrict=0
+${SUDO} dmesg -C
+
+# sysctl - configure kernel parameters at runtime
 ${SUDO} sysctl -p
+
+#Disabling Transparent Huge Pages (THP) (Default(madvise) :- always [madvise] never)
+# Default :- madvise , Redis :- never
+# madvise = To prevent applications from allocating more memory resources than necessary, you can disable huge pages system-wide and only enable them inside MADV_HUGEPAGE madvise regions by running:
+# never = To disable transparent huge pages
+# always = To enable transparent huge pages
+${SUDO} cat /sys/kernel/mm/transparent_hugepage/enabled
 
 #set ulimit to 2 GB for current user
 # ulimit -v 2048000
@@ -81,11 +102,10 @@ ${SUDO} ulimit -v 12582912 # 12 GB for current user
 # ${SUDO} ulimit -v 8192000 # 8 GB for current user
 # ${SUDO} ulimit -v 4096000 # 4 GB for current user
 
-# find -name '*.sh' -exec ls -lA {} +
+${SUDO} apt install --no-install-recommends --yes default-jre default-jdk
+${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
+
 # https://gist.github.com/juanje/9861623
-#clear up system cache
-# ${SUDO} apt install default-jre default-jdk --no-install-recommends
-${SUDO} apt install --reinstall --no-install-recommends gnome-control-center
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 
 #Stoping unwanted services
@@ -98,14 +118,14 @@ ${SUDO} systemctl stop mosquitto
 ${SUDO} systemctl stop php8.0-fpm
 ${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
-# ${SUDO} systemctl start qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
-${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+${SUDO} systemctl start qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
+# ${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
 # Finally check with system log if any process is out of memory
 ${SUDO} grep -i -r 'out of memory' /var/log/
 ${SUDO} lshw -c memory
-${SUDO} apt-get install procps preload --no-install-recommends
+${SUDO} apt-get install procps preload --yes --no-install-recommends
 # Print virtual memory status
 # ${SUDO} vmstat -sS M
 
@@ -123,6 +143,7 @@ ${SUDO} apt-get upgrade --yes -v
 
 # Clean up journalctl (Free up some space)
 # journalctl --vacuum-size=500M
+# Clean up old journal older then 30 day
 ${SUDO} journalctl --vacuum-time=30d
 
 # You only need to delete files with “.log” extension and modified before 3 days
@@ -132,14 +153,7 @@ ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
 ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
 
-# Clean up dmesg
-# dmesg: read kernel buffer failed: Permission denied
-${SUDO} sysctl kernel.dmesg_restrict=0
-${SUDO} dmesg -C
 
-# Clean up old journal older then 2 day
-# journalctl --vacuum-size=500M
-${SUDO} journalctl --vacuum-time=2d
 
 if ! command -v earlyoom &> /dev/null
 then
@@ -158,5 +172,5 @@ gpgconf --kill gpg-agent
 echo "Tune of system is ....... [DONE]"
 
 gsettings set org.gnome.desktop.interface clock-show-seconds true
-
+# https://klaver.it/linux/sysctl.conf
 exit 0
