@@ -57,8 +57,8 @@ git submodule add -f  https://github.com/junegunn/fzf.vim pack/vendor/start/fzf.
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git submodule add -f https://github.com/tpope/vim-commentary.git pack/vendor/start/vim-commentary
 
-# echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
-# git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim
+echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
+git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim
 
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
 git submodule add -f https://github.com/mg979/vim-visual-multi.git pack/vendor/start/vim-visual-multi
@@ -146,8 +146,10 @@ ${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
 yarn set version latest
 
 # update coc-nvim plugines
-# echo "Wait for 2 minutes, coc-nvim plugines is started updating"
-# vim -c 'CocUpdateSync|q'
+echo "Wait for 2 minutes, coc-nvim plugines is started updating"
+vim -c 'CocUpdateSync|q'
+echo "Add intelephense license here"
+node -e "console.log(os.homedir() + '/intelephense/licence.txt')"
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 
