@@ -15,6 +15,12 @@ fi
 #  Note       :- VIM compile from source.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+${SUDO} add-apt-repository ppa:jonathonf/vim
+${SUDO} apt update
+${SUDO} apt install vim
+
+exit;
+
 ${SUDO} apt update
 APT_PACKAGE_TARGET="vim-gtk" # Ubuntu
 ${SUDO} apt-get purge  ${APT_PACKAGE_TARGET}
