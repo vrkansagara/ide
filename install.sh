@@ -46,6 +46,7 @@ sh -c "$HOME/.vim/submodule.sh"
 echo "Adding symbolic link for better git tracking of project"
 ${SUDO} mv .zshrc .vimrc .bashrc /tmp
 ${SUDO} mv $HOME/.vim/coc-settings.dist.json $HOME/.vim/coc-settings.json
+[ -f $HOME/.zshrc ] mv $HOME/.zshrc $HOME/.zshrc.old
 ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
 ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
 ln -s $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
