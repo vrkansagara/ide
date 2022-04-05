@@ -104,6 +104,7 @@ ${SUDO} ulimit -v 12582912 # 12 GB for current user
 
 ${SUDO} apt install --no-install-recommends --yes default-jre default-jdk
 ${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
+${SUDO} apt install --no-install-recommends --yes --reinstall zsh zsh-autosuggestions zsh-common zsh-syntax-highlighting
 
 # https://gist.github.com/juanje/9861623
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
