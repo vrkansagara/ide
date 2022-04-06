@@ -170,6 +170,10 @@ fi
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
 
+${SUDO} service snapd.apparmor restart
+${SUDO} systemctl enable --now apparmor.service
+${SUDO} systemctl enable --now snapd.apparmor.service
+
 echo "Tune of system is ....... [DONE]"
 
 # Enable secound into clock

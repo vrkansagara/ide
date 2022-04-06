@@ -29,7 +29,7 @@ else
     ${SUDO} sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 fi
 
-for VERSION in 5.5 5.6 7.4 8.0;do
+for VERSION in 7.4;do
     for EXTENSION in dev fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl;do
         ${SUDO} apt-get install --no-install-recommends --yes php${VERSION}-${EXTENSION}
     done
