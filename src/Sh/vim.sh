@@ -17,7 +17,7 @@ fi
 
 ${SUDO} add-apt-repository ppa:jonathonf/vim
 ${SUDO} apt update
-${SUDO} apt install vim
+${SUDO} apt install vim vim-gtk3
 
 exit;
 
