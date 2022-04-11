@@ -15,18 +15,17 @@ fi
 #  Note		  :- Linux home directory permission, Linux way !
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-echo "SSH must be with golden permission of SSH way"
-${SUDO} chmod a+trwx /tmp
-${SUDO} chmod 0700 $HOME/.ssh
-${SUDO} chmod 0600 $HOME/.ssh/id_*
-${SUDO} chmod 0600 $HOME/.ssh/id_rsa_vrkansagara
-${SUDO} chmod 0700 $HOME/.ssh/*.pub
-
 echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
 ${SUDO} chown $USER:$USER -Rf $HOME
 
 echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
 ${SUDO} chmod 0755 -Rf $HOME
+
+echo "SSH must be with golden permission of SSH way"
+${SUDO} chmod a+trwx /tmp
+${SUDO} chmod 0700 $HOME/.ssh
+${SUDO} chmod 0600 $HOME/.ssh/id_rsa*
+${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 echo "[DONE] Linux home directory permission applied."
 

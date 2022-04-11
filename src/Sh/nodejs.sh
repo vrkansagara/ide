@@ -22,4 +22,4 @@ curl --compressed -o- -L https://yarnpkg.com/install.sh | ${SUDO} bash
 
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} bash -
-# ${SUDO} apt-get install --yes --no-install-recommends  nodejs
+${SUDO} apt-get install --yes --no-install-recommends  nodejs

@@ -180,5 +180,10 @@ echo "Tune of system is ....... [DONE]"
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 # Enable week number into calender
 gsettings set org.gnome.desktop.interface clock-show-weekday true
+# Enable hot corner
+gsettings set org.gnome.desktop.interface enable-hot-corners true
+# Show battery percentage
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.interface cursor-blink false
 # https://klaver.it/linux/sysctl.conf
 exit 0
