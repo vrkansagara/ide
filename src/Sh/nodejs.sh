@@ -16,10 +16,13 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ${SUDO} apt-get install curl
+
+${SUDO} curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
 # Using Linux
-curl -sL install-node.now.sh/lts | ${SUDO} bash -
-curl --compressed -o- -L https://yarnpkg.com/install.sh | ${SUDO} bash
+# curl -sL install-node.now.sh/lts | ${SUDO} bash -
+# curl --compressed -o- -L https://yarnpkg.com/install.sh | ${SUDO} bash
 
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
 # curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} bash -
-${SUDO} apt-get install --yes --no-install-recommends  nodejs
+# ${SUDO} apt-get install --yes --no-install-recommends  nodejs

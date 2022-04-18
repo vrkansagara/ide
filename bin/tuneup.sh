@@ -17,6 +17,11 @@ cd $SCRIPTDIR
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# First thing First
+
+${SUDO} ufw default allow outgoing
+${SUDO} ufw default deny incoming
+
 # Give *.sh to execute permission for the working directory
 ${SUDO} find -name '*.sh' -exec ls -lA {} +
 
@@ -176,14 +181,5 @@ ${SUDO} systemctl enable --now snapd.apparmor.service
 
 echo "Tune of system is ....... [DONE]"
 
-# Enable secound into clock
-gsettings set org.gnome.desktop.interface clock-show-seconds true
-# Enable week number into calender
-gsettings set org.gnome.desktop.interface clock-show-weekday true
-# Enable hot corner
-gsettings set org.gnome.desktop.interface enable-hot-corners true
-# Show battery percentage
-gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.desktop.interface cursor-blink false
 # https://klaver.it/linux/sysctl.conf
 exit 0

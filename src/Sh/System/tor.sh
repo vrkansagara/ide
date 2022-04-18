@@ -6,12 +6,12 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # Change system dns to public dns
@@ -19,8 +19,6 @@ fi
 echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
 echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
 echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf
-
-exit
 
 cd /tmp
 mkdir /tmp/applications
