@@ -2,7 +2,7 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo ""
+echo -e " "
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
@@ -16,9 +16,40 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Set my default configuration for the working style.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+while getopts ":a:d:" opt; do
+  case $opt in
+    a) arg_1="$OPTARG"
+    ;;
+    d) display="$OPTARG"
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    exit 1
+    ;;
+  esac
 
-xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
---output HDMI-1 --off --output DP-1 --off
+  case $OPTARG in
+    -*) echo "Option $opt needs a valid argument"
+    exit 1
+    ;;
+  esac
+done
+
+echo "===========INFORMATION==========="
+printf "Argument display is %s\n" "$display"
+printf "Argument arg_1 is %s\n" "$arg_1"
+echo "===========INFORMATION==========="
+echo -e "\n\n\n"
+
+if [[ "$display" == 1 ]]; then
+	echo "Selecting primary display"
+	xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off
+else
+	echo "External monitor enabling..." 
+	xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --mode 1366x768 --pos 1366x0 --rotate normal --output DP-1 --off
+fi
+
+
+
 
 # Enable secound into clock
 gsettings set org.gnome.desktop.interface clock-show-seconds true
