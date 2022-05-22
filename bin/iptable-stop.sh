@@ -15,9 +15,9 @@ fi
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install --yes --no-install-recommends iptables nscd
+# ${SUDO} apt-get install --yes --no-install-recommends iptables nscd
 # issue fix : Failed to flush caches: Unit dbus-org.freedesktop.resolve1.service not found.
-${SUDO} ln -sf /lib/systemd/system/systemd-resolved.service /etc/systemd/system/dbus-org.freedesktop.resolve1.service
+# ${SUDO} ln -sf /lib/systemd/system/systemd-resolved.service /etc/systemd/system/dbus-org.freedesktop.resolve1.service
 
 # My system IP/set ip address of server
 SERVER_IP="192.168.1.3"
@@ -39,7 +39,9 @@ ${SUDO} $ipt -t security -F
 ${SUDO} $ipt -t security -X
 ${SUDO} $ipt -F
 ${SUDO} $ipt -X
-${SUDO} $ipt -P INPUT ACCEPT && ${SUDO} $ipt -P FORWARD ACCEPT && ${SUDO} $ipt -P OUTPUT ACCEPT
+${SUDO} $ipt -P INPUT ACCEPT
+${SUDO} $ipt -P FORWARD ACCEPT
+${SUDO} $ipt -P OUTPUT ACCEPT
 ${SUDO} $ipt -L
 
 # How do I clear the DNS cache?

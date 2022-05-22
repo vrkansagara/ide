@@ -14,24 +14,24 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Set my default configuration for the working style.
+#  Note       :- Set my default configuration for the working style.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 while getopts ":a:d:" opt; do
-  case $opt in
-    a) arg_1="$OPTARG"
-    ;;
-    d) display="$OPTARG"
-    ;;
-    \?) echo "Invalid option -$OPTARG" >&2
-    exit 1
-    ;;
-  esac
+    case $opt in
+        a) arg_1="$OPTARG"
+            ;;
+        d) display="$OPTARG"
+            ;;
+        \?) echo "Invalid option -$OPTARG" >&2
+            exit 1
+            ;;
+    esac
 
-  case $OPTARG in
-    -*) echo "Option $opt needs a valid argument"
-    exit 1
-    ;;
-  esac
+    case $OPTARG in
+        -*) echo "Option $opt needs a valid argument"
+            exit 1
+            ;;
+    esac
 done
 
 echo "===========INFORMATION==========="
@@ -41,16 +41,20 @@ echo "===========INFORMATION==========="
 echo -e "\n\n\n"
 
 if [[ "$display" == 1 ]]; then
-	echo "Selecting primary display"
-	xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off
+    echo "Selecting primary display"
+    xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off
 else
-	echo "External monitor enabling..." 
-	xrandr --output HDMI-1 --off --auto --same-as eDP-1
-	xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --mode 1366x768 --pos 1366x0 --rotate normal --output DP-1 --off
+    echo "External monitor enabling..."
+    # xrandr --output HDMI-1 --off --auto --same-as eDP-1
+    # xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --mode 1366x768 --pos 1366x0 --rotate normal --output DP-1 --off
+    xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x399 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-1-1 --off --output DP-1-2 --mode 2560x1440 --pos 1366x0 --rotate normal --output DP-1-3 --off
 fi
 
+# Check list of timezones which is available into system.
+# timedatectl list-timezones | grep -i Europ
 
-
+# Set default timeszone for the current system
+${SUDO} timedatectl set-timezone Europe/Amsterdam
 
 # Enable secound into clock
 gsettings set org.gnome.desktop.interface clock-show-seconds true
