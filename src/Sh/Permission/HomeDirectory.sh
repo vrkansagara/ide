@@ -27,6 +27,9 @@ ${SUDO} chmod 0700 $HOME/.ssh
 ${SUDO} chmod 0600 $HOME/.ssh/id_rsa*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
+# ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
+# ssh-keygen -t rsa -b 2048 -m PEM -f ~/.ssh/id_rsa
+
 echo "[DONE] Linux home directory permission applied."
 
 exit 0
