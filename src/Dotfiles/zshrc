@@ -480,6 +480,8 @@ alias myHtop="/usr/bin/htop -u $USER "
 alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
 alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
 
+# For Git
+alias myGitLs='for i in */; do (cd $i && echo -n "$(pwd) <=> " && git rev-parse --abbrev-ref HEAD);  done'
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
 alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
@@ -487,6 +489,7 @@ alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 # File finder
 alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
+alias myFindLastModified="find $(pwd) \( ! -regex '.*/\..*' \) -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head"
 # -r = recursive -n= line numer -w match whole world -e=pattern used for search
 alias myFindTextIntoDirectory="grep -rnw -e "
 
