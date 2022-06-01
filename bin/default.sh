@@ -34,11 +34,15 @@ while getopts ":a:d:" opt; do
     esac
 done
 
+${SUDO} apt install neofetch xrander --yes --no-install-recommends
+
 echo "===========INFORMATION==========="
 printf "Argument display is %s\n" "$display"
 printf "Argument arg_1 is %s\n" "$arg_1"
 echo "===========INFORMATION==========="
+
 echo -e "\n\n\n"
+
 
 if [[ "$display" == 1 ]]; then
     echo "Selecting primary display"
