@@ -151,6 +151,15 @@ yarn set version latest
 #echo "Add intelephense license here"
 #node -e "console.log(os.homedir() + '/intelephense/licence.txt')"
 
+
+
+rm -rf composer.phar
+rm -rf vendor composer.lock
+composer update
+./vendor/bin/grumphp  git:deinit
+./vendor/bin/grumphp  git:init
+./vendor/bin/grumphp
+
 echo "Submodule installation recursive dependence .....................[DONE]."
 
 exit 0

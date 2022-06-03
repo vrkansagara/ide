@@ -431,7 +431,6 @@ alias dce='docker-compose exec -u $(whoami) '
 alias ds='docker-compose ps --services'
 alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate '
 alias dcu='docker-compose up -dV --remove-orphan --force-recreate '
-alias dcd='docker-compose down '
 alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 
 #File Manager related stuff #
@@ -448,11 +447,7 @@ alias gh='cd ~/git'
 
 alias du='/usr/bin/du -sh  '
 
-# Git alias
-alias gWork='git config --global user.email "vallabh.kansagara@commercepundit.com"'
-alias gwork='git config user.email "vallabh.kansagara@commercepundit.com"'
-alias gPersonal='git config --global user.email "vrkansagara@gmail.com"'
-alias gpersonal='git config user.email "vrkansagara@gmail.com"'
+# Git alias ( Apart from git config )
 
 ## Linux Administator commands
 alias myDmesgWatch='watch "dmesg | tail -20"'
