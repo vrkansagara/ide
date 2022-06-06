@@ -34,7 +34,7 @@ while getopts ":a:d:" opt; do
     esac
 done
 
-${SUDO} apt install neofetch xrander --yes --no-install-recommends
+${SUDO} apt-get install neofetch arandr --yes --no-install-recommends
 
 echo "===========INFORMATION==========="
 printf "Argument display is %s\n" "$display"
@@ -50,15 +50,16 @@ if [[ "$display" == 1 ]]; then
 else
     echo "External monitor enabling..."
     # xrandr --output HDMI-1 --off --auto --same-as eDP-1
-    # xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --mode 1366x768 --pos 1366x0 --rotate normal --output DP-1 --off
-    xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x399 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-1-1 --off --output DP-1-2 --mode 2560x1440 --pos 1366x0 --rotate normal --output DP-1-3 --off
+    xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output HDMI-1 --mode 1366x768 --pos 1366x0 --rotate normal --output DP-1 --off
+    # xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x399 --rotate normal --output HDMI-1 --off --output DP-1 --off --output DP-1-1 --off --output DP-1-2 --mode 2560x1440 --pos 1366x0 --rotate normal --output DP-1-3 --off
 fi
 
 # Check list of timezones which is available into system.
 # timedatectl list-timezones | grep -i Europ
 
 # Set default timeszone for the current system
-${SUDO} timedatectl set-timezone Europe/Amsterdam
+# ${SUDO} timedatectl set-timezone Europe/Amsterdam
+${SUDO} timedatectl set-timezone Asia/Kolkata
 
 # Enable secound into clock
 gsettings set org.gnome.desktop.interface clock-show-seconds true
