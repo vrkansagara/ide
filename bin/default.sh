@@ -34,7 +34,7 @@ while getopts ":a:d:" opt; do
     esac
 done
 
-${SUDO} apt-get install neofetch arandr --yes --no-install-recommends
+${SUDO} apt-get install alsa utils neofetch arandr --yes --no-install-recommends
 
 echo "===========INFORMATION==========="
 printf "Argument display is %s\n" "$display"
@@ -66,6 +66,7 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 # Enable week number into calender
 gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.desktop.calendar show-weekdate true
 
 # Enable hot corner
 gsettings set org.gnome.desktop.interface enable-hot-corners true
@@ -78,3 +79,15 @@ gsettings set org.gnome.desktop.interface cursor-blink false
 
 # Disable laptop middle click to avoid unwanted pasting
 gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+
+# Set Do not disturbe as ON ( By default )
+gsettings set org.gnome.desktop.notifications show-banners true
+
+# Set default volume to unmute with 45% audio
+pactl set-sink-mute @DEFAULT_SINK@ 0
+pactl set-sink-volume @DEFAULT_SINK@ 45%
+
+${SUDO} systemctl stop bluetooth
+
+# set default brightness
+$HOME/.vim/bin/brightness.sh set 10000
