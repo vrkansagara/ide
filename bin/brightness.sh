@@ -2,17 +2,17 @@
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
-echo
+echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
+#  Note       :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 echo "Current brightness level is  => $curBrightness"
@@ -32,7 +32,7 @@ else
         value=1
     else
         # Otherwise: prompt
-		echo "Please enter up/down/set(Default=100) for the brightness change:"
+        echo "Please enter up/down/set(Default=100) for the brightness change:"
         read command
         echo "Enter brightness value:"
         read value
@@ -47,28 +47,25 @@ fi
 userValueForBrightness=1
 
 case "$command" in
-	"up")
-			userValueForBrightness=`expr $curBrightness + $value`
-	;;
-	"down")
-		userValueForBrightness=`expr $curBrightness - $value`
-		if [[ $userValueForBrightness -le 10 ]]; then
-			userValueForBrightness=$minimumBrightness
-		fi
-	;;
-	"set")
-		if [[ $value -le 10 ]]; then
-			echo $minimumBrightness | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
-
-		else
-			echo $value | ${SUDO} tee /sys/class/backlight/intel_backlight/brightness > /dev/null
-
-		fi
-		exit;
-	;;
-	*)
-		echo "Unsupported: \"$1\""
-		exit 1
+    "up")
+        userValueForBrightness=`expr $curBrightness + $value`
+        ;;
+    "down")
+        userValueForBrightness=`expr $curBrightness - $value`
+        if [[ $userValueForBrightness -le 10 ]]; then
+            userValueForBrightness=$minimumBrightness
+        fi
+        ;;
+    "set")
+        if [[ $value -le 10 ]]; then
+            userValueForBrightness=$minimumBrightness
+        else
+            userValueForBrightness=$value
+        fi
+        ;;
+    *)
+        echo "Unsupported: \"$1\""
+        exit 1
 esac
 
 echo "Current brightness change to => $userValueForBrightness"
