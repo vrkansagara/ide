@@ -463,7 +463,7 @@ alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
 # Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
-alias myPsilent="ps -ef | grep 'teams\|skype\|slack' | grep -v grep | awk '{print $2}' | xargs sudo kill 9"
+alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{print $2}" | xargs sudo kill 9'
 # package dependencies
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -530,3 +530,7 @@ bindkey -s '^h' 'htop -u $USER \n'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
