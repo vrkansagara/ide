@@ -43,5 +43,6 @@ then
   ${SUDO} apt-get install speedtest
 fi
 
-speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
+#speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
+speedtest --accept-license -p no > /tmp/speedtest.txt
 
