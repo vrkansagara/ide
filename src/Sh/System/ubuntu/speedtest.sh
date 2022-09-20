@@ -29,6 +29,12 @@ fi
 # Example how to remove using apt-get
 # sudo apt-get remove speedtest-cli
 
+if ! command -v shellcheck &> /dev/null
+then
+	echo "Install shellcheck for shell script sanitization"
+	${SUDO} apt-get install shellcheck
+fi
+
 if ! command -v speedtest &> /dev/null
 then
 	echo "Install speedtest for speedtest"
