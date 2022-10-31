@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
-
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
-echo " "
 
+echo " "
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
-
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -19,7 +16,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 if ! command -v acpi &> /dev/null
 then
 	echo "Install acpi for better level check up"
-	${SUDO} apt-get install -y acpi powermgmt-base
+	${SUDO} apt-get install --yes --no-install-recommends acpi powermgmt-base libnotify-bin notify-osd
 fi
 
 while true
@@ -31,7 +28,8 @@ do
 
 	#check if the battery level is lower then 10%
 	if [ $battery_level -le 5 ]; then
-		notify-send -u critical "Please plug your AC adapter" "Battery level: ${battery_level}% (lower then 5%)"
+#		notify-send -u critical "Please plug your AC adapter" "Battery level: ${battery_level}% (lower then 5%)"
+		notify-send -t 0 "Please plug your AC adapter" "Battery level: ${battery_level}% (lower then 5%)"
 	fi
 
 	#check if AC is plugged in
@@ -39,7 +37,8 @@ do
 
 		#check if the battery level is over 90%
 		if [ $battery_level -ge 99 ]; then
-			notify-send -u critical "Please unplug your AC adapter" "Battery level: ${battery_level}% (charged above 99%)" -i battery-full-charged
+#			notify-send -u critical "Please unplug your AC adapter" "Battery level: ${battery_level}% (charged above 99%)" -i battery-full-charged
+			notify-send -t 0 "Please unplug your AC adapter" "Battery level: ${battery_level}% (charged above 99%)" -i battery-full-charged
 		fi
 
 	fi
