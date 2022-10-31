@@ -81,6 +81,8 @@ ${SUDO} sysctl -w vm.min_free_kbytes=128000
 # Native file system watcher for Linux
 cat /proc/sys/fs/inotify/max_user_watches
 ${SUDO} sysctl -w fs.inotify.max_user_watches=524288
+${SUDO} sysctl -w fs.inotify.max_user_watches=1048576
+${SUDO} sysctl -p
 
 ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
 ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1

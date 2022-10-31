@@ -42,6 +42,7 @@ ${SUDO} curl -fsSL https://download.docker.com/linux/ubuntu/gpg | ${SUDO} gpg --
     fi
 
     ${SUDO} sysctl -w vm.max_map_count=262144
+    ${SUDO} systemctl restart docker
     echo "[DONE] Docker compose script "
 
 # curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
