@@ -42,15 +42,17 @@ eval "$(ssh-agent -s)"
 ssh-add $HOME/.ssh/id_rsa
 ssh-add $HOME/.ssh/id_rsa_vrkansagara
 
-gpg --import ~/.ssh/gnupg/vrkansagara.pgp
+if [ -f "~/.ssh/gnupg/vrkansagara.pgp" ]; then
+  gpg --import ~/.ssh/gnupg/vrkansagara.pgp
+fi
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
 
 exit 0
-
-" Host *
-" UseKeychain yes
-" AddKeysToAgent yes
-" IdentityFile ~/.ssh/id_rsa
-# mysql could not connect the SSH tunnel -> access denied for 'none'
-# ssh-keygen -p -m PEM -f
+#
+#" Host *
+#" UseKeychain yes
+#" AddKeysToAgent yes
+#" IdentityFile ~/.ssh/id_rsa
+## mysql could not connect the SSH tunnel -> access denied for 'none'
+## ssh-keygen -p -m PEM -f

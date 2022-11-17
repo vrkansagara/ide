@@ -22,7 +22,7 @@ echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory an
 ${SUDO} chmod 0755 -Rf $HOME
 
 echo "SSH must be with golden permission of SSH way"
-${SUDO} chmod a+trwx /tmp
+${SUDO} chmod a+trwx /tmp ${HOME}/tmp
 ${SUDO} chmod 0700 $HOME/.ssh
 ${SUDO} chmod 0600 $HOME/.ssh/id_rsa*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
