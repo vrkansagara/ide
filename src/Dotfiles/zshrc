@@ -1,6 +1,10 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
+if [ -f ~/.profile ]; then
+   . ~/.profile
+fi
+
 # some more ls aliases
 alias ll='ls -l'
 alias la='ls -A'
