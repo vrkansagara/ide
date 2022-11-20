@@ -27,7 +27,7 @@ if [ -f "/etc/resolv.conf" ]; then
   # Change system dns to public dns
   echo "# cloudflare.com (https://1.1.1.1/help)" | ${SUDO} tee /etc/resolv.conf >/dev/null
   echo "nameserver 1.1.1.1" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 1.0.0.1," | ${SUDO} tee -a /etc/resolv.conf >/dev/null
+  echo "nameserver 1.0.0.1" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
   echo "nameserver 2606:4700:4700::1111" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
   echo "nameserver 2606:4700:4700::1001" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
 
@@ -40,6 +40,7 @@ if [ -f "/etc/resolv.conf" ]; then
   # change file attributes on a Linux file system
   #  ${SUDO} chattr +i /etc/resolv.conf >/dev/null
   # Use the realpath for the resolver and modified the attributes to avoid symbolic link issue.
+  ${SUDO} dos2unix "$(realpath /etc/resolv.conf)"
   ${SUDO} chattr -f +i "$(realpath /etc/resolv.conf)" >/dev/null
 fi
 
