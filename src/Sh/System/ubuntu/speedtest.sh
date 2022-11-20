@@ -10,7 +10,7 @@ SCRIPTDIR="$(dirname "$SCRIPT")"
 export SCRIPTDIR
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -29,20 +29,17 @@ fi
 # Example how to remove using apt-get
 # sudo apt-get remove speedtest-cli
 
-if ! command -v shellcheck &> /dev/null
-then
-	echo "Install shellcheck for shell script sanitization"
-	${SUDO} apt-get install shellcheck
+if ! command -v shellcheck &>/dev/null; then
+  echo "Install shellcheck for shell script sanitization"
+  ${SUDO} apt-get install shellcheck
 fi
 
-if ! command -v speedtest &> /dev/null
-then
-	echo "Install speedtest for speedtest"
-	${SUDO} apt-get install curl
+if ! command -v speedtest &>/dev/null; then
+  echo "Install speedtest for speedtest"
+  ${SUDO} apt-get install curl
   curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | ${SUDO} bash
   ${SUDO} apt-get install speedtest
 fi
 
 #speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
-speedtest --accept-license -p no > /tmp/speedtest.txt
-
+speedtest --accept-license -p no >/tmp/speedtest.txt
