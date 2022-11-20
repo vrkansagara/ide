@@ -7,7 +7,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -21,7 +21,7 @@ CLONE_DIRECTORY="/tmp/.vim-${CURRENT_DATE}"
 
 echo "Creating backup directory."
 if [ ! -d "$BACKUP_DIRECTORY" ]; then
-	mkdir -p $BACKUP_DIRECTORY
+  mkdir -p $BACKUP_DIRECTORY
 fi
 
 echo "Cloning the [vrkansagara/ide] vim configuration."
@@ -30,8 +30,8 @@ cd ${CLONE_DIRECTORY}
 
 echo "Creating backup of ~/.vim* to ${BACKUP_DIRECTORY}"
 if [ $(ls $HOME/.vim* | wc -l) != 0 ]; then
-	echo "Moving base vimrc config to back up folder"
-	mv -f $HOME/.vim*  $BACKUP_DIRECTORY
+  echo "Moving base vimrc config to back up folder"
+  mv -f $HOME/.vim* $BACKUP_DIRECTORY
 fi
 
 # git pull --recurse-submodules
@@ -50,7 +50,7 @@ ${SUDO} mv $HOME/.vim/coc-settings.dist.json $HOME/.vim/coc-settings.json
 ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
 ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
 ln -s $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
-ln -s $HOME/.vim/src/Sh/Git/hooks/pre-commit  $HOME/.vim/.git/hooks
+ln -s $HOME/.vim/src/Sh/Git/hooks/pre-commit $HOME/.vim/.git/hooks
 mkdir -p $HOME/.vim/data/cache/zsh
 
 # Set sh and bin  directory executable

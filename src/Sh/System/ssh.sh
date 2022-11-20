@@ -6,7 +6,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+  SUDO=sudo
 fi
 echo ""
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -22,9 +22,9 @@ echo 'Host *
 AddKeysToAgent yes
 IdentityFile ~/.ssh/id_rsa
 IdentityFile ~/.ssh/id_rsa_vrkansagara
-' | ${SUDO} tee -a ~/.ssh/config > /dev/null
+' | ${SUDO} tee -a ~/.ssh/config >/dev/null
 
-${SUDO} chown $USER:$USER -Rf $HOME/.ssh
+#${SUDO} chown $USER:$USER -Rf $HOME/.ssh
 
 echo "Generating sample SSH key"
 cd $HOME/.ssh
@@ -39,11 +39,17 @@ ${SUDO} chmod 0600 $HOME/.ssh/id_ed*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 
 eval "$(ssh-agent -s)"
-ssh-add $HOME/.ssh/id_rsa
-ssh-add $HOME/.ssh/id_rsa_vrkansagara
 
-if [ -f "~/.ssh/gnupg/vrkansagara.pgp" ]; then
-  gpg --import ~/.ssh/gnupg/vrkansagara.pgp
+if [ -f "$HOME/.ssh/id_rsa" ]; then
+  ssh-add $HOME/.ssh/id_rsa
+fi
+
+if [ -f "$HOME/.ssh/id_rsa_vrkansagara" ]; then
+  ssh-add $HOME/.ssh/id_rsa_vrkansagara
+fi
+
+if [ -f "~/.ssh/gnupg/vrkansagara-sec.key" ]; then
+  gpg --import ~/.ssh/gnupg/vrkansagara-sec.key
 fi
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."

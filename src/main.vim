@@ -48,7 +48,7 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 " hotreload not require, I will do on my own.
 " I like manual refresh (NO AUTO)
 " if has("autocmd")
-    " autocmd bufwritepost .vimrc source $MYVIMRC
+" autocmd bufwritepost .vimrc source $MYVIMRC
 " endif
 
 " Reload vimrc configuration file
@@ -69,25 +69,25 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>:echom "White space trimed"<CR>
 
 function! HighlightRepeats() range
-"Ref :-  https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor/28690847
-"Singler liner :--- :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
-  let lineCounts = {}
-  let lineNum = a:firstline
-  while lineNum <= a:lastline
-    let lineText = getline(lineNum)
-    if lineText != ""
-      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
-    endif
-    let lineNum = lineNum + 1
-  endwhile
-  exe 'syn clear Repeat'
-  for lineText in keys(lineCounts)
-    if lineCounts[lineText] >= 2
-      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
-    endif
-  endfor
+    "Ref :-  https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor/28690847
+    "Singler liner :--- :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
+    let lineCounts = {}
+    let lineNum = a:firstline
+    while lineNum <= a:lastline
+        let lineText = getline(lineNum)
+        if lineText != ""
+            let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+        endif
+        let lineNum = lineNum + 1
+    endwhile
+    exe 'syn clear Repeat'
+    for lineText in keys(lineCounts)
+        if lineCounts[lineText] >= 2
+            exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+        endif
+    endfor
 
-  echom "Dublicate lines are highlighted"
+    echom "Dublicate lines are highlighted"
 endfunction
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 nnoremap <silent> <F1> :HighlightRepeats<cr>
@@ -235,8 +235,8 @@ function! s:profile(bang)
     else
         profile start /tmp/profile.log
         profile func *
-        profile file *
-    endif
+            profile file *
+            endif
 endfunction
 
 command! -bang Profile call s:profile(<bang>0)
