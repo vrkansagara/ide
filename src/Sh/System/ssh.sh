@@ -47,7 +47,6 @@ if [ -f "~/.ssh/gnupg/vrkansagara.pgp" ]; then
 fi
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."
-
 exit 0
 #
 #" Host *

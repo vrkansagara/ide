@@ -16,9 +16,9 @@ fi
 
 # Change system dns to public dns
 
-echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
-echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
-echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf
+#echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
+#echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
+#echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf
 
 cd /tmp
 mkdir /tmp/applications
