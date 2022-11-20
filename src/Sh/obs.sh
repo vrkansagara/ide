@@ -19,7 +19,7 @@ fi
 
 
 ${SUDO} add-apt-repository ppa:obsproject/obs-studio
-${SUDO} apt-get install --yes --no-install-recommends ffmpeg obs-studio
+${SUDO} apt-get install --yes --no-install-recommends ffmpeg obs-studio youtube-dl
 
 echo "Installation of OBS studio is ...[DONE]"
 

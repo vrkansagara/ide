@@ -6,20 +6,19 @@ CURRENT_DATE="$(date "+%Y%m%d%H%M%S")"
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Change dns for latency improvement
+#  Note       :- Change dns for latency improvement
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+echo -e "\n" 
 echo "$0 execution ... [STARTED - ${CURRENT_DATE}]"
 
-sleep 1
 if [ -f "/etc/resolv.conf" ]; then
-  # Lets backup the resolver
-  ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
+    # Lets backup the resolver
+    ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
 
   #  echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
   #  echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
