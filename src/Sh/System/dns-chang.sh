@@ -42,6 +42,9 @@ if [ -f "/etc/resolv.conf" ]; then
   # Use the realpath for the resolver and modified the attributes to avoid symbolic link issue.
   ${SUDO} dos2unix "$(realpath /etc/resolv.conf)"
   ${SUDO} chattr -f +i "$(realpath /etc/resolv.conf)" >/dev/null
+
+  # Check weather the dns query is failling to resolve
+  # ${SUDO} tcpdump -ni any port 53 | /tmp/tee dns_problem.log
 fi
 
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
