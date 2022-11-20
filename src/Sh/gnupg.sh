@@ -39,6 +39,7 @@ if [ -f "~/.ssh/gnupg/vrkansagara-sec.key" ]; then
   gpg --import ~/.ssh/gnupg/vrkansagara-sec.key
 fi
 
+
 # check current keys:
 gpg --list-secret-keys --keyid-format LONG
 
