@@ -44,7 +44,8 @@ if [ -f "/etc/resolv.conf" ]; then
   ${SUDO} chattr -f +i "$(realpath /etc/resolv.conf)" >/dev/null
 
   # Check weather the dns query is failling to resolve
-  # ${SUDO} tcpdump -ni any port 53 | /tmp/tee dns_problem.log
+  # ${SUDO} tcpdump -ni any port 53 | tee -a /tmp/dns_problem.log
+  # tail -f /tmp/dns_problem.log
 fi
 
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
