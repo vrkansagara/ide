@@ -19,6 +19,8 @@ cd $SCRIPTDIR
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # First thing First
 
+${SUDO} sysctl --all > $HOME/Documents/sysctl-${CURRENT_DATE}.txt
+
 ${SUDO} ufw default allow outgoing
 ${SUDO} ufw default deny incoming
 
@@ -34,7 +36,7 @@ ${SUDO} find -name '*.sh' -exec ls -lA {} +
  # reclaimable slab objects like dentries and inodes.  Once dropped, their
  # memory becomes free.
  # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
- ${SUDO} sysctl vm.drop_caches=3
+${SUDO} sysctl vm.drop_caches=3
 
 # Clear program cache/remove
 ${SUDO} rm -rfv ~/.cache/thumbnails
@@ -82,7 +84,6 @@ ${SUDO} sysctl -w vm.min_free_kbytes=128000
 cat /proc/sys/fs/inotify/max_user_watches
 ${SUDO} sysctl -w fs.inotify.max_user_watches=524288
 ${SUDO} sysctl -w fs.inotify.max_user_watches=1048576
-${SUDO} sysctl -p
 
 ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
 ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
@@ -104,10 +105,10 @@ ${SUDO} sysctl -p
 ${SUDO} cat /sys/kernel/mm/transparent_hugepage/enabled
 
 #set ulimit to 2 GB for current user
-# ulimit -v 2048000
-${SUDO} ulimit -v 12582912 # 12 GB for current user
-# ${SUDO} ulimit -v 8192000 # 8 GB for current user
+# ${SUDO} ulimit -v 2048000 # 2 GB for current user
 # ${SUDO} ulimit -v 4096000 # 4 GB for current user
+# ${SUDO} ulimit -v 8192000 # 8 GB for current user
+${SUDO} ulimit -v 12582912 # 12 GB for current user
 
 ${SUDO} apt install --no-install-recommends --yes default-jre default-jdk
 ${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
@@ -117,16 +118,16 @@ ${SUDO} apt install --no-install-recommends --yes --reinstall zsh zsh-autosugges
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
 
 #Stoping unwanted services
-
 ${SUDO} systemctl stop bluetooth
 ${SUDO} systemctl stop virtualbox
 ${SUDO} systemctl stop mongodb
 ${SUDO} systemctl stop postgresql
 ${SUDO} systemctl stop mosquitto
+${SUDO} systemctl stop php5.6-fpm
+${SUDO} systemctl stop php7.4-fpm
 ${SUDO} systemctl stop php8.0-fpm
 ${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
-${SUDO} systemctl start qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 # ${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
@@ -150,7 +151,7 @@ ${SUDO} apt-get upgrade --yes -v
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 
 # Clean up journalctl (Free up some space)
-# journalctl --vacuum-size=500M
+# ${SUDO} journalctl --vacuum-size=500M
 # Clean up old journal older then 30 day
 ${SUDO} journalctl --vacuum-time=30d
 
@@ -160,8 +161,6 @@ ${SUDO} find /var/log -name "*.log" -type f -mtime +3 -delete
 ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
 ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
-
-
 
 if ! command -v earlyoom &> /dev/null
 then
