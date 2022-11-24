@@ -6,24 +6,20 @@ CURRENT_DATE="$(date "+%Y%m%d%H%M%S")"
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Change dns for latency improvement
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo -e "\n" 
+echo -e "\n"
 echo "$0 execution ... [STARTED - ${CURRENT_DATE}]"
 
 if [ -f "/etc/resolv.conf" ]; then
-    # Lets backup the resolver
-    ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
+  # Lets backup the resolver
+  ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
 
-  #  echo "nameserver 1.1.1.1" | ${SUDO} tee /etc/resolv.conf
-  #  echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf
-  #  echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf
-  #
   # Change system dns to public dns
   echo "# cloudflare.com (https://1.1.1.1/help)" | ${SUDO} tee /etc/resolv.conf >/dev/null
   echo "nameserver 1.1.1.1" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
@@ -48,26 +44,30 @@ if [ -f "/etc/resolv.conf" ]; then
   # tail -f /tmp/dns_problem.log
 fi
 
-
-
-DOMAIN='google.com'
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=A"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=AAAA"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CAA"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CNAME"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DNSKEY"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DS"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=HTTPS"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=LOC"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=MX"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NAPTR"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NS"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=PTR"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SPF"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SRV"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SVCB"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SSHFP"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TLSA"
-curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TXT"
+declare -a DOMAINS=("google.com" "vrkansagara.in" "example.com")
+## now loop through the above array
+for DOMAIN in "${DOMAINS[@]}"; do
+  echo "Running for the domain $DOMAIN"
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=A" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=AAAA" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CAA" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CNAME" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DNSKEY" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DS" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=HTTPS" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=LOC" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=MX" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NAPTR" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NS" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=PTR" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SPF" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SRV" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SVCB" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SSHFP" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TLSA" &
+  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TXT" &
+done
 
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
+
+exit 0;
