@@ -48,4 +48,26 @@ if [ -f "/etc/resolv.conf" ]; then
   # tail -f /tmp/dns_problem.log
 fi
 
+
+
+DOMAIN='google.com'
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=A"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=AAAA"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CAA"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CNAME"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DNSKEY"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DS"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=HTTPS"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=LOC"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=MX"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NAPTR"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NS"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=PTR"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SPF"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SRV"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SVCB"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SSHFP"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TLSA"
+curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TXT"
+
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
