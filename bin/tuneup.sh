@@ -85,9 +85,9 @@ cat /proc/sys/fs/inotify/max_user_watches
 ${SUDO} sysctl -w fs.inotify.max_user_watches=524288
 ${SUDO} sysctl -w fs.inotify.max_user_watches=1048576
 
-${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
-${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
-${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=0
+${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=0
+${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=0
 
 # Clean up dmesg
 # dmesg: read kernel buffer failed: Permission denied
@@ -126,13 +126,14 @@ ${SUDO} systemctl stop mosquitto
 ${SUDO} systemctl stop php5.6-fpm
 ${SUDO} systemctl stop php7.4-fpm
 ${SUDO} systemctl stop php8.0-fpm
-${SUDO} systemctl stop ufw
+#${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 # ${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
 
 # Finally check with system log if any process is out of memory
-${SUDO} grep -i -r 'out of memory' /var/log/
+${SUDO} grep --color -i -r 'out of memory' /var/log/
+${SUDO} grep -i -r 'error' /var/log/syslog | grep -v 'containerd'
 ${SUDO} lshw -c memory
 ${SUDO} apt-get install procps preload --yes --no-install-recommends
 # Print virtual memory status
