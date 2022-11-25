@@ -95,7 +95,7 @@ ${SUDO} sysctl kernel.dmesg_restrict=0
 ${SUDO} dmesg -C
 
 # sysctl - configure kernel parameters at runtime
-${SUDO} sysctl -p
+# ${SUDO} sysctl -p
 
 #Disabling Transparent Huge Pages (THP) (Default(madvise) :- always [madvise] never)
 # Default :- madvise , Redis :- never
@@ -111,8 +111,8 @@ ${SUDO} cat /sys/kernel/mm/transparent_hugepage/enabled
 ${SUDO} ulimit -v 12582912 # 12 GB for current user
 
 ${SUDO} apt install --no-install-recommends --yes default-jre default-jdk
-${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
-${SUDO} apt install --no-install-recommends --yes --reinstall zsh zsh-autosuggestions zsh-common zsh-syntax-highlighting
+#${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
+#${SUDO} apt install --no-install-recommends --yes --reinstall zsh zsh-autosuggestions zsh-common zsh-syntax-highlighting
 
 # https://gist.github.com/juanje/9861623
 # ${SUDO} apt-get install cgroup-tools cgroup-lite cgroup-tools cgroupfs-mount libcgroup1
@@ -180,6 +180,26 @@ gpgconf --kill gpg-agent
 ${SUDO} service snapd.apparmor restart
 ${SUDO} systemctl enable --now apparmor.service
 ${SUDO} systemctl enable --now snapd.apparmor.service
+
+if [ -f "/etc/sysctl.d/local.conf" ]; then
+  # Lets backup the resolver
+  ${SUDO} cp /etc/sysctl.d/local.conf /etc/sysctl.d/local-${CURRENT_DATE}.conf
+fi
+echo '
+# Kernel system variables configuration files
+# My personal preference
+vm.swappiness=80
+vm.vfs_cache_pressure=200
+vm.overcommit_memory=0
+vm.overcommit_ratio=50
+vm.dirty_background_ratio=10
+vm.dirty_ratio=20
+vm.min_free_kbytes=128000
+fs.inotify.max_user_watches=1048576
+net.ipv6.conf.all.disable_ipv6=0
+net.ipv6.conf.default.disable_ipv6=0
+net.ipv6.conf.lo.disable_ipv6=0
+' | ${SUDO} tee /etc/sysctl.d/local.conf  >/dev/null
 
 echo "Tune of system is ....... [DONE]"
 
