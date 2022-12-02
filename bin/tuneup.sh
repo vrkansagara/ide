@@ -154,7 +154,9 @@ ${SUDO} apt-get upgrade --yes -v
 # Clean up journalctl (Free up some space)
 # ${SUDO} journalctl --vacuum-size=500M
 # Clean up old journal older then 30 day
-${SUDO} journalctl --vacuum-time=30d
+${SUDO} journalctl --vacuum-time=3d
+# List all boots ( journalctl --list-boots )
+# Check last boot logs ( journalctl -b -1 -e )
 
 # You only need to delete files with “.log” extension and modified before 3 days
 ${SUDO} find /var/log/nginx -type f -mtime +3 -delete
@@ -162,6 +164,13 @@ ${SUDO} find /var/log -name "*.log" -type f -mtime +3 -delete
 ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
 ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
+# Clean apt history logs
+if [ -f "/var/log/apt/history.log" ]; then
+  ${SUDO} head -n 1 /var/log/apt/history.log | sudo tee /var/log/apt/history.log
+fi
+if [ -f "/var/log/apt-history.log" ]; then
+  ${SUDO} head -n 1 /var/log/apt-history.log | sudo tee /var/log/apt-history.log
+fi
 
 if ! command -v earlyoom &> /dev/null
 then
@@ -180,6 +189,12 @@ gpgconf --kill gpg-agent
 ${SUDO} service snapd.apparmor restart
 ${SUDO} systemctl enable --now apparmor.service
 ${SUDO} systemctl enable --now snapd.apparmor.service
+
+echo "Max threads :"
+${SUDO} cat /proc/sys/kernel/threads-max
+echo "Total threads running:"
+ps -eo nlwp | awk '$1 ~ /^[0-9]+$/ { n += $1 } END { print n }'
+
 
 if [ -f "/etc/sysctl.d/local.conf" ]; then
   # Lets backup the resolver
@@ -204,4 +219,6 @@ net.ipv6.conf.lo.disable_ipv6=0
 echo "Tune of system is ....... [DONE]"
 
 # https://klaver.it/linux/sysctl.conf
+# https://people.redhat.com/alikins/system_tuning.html#tcp
+# https://cromwell-intl.com/open-source/performance-tuning/nfs.html
 exit 0
