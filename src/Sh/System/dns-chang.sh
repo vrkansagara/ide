@@ -6,7 +6,7 @@ CURRENT_DATE="$(date "+%Y%m%d%H%M%S")"
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -17,8 +17,8 @@ echo -e "\n"
 echo "$0 execution ... [STARTED - ${CURRENT_DATE}]"
 
 if [ -f "/etc/resolv.conf" ]; then
-  # Lets backup the resolver
-  ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
+    # Lets backup the resolver
+    ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
 
   # Change system dns to public dns
   echo "# cloudflare.com (https://1.1.1.1/help)" | ${SUDO} tee /etc/resolv.conf >/dev/null
@@ -47,25 +47,25 @@ fi
 declare -a DOMAINS=("google.com" "vrkansagara.in" "example.com")
 ## now loop through the above array
 for DOMAIN in "${DOMAINS[@]}"; do
-  echo "Running for the domain $DOMAIN"
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=A" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=AAAA" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CAA" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CNAME" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DNSKEY" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DS" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=HTTPS" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=LOC" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=MX" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NAPTR" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NS" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=PTR" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SPF" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SRV" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SVCB" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SSHFP" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TLSA" &
-  curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TXT" &
+    echo "Running for the domain $DOMAIN"
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=A" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=AAAA" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CAA" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=CNAME" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DNSKEY" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=DS" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=HTTPS" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=LOC" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=MX" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NAPTR" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=NS" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=PTR" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SPF" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SRV" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SVCB" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SSHFP" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TLSA" &
+    curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TXT" &
 done
 
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
