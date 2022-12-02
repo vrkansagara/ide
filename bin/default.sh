@@ -44,8 +44,8 @@ echo "===========INFORMATION==========="
 if [[ "$display" == 2 ]]; then
     echo "Selecting primary display"
      xrandr \
-     --output eDP-1 --primary --mode 1366x768 --pos 1920x0 --rotate normal \
-     --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+     --output eDP-1 --mode 1366x768 --pos 1920x0 --rotate normal \
+     --output HDMI-1  --primary --mode 1920x1080 --pos 0x0 --rotate normal \
      --output DP-1 --off
 
 elif [[ "$display" == 3 ]]; then
@@ -110,4 +110,4 @@ pactl set-sink-volume @DEFAULT_SINK@ 45%
 ${SUDO} systemctl stop bluetooth
 
 # set default brightness
-$HOME/.vim/bin/brightness.sh set 1000
+$HOME/.vim/bin/brightness.sh set 15000
