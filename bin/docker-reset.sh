@@ -41,6 +41,6 @@ docker rmi -f $(docker images -aq)
 
 docker system prune -a --volumes
 
-sudo service docker restart
+${SUDO} service docker restart
 
-
+exit 0
