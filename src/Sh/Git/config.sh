@@ -75,6 +75,7 @@ git config --global alias.personal 'config --global user.email vrkansagara@gmail
 git config --global alias.personalLocal 'config user.email vrkansagara@gmail.com'
 git config --global alias.work 'config --global user.email v.kansagara@easternenterprise.com'
 git config --global alias.workLocal 'config user.email v.kansagara@easternenterprise.com'
+git config --global alias.gp 'push -u origin HEAD --force-with-lease'
 
 # The unauthenticated git protocol on port 9418 is no longer supported
 git config --global url."https://".insteadOf git://
