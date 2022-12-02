@@ -221,6 +221,7 @@ alias gh='cd ~/git'
 alias du='/usr/bin/du -sh  '
 
 # Git alias ( Apart from git config )
+alias gc='git commit -S '
 
 ## Linux Administator commands
 alias myDmesgWatch='watch "dmesg | tail -20"'
