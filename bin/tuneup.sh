@@ -126,6 +126,7 @@ ${SUDO} systemctl stop mosquitto
 ${SUDO} systemctl stop php5.6-fpm
 ${SUDO} systemctl stop php7.4-fpm
 ${SUDO} systemctl stop php8.0-fpm
+${SUDO} systemctl stop remotely-agent.service
 #${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 # ${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
