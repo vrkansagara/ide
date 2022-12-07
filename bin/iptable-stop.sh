@@ -20,7 +20,7 @@ fi
 # ${SUDO} ln -sf /lib/systemd/system/systemd-resolved.service /etc/systemd/system/dbus-org.freedesktop.resolve1.service
 
 # My system IP/set ip address of server
-SERVER_IP="192.168.1.3"
+SERVER_IP="192.168.1.7"
 
 echo "Stopping IPv4 firewall and allowing everyone..."
 ipt="/usr/sbin/iptables"

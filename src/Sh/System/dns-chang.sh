@@ -6,7 +6,7 @@ CURRENT_DATE="$(date "+%Y%m%d%H%M%S")"
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -17,8 +17,8 @@ echo -e "\n"
 echo "$0 execution ... [STARTED - ${CURRENT_DATE}]"
 
 if [ -f "/etc/resolv.conf" ]; then
-    # Lets backup the resolver
-    ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
+  # Lets backup the resolver
+  ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
 
   # Change system dns to public dns
   echo "# cloudflare.com (https://1.1.1.1/help)" | ${SUDO} tee /etc/resolv.conf >/dev/null
@@ -44,9 +44,12 @@ if [ -f "/etc/resolv.conf" ]; then
   # tail -f /tmp/dns_problem.log
 fi
 
-declare -a DOMAINS=("google.com" "vrkansagara.in" "example.com")
-## now loop through the above array
-for DOMAIN in "${DOMAINS[@]}"; do
+cat /etc/resolv.conf
+
+flush_dns_for_hosts(){
+  declare -a DOMAINS=("google.com" "vrkansagara.in" "example.com")
+  ## now loop through the above array
+  for DOMAIN in "${DOMAINS[@]}"; do
     echo "Running for the domain $DOMAIN"
     curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=A" &
     curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=AAAA" &
@@ -66,8 +69,9 @@ for DOMAIN in "${DOMAINS[@]}"; do
     curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=SSHFP" &
     curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TLSA" &
     curl -X POST "https://1.1.1.1/api/v1/purge?domain=$DOMAIN&type=TXT" &
-done
+  done
+}
 
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
 
-exit 0;
+exit 0
