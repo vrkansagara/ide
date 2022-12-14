@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
 
 # Converts a mysqldump file into a Sqlite 3 compatible file. It also extracts the MySQL `KEY xxxxx` from the
 # CREATE block and create them in separate commands _after_ all the INSERTs.

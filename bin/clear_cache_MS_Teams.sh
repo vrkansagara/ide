@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
+
+[ "$1" ] && echo "Script require argument.(ex. deb-stable | deb-insider | snap)" && exit
 
 # This script cleans all cache for Microsoft Teams on Linux
 # Tested on Ubuntu-like, Debian by @necrifede and Arch Linux by @lucas-dclrcq. Feel free to test/use in other distributions.
@@ -50,3 +56,5 @@ else
   echo "Microsoft Teams is not running."
   exit
 fi
+
+exit 0;
