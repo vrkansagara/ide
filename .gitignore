@@ -9,4 +9,4 @@ tags
 .idea
 vendor/*
 /data/*
-.yarn
+/.yarn
