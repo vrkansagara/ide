@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-set -e
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
 
 dir=""
 name=""

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
 
-# set -e # This setting is telling the script to exit on a command error.
-# set -x # You refer to a noisy script.(Used to debugging)
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
@@ -37,7 +39,7 @@ ${SUDO} apt-get install --reinstall ca-certificates
 
 echo "Application related stuff..."
 ${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
-${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown clipit fontconfig
+${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown diodon fontconfig
 ${SUDO} apt-get install -y libxml2-utils #xmllint
 
 ${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit jq

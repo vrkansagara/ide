@@ -1,5 +1,9 @@
-#!/bin/sh
-set -e
+#!/usr/bin/env bash
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
+
 
 # Ref:- https://github.com/tpope/vim-fugitive/commit/63a05a6935ec4a45551bf141089c13d5671202a1
 

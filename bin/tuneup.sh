@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# set -e # This setting is telling the script to exit on a command error.
-# set -x # You refer to a noisy script.(Used to debugging)
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
 
 echo " "
 export DEBIAN_FRONTEND=noninteractive
@@ -215,6 +217,7 @@ fs.inotify.max_user_watches=1048576
 net.ipv6.conf.all.disable_ipv6=0
 net.ipv6.conf.default.disable_ipv6=0
 net.ipv6.conf.lo.disable_ipv6=0
+kernel.dmesg_restrict=0
 ' | ${SUDO} tee /etc/sysctl.d/local.conf  >/dev/null
 
 echo "Tune of system is ....... [DONE]"
