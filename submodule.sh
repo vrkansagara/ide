@@ -46,53 +46,53 @@ remove_vim_vendor_module
 mkdir -p ${CLONE_DIRECTORY}
 
 echo "Installation of [ A command-line fuzzy finder   ] ..."
-git submodule add -f  https://github.com/junegunn/fzf pack/vendor/start/fzf
+#git submodule add -f  https://github.com/junegunn/fzf pack/vendor/start/fzf
 echo "Installation of [ fzf heart vim  ] ..."
-git submodule add -f  https://github.com/junegunn/fzf.vim pack/vendor/start/fzf.vim
+#git submodule add -f  https://github.com/junegunn/fzf.vim pack/vendor/start/fzf.vim
 
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
-git submodule add -f https://github.com/tpope/vim-commentary.git pack/vendor/start/vim-commentary
+#git submodule add -f https://github.com/tpope/vim-commentary.git pack/vendor/start/vim-commentary
 
 #echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
 #git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim
 
 echo "Installation of [ Multiple cursors plugin for vim/neovim ] ..."
-git submodule add -f https://github.com/mg979/vim-visual-multi.git pack/vendor/start/vim-visual-multi
+#git submodule add -f https://github.com/mg979/vim-visual-multi.git pack/vendor/start/vim-visual-multi
 
 echo "Installation of [ surround.vim: quoting/parenthesizing made simple ] ..."
-git submodule add -f https://github.com/tpope/vim-surround.git pack/vendor/start/vim-surround
+#git submodule add -f https://github.com/tpope/vim-surround.git pack/vendor/start/vim-surround
 
 echo "Installation of [ fugitive.vim: A Git wrapper so awesome, it should be illegal  ] ..."
-git submodule add -f https://github.com/tpope/vim-fugitive.git pack/vendor/start/vim-fugitive
+#git submodule add -f https://github.com/tpope/vim-fugitive.git pack/vendor/start/vim-fugitive
 
 # As CtrlP is the 100% vim so no need extra burden of plugin and shell library
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
-git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git pack/vendor/start/ctrlp
+#git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git pack/vendor/start/ctrlp
 
 echo "Installation of [Vim plugin for the Perl module / CLI script 'ack']"
-git submodule add -f https://github.com/mileszs/ack.vim.git pack/vendor/start/ack
+#git submodule add -f https://github.com/mileszs/ack.vim.git pack/vendor/start/ack
 
 echo "Installation of [ A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks. ] ..."
-git submodule add -f https://github.com/airblade/vim-gitgutter.git pack/vendor/start/vim-gitgutter
+#git submodule add -f https://github.com/airblade/vim-gitgutter.git pack/vendor/start/vim-gitgutter
 
 echo "Installation of [ lean & mean status/tabline for vim that's light as air  ] ..."
-git submodule add -f https://github.com/vim-airline/vim-airline.git pack/vendor/start/vim-airline
-git submodule add -f https://github.com/vim-airline/vim-airline-themes.git pack/vendor/start/vim-airline-themes
+#git submodule add -f https://github.com/vim-airline/vim-airline.git pack/vendor/start/vim-airline
+#git submodule add -f https://github.com/vim-airline/vim-airline-themes.git pack/vendor/start/vim-airline-themes
 
 echo "Installation of [ types "use" statements for you ] ..."
 git submodule add -f https://github.com/arnaud-lb/vim-php-namespace.git pack/vendor/start/vim-php-namespace
 
 echo "Installation of [ A tree explorer plugin for vim. ] ..."
-git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start/nerdtree
+#git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start/nerdtree
 
 echo "Installation of [  emmet for vim: http://emmet.io/ ] ..."
-git submodule add -f https://github.com/mattn/emmet-vim.git pack/vendor/start/emmnet-vim
+#git submodule add -f https://github.com/mattn/emmet-vim.git pack/vendor/start/emmnet-vim
 
 echo "Installation of [  Managing project settings for Vim  ] ..."
-git submodule add -f https://github.com/tbknl/vimproject.git pack/vendor/start/vimproject
+#git submodule add -f https://github.com/tbknl/vimproject.git pack/vendor/start/vimproject
 
 echo "Installation of [  Vim configuration for Rust. ] ..."
-git submodule add -f https://github.com/rust-lang/rust.vim pack/vendor/start/rust
+#git submodule add -f https://github.com/rust-lang/rust.vim pack/vendor/start/rust
 
 # echo "Installation of [ A Vim plugin for Prettier ] ..."
 # git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier
