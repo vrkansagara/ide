@@ -24,7 +24,6 @@ augroup END
 " autocmd BufWritePre <buffer> :call OnFileSave()
 autocmd BufWritePost <buffer> :call OnFileSave()
 
-
 function! OnFileSave()
     let ext = &filetype
     let file_name = expand('%:t:r')

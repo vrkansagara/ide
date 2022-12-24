@@ -49,10 +49,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1 # If you come from bash you might have to c
 export AWT_TOOLKIT=MToolkit
 # wmname LG3D
 
-# export DISPLAY=:0
+export DISPLAY=:0.0
 # Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
 # export TERM=xterm
-# Remote sessin would be xterm base (Avoide st-256 issue at remote)
+# Remote session would be xterm base (Avoide st-256 issue at remote)
 alias ssh='env TERM=xterm ssh'
 export GPG_TTY=$(tty)
 # If you come from bash you might have to change your $PATH.

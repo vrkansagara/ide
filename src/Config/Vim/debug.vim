@@ -5,6 +5,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+" :scriptnames            : list all plugins, _vimrcs loaded (super)
+" :verbose set history?   : reveals value of history and where set
+" :function               : list functions
+" :func SearchCompl       : List particular function
+
 " :scriptnames  " Show all loded script for the vim instanc:
 "
 " verbose imap <tab>

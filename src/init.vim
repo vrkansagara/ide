@@ -9,7 +9,7 @@ call plug#begin()
 
 " Make sure you use single quotes
 
-Plug 'NLKNguyen/papercolor-theme'
+
 
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -19,10 +19,23 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/gosukiwi/vim-atom-dark.git'
 Plug 'https://github.com/vim-scripts/peaksea.git'
 Plug 'https://github.com/google/vim-colorscheme-primary.git'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
+Plug 'junegunn/fzf.vim'
+Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plug 'https://github.com/mileszs/ack.vim.git'
+Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'mattn/emmet-vim'
+Plug 'https://github.com/tbknl/vimproject.git'
+Plug 'rust-lang/rust.vim'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.

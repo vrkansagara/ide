@@ -23,6 +23,7 @@
 " (Register *=window, + = linux) - In normal mode, one can use p to paste after
 " the cursor, or P to paste before the cursor.
 
+" Check weather current vim has clipboard = echo has('clipboard')
 if has('clipboard')
 	if has("win32")
 		"Windows options here
@@ -36,8 +37,10 @@ if has('clipboard')
 				"Mac options here
 			elseif s:uname == "Linux\n"
 				" Linux stuff
+				" select what you want using the mouse - then type to copy to clipboard: "+y
 				noremap <leader>y "+y
 				noremap <leader>yy "+Y
+				"to paste to vim from clipboard type: "+p
 				noremap <leader>p "+p
 			endif
 		endif
