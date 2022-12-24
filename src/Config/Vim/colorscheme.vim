@@ -26,10 +26,11 @@ if exists("g:syntax_on")
 	syntax off
 endif
 
+" Lets set default colorscheme
 set t_Co=256
 set bg=dark
 set background=dark
-colorscheme atom-dark-256
+colorscheme PaperColor
 
 " Let syntax enable after colour scheme apply for better highlight
 syntax on
@@ -39,8 +40,8 @@ syntax on
 " Clear screen set t_te="^[[H^[2J"
 " :default one  t_te=^[[?1049l^[[23;0;0t
 " set t_te="^[[?1049l^[[23;0;0t"
-" I wanted to use F5 key for filetype so comment it
-" map <F5> :call ChangeColorScheme()<CR>
+" I wanted to use F5 key for filetype so changed to F2
+map <F2> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
 	try
 		if (&background == "light")
