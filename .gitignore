@@ -11,3 +11,4 @@ vendor/*
 /data/*
 /.yarn
 /coverage/
+*.out

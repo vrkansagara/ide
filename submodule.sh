@@ -4,12 +4,6 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo ""
-export DEBIAN_FRONTEND=noninteractive
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "$SCRIPT")
-
 if [ "$(whoami)" != "root" ]; then
     SUDO=sudo
 fi
@@ -96,6 +90,9 @@ git submodule add -f https://github.com/mattn/emmet-vim.git pack/vendor/start/em
 
 echo "Installation of [  Managing project settings for Vim  ] ..."
 git submodule add -f https://github.com/tbknl/vimproject.git pack/vendor/start/vimproject
+
+echo "Installation of [  Vim configuration for Rust. ] ..."
+git submodule add -f https://github.com/rust-lang/rust.vim pack/vendor/start/rust
 
 # echo "Installation of [ A Vim plugin for Prettier ] ..."
 # git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier

@@ -22,7 +22,7 @@ ${SUDO} apt-get install -f
 
 ${SUDO} apt install --no-install-recommends --yes \
     apt-transport-https lsb-release ca-certificates curl \
-    software-properties-common
+    software-properties-common php-pear
 
 if [  -n "$(uname -a | grep -i Ubuntu)" ]; then
     ${SUDO} add-apt-repository --yes ppa:ondrej/php
@@ -31,7 +31,7 @@ else
     ${SUDO} sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 fi
 
-for VERSION in 5.6 7.4 8.1;do
+for VERSION in 5.6 7.4 8.1 8.2;do
     for EXTENSION in dev fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl;do
         ${SUDO} apt-get install --no-install-recommends --yes php${VERSION}-${EXTENSION}
     done

@@ -11,6 +11,16 @@ if [ "$(whoami)" != "root" ]; then
   SUDO=sudo
 fi
 
+
+if [  -n "$(uname -a | grep -i Ubuntu)" ]; then
+   if [ "$(lsb_release -sc)" == 'jammy' ]; then
+     sudo nmcli networking off
+     sudo nmcli networking on
+   fi
+fi
+
+
+exit;
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Change dns for latency improvement

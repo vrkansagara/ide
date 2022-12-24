@@ -8,16 +8,26 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- clean your bas history.
+#  Note		  :- https://www.rust-lang.org/tools/install
+#  Note(Other)		  :- https://forge.rust-lang.org/infra/other-installation-methods.html
+#  Ref: https://github.com/orgs/mozilla/repositories?language=rust&type=all
+#  Ref: https://github.com/torvalds/linux/search?l=rust
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-$SHELL -c 'cat /dev/null > $HOME/.bash_history'
-$SHELL -c 'cat /dev/null > $HOME/.zsh_history'
-history -cw
+
+${SUDO} apt-get install --yes --no-install-recommends build-essential
 
 
-exit 0
+if [[ "$1" == "-r" ]]; then
+  rustup self uninstall
+fi
+
+if [[ "$1" == "-r" ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+

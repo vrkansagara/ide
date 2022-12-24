@@ -154,7 +154,10 @@ ${SUDO} apt-get upgrade --yes -v
 # echo "Acquire::Languages "none";" | ${SUDO} tee -a /etc/apt/apt.conf.d/00aptitude
 # https://itectec.com/ubuntu/ubuntu-install-cgconfig-in-ubuntu-16-04/
 
-# Clean up journalctl (Free up some space)
+# Clean up journalctl (Free up some space) , glibc-source, glibc-tools
+# apt install openafs-client
+# https://access.redhat.com/solutions/1450043
+# https://packages.ubuntu.com/focal/amd64/kernel/linux-image-unsigned-5.14.0-1054-oem
 # ${SUDO} journalctl --vacuum-size=500M
 # Clean up old journal older then 30 day
 ${SUDO} journalctl --vacuum-time=3d
