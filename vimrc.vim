@@ -13,14 +13,14 @@ endfunction
 try
 
     "(Priority = 0) Initialization vim path loader ( VIM 8 default)
-    " silent !mkdir -p ~/.vim/pack/
+    silent !mkdir -p ~/.vim/pack/ ~/.vim/autoload
     if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !mkdir -p ~/.vim/autoload
         " silent !curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-        " silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     endif
 
-    "(Priority = 1) Initialization of vim
+    "(Priority = 1/1) Initialization of vim using package manager
+    source ~/.vim/src/init.vim
     source ~/.vim/src/main.vim
 
     "(Priority = 2) VIM distributed plugin configuration override(load into
@@ -48,7 +48,7 @@ try
     "doesn't matter
     for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
         if (filereadable(f))
-            exe 'source' . f
+            " exe 'source' f
         else
             throw "File can not able to read " . f
         endif
