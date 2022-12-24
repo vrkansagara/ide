@@ -4,34 +4,36 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo ""
-export DEBIAN_FRONTEND=noninteractive
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "$SCRIPT")
-
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Insatall jmeter
+#  Note		  :- Install jmeter
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt install --no-install-recommends --yes \
-    apt-transport-https lsb-release ca-certificates curl \
-    software-properties-common
+cd /tmp
+JMETER_VERSION="apache-jmeter-5.5"
+${SUDO} rm -rf "/tmp/$JMETER_VERSION*"
 
-if [  -n "$(uname -a | grep -i Ubuntu)" ]; then
-    ${SUDO} add-apt-repository --yes ppa:ondrej/php
+wget -k "https://dlcdn.apache.org//jmeter/binaries/${JMETER_VERSION}.tgz"
+wget -k "https://www.apache.org/dist/jmeter/binaries/${JMETER_VERSION}.tgz.asc"
+gpg --keyserver pgpkeys.mit.edu --recv-key  C4923F9ABFB2F1A06F08E88BAC214CAA0612B399
+#gpg --fingerprint C4923F9ABFB2F1A06F08E88BAC214CAA0612B399
+
+gpg --verify "${JMETER_VERSION}.tgz.asc" "${JMETER_VERSION}.tgz"
+
+if [ $? -eq 0 ]
+then
+   tar -xvf "${JMETER_VERSION}.tgz"
+    mv "/tmp/${JMETER_VERSION}" /tmp/apache-jmeter
+    rm -rf "$HOME/Applications/apache-jmeter"
+    mv /tmp/apache-jmeter $HOME/Applications
 else
-    ${SUDO} curl -sSL -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-    ${SUDO} sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+    echo Problem with signature.
 fi
 
-
-echo
-echo "User [$USER] does not require to enter password."
-
+${SUDO} chmod ugo+xr $HOME/Applications/apache-jmeter/bin/jmeter
+echo "$HOME/Applications/apache-jmeter/bin/jmeter"
 exit 0

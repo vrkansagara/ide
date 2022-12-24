@@ -28,7 +28,8 @@
     "laminas/laminas-component-installer": "@stable",
     "laravel/installer": "@stable",
     "symfony/yaml": "@stable",
-    "symfony/console": "^5.4"
+    "symfony/console": "^5.4",
+    "vrkansagara/common": "dev-master"
   },
   "support": {
     "email": "vrkansagara@gmail.com",

@@ -21,6 +21,9 @@ ${SUDO} apt-get install curl
 
 ${SUDO} curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
+nvm install node
+nvm install --lts
+
 # Using Linux
 # curl -sL install-node.now.sh/lts | ${SUDO} bash -
 # curl --compressed -o- -L https://yarnpkg.com/install.sh | ${SUDO} bash
