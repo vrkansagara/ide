@@ -16,21 +16,22 @@
 " https://github.com/vim/vim/issues/993#issuecomment-255651605
 " set Vim-specific sequences for RGB colors
 if exists('+termguicolors')
-	" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     " set termguicolors
 endif
 
 " Set default color scheme
 if exists("g:syntax_on")
-	syntax off
+    syntax off
 endif
 
 " Lets set default colorscheme
 set t_Co=256
 set bg=dark
 set background=dark
-colorscheme PaperColor
+colorscheme atom-dark-256
+let g:airline_theme='papercolor'
 
 " Let syntax enable after colour scheme apply for better highlight
 syntax on
@@ -40,24 +41,24 @@ syntax on
 " Clear screen set t_te="^[[H^[2J"
 " :default one  t_te=^[[?1049l^[[23;0;0t
 " set t_te="^[[?1049l^[[23;0;0t"
-" I wanted to use F5 key for filetype so changed to F2
-map <F2> :call ChangeColorScheme()<CR>
+" I wanted to use F5 key for filetype so changed to F11
+map <F11> :call ChangeColorScheme()<CR>
 function! ChangeColorScheme()
-	try
-		if (&background == "light")
-			syntax off
-			let g:airline_theme='base16_google'
-			set background=dark
-			colorscheme atom-dark-256
-			syntax on
-		else
-			syntax off
-			let g:airline_theme='papercolor'
-			set background=light
-			colorscheme PaperColor
-			syntax on
-		endif
-	catch
-		throw exception
-	endtry
+    try
+        if (&background == "light")
+            syntax off
+            " let g:airline_theme='base16_google'
+            set background=dark
+            colorscheme atom-dark-256
+            syntax on
+        else
+            syntax off
+            " let g:airline_theme='papercolor'
+            set background=light
+            colorscheme PaperColor
+            syntax on
+        endif
+    catch
+        throw exception
+    endtry
 endfunction

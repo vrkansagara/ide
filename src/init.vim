@@ -9,8 +9,6 @@ call plug#begin()
 
 " Make sure you use single quotes
 
-
-
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

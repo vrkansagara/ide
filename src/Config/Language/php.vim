@@ -64,7 +64,7 @@ function! RefreshF5php()
     " execute "normal ``"
 endfunction
 
-    " This function is dynamically called by hiting enter for filetype
+" This function is dynamically called by hiting enter for filetype
 function! Runphp()
     let fileName = expand('%:t') " file name only (with extention)
     let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
@@ -85,5 +85,5 @@ function! Runphp()
     " execute "!fzf | " . system("php " . shellescape(filePath))
 
 
-    endfunction
+endfunction
 

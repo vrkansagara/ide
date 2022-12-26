@@ -21,7 +21,7 @@ au VimLeave * :call MakeSession()
 if(argc() == 0)
     " issue :- Error detected while processing VimEnter Autocommands for "*"..function LoadSession[4]..scrip
     " E475: Invalid argument: 2: tabnext 2
-    " au VimEnter * nested :call LoadSession()
+    au VimEnter * nested :call LoadSession()
 endif
 
 " Ref:- https://stackoverflow.com/a/31978241/2627408
