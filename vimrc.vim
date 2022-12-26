@@ -48,7 +48,7 @@ try
     "doesn't matter
     for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
         if (filereadable(f))
-            " exe 'source' f
+            exe 'source' f
         else
             throw "File can not able to read " . f
         endif
