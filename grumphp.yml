@@ -73,8 +73,8 @@ grumphp:
                 - /^library\/(.*)/
         git_branch_name:
             whitelist:
-                - "/VRK-([a-z|0-9]+)$/"
-                - "/VRK-(hotfix|bugfix|feature|release|task)-([a-z|0-9]+)$/"
+                - "/([a-z|0-9]+)$/"
+                - "/(hotfix|bugfix|feature|release|task)-([a-z|0-9]+)$/"
                 - "master"
                 - "staging"
                 - "qa"
@@ -83,6 +83,11 @@ grumphp:
             blacklist:
                 - "dev-testing"
                 - "dev-production"
+                - "dev-master"
+                - "dev-staging"
+                - "dev-qa"
+                - "dev-develop"
+                - "dev-infra"
             additional_modifiers: ''
             allow_detached_head: true
         git_commit_message:

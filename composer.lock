@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea28b650733dd2176b44a89a09608a5e",
+    "content-hash": "531371eaaa683bd6a0aa3984754ec891",
     "packages": [
         {
             "name": "composer/semver",
@@ -9278,16 +9278,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "guzzle/guzzle": 0,
-        "phpoffice/phpspreadsheet": 0,
-        "guzzlehttp/guzzle": 0,
-        "mtdowling/jmespath.php": 0,
-        "symfony/dom-crawler": 0,
-        "laminas/laminas-migration": 0,
-        "laminas/laminas-component-installer": 0,
-        "laravel/installer": 0,
-        "symfony/yaml": 0,
-        "vrkansagara/common": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
