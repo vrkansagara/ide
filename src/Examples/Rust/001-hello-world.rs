@@ -28,10 +28,14 @@ fn main() {
     println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");
 
     // As can named arguments.
-    println!( "{subject} {verb} {object}", object = "the lazy dog", subject = "the quick brown fox", verb = "jumps over");
-
-    // Different formatting can be invoked by specifying the format character after a
-    // `:`.
+    println!(
+        "{subject} {verb} {object}",
+        object = "the lazy dog",
+        subject = "the quick brown fox",
+        verb = "jumps over"
+    );
+    // Different formatting can be invoked by specifying the format character
+    // after a `:`.
     println!("Base 10:               {}", 69420); //69420
     println!("Base 2 (binary):       {:b}", 69420); //10000111100101100
     println!("Base 8 (octal):        {:o}", 69420); //207454

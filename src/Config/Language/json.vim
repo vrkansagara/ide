@@ -14,3 +14,18 @@ function! RefreshF5json()
     " exe "normal gg=G``"
 endfunction
 
+" This function is dynamically called by hiting enter for filetype
+function! Runjson()
+	let fileName = expand('%:t') " file name only (with extention)
+	let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+	let filePath = expand('%:p') " Absolute to filepath
+	let directoryPath = expand('%:p:h') " Absolute to directory
+
+	" Write current file
+	execute "silent! w!"
+
+	" Clear terminal color, clean screen, run object
+	execute "silent! echo -e '\033[0m' && clear"
+
+	" execute "silent ! jq " . filePath
+endfunction

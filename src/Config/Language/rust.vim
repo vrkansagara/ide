@@ -6,6 +6,13 @@
 " .sh files as Shell script
 autocmd BufNewFile,BufRead *.rs set ft=rust
 
+" Let's rust formater handle this
+" https://github.com/rust-lang/rust.vim#formatting-with-rustfmt
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+let g:rust_clip_command = 'xclip -selection clipboard'
+
 " This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5rust()
     " Call F2 which is trim whitespace for all file type
@@ -31,9 +38,6 @@ function! Runrust()
     " run file with gnu compiler
     let gcc_options = " "
     let output_options = " -o ". outputpath
-
-    " File indent as per rust formater
-    execute "silent ! rustfmt" . filePath
 
     " Write current file
     execute "silent! w!"
