@@ -19,8 +19,8 @@ set sessionoptions-=terminal
 au VimLeave * :call MakeSession()
 " Adding automatons for when entering or leaving Vim
 if(argc() == 0)
-    " issue :- Error detected while processing VimEnter Autocommands for "*"..function LoadSession[4]..scrip
-    " E475: Invalid argument: 2: tabnext 2
+    " issue :- Error detected while processing VimEnter Autocommands for
+    " "*"..function LoadSession[4]..scrip E475: Invalid argument: 2: tabnext 2
     au VimEnter * nested :call LoadSession()
 endif
 

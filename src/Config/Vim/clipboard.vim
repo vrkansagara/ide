@@ -3,11 +3,16 @@
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Vim offers the + and * registers to reference the system clipboard (:help quoteplus and :help quotestar). Note that on some systems, + and * are the same, while on others they are different. Generally on Linux, + and * are different
+" Vim offers the + and * registers to reference the system clipboard (:help
+" quoteplus and :help quotestar). Note that on some systems, + and * are the
+" same, while on others they are different. Generally on Linux, + and * are
+" different
 
-
-" + corresponds to the desktop clipboard (XA_SECONDARY) that is accessed using CTRL-C, CTRL-X, and CTRL-V
-" * corresponds to the X11 primary selection (XA_PRIMARY), which stores the mouse selection and is pasted using the middle mouse button in most applications
+" + corresponds to the desktop clipboard (XA_SECONDARY) that is accessed using
+" CTRL-C, CTRL-X, and CTRL-V
+" * corresponds to the X11 primary selection (XA_PRIMARY), which stores the
+" mouse selection and is pasted using the middle mouse button in most
+" applications
 
 " gg"+yG – copy the entire buffer into + (normal mode)
 "*dd – cut the current line into * (normal mode)
@@ -25,26 +30,27 @@
 
 " Check weather current vim has clipboard = echo has('clipboard')
 if has('clipboard')
-	if has("win32")
-		"Windows options here
-		noremap <leader>y "*y
-		noremap <leader>yy "*Y
-		noremap <leader>p "*p
-	else
-		if has("unix")
-			let s:uname = system("uname")
-			if s:uname == "Darwin\n"
-				"Mac options here
-			elseif s:uname == "Linux\n"
-				" Linux stuff
-				" select what you want using the mouse - then type to copy to clipboard: "+y
-				noremap <leader>y "+y
-				noremap <leader>yy "+Y
-				"to paste to vim from clipboard type: "+p
-				noremap <leader>p "+p
-			endif
-		endif
-	endif
+    if has("win32")
+        "Windows options here
+        noremap <leader>y "*y
+        noremap <leader>yy "*Y
+        noremap <leader>p "*p
+    else
+        if has("unix")
+            let s:uname = system("uname")
+            if s:uname == "Darwin\n"
+                "Mac options here
+            elseif s:uname == "Linux\n"
+                " Linux stuff
+                " select what you want using the mouse - then type to copy to
+                " clipboard: "+y
+                noremap <leader>y "+y
+                noremap <leader>yy "+Y
+                "to paste to vim from clipboard type: "+p
+                noremap <leader>p "+p
+            endif
+        endif
+    endif
 else
-	echomsg "Clipboard functionality is not present with current VIM"
+    echomsg "Clipboard functionality is not present with current VIM"
 endif

@@ -75,4 +75,8 @@ fn main() {
     let number: f64 = 1.0;
     let width: usize = 5;
     println!("{number:>width$}");
+
+    let information = ('T', 100, "Vallabh Kansagara");
+    let (t, number, name) = information;
+    println!("Your name is {}", name);
 }

@@ -2,10 +2,7 @@ function sum(a, b) {
   return a + b;
 }
 
-
-
 module.exports = sum;
-
 
 import {expect, jest, test} from '@jest/globals';
 

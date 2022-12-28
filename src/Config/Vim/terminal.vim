@@ -5,7 +5,7 @@
 
 if !has("terminal")
     echomsg "There is no terminal available"
-   finish
+    finish
 endif
 
 nnoremap <leader>tt :terminal ++rows=25<cr>
@@ -13,12 +13,11 @@ nnoremap <leader>to :terminal ++rows=5<cr>
 inoremap <F12> :call Terminal()<cr>
 nnoremap <F12> :call Terminal()<cr>
 
-
-    function Terminal()
-function! OnTermExit(job, message)
-    close
-    " TODO: add some code to confirm that current window is a popup.
-    " TODO: prevent close other window by accident.
+function Terminal()
+    function! OnTermExit(job, message)
+        close
+        " TODO: add some code to confirm that current window is a popup.
+        " TODO: prevent close other window by accident.
     endfunction
 
     let w = 80
@@ -37,18 +36,18 @@ function! OnTermExit(job, message)
     let opts.border = [2,2,2,2,2,2,2,2,2]
     let opts.drag = 1
     let opts.resize = 1
-let winid = popup_create(bid, opts)
-    endfunction
+    let winid = popup_create(bid, opts)
+endfunction
 
-    " function! ToggleProjectVK()
-    "   call ToggleTerm('bash')
-    " endfunction
+" function! ToggleProjectVK()
+"   call ToggleTerm('bash')
+" endfunction
 
-    " function! ToggleTerm(cmd)
-    "   if empty(bufname(a:cmd))
-    "       call CreateCenteredFloatingWindow()
-    "       call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
-    "   else
-    "       bwipeout!
-    "   endif
-    " endfunction
+" function! ToggleTerm(cmd)
+"   if empty(bufname(a:cmd))
+"       call CreateCenteredFloatingWindow()
+"       call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
+"   else
+"       bwipeout!
+"   endif
+" endfunction
