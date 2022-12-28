@@ -17,6 +17,8 @@ fi
 #  Note		  :- Init script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+${SUDO} apt-get install neofetch unzip git  --yes --no-install-recommends
+
 cd /tmp
 ${SUIDO} rm -rf /tmp/jq $(pwd)/bin/jq
 wget https://github.com/stedolan/jq/releases/latest/download/jq-linux64 -O jq
@@ -34,7 +36,7 @@ mv /tmp/JMESPath $(pwd)/bin
 
 ${SUDO} chmod +x $HOME/.vim/bin/*
 
-
+# Run command at vim and exit
 vim -c 'PlugInstall|q'
 vim -c 'PlugUpdate|q'
 vim -c 'PlugClean|q'
