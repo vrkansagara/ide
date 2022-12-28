@@ -244,6 +244,7 @@ alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{prin
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myPublicIP='dig +short txt ch whoami.cloudflare @1.0.0.1'
+alias myPublicIpCurl='curl -iH "Accept: text/plain" --silent https://www.cloudflare.com/cdn-cgi/trace 2>&1'
 alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"

@@ -219,7 +219,6 @@ set scrolloff=3
 set textwidth=80
 set colorcolumn=+1
 set wrapmargin=2
-set expandtab
 
 " au BufRead,BufNewFile *.md vim setlocal textwidth=80
 " au BufRead,BufNewFile *.c *.cpp *.hc *.cpp *.h  vim setlocal textwidth=80
