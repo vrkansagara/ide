@@ -12,8 +12,8 @@ call plug#begin()
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdtree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
 
 " ColorScheme
 Plug 'https://github.com/gosukiwi/vim-atom-dark.git'
