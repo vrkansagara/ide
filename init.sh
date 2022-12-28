@@ -33,3 +33,9 @@ echo '{"a": "foo", "b": "bar", "c": "baz"}' | /tmp/JMESPath a
 mv /tmp/JMESPath $(pwd)/bin
 
 ${SUDO} chmod +x $HOME/.vim/bin/*
+
+
+vim -c 'PlugInstall|q'
+vim -c 'PlugUpdate|q'
+vim -c 'PlugClean|q'
+vim -c 'PlugUpgrade|q'

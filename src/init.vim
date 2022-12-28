@@ -1,3 +1,4 @@
+call plug#begin("$HOME/.vim/pack/vendor/start")
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -45,3 +46,4 @@ call plug#end()
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
+call plug#helptags()

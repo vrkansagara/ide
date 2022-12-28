@@ -235,8 +235,8 @@ function! s:profile(bang)
     else
         profile start /tmp/profile.log
         profile func *
-            profile file *
-            endif
+        profile file *
+    endif
 endfunction
 
 command! -bang Profile call s:profile(<bang>0)
