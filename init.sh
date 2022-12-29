@@ -41,3 +41,22 @@ vim -c 'PlugInstall|q'
 vim -c 'PlugUpdate|q'
 vim -c 'PlugClean|q'
 vim -c 'PlugUpgrade|q'
+
+
+composer self-update
+rm -rf composer.phar
+rm -rf vendor composer.lock
+composer update
+./vendor/bin/grumphp  git:init
+./vendor/bin/grumphp  git:deinit
+./vendor/bin/grumphp
+./vendor/bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev
+${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
+yarn set version latest
+
+# update coc-nvim plugines
+#echo "Wait for 2 minutes, coc-nvim plugines is started updating"
+#vim -c 'CocUpdateSync|q'
+#echo "Add intelephense license here"
+#node -e "console.log(os.homedir() + '/intelephense/licence.txt')"
+

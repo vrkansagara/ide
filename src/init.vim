@@ -13,8 +13,8 @@ call plug#begin()
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdtree'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'yaegassy/coc-intelephense', {'do': 'yarn install --frozen-lockfile'}
 
 " ColorScheme
 Plug 'https://github.com/gosukiwi/vim-atom-dark.git'
@@ -39,6 +39,7 @@ Plug 'https://github.com/tbknl/vimproject.git'
 
 " Language specific 
 Plug 'rust-lang/rust.vim'
+Plug 'https://github.com/mattn/webapi-vim.git'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.

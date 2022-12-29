@@ -6,9 +6,9 @@
 bundle/
 data/spell/*
 tags
-.idea
+.idea/*
 vendor/*
-/data/*
-/.yarn
-/coverage/
+data/*
+.yarn/*
+/coverage/*
 *.out

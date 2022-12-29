@@ -13,6 +13,7 @@ nnoremap <leader>to :terminal ++rows=5<cr>
 inoremap <F12> :call Terminal()<cr>
 nnoremap <F12> :call Terminal()<cr>
 
+
 function Terminal()
     function! OnTermExit(job, message)
         close
