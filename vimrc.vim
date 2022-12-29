@@ -60,7 +60,8 @@ try
     endfor
 
     " Before passing access to user , it must be light background.
-    echo "Do one thing at a time and do it well - Vallabh Kansagara (VRKANSAGARA)."
+    " echo "Do one thing at a time and do it well - Vallabh Kansagara (VRKANSAGARA)."
+    echo "Time and Tide Wait For none ! - Vallabh Kansagara (VRKANSAGARA)."
 
 catch /.*/
 
