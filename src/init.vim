@@ -1,5 +1,5 @@
 call plug#begin("$HOME/.vim/pack/vendor/start")
-call plug#begin()
+" call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
@@ -46,5 +46,5 @@ Plug 'https://github.com/mattn/webapi-vim.git'
 call plug#helptags()
 call plug#end()
 " You can revert the settings after the call like so:
-"   filetype indent off   " Disable file-type-specific indentation
-"   syntax off            " Disable syntax highlighting
+""   filetype indent off   " Disable file-type-specific indentation
+""   syntax off            " Disable syntax highlighting

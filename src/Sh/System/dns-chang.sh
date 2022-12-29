@@ -20,7 +20,6 @@ if [  -n "$(uname -a | grep -i Ubuntu)" ]; then
 fi
 
 
-exit;
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Change dns for latency improvement
@@ -33,17 +32,17 @@ if [ -f "/etc/resolv.conf" ]; then
   ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
 
   # Change system dns to public dns
-  echo "# cloudflare.com (https://1.1.1.1/help)" | ${SUDO} tee /etc/resolv.conf >/dev/null
-  echo "nameserver 1.1.1.1" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 1.0.0.1" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 2606:4700:4700::1111" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 2606:4700:4700::1001" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
+  echo "# cloudflare.com (https://1.1.1.1/help)" | ${SUDO} tee /etc/resolv.conf > /dev/null
+  echo "nameserver 1.1.1.1" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 1.0.0.1" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 2606:4700:4700::1111" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 2606:4700:4700::1001" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
 
-  echo "# Google DNS" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 2001:4860:4860::8888" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
-  echo "nameserver 2001:4860:4860::8844" | ${SUDO} tee -a /etc/resolv.conf >/dev/null
+  echo "# Google DNS" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 8.8.8.8" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 8.8.4.4" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 2001:4860:4860::8888" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
+  echo "nameserver 2001:4860:4860::8844" | ${SUDO} tee -a /etc/resolv.conf > /dev/null
 
   # change file attributes on a Linux file system
   #  ${SUDO} chattr +i /etc/resolv.conf >/dev/null
