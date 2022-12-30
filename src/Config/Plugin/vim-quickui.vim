@@ -66,7 +66,17 @@ call quickui#menu#install('H&elp', [
 			\ ['--',''],
 			\ ['&Vim Script', 'help eval', ''],
 			\ ['&Function List', 'help function-list', ''],
+            \ [ 'shell&Test', 'call ExecuteShellCommand()']
 			\ ], 10000)
+
+function! ExecuteShellCommand()
+    silent execute '!' . escape('touch /tmp/testFile-$(date "+%Y%m%d%H%M%S").txt 2>&1','%')
+endfunc
+
+call quickui#menu#install('&C/C++', [
+            \ [ '&Compile', 'echo 1' ],
+            \ [ '&Run', 'echo 2' ],
+            \ ], '<auto>', 'c,cpp')
 
 " display tips in the cmdline
 let g:quickui_show_tip = 1
@@ -78,8 +88,5 @@ nnoremap <silent><space><space> :call quickui#menu#open()<cr>
 
 
 
-call quickui#menu#install('&C/C++', [
-            \ [ '&Compile', 'echo 1' ],
-            \ [ '&Run', 'echo 2' ],
-            \ ], '<auto>', 'c,cpp')
+
 
