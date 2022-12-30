@@ -41,6 +41,8 @@ Plug 'https://github.com/tbknl/vimproject.git'
 Plug 'rust-lang/rust.vim'
 Plug 'https://github.com/mattn/webapi-vim.git'
 
+Plug 'skywind3000/vim-quickui'
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#helptags()
