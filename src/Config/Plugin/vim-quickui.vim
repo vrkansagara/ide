@@ -1,3 +1,8 @@
+" Lets check if plug is installed or not
+if exists('g:quickui_version')
+    finish
+endif
+
 call quickui#menu#reset()
 
 " enable to display tips in the cmdline
@@ -6,7 +11,7 @@ let g:quickui_border_style = 2
 
 " hit space twice to open menu
 " noremap <space><space> :call quickui#menu#open()<cr>
-noremap <A-p> :call quickui#menu#open()<cr>
+noremap <A-p> :call quickui#menu#update() \| call quickui#menu#open()<cr>
 
 function! SearchInFiles()
   echoerr "This is SearchInFiles function call"

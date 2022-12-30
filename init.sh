@@ -37,11 +37,10 @@ mv /tmp/JMESPath $(pwd)/bin
 ${SUDO} chmod +x $HOME/.vim/bin/*
 
 # Run command at vim and exit
-vim -c 'PlugInstall|q'
-vim -c 'PlugUpdate|q'
-vim -c 'PlugClean|q'
-vim -c 'PlugUpgrade|q'
+vim -c "PlugUpdate | PlugUpdate | PlugUpgrade | PlugClean |q"
 
+#Helpful to itterate over multiple files using existing vim command
+#vim -c "execute 'normal! 1' | execute 'normal! 2'"
 
 composer self-update
 rm -rf composer.phar
