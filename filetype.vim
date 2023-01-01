@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -10,7 +10,7 @@
 " Listen very carefully, I will say this only once
 if exists("did_load_filetypes")
     " echoerr "Filetypes does not exists with this vim"
-"    finish
+    "    finish
 endif
 " let did_load_filetypes = 1
 
@@ -36,10 +36,10 @@ function! OnFileSave()
         silent! %s/^\s*://
         " silent! %s/^map/nnoremap/
         " silent! %s/^imap/inoremap/
-        
+
         "nmap <-> nnoremap make issue with coc-nvim , so disable it
-        " silent! %s/^nmap/nnoremap/
-        " silent! %s/^cmap/cnoremap/
+    " silent! %s/^nmap/nnoremap/
+    " silent! %s/^cmap/cnoremap/
 
     elseif extension == 'php'
         " exe "normal \<F5>"
