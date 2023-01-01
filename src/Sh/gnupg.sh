@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
+set -xve # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
@@ -7,8 +7,6 @@ fi
 echo " "
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
   SUDO=sudo

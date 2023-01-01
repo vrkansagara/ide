@@ -1,4 +1,7 @@
-set runtimepath+=$HOME/.vim/src
+" set runtimepath+=$HOME/.vim/src
+set runtimepath=$HOME/.vim
+let VIM="$HOME/.vim"
+let VIMRUNTIME="$HOME/.vim"
 
 function! VimErrorCaught() abort
 
@@ -16,19 +19,19 @@ try
     silent !mkdir -p ~/.vim/pack/ ~/.vim/autoload
     if empty(glob('~/.vim/autoload/plug.vim'))
         " silent !curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        " silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     endif
 
     "(Priority = 1/1) Initialization of vim using package manager
-    source ~/.vim/src/init.vim
     source ~/.vim/src/main.vim
+    " source ~/.vim/src/init.vim
 
     "(Priority = 2) VIM distributed plugin configuration override(load into
     "0-9,az,AZ order)
 
     for f in split(glob('~/.vim/src/Config/Plugin/*.vim'), '\n')
         if (filereadable(f))
-            exe 'source ' f
+            " exe 'source ' f
         else
             throw "File can not able to read " . f
         endif
@@ -38,7 +41,7 @@ try
     "order)
     for f in split(glob('~/.vim/src/Config/Vim/*.vim'), '\n')
         if (filereadable(f))
-            exe 'source ' f
+            " exe 'source ' f
         else
             throw "File can not able to read " . f
         endif
@@ -48,7 +51,7 @@ try
     "doesn't matter
     for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
         if (filereadable(f))
-            exe 'source ' f
+            " exe 'source ' f
         else
             throw "File can not able to read " . f
         endif
