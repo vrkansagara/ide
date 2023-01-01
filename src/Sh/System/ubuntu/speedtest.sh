@@ -7,9 +7,6 @@ fi
 echo ""
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR="$(dirname "$SCRIPT")"
-export SCRIPTDIR
 
 if [ "$(whoami)" != "root" ]; then
   SUDO=sudo

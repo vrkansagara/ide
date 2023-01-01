@@ -31,6 +31,7 @@ set t_Co=256
 set bg=dark
 set background=dark
 colorscheme atom-dark-256
+" colorscheme PaperColor
 let g:airline_theme='papercolor'
 
 " Let syntax enable after colour scheme apply for better highlight
@@ -50,12 +51,14 @@ function! ChangeColorScheme()
             " let g:airline_theme='base16_google'
             set background=dark
             colorscheme atom-dark-256
+            " colorscheme PaperColor
             syntax on
         else
             syntax off
             " let g:airline_theme='papercolor'
             set background=light
-            colorscheme PaperColor
+            "colorscheme PaperColor
+            colorscheme atom-dark-256
             syntax on
         endif
     catch

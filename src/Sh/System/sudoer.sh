@@ -7,14 +7,13 @@ fi
 echo ""
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "$SCRIPT")
+
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-echo -e "Script [$0] started in [$SCRIPTDIR] at  $CURRENT_DATE"
+#echo -e "Script [$0] started in [$SCRIPTDIR] at  $CURRENT_DATE"
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara

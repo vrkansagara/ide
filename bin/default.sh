@@ -7,8 +7,7 @@ fi
 echo -e "\n\n\n"
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "SCRIPT")
+
 OS=$(uname -s)
 VER=$(uname -r)
 BUILD=$(uname -m)
