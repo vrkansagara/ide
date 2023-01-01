@@ -11,7 +11,7 @@ git_submodule_remove_untracked() {
 cd $HOME/.vim/
    for i in $(git ls-files --stage | grep 160000 | awk "{print \$4}") ; do
      (
-       $(git rm --cached -rf $i)
+       git rm --cached -rf $i
      )
    done
 }
@@ -132,6 +132,9 @@ git submodule add -f https://github.com/rust-lang/rust.vim pack/vendor/start/rus
 
 echo "Installation of [ Markdown for Vim: a complete environment to create Markdown files with a syntax highlight that doesn't suck!  ] ..."
 git submodule add -f https://github.com/gabrielelana/vim-markdown.git pack/vendor/start/vim-markdown
+
+echo "Installation of [ The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! sunglasses  ] ..."
+git submodule add -f https://github.com/skywind3000/vim-quickui.git pack/vendor/start/vim-quickui
 
 #echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
 #git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim

@@ -58,3 +58,6 @@
 [submodule "pack/vendor/start/vim-markdown"]
 	path = pack/vendor/start/vim-markdown
 	url = https://github.com/gabrielelana/vim-markdown.git
+[submodule "pack/vendor/start/vim-quickui"]
+	path = pack/vendor/start/vim-quickui
+	url = https://github.com/skywind3000/vim-quickui.git
