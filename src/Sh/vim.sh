@@ -18,7 +18,10 @@ fi
 
 ${SUDO} add-apt-repository ppa:jonathonf/vim
 ${SUDO} apt update
-${SUDO} apt install --yes --no-install-recommends vim vim-common vim-runtime vim-gtk
+${SUDO} apt purge vim*
+${SUDO} apt install --yes --no-install-recommends \
+    vim vim-common vim-runtime vim-gtk vim-doc vim-scripts \
+    cscope universal-ctags exuberant-ctags
 
 exit;
 

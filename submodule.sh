@@ -5,7 +5,6 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 
-
 git_submodule_remove_untracked() {
 
 cd $HOME/.vim/
@@ -19,10 +18,11 @@ cd $HOME/.vim/
 command_exists() {
   command -v "$@" >/dev/null 2>&1
 }
-# Check if sudo is installed
-command_exists sudo || return 1
+
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  # Check if sudo is installed
+  command_exists sudo || return 1
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
