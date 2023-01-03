@@ -5,7 +5,6 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 
-echo ""
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
