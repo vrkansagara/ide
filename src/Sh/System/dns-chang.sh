@@ -14,9 +14,10 @@ fi
 
 if [  -n "$(uname -a | grep -i Ubuntu)" ]; then
    if [ "$(lsb_release -sc)" == 'jammy' ]; then
-     sudo nmcli networking off
-     sudo nmcli networking on
+     ${SUDO} nmcli networking off
+     ${SUDO} nmcli networking on
    fi
+    ${SUDO} systemctl restart NetworkManager
 fi
 
 

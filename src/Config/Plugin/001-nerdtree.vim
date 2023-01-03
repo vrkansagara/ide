@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -27,11 +27,13 @@ let NERDTreeIgnore = [
             \'.netrwhist',
             \ '.NERDTreeBookmarks',
             \ '^node_modules$',
+            \ '^vendor$',
             \ '^.DS_Store$',
             \ '^.idea$',
             \ '^.git$',
             \ '^.coffee$',
-            \ '^bundle$']
+            \ '^bundle$'
+            \ ]
 
 " Let always open bookmark with file explore
 let NERDTreeShowBookmarks=1
@@ -105,5 +107,4 @@ function! RefreshF5nerdtree()
     exe ":NERDTreeRefreshRoot"
 endfunction
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
-            \ && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
