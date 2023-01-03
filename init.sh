@@ -34,6 +34,8 @@ chmod +x /tmp/JMESPath
 echo '{"a": "foo", "b": "bar", "c": "baz"}' | /tmp/JMESPath a
 mv /tmp/JMESPath $(pwd)/bin
 
+curl -sL https://github.com/Orange-OpenSource/hurl/releases/download/1.8.0/hurl-1.8.0-x86_64-linux.tar.gz | tar xvz -C /tmp/bin
+
 ${SUDO} chmod +x $HOME/.vim/bin/*
 
 # Run command at vim and exit
