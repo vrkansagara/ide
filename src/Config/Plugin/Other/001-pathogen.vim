@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File name  :- 001-pathogen.vim                                        "
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note       :- Do not rename of file                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -26,10 +26,7 @@ filetype off
 let s:vim_runtime = expand('<sfile>:p:h')."/../../.."
 " let s:vim_runtime = expand("%:p:h") ."/../.."
 
-" Vendor forlder is source of github/third party code
+" Vendor folder is source of github/third party code
 call pathogen#infect(s:vim_runtime.'/vendor/{}')
 
 call pathogen#helptags()
-
-" Enalbe file indent after plugin enables
-filetype plugin indent on

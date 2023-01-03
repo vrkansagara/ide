@@ -1,6 +1,6 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note		 :- VIM Plugin manager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:plug_threads=4

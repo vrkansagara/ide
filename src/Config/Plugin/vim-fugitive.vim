@@ -1,6 +1,6 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note       :- :help fugitive
 " Url        :-  https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 " Url(1)     :-  http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/

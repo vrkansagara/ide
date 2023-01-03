@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note		 :- Do not change nmap to nnoremap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " (1) curl -sL install-node.now.sh/lts | bash
