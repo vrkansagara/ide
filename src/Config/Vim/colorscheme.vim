@@ -3,6 +3,13 @@
 " Note       :- Do not rename this file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" We know xterm-debian is a color terminal
+if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+  set t_Co=16
+  set t_Sf=m
+  set t_Sb=m
+endif
+
 " First line ensures we can have full spectrum of colors
 " if has('gui_running') || &term =='linux' || &t_Co < 256
 "   set bg=dark

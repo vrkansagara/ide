@@ -13,12 +13,12 @@ set highlight=lub
 nnoremap <leader>s :set hlsearch<CR>
 nnoremap <leader>S :set nohlsearch<CR>
 
-set incsearch
-set showmatch
+set incsearch " Incremental search
+set showmatch " Show matching brackets.
 
 " Make case-insensitive search the norm
-set ignorecase
-set smartcase
+set ignorecase " Do case insensitive matching
+set smartcase " Do smart case matching
 
 
 function! s:VSetSearch()

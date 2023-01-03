@@ -1,5 +1,4 @@
-" set runtimepath+=$HOME/.vim/src
-set runtimepath+=$HOME/.vim/src
+set runtimepath+=$HOME/.vim
 let VIM="$HOME/.vim"
 let VIMRUNTIME="$HOME/.vim"
 

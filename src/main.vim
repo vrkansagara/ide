@@ -2,6 +2,13 @@
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note       :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim will load $VIMRUNTIME/defaults.vim if the user does not have a vimrc.
+" This happens after /etc/vim/vimrc(.local) are loaded, so it will override
+" any settings in these files.
+" If you don't want that to happen, uncomment the below line to prevent
+" defaults.vim from being loaded.
+let g:skip_defaults_vim = 1
+
 " Alt-letter will now be recognized by vi in a terminal as well as by gvim.
 " The timeout settings are used to work around the ambiguity with escape
 " sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than
@@ -100,8 +107,27 @@ cnoremap <S-F2> <C-c>:set list!<CR>
 " vim regex highlight (i.e. regexPattern = "nnoremap" ) [Require :set hlsearch]
 nnoremap <silent> <F3> yi":let @/ = @"<CR>
 
-"These next three lines are for the fuzzy search:
-set nocompatible      "Limit search to your project
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start	" more powerful backspacing
+" Repair weird terminal/vim settings
+" set backspace=start,eol,indent
+" set nocompatible      "Limit search to your project
+
+" Now we set some defaults for the editor
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+
+" modelines have historically been a source of security/resource
+" vulnerabilities -- disable by default, even when 'nocompatible' is set
+set nomodeline
+
+" Suffixes that get lower priority when doing tab completion for filenames.
+" These are files we are not likely to want to edit or read.
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
+"These tow three lines are for the fuzzy search:
 set path+=**          "Search all subdirectories and recursively
 set wildmenu          "Shows multiple matches on one line
 
@@ -146,7 +172,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set ttyfast
-set showcmd
+set showcmd " Show (partial) command in status line.
 set showmode
 set wildmenu
 set wildmode="list:longest"
@@ -160,9 +186,7 @@ set smartindent
 " Disable the splash screen
 set shortmess +=I
 
-" "Hidden" buffers -- i.e., don't require saving before editing another file.
-" Calling quit will prompt you to save unsaved buffers anyways.
-set hidden
+
 
 " Disable mouse usage to make life easier for developer
 set mouse-=a
@@ -173,9 +197,6 @@ set mousemodel=extend
 " Bash is my shell
 " Well, not really. But this makes CLI integration better.
 let bash_is_sh=1
-
-" Repair weird terminal/vim settings
-set backspace=start,eol,indent
 
 " VIM Disable Automatic Newline At End Of File
 set nofixendofline
@@ -223,7 +244,8 @@ set wrapmargin=2
 " au BufRead,BufNewFile *.md vim setlocal textwidth=80
 " au BufRead,BufNewFile *.c *.cpp *.hc *.cpp *.h  vim setlocal textwidth=80
 
-" set complete=.,w,b,u,t,kspell
+set complete=.,w,b,u,t,i,k,kspell
+set omnifunc=syntaxcomplete#Complete
 " CTRL + o and CTRL+i back
 
 " Profile Vim by running this command once to start it and again to stop it.
@@ -248,3 +270,10 @@ let &t_TE = ""
 " set Vim-specific sequences for RGB colors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Enable file indent after plugin enables
+filetype plugin indent on
