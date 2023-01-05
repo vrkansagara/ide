@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
+set -euxo pipefail # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
@@ -181,6 +181,8 @@ cd ${VIM_DIRECTORY}
 
 
 git ls-files --stage | grep 160000
+git submodule foreach --recursive git clean -xfd
+git submodule foreach --recursive git reset --hard
 git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer self-update
