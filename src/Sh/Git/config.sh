@@ -52,6 +52,7 @@ git config --global alias.cm 'commit -m'
 git config --global alias.co checkout
 git config --global alias.conflicts 'diff --name-only --diff-filter=U'
 git config --global alias.current 'rev-parse --verify HEAD'
+git config --global alias.b 'rev-parse --abbrev-ref HEAD'
 git config --global alias.dv 'difftool -t vimdiff -y'
 git config --global alias.edit-unmerged '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; vim `f`'
 git config --global alias.gc 'gc --prune=now --aggressive'
