@@ -183,7 +183,7 @@ cd ${VIM_DIRECTORY}
 git ls-files --stage | grep 160000
 git submodule foreach --recursive git clean -xfd
 git submodule foreach --recursive git reset --hard
-git submodule update --init --recursive --jobs 4  --remote --merge
+git submodule update --init --recursive --jobs 4  --remote --rebase
 
 bin/composer self-update
 bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev
