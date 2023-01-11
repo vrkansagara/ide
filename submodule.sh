@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-set -euxo pipefail # This setting is telling the script to exit on a command error.
+
+# set -euxo pipefail # This setting is telling the script to exit on a command error.
+
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
@@ -135,6 +137,9 @@ git submodule add -f https://github.com/gabrielelana/vim-markdown.git pack/vendo
 
 echo "Installation of [ The missing UI extensions for Vim 8.2 (and NeoVim 0.4) !! sunglasses  ] ..."
 git submodule add -f https://github.com/skywind3000/vim-quickui.git pack/vendor/start/vim-quickui
+
+echo "Installation of [ Vim plugin for the Perl module / CLI script 'ack' ] ..."
+git submodule add -f https://github.com/mileszs/ack.vim.git pack/vendor/start/ack
 
 #echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
 #git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim

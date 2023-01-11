@@ -72,11 +72,15 @@ function! Runphp()
     let directoryPath = expand('%:p:h') " Absolute to directory
 
     " Write current file
-    execute "silent! retab"
-    execute "silent! w!"
+    execute "silent !retab"
+    execute "silent !w!"
 
-    " Clear terminal color, clean screen, run object
-    execute "silent! !echo -e '\033[0m' && clear"
+    " Clear terminal color
+    execute 'silent ! echo -en "\x1b[0m\n" '
+    execute 'silent ! echo -e "\033[0m" '
+    " Clear terminal screen
+    execute 'silent ! clear'
+
 
     " run php file using unix less to pip the output
     execute "!php " . filePath

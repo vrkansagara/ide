@@ -24,23 +24,23 @@ ${SUDO} localedef -f UTF-8 -i en_US en_US.UTF-8
 h=$(date +"%H")
 if [ $h -gt 6 -a $h -le 12 ]
 then
-    echo good morning
-    ~/.vim/bin/brightness.sh set 900
+    echo "Good morning"
+    ~/.vim/bin/brightness set 25000
     # brightness.sh set 30000
     # gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 12 -a $h -le 16 ]
 then
-    echo good afternoon
-    ~/.vim/bin/brightness.sh set 700
+    echo "Good  afternoon"
+    ~/.vim/bin/brightness set 30000
     # gsettings set org.gnome.desktop.interface gtk-theme 'Ambiance'
 elif [ $h -gt 16 -a $h -le 20 ]
 then
-    echo good evening
-    ~/.vim/bin/brightness.sh set 500
+    echo "Good  evening"
+    ~/.vim/bin/brightness set 40000
     # gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 else
-    echo good night
-    ~/.vim/bin/brightness.sh set 300
+    echo "Good  night"
+    ~/.vim/bin/brightness set 20000
     # gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 fi
 
@@ -67,7 +67,17 @@ else
   Driver "libinput"
   Option "Tapping" "on"
   Option "NaturalScrolling" "true"
-  EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
+  EndSection
+
+  Section "InputClass"
+  Identifier "libinput pointer catchall"
+  MatchIsPointer "on"
+  MatchDevicePath "/dev/input/event*"
+  Driver "libinput"
+  Option "NaturalScrolling" "true"
+  EndSection
+
+  ' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf  >/dev/null
   # ${SUDO} systemctl restart lightdm
 fi
 

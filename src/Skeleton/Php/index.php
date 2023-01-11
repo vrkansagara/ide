@@ -12,7 +12,7 @@ require_once '/home/vallabh/.vim/vendor/autoload.php';
 $dt = new DateTime();
 $array = [];
 
-var_dump($dt);
+var_dump(123,$dt);
 
 echo sprintf( '[ %s ] take %2.5f milliseconds  to complete',
     $_SERVER['PHP_SELF'], microtime(true) - PHP_START) . PHP_EOL;

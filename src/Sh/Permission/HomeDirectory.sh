@@ -10,16 +10,16 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+    SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Linux home directory permission, Linux way !
+#  Note       :- Linux home directory permission, Linux way !
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
-${SUDO} chown $USER:$USER -Rf $HOME/!(www|git)
+${SUDO} chown $USER:$USER -Rf $HOME/!(www|git) $HOME/.gnupg
 
 echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
 ${SUDO} chmod 0755 -Rf $HOME/!(www|git)
@@ -29,6 +29,10 @@ ${SUDO} chmod a+trwx /tmp ${HOME}/tmp
 ${SUDO} chmod 0700 $HOME/.ssh
 ${SUDO} chmod 0600 $HOME/.ssh/id_rsa*
 ${SUDO} chmod 0700 $HOME/.ssh/*.pub
+
+${SUDO} find ~/.gnupg -type f -exec chmod 600 {} \;
+${SUDO} find ~/.gnupg -type d -exec chmod 700 {} \;
+${SUDO} chmod -R u=rw,u+X,go= ~/.gnupg
 
 # ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
 # ssh-keygen -t rsa -b 2048 -m PEM -f ~/.ssh/id_rsa
