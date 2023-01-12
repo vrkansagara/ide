@@ -4,10 +4,8 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 pwd=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
   SUDO=sudo
@@ -29,11 +27,11 @@ mv /tmp/jq $(pwd)/bin
 
 
 cd /tmp
-${SUIDO} rm -rf /tmp/JMESPath $(pwd)/bin/JMESPath
+${SUIDO} rm -rf /tmp/JMESPath "$(pwd)/bin/JMESPath"
 wget https://github.com/jmespath/jp/releases/latest/download/jp-linux-amd64 -O JMESPath
 chmod +x /tmp/JMESPath
 echo '{"a": "foo", "b": "bar", "c": "baz"}' | /tmp/JMESPath a
-mv /tmp/JMESPath $(pwd)/bin
+mv /tmp/JMESPath "$(pwd)/bin"
 
 curl -sL https://github.com/Orange-OpenSource/hurl/releases/download/1.8.0/hurl-1.8.0-x86_64-linux.tar.gz | tar xvz -C /tmp
 mv /tmp/hurl-1.8.0/hurl $HOME/.vim/bin

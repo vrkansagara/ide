@@ -1,15 +1,15 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
-SUDO="sudo"
-if [ -f ~/.profile ]; then
-   . ~/.profile
-fi
+# Export general variables
+#
+export DEBIAN_FRONTEND=noninteractive
+export SUDO="sudo"
 
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
+if [ -f "$HOME/.profile" ]; then
+    # Personal/Private/Secrect variable ( i.e. export ,alias )
+   source "$HOME/.profile"
+fi
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -187,6 +187,7 @@ export ARCHFLAGS="-arch x86_64"
 #   fi
 # fi
 
+# some more ls aliases
 alias ss='source ~/.zshrc'
 alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
 alias ll='/bin/ls -lhtraF'
@@ -223,9 +224,10 @@ alias htdocs='cd ~/htdocs'
 alias gh='cd ~/git'
 
 alias du='/usr/bin/du -sh  '
+alias free='/usr/bin/free -mh  '
 
 # Git alias ( Apart from git config )
-alias gc='git commit -S '
+alias gc='git commit -S --sign-of '
 
 ## Linux Administator commands
 alias myDmesgWatch='watch "dmesg | tail -20"'
