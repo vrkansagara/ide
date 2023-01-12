@@ -6,6 +6,7 @@ fi
 
 echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+pwd=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
@@ -16,18 +17,6 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Init script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-echo -e "\033[0mNC (No color)"
-echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
-echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"
-echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
-echo -e "\033[0;36mCYAN\t\033[1;36mLIGHT_CYAN"
-echo -e "\033[0;31mRED\t\033[1;31mLIGHT_RED"
-echo -e "\033[0;35mPURPLE\t\033[1;35mLIGHT_PURPLE"
-echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"
-echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"
-
 
 ${SUDO} apt-get install neofetch unzip git  --yes --no-install-recommends
 
@@ -46,12 +35,16 @@ chmod +x /tmp/JMESPath
 echo '{"a": "foo", "b": "bar", "c": "baz"}' | /tmp/JMESPath a
 mv /tmp/JMESPath $(pwd)/bin
 
-curl -sL https://github.com/Orange-OpenSource/hurl/releases/download/1.8.0/hurl-1.8.0-x86_64-linux.tar.gz | tar xvz -C /tmp/bin
+curl -sL https://github.com/Orange-OpenSource/hurl/releases/download/1.8.0/hurl-1.8.0-x86_64-linux.tar.gz | tar xvz -C /tmp
+mv /tmp/hurl-1.8.0/hurl $HOME/.vim/bin
+
+wget -qO- "https://github.com/koalaman/shellcheck/releases/download/latest/shellcheck-latest.linux.x86_64.tar.xz" | tar -xJv -C /tmp
+mv /tmp/shellcheck-latest/shellcheck  $HOME/.vim/bin
 
 ${SUDO} chmod +x $HOME/.vim/bin/*
 
 # Run command at vim and exit
-vim -c "PlugUpdate | PlugUpdate | PlugUpgrade | PlugClean |q"
+# vim -c "PlugUpdate | PlugUpdate | PlugUpgrade | PlugClean |q"
 
 #Helpful to itterate over multiple files using existing vim command
 #vim -c "execute 'normal! 1' | execute 'normal! 2'"
@@ -73,3 +66,4 @@ yarn set version latest
 #echo "Add intelephense license here"
 #node -e "console.log(os.homedir() + '/intelephense/licence.txt')"
 
+exit 0;
