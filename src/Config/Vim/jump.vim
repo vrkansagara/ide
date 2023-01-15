@@ -13,3 +13,8 @@ map gf :e <cfile><CR>
 " Go to previous modified file Switch between the last two files (press two time leader)
 map <leader><leader> <C-^>
 
+"make wrapped lines more intuitive
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+noremap <silent> $ g$

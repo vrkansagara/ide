@@ -62,7 +62,7 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 nnoremap <leader>r :source $MYVIMRC<CR>
 " nnoremap <leader>r :source ~/.vim/vimrc.vim<CR>
 
-"sudo" save: current file.
+"sudo save: current file.
 cnoremap w!! w !sudo tee % >/dev/null
 nnoremap <leader>w :w<cr>
 
@@ -99,7 +99,7 @@ endfunction
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 nnoremap <silent> <F1> :HighlightRepeats<cr>
 
-" " Toggle visually showing all white space characters.
+" Toggle visually showing all white space characters.
 noremap <S-F2> :set list!<CR>
 inoremap <S-F2> <C-o>:set list!<CR>
 cnoremap <S-F2> <C-c>:set list!<CR>
@@ -109,15 +109,16 @@ nnoremap <silent> <F3> yi":let @/ = @"<CR>
 
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-set backspace=indent,eol,start	" more powerful backspacing
+set nocompatible    " Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start  " more powerful backspacing
 " Repair weird terminal/vim settings
 " set backspace=start,eol,indent
 " set nocompatible      "Limit search to your project
 
 " Now we set some defaults for the editor
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
+
+set history=1000    "store lots of :cmdline history
+set ruler           " show the cursor position all the time
 
 " modelines have historically been a source of security/resource
 " vulnerabilities -- disable by default, even when 'nocompatible' is set
@@ -166,7 +167,6 @@ nnoremap <leader>Q :bufdo! bw<cr>
 
 " Use UTF-8 encoding
 set encoding=utf-8
-
 set expandtab
 set tabstop=4
 set softtabstop=4
@@ -185,8 +185,6 @@ set smartindent
 
 " Disable the splash screen
 set shortmess +=I
-
-
 
 " Disable mouse usage to make life easier for developer
 set mouse-=a
@@ -235,10 +233,11 @@ set scrolljump=5
 set scrolloff=3
 
 " Set column size to 80 character (standard size)
-" " Make it obvious where 80 characters is ( Reformat it:gq)                   i
+" Make it obvious where 80 characters is ( Reformat it:gq)                     i
 " Set text width to 80 character only., I am not using at this time.
 set textwidth=80
 set colorcolumn=+1
+set wrap        "dont wrap lines
 set wrapmargin=2
 
 " au BufRead,BufNewFile *.md vim setlocal textwidth=80

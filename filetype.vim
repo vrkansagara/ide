@@ -110,19 +110,22 @@ function! CallLanguageSpecifiF5()
 endfunction
 
 autocmd FileType * noremap <C-m> :call ExecuteCurrentFile()<cr>
-function! ExecuteCurrentFile()
-    let ext = &filetype " php, conf
-    let file_name = expand('%:t:r')
-    let extension = expand('%:e') " php,phtml,php5,h, vim, c ,cpp, js
+if !exists("*ExecuteCurrentFile")
+    " do stuff here
+    function! ExecuteCurrentFile()
+        let ext = &filetype " php, conf
+        let file_name = expand('%:t:r')
+        let extension = expand('%:e') " php,phtml,php5,h, vim, c ,cpp, js
 
-    " This is dynamic function for all the file type.
-    " i.e. (1) filetype php , function name = Runphp()
-    " i.e. (2) filetype vim,  function name = Runvim()
+        " This is dynamic function for all the file type.
+        " i.e. (1) filetype php , function name = Runphp()
+        " i.e. (2) filetype vim,  function name = Runvim()
 
-    let function_name = "Run" . ext
-    if exists("*". function_name)
-        exe "call " . function_name ."()"
-    else
-        echoerr function_name 'does not exitsts'
-    endif
-endfunction
+        let function_name = "Run" . ext
+        if exists("*". function_name)
+            execute "call " . function_name ."()"
+        else
+            echoerr function_name 'does not exitsts'
+        endif
+    endfunction
+endif

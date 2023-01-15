@@ -96,7 +96,6 @@ git submodule add -f https://github.com/preservim/nerdtree.git pack/vendor/start
 echo "Installation of [Active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder. ] ..."
 git submodule add -f https://github.com/ctrlpvim/ctrlp.vim.git pack/vendor/start/ctrlp
 
-
 echo "Installation of [ commentary.vim: comment stuff out    ] ..."
 git submodule add -f https://github.com/tpope/vim-commentary.git pack/vendor/start/vim-commentary
 

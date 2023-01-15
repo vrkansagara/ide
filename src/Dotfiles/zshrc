@@ -1,11 +1,14 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
+
+#### VRKANSAGARA @START
+source "$HOME/.vim/src/Dotfiles/shell/functions.sh"
+
 # Export general variables
 #
 export DEBIAN_FRONTEND=noninteractive
 export SUDO="sudo"
-
 if [ -f "$HOME/.profile" ]; then
     # Personal/Private/Secrect variable ( i.e. export ,alias )
    source "$HOME/.profile"
@@ -24,13 +27,13 @@ if [ -f /etc/zsh_command_not_found ]; then
 fi
 
 ## Original VRKANSAGARA start from bellow
-# set -e # This setting is telling the script to exit on a command error.
+# set -e # Thislkfjsflksdfjskfjslfsetting is telling the script to exit on a command error.kkkkkkks
 # set -x # You refer to a noisy script.(Used to debugging)
 
 # Enable colors and change prompt:
-# autoload -U colors && colors	# Load colors
-setopt autocd		# Automatically cd into typed directory.
-# stty stop undef		# Disable ctrl-s to freeze terminal.
+# autoload -U colors && colors  # Load colors
+setopt autocd       # Automatically cd into typed directory.
+# stty stop undef       # Disable ctrl-s to freeze terminal.
 # setopt interactive_comments
 
 COMPOSER_PROCESS_TIMEOUT=5000
