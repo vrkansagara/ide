@@ -140,6 +140,12 @@ git submodule add -f https://github.com/skywind3000/vim-quickui.git pack/vendor/
 echo "Installation of [ Vim plugin for the Perl module / CLI script 'ack' ] ..."
 git submodule add -f https://github.com/mileszs/ack.vim.git pack/vendor/start/ack
 
+echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
+git submodule add -f https://github.com/tomtom/tlib_vim.git pack/vendor/start/tlib_vim
+git submodule add -f https://github.com/MarcWeber/vim-addon-mw-utils.git pack/vendor/start/vim-addon-mw-utils
+git submodule add -f https://github.com/garbas/vim-snipmate.git pack/vendor/start/vim-snipmate
+git submodule add -f https://github.com/honza/vim-snippets.git pack/vendor/start/vim-snippets
+
 #echo "Installation of [ Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers. ] ..."
 #git submodule add -f --branch release https://github.com/neoclide/coc.nvim.git pack/vendor/start/coc-nvim
 

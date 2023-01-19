@@ -55,8 +55,8 @@ git config --global alias.current 'rev-parse --verify HEAD'
 git config --global alias.b 'rev-parse --abbrev-ref HEAD'
 git config --global alias.dv 'difftool -t vimdiff -y'
 git config --global alias.edit-unmerged '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; vim `f`'
-git config --global alias.gc 'gc --prune=now --aggressive'
-git config --global alias.last 'log -1 HEAD --stat'
+git config --global alias.gc 'gc --prune=now --aggressive '
+git config --global alias.last 'log -1 HEAD --stat '
 git config --global alias.ll 'log --oneline'
 git config --global alias.ls 'config --global -l'
 git config --global alias.lsIgnored 'ls-files . --ignored --exclude-standard --others'
@@ -77,6 +77,7 @@ git config --global alias.personalLocal 'config user.email vrkansagara@gmail.com
 git config --global alias.work 'config --global user.email v.kansagara@easternenterprise.com'
 git config --global alias.workLocal 'config user.email v.kansagara@easternenterprise.com'
 git config --global alias.gp 'push -u origin HEAD --force-with-lease'
+git config --global alias.cd 'cd ./$(git rev-parse --show-cdup)'
 
 # The unauthenticated git protocol on port 9418 is no longer supported
 git config --global url."https://".insteadOf git://
