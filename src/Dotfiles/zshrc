@@ -3,6 +3,7 @@
 
 
 #### VRKANSAGARA @START
+source "$HOME/.vim/src/Dotfiles/shell/ssh.sh"
 source "$HOME/.vim/src/Dotfiles/shell/functions.sh"
 
 # Export general variables
