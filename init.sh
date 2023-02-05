@@ -7,7 +7,13 @@ fi
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 pwd=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+command_exists() {
+  command -v "$@" >/dev/null 2>&1
+}
+
 if [ "$(whoami)" != "root" ]; then
+  # Check if sudo is installed
+  command_exists sudo || return 1
   SUDO=sudo
 fi
 
@@ -38,6 +44,9 @@ mv /tmp/hurl-1.8.0/hurl $HOME/.vim/bin
 
 wget -qO- "https://github.com/koalaman/shellcheck/releases/download/latest/shellcheck-latest.linux.x86_64.tar.xz" | tar -xJv -C /tmp
 mv /tmp/shellcheck-latest/shellcheck  $HOME/.vim/bin
+
+wget -qO- https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz | tar xvz -C /tmp
+mv /tmp/ngrok $HOME/.vim/
 
 ${SUDO} chmod +x $HOME/.vim/bin/*
 

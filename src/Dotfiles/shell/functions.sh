@@ -1,3 +1,9 @@
+command_exists() {
+# Check if sudo is installed
+# command_exists sudo || return 1
+  command -v "$@" >/dev/null 2>&1
+}
+
 # Check current wirelless straingth
 myWirelessF(){
     watch -n1 "awk 'NR==3 {print \"WiFi Signal Strength = \" \$3 \"00 %\"}''' /proc/net/wireless"

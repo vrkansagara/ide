@@ -216,7 +216,7 @@ alias ds='docker-compose ps --services'
 alias dcb='docker-compose up -dV --build --remove-orphan --force-recreate '
 alias dcu='docker-compose up -dV --remove-orphan --force-recreate '
 alias dcl='docker-compose logs --follow --timestamps --tail 50 '
-alias dIps="docker ps -q | xargs -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | sed 's/ \// /'"
+alias dIps="docker ps -q | xargs --no-run-if-empty -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | sed 's/ \// /'"
 
 #File Manager related stuff #
 
@@ -250,12 +250,13 @@ alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-
 # Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
 alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
-alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{print \$2}" | xargs sudo kill 9'
+alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty  sudo kill 9'
 # package dependencies
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myPublicIP='dig +short txt ch whoami.cloudflare @1.0.0.1'
 alias myPublicIpCurl='curl -iH "Accept: text/plain" --silent https://www.cloudflare.com/cdn-cgi/trace 2>&1'
+alias myPublicIpv4='dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
@@ -282,7 +283,7 @@ alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 # File finder
 alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
-alias myFindLastModified="find $(pwd) \( ! -regex '.*/\..*' \) -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head"
+alias myFindLastModified="find $(pwd) \( ! -regex '.*/\..*' \) -type f -print0 | xargs --no-run-if-empty -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head"
 # -r = recursive -n= line numer -w match whole world -e=pattern used for search
 alias myFindTextIntoDirectory="grep -rnw -e "
 
@@ -326,3 +327,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Let's rust do it's own
 source "$HOME/.cargo/env"
+
+command_exists ngrok && ngrok config add-authtoken $NGROK_TOKEN > /dev/null 2>&1
