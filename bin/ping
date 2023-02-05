@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -e # This setting is telling the script to exit on a command error.
+
+if [[ "$1" == "-v" ]]; then
+    set -x # You refer to a noisy script.(Used to debugging)
+fi
+
+default="https://vrkansagara.in"
+url=${1:-$default}
+host=`echo "$url" | sed -e 's|^[^/]*//||' -e 's|/.*$||'`
+
+/usr/bin/ping "${host}"  $2
+
