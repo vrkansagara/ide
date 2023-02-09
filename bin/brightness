@@ -4,8 +4,6 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
@@ -16,6 +14,9 @@ fi
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+export monitor=$(xrandr -q | grep " connected" | awk '{printf $1}') && xrandr --output $monitor --brightness 1
+
 curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 echo "Current brightness level is  => $curBrightness"
 
