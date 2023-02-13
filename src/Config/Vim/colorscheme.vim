@@ -65,7 +65,7 @@ function! ChangeColorScheme()
             syntax off
             " let g:airline_theme='papercolor'
             set background=light
-            "colorscheme PaperColor
+            " colorscheme PaperColor
             colorscheme atom-dark-256
             syntax on
         endif
