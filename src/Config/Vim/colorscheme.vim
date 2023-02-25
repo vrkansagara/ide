@@ -2,7 +2,6 @@
 " Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 " Note       :- Do not rename this file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " We know xterm-debian is a color terminal
 if &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
   set t_Co=16

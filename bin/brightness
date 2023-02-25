@@ -15,10 +15,11 @@ fi
 #  Note       :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-export monitor=$(xrandr -q | grep " connected" | awk '{printf $1}') && xrandr --output $monitor --brightness 1
+export monitor=$(xrandr -q | grep " connected" | awk '{printf $1}')
+# xrandr --output $monitor --brightness 1
 
 curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)
-echo "Current brightness level is  => $curBrightness"
+echo "Current=> $curBrightness"
 
 command=""
 value=""

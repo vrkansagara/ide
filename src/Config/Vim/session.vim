@@ -27,14 +27,14 @@ function! MakeSession()
         redraw!
     endif
     let b:filename = b:sessiondir . '/session.vim'
-    exe "mksession! " . b:filename
+    " exe "mksession! " . b:filename
 endfunction
 
 function! LoadSession()
     let b:sessiondir = $HOME . "/.vim/data/sessions" . getcwd()
     let b:sessionfile = b:sessiondir . "/session.vim"
     if (filereadable(b:sessionfile))
-        exe 'source ' b:sessionfile
+        " exe 'source ' b:sessionfile
     else
         echo "No session loaded."
     endif

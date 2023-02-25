@@ -9,6 +9,7 @@ myWirelessF(){
     watch -n1 "awk 'NR==3 {print \"WiFi Signal Strength = \" \$3 \"00 %\"}''' /proc/net/wireless"
 }
 
+awk 'NR==3 {print $3}' /proc/net/wireless
 function extract() {
     if [ -f $1 ] ; then
         case $1 in

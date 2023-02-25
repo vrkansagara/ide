@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
+set -ev # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
@@ -14,9 +14,11 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
+#  Note		  :- deb [arch=amd64] https://swupdate.openvpn.net/community/openvpn3/repos jammy main
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 echo 'Current architecture is :- ' $(dpkg --print-architecture)
+DISTRO=$(lsb_release -cs)
 
 ${SUDO} apt-get install \
 	apt-transport-https \
@@ -24,10 +26,9 @@ ${SUDO} apt-get install \
 	curl \
 	gnupg \
 	lsb-release
-	${SUDO} wget https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
-	${SUDO} apt-key add openvpn-repo-pkg-key.pub
-	${SUDO} wget -O /etc/apt/sources.list.d/openvpn3.list https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$(lsb_release -cs).list
-	# [arch=amd64]
+	${SUDO} curl -fsSL https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/openvpn-repo-pkg-keyring.gpg
+  ${SUDO} curl -fsSL https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-$DISTRO.list >/etc/apt/sources.list.d/openvpn3.list
+  #	deb [arch=amd64] https://swupdate.openvpn.net/community/openvpn3/repos jammy main
 	${SUDO} apt update
 	sleep(3)
 	${SUDO} apt install openvpn3
