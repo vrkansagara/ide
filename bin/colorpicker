@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+sxcs -o --hex | cut -f 2 | xclip -in -selection clipboard
