@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Syncs repositories and downloads updates, meant to be run as a cronjob.
+
+notify-send "📦 Repository Sync" "Checking for package updates..."
+
+DEBIAN_FRONTEND=noninteractive sudo apt-get -yqq update || notify-send "Error updating packages".
+DEBIAN_FRONTEND=noninteractive sudo apt-get -yqq upgrade || notify-send "Error upgrading packages.
+
+Check your internet connection, if apt-get is already running, or run update manually to see errors."
+pkill -RTMIN+8 "${STATUSBAR:-dwmblocks}"
