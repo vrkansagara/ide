@@ -6,6 +6,8 @@ fi
 
 
 fonts_dir="${HOME}/.local/share/fonts"
+mkdir -p $fonts_dir
+
 if [ ! -d "${fonts_dir}" ]; then
 	echo "mkdir -p $fonts_dir"
 	mkdir -p "${fonts_dir}"

@@ -25,5 +25,5 @@ echo "fc-cache -f -v"
 fc-cache -f -v
 
 fc-list | grep -i emoji
-echo "NotoColorEmoji font installation [Done]."
+echo "NotoColorEmoji font installation .... 😂❤️😍🤣😊🥺🙏💕😭😘👍 [Done]"
 exit 0

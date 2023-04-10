@@ -1,7 +1,6 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
-
 #### VRKANSAGARA @START
 source "$HOME/.vim/src/Dotfiles/shell/ssh.sh"
 source "$HOME/.vim/src/Dotfiles/shell/functions.sh"

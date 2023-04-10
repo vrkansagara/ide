@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
+
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -18,35 +19,40 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # First thing First
 
-${SUDO} sysctl --all > $HOME/Documents/sysctl-${CURRENT_DATE}.txt
+${SUDO} sysctl --all > $HOME/Documents/backup/sysctl-${CURRENT_DATE}.txt
 
 ${SUDO} ufw default allow outgoing
 ${SUDO} ufw default deny incoming
 
 # Give *.sh to execute permission for the working directory
-${SUDO} find -name '*.sh' -exec ls -lA {} +
+#${SUDO} find -name '*.sh' -exec ls -lA {} +
+#${SUDO} find -name '*' -exec ls -lA {} +
 
- # 1. Clear PageCache only.
- # 2. Clear dentries and inodes.
- # 3. Clear PageCache, dentries and inodes.
- # Note, we are using "echo 3", but it is not recommended in production instead
- # use "echo 1"
- # Writing to this will cause the kernel to drop clean caches, as well as
- # reclaimable slab objects like dentries and inodes.  Once dropped, their
- # memory becomes free.
- # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
-${SUDO} sysctl vm.drop_caches=3
+# 1. Clear PageCache only.
+# 2. Clear dentries and inodes.
+# 3. Clear PageCache, dentries and inodes.
+# Note, we are using "echo 3", but it is not recommended in production instead
+# use "echo 1"
+# Writing to this will cause the kernel to drop clean caches, as well as
+# reclaimable slab objects like dentries and inodes.  Once dropped, their
+# memory becomes free.
+# ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
+#${SUDO} sysctl vm.drop_caches=3
+# https://www.linuxatemyram.com/
+# https://askubuntu.com/questions/155768/how-do-i-clean-or-disable-the-memory-cache
+sync && echo 3 | ${SUDO} tee /proc/sys/vm/drop_caches
 
 # Clear program cache/remove
 ${SUDO} rm -rfv ~/.cache/thumbnails
+${SUDO} rm -rfv ~/.cache/mozilla
 # ${SUDO} rm -rfv ~/.mozilla
-# ${SUDO} rm -rfv ~/.cache/mozilla
-# ${SUDO} rm -rfv ~/.config/google-chrome
+${SUDO} rm -rfv ~/.config/google-chrome
+${SUDO} rm -rfv ~/.local/share/keyrings
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
-# /etc/sysctl.conf
 
+# /etc/sysctl.conf
 # Clear Swap Space in Linux?
-${SUDO}  swapoff -a && ${SUDO} swapon -a
+${SUDO} swapoff -a && ${SUDO} swapon -a
 
 # swappiness
 # This control is used to define how aggressive the kernel will swap
@@ -64,7 +70,7 @@ ${SUDO} sysctl -w vm.swappiness=10
 # vfs_cache_pressure – Controls the kernel’s tendency to reclaim the memory,
 # which is used for caching of directory and inode objects. (default = 100,
 # recommend value 50 to 200)
-${SUDO} sysctl -n vm.vfs_cache_pressure
+#${SUDO} sysctl -n vm.vfs_cache_pressure
 ${SUDO} sysctl -w vm.vfs_cache_pressure=200
 
 # OOM (Out of Memory) Default = 0, Redis=1
@@ -73,15 +79,16 @@ ${SUDO} sysctl -w vm.overcommit_memory=0
 # Print default value
 # vm.dirty_background_ratio=10
 # vm.dirty_ratio=20
-${SUDO} sysctl -n vm.dirty_background_ratio
+#${SUDO} sysctl -n vm.dirty_background_ratio
 ${SUDO} sysctl -w vm.dirty_background_ratio=5
 ${SUDO} sysctl -w vm.dirty_ratio=10
 # Keep at least 128MB of free RAM space available
+${SUDO} sysctl -n vm.min_free_kbytes
 ${SUDO} sysctl -w vm.min_free_kbytes=128000
 
 # Native file system watcher for Linux
-cat /proc/sys/fs/inotify/max_user_watches
-${SUDO} sysctl -w fs.inotify.max_user_watches=524288
+#cat /proc/sys/fs/inotify/max_user_watches
+# ${SUDO} sysctl -w fs.inotify.max_user_watches=524288
 ${SUDO} sysctl -w fs.inotify.max_user_watches=1048576
 
 ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=0
@@ -95,6 +102,7 @@ ${SUDO} dmesg -C
 
 # sysctl - configure kernel parameters at runtime
 # ${SUDO} sysctl -p
+${SUDO} sysctl -p --system
 
 #Disabling Transparent Huge Pages (THP) (Default(madvise) :- always [madvise] never)
 # Default :- madvise , Redis :- never
@@ -104,12 +112,14 @@ ${SUDO} dmesg -C
 ${SUDO} cat /sys/kernel/mm/transparent_hugepage/enabled
 
 #set ulimit to 2 GB for current user
+#ulimit -u unlimited
 # ${SUDO} ulimit -v 2048000 # 2 GB for current user
 # ${SUDO} ulimit -v 4096000 # 4 GB for current user
 # ${SUDO} ulimit -v 8192000 # 8 GB for current user
-${SUDO} ulimit -v 12582912 # 12 GB for current user
+ulimit -v 12582912 # 12 GB for current user
 
-${SUDO} apt install --no-install-recommends --yes default-jre default-jdk
+${SUDO} apt-get install -qq --no-install-recommends --yes default-jre default-jdk procps preload
+
 #${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
 #${SUDO} apt install --no-install-recommends --yes --reinstall zsh zsh-autosuggestions zsh-common zsh-syntax-highlighting
 
@@ -118,14 +128,15 @@ ${SUDO} apt install --no-install-recommends --yes default-jre default-jdk
 
 #Stoping unwanted services
 ${SUDO} systemctl stop bluetooth
-${SUDO} systemctl stop virtualbox
-${SUDO} systemctl stop mongodb
-${SUDO} systemctl stop postgresql
-${SUDO} systemctl stop mosquitto
-${SUDO} systemctl stop php5.6-fpm
-${SUDO} systemctl stop php7.4-fpm
-${SUDO} systemctl stop php8.0-fpm
-${SUDO} systemctl stop remotely-agent.service
+#${SUDO} systemctl stop virtualbox
+#${SUDO} systemctl stop mongodb
+#${SUDO} systemctl stop postgresql
+#${SUDO} systemctl stop mosquitto
+#${SUDO} systemctl stop php5.6-fpm
+#${SUDO} systemctl stop php7.4-fpm
+#${SUDO} systemctl stop php8.0-fpm
+#${SUDO} systemctl stop gdm3
+#${SUDO} systemctl stop remotely-agent.service
 #${SUDO} systemctl stop ufw
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 # ${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
@@ -135,16 +146,15 @@ ${SUDO} service --status-all | grep +
 ${SUDO} grep --color -i -r 'out of memory' /var/log/
 ${SUDO} grep -i -r 'error' /var/log/syslog | grep -v 'containerd'
 ${SUDO} lshw -c memory
-${SUDO} apt-get install procps preload --yes --no-install-recommends
 # Print virtual memory status
 # ${SUDO} vmstat -sS M
 
 # Inspect current date logs
-# ${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
+#${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
 ${SUDO} apt autoremove
 ${SUDO} apt-get --yes clean
 ${SUDO} apt-get --yes autoclean
-${SUDO} apt-get --yes --purge  autoremove
+${SUDO} apt-get --yes --purge autoremove
 ${SUDO} apt-get update --yes --no-install-recommends
 ${SUDO} apt-get upgrade --yes -v
 # ${SUDO} apt upgrade --yes --no-install-recommends -v
@@ -162,11 +172,14 @@ ${SUDO} journalctl --vacuum-time=3d
 # Check last boot logs ( journalctl -b -1 -e )
 
 # You only need to delete files with “.log” extension and modified before 3 days
-${SUDO} find /var/log/nginx -type f -mtime +3 -delete
+if [ -f "/var/log/nginx" ]; then
+  ${SUDO} find /var/log/nginx -type f -mtime +3 -delete
+fi;
 ${SUDO} find /var/log -name "*.log" -type f -mtime +3 -delete
 ${SUDO} find /var/log -name "*.log.*" -type f -mtime +3 -delete
 ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
+
 # Clean apt history logs
 if [ -f "/var/log/apt/history.log" ]; then
   ${SUDO} head -n 1 /var/log/apt/history.log | sudo tee /var/log/apt/history.log
@@ -175,10 +188,9 @@ if [ -f "/var/log/apt-history.log" ]; then
   ${SUDO} head -n 1 /var/log/apt-history.log | sudo tee /var/log/apt-history.log
 fi
 
-if ! command -v earlyoom &> /dev/null
-then
-    ${SUDO} apt install earlyoom
-    # EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
+if ! command -v earlyoom &>/dev/null; then
+  ${SUDO} apt install earlyoom
+  # EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
 fi
 
 # Remove old phpstome directories.
@@ -189,6 +201,8 @@ fi
 # Restart or bug fix of apt system
 gpgconf --kill gpg-agent
 
+#killall gpg-agent
+
 ${SUDO} service snapd.apparmor restart
 ${SUDO} systemctl enable --now apparmor.service
 ${SUDO} systemctl enable --now snapd.apparmor.service
@@ -198,11 +212,12 @@ ${SUDO} cat /proc/sys/kernel/threads-max
 echo "Total threads running:"
 ps -eo nlwp | awk '$1 ~ /^[0-9]+$/ { n += $1 } END { print n }'
 
-
 if [ -f "/etc/sysctl.d/local.conf" ]; then
   # Lets backup the resolver
   ${SUDO} cp /etc/sysctl.d/local.conf /etc/sysctl.d/local-${CURRENT_DATE}.conf
+  ${SUDO} cp /etc/sysctl.d/local.conf $HOME/Documents/backup/sysctl-local-${CURRENT_DATE}.conf
 fi
+
 echo '
 # Kernel system variables configuration files
 # My personal preference
@@ -218,7 +233,7 @@ net.ipv6.conf.all.disable_ipv6=0
 net.ipv6.conf.default.disable_ipv6=0
 net.ipv6.conf.lo.disable_ipv6=0
 kernel.dmesg_restrict=0
-' | ${SUDO} tee /etc/sysctl.d/local.conf  >/dev/null
+' | ${SUDO} tee /etc/sysctl.d/local.conf > /dev/null
 
 echo "Tune of system is ....... [DONE]"
 

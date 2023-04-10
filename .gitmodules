@@ -64,9 +64,6 @@
 [submodule "pack/vendor/start/ack"]
 	path = pack/vendor/start/ack
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "pack/vendor/start/vim-snippets"]
-	path = pack/vendor/start/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
 [submodule "pack/vendor/start/tlib_vim"]
 	path = pack/vendor/start/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
@@ -76,3 +73,6 @@
 [submodule "pack/vendor/start/vim-snipmate"]
 	path = pack/vendor/start/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
+[submodule "pack/vendor/start/vim-snippets"]
+	path = pack/vendor/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git

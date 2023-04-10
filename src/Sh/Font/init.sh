@@ -19,5 +19,5 @@ fi
 #  Note		  :- Install system font from the package manager
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install --yes --no-install-recommends fonts-quicksand 
+${SUDO} apt-get install --yes --no-install-recommends fonts-quicksand
 

@@ -4,8 +4,8 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo "Are you sure , you wanted to reset whole docker setup and it's data."
-exit;
+# echo "Are you sure , you wanted to reset whole docker setup and it's data."
+# exit;
 
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
@@ -17,7 +17,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

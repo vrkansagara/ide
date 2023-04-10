@@ -5,6 +5,9 @@ if [[ "$1" == "-v" ]]; then
     set -x # You refer to a noisy script.(Used to debugging)
 fi
 
+PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+
 # Reset output
 resetOutput() {
     echo -en "\x1b[0m\n"

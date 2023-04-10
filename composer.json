@@ -96,7 +96,8 @@
       "laminas/laminas-component-installer": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "phpro/grumphp": true,
-      "ergebnis/composer-normalize": true
+      "ergebnis/composer-normalize": true,
+      "infection/extension-installer": true
     }
   }
 }

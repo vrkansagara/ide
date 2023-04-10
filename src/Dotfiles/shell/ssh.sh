@@ -40,15 +40,24 @@ function sshagent_init() {
   AGENTFOUND=0
 
   # Attempt to find and use the ssh-agent in the current environment
-  if sshagent_testsocket; then AGENTFOUND=1; fi
+  if sshagent_testsocket; then
+    AGENTFOUND=1
+  fi
 
   # If there is no agent in the environment, search /tmp for
   # possible agents to reuse before starting a fresh ssh-agent
   # process.
   if [ $AGENTFOUND = 0 ]; then
     for agentsocket in $(sshagent_findsockets); do
-      if [ $AGENTFOUND != 0 ]; then break; fi
-      if sshagent_testsocket $agentsocket; then AGENTFOUND=1; fi
+
+      if [ $AGENTFOUND != 0 ]; then
+        break
+      fi
+
+      if sshagent_testsocket $agentsocket; then
+        AGENTFOUND=1
+      fi
+
     done
   fi
 
@@ -66,4 +75,4 @@ function sshagent_init() {
   ssh-add -l
 }
 
-alias sagent="sshagent_init"
+alias sagent="sshagent_init 2>&1 >> /dev/null"

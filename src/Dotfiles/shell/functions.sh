@@ -1,3 +1,18 @@
+lockScreen() {
+  # Set Do not disturb as off
+  gsettings set org.gnome.desktop.notifications show-banners true
+}
+
+dndOff() {
+  # Set Do not disturb as off
+  gsettings set org.gnome.desktop.notifications show-banners true
+}
+
+dnd() {
+  # Set Do not disturb as on
+  gsettings set org.gnome.desktop.notifications show-banners false
+}
+
 command_exists() {
     # Check if sudo is installed
     # command_exists sudo || return 1
@@ -9,7 +24,6 @@ myWirelessF(){
     watch -n1 "awk 'NR==3 {print \"WiFi Signal Strength = \" \$3 \"00 %\"}''' /proc/net/wireless"
 }
 
-awk 'NR==3 {print $3}' /proc/net/wireless
 function extract() {
     if [ -f $1 ] ; then
         case $1 in

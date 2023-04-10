@@ -83,7 +83,7 @@ fi
 # ${SUDO} timedatectl set-timezone Europe/Amsterdam
 ${SUDO} timedatectl set-timezone Asia/Kolkata
 
-# Enable secound into clock
+# Enable second into clock
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 # Enable week number into calender
