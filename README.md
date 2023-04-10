@@ -7,8 +7,10 @@ This editor keep the philosophy of `unix`
 ## Do one thing and do it well
 
 ```bash
+
 Linux User :- If there is terminal there is a way.
 Developer User :- If there is vim there is geek.
+
 ```
 
 ## Basic Installation
