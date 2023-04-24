@@ -4,8 +4,8 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-# echo "Are you sure , you wanted to reset whole docker setup and it's data."
-# exit;
+echo "Are you sure , you wanted to reset whole docker setup and it's data. Remove exit manually from script."
+exit;
 
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
@@ -22,20 +22,20 @@ fi
 
 
 # Stop all containers
-docker stop `docker ps -qa`
+
+docker ps -qa | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty  docker stop `docker ps -qa`
 
 # Remove all containers
-docker rm `docker ps -qa`
+docker ps -qa | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty docker rm `docker ps -qa`
 
 # Remove all images
-docker rmi -f `docker images -qa `
+docker images -qa | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty docker rmi -f `docker images -qa `
 
 # Remove all volumes
-docker volume rm $(docker volume ls -qf)
+docker volume ls -qf | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty  docker volume rm $(docker volume ls -qf)
 
 # Remove all networks
 docker network rm `docker network ls -q`
-
 
 docker network rm $(docker network ls | tail -n+2 | awk '{if($2 !~ /bridge|none|host/){ print $1 }}')
 

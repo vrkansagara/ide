@@ -239,21 +239,25 @@ alias gc='git commit -S --signoff '
 alias gcd='cd ./$(git rev-parse --show-cdup)'
 
 ## Linux Administator commands
-alias myDmesgWatch='watch "dmesg | tail -20"'
+alias myDmesgWatch='sudo watch "dmesg | tail -20"'
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
 alias myListeN="sudo netstat -natp"
 alias myWatch="sudo watch ss -tp"
 alias myWatchN="sudo netstat -A inet -p"
 alias myWatchWho="sudo netstat -A inet -p | grep '^tcp' | grep '/' | sed 's_.*/__' | sort | uniq"
 # alias myWatchWhO="sudo ss -tp | grep -v Recv-Q | sed -e 's/.*users:((\"//' -e 's/\".*$//' | sort | uniq"
+
 alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
+
 # Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
 alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
 alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty  sudo kill 9'
+
 # package dependencies
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
+
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myPublicIP='dig +short txt ch whoami.cloudflare @1.0.0.1'
 alias myPublicIpCurl='curl -iH "Accept: text/plain" --silent https://www.cloudflare.com/cdn-cgi/trace 2>&1'
@@ -261,6 +265,9 @@ alias myPublicIpv4='dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias myIp="echo $(hostname -I | awk '{print $1}')"
+alias myIpRoute="echo $(ip route | awk 'NR==1 {print $3}')"
+alias myNmapLocal="sudo nmap -sn $(ip route | awk 'NR==1 {print $3}')/24"
+
 alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
 # sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
 alias ownIt='sudo chown -Rf $USER:$USER '
@@ -277,6 +284,7 @@ alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
 # For Git
 alias myGitLs='for i in */; do (cd $i && echo -n "$(pwd) <=> " && git rev-parse --abbrev-ref HEAD);  done'
 alias myGitLog="git log --oneline | fzf --preview 'git show --name-only {1}'"
+
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
 alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
