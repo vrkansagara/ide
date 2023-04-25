@@ -247,6 +247,7 @@ alias myForkbomb=":(){ :|:& };:"
 #https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
 alias myKernalPanic="echo c > /proc/sysrq-trigger"
 alias myKernalPanicFreeBSD="sysctl debug.kdb.panic=1"
+alias myFindLargeFile="sudo find / -type f -size +500M -exec ls -lh {} \; 2>/dev/null"
 
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
 alias myListeN="sudo netstat -natp"
