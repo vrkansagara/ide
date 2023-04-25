@@ -237,9 +237,17 @@ alias free='/usr/bin/free -mh  '
 # Git alias ( Apart from git config )
 alias gc='git commit -S --signoff '
 alias gcd='cd ./$(git rev-parse --show-cdup)'
+alias myGitLs='for i in */; do (cd $i && echo -n "$(pwd) <=> " && git rev-parse --abbrev-ref HEAD);  done'
+alias myGitLog="git log --oneline | fzf --preview 'git show --name-only {1}'"
 
 ## Linux Administator commands
-alias myDmesgWatch='sudo watch "dmesg | tail -20"'
+alias myDmesgWatch='sudo watch "dmesg | tail -40"'
+alias myDmesgError="sudo dmesg | grep -i -E 'error|warn|failed'"
+alias myForkbomb=":(){ :|:& };:"
+#https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
+alias myKernalPanic="echo c > /proc/sysrq-trigger"
+alias myKernalPanicFreeBSD="sysctl debug.kdb.panic=1"
+
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
 alias myListeN="sudo netstat -natp"
 alias myWatch="sudo watch ss -tp"
@@ -281,9 +289,7 @@ alias myHtop="/usr/bin/htop -u $USER "
 alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
 alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
 
-# For Git
-alias myGitLs='for i in */; do (cd $i && echo -n "$(pwd) <=> " && git rev-parse --abbrev-ref HEAD);  done'
-alias myGitLog="git log --oneline | fzf --preview 'git show --name-only {1}'"
+
 
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'

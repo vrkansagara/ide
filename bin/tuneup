@@ -123,9 +123,9 @@ ${SUDO} cat /sys/kernel/mm/transparent_hugepage/enabled
 ulimit -v 12582912 # 12 GB for current user
 
 #${SUDO} apt install --no-install-recommends --yes --reinstall gnome-control-center
-${SUDO} apt install --no-install-recommends --yes --reinstall zsh zsh-autosuggestions zsh-common zsh-syntax-highlighting
+${SUDO} apt install --no-install-recommends --yes zsh zsh-autosuggestions zsh-common zsh-syntax-highlighting
 # inxi -Fxz
-${SUDO} apt install --no-install-recommends --yes --reinstall lm-sensors inxi
+${SUDO} apt install --no-install-recommends --yes lm-sensors inxi
 
 ${SUDO} apt-get install -qq --no-install-recommends --yes default-jre default-jdk procps preload tlp tlp-rdw preload
 # https://www.ccnahub.com/linux/applying-system-and-network-tuneup-rules/
@@ -154,7 +154,7 @@ ${SUDO} systemctl stop bluetooth
 # ${SUDO} systemctl disable ufw bluetooth virtualbox mongodb mosquitto postgresql.service
 # ${SUDO} systemctl stop qhclagnt qhdevdmn qhscheduler qhscndmn qhwebsec quickupdate whoopsie
 ${SUDO} service --status-all | grep +
-${SUDO} sudo systemd-analyze blame
+# ${SUDO} sudo systemd-analyze blame
 
 
 # Finally check with system log if any process is out of memory
