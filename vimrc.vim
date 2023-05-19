@@ -30,7 +30,7 @@ try
 
     for f in split(glob('~/.vim/src/Config/Plugin/*.vim'), '\n')
         if (filereadable(f))
-            exe 'source ' f
+            " exe 'source ' f
         else
             throw "File can not able to read " . f
         endif
@@ -50,7 +50,7 @@ try
     "doesn't matter
     for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
         if (filereadable(f))
-            exe 'source ' f
+            " exe 'source ' f
         else
             throw "File can not able to read " . f
         endif
@@ -60,8 +60,6 @@ try
     for f in split(glob('~/.vim/pack/vendor/start/*/doc'), '\n')
         exe "silent! helptags ". f
     endfor
-
-
 
     " Before passing access to user , it must be light background.
     " echo "Do one thing at a time and do it well - Vallabh Kansagara (VRKANSAGARA)."

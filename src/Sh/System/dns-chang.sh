@@ -12,7 +12,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 if [ -n "$(uname -a | grep -i Ubuntu)" ]; then
-  if [ "$(lsb_release -sc)" == 'jammy' ]; then
+  if [[ "$(lsb_release -sc)" == 'jammy' || "$(lsb_release -sc)" == 'focal' ]]; then
     ${SUDO} nmcli networking off
     ${SUDO} nmcli networking on
   fi
@@ -56,7 +56,7 @@ echo "$0 execution ... [STARTED - ${CURRENT_DATE}]"
 
 if [ -f "/etc/resolv.conf" ]; then
   # Lets backup the resolver
-#  ${SUDO} touch /etc/resolv.conf
+  ${SUDO} touch /etc/resolv.conf
   ${SUDO} cp /etc/resolv.conf /etc/resolv-${CURRENT_DATE}.conf
 
   # Change system dns to public dns
@@ -78,6 +78,9 @@ if [ -f "/etc/resolv.conf" ]; then
   ${SUDO} dos2unix "$(realpath /etc/resolv.conf)"
   ${SUDO} chattr -f +i "$(realpath /etc/resolv.conf)" >/dev/null
 
+#  ${SUDO} chattr -f -i /etc/resolv.conf
+#  ${SUDO} dpkg --configure resolvconf
+
   # Check weather the dns query is failling to resolve
   # ${SUDO} tcpdump -ni any port 53 | tee -a /tmp/dns_problem.log
   # tail -f /tmp/dns_problem.log
@@ -92,3 +95,24 @@ fi
 echo "$0 execution ... [DONE - ${CURRENT_DATE}]"
 
 exit 0
+
+
+root@EE-VallabhKansagara:/etc# cat resolv.conf
+# This file is managed by man:systemd-resolved(8). Do not edit.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "resolvectl status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs must not access this file directly, but only through the
+# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+# replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0 trust-ad

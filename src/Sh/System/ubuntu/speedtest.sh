@@ -41,4 +41,5 @@ if ! command -v speedtest &>/dev/null; then
 fi
 
 #speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
-speedtest --accept-license -p no >/tmp/speedtest.txt
+*/9 * * * *  mtr --report --json --report-cycles 10 1.1.1.1 > /tmp/speedtest.txt
+*/27 * * * * speedtest --accept-license -p no > /tmp/speedtest.txt

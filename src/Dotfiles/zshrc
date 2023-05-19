@@ -242,6 +242,7 @@ alias myGitLog="git log --oneline | fzf --preview 'git show --name-only {1}'"
 
 ## Linux Administator commands
 alias myDmesgWatch='sudo watch "dmesg | tail -40"'
+alias myMachineCheckExceptionEvents="sudo mcelog"
 alias myDmesgError="sudo dmesg | grep -i -E 'error|warn|failed'"
 alias myForkbomb=":(){ :|:& };:"
 #https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html

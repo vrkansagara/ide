@@ -11,8 +11,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 if [ "$(whoami)" != "root" ]; then
     SUDO=sudo
-fi
-
+fi``
+~
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Linux home directory permission, Linux way !
