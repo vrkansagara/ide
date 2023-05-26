@@ -48,6 +48,26 @@ command_exists() {
 }
 
 update_upgrade() {
+  # Lets remove all apt cached list
+  if [ -d "/var/lib/apt/lists" ]; then
+       ${SUDO} find /var/lib/apt/lists/ -type f -delete
+       ${SUDO} find /var/lib/apt/lists/ -type d -delete
+  fi
+
+  ${SUDO} touch /etc/apt/apt.conf.d/99force-ipv4
+  # User rules for ubuntu (only tee - replace file)
+  echo 'Acquire::ForceIPv4 "true";' | ${SUDO} tee /etc/apt/apt.conf.d/99force-ipv4
+
+  #  ${SUDO} touch /etc/apt/apt.conf.d/99force-ipv6
+  # User rules for ubuntu (only tee - replace file)
+  #  echo 'Acquire::ForceIPv6 "false";' | ${SUDO} tee /etc/apt/apt.conf.d/99force-ipv6
+
+  ${SUDO} systemctl restart NetworkManager
+  ${SUDO} nmcli networking off
+  ${SUDO} nmcli networking on
+
+  sleep 5
+
   # Inspect current date logs
   #${SUDO} grep -ir $(date "+%b %d") /var/log/syslog
   ${SUDO} apt autoremove
@@ -70,7 +90,7 @@ backup() {
 }
 
 firewall() {
-  ${SUDO} ufw allow 22/tcp
+  ${SUDO} ufw deny 22/tcp
   ${SUDO} ufw allow https
   ${SUDO} ufw allow http
   ${SUDO} ufw allow ssh
@@ -110,6 +130,13 @@ clear_system_cache() {
   ${SUDO} rm -rfv ~/.cache/thumbnails
   ${SUDO} rm -rfv ~/.cache/mozilla
   # ${SUDO} rm -rfv ~/.mozilla
+
+  # Find Firefox profile directory
+  firefoxCacheDirectory=$(ls -d ~/.cache/mozilla/firefox/*.default* | awk '{print $NF}')
+  if [[ -z "$firefoxCacheDirectory" ]]; then
+    echo "$RED Removing cache from $firefoxCacheDirectory $NC"
+    #    ${SUDO} rm -rfv $firefoxCacheDirectory*
+  fi
 
   #  ${SUDO} rm -rfv ~/.config/google-chrome
   #  ${SUDO} rm -rfv ~/.cache/google-chrome
@@ -189,9 +216,10 @@ optimize_systemctl() {
   # ${SUDO} sysctl -w fs.inotify.max_user_watches=524288
   ${SUDO} sysctl -w fs.inotify.max_user_watches=1048576
 
-  ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=0
-  ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=0
-  ${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=0
+  ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
+  ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
+  ${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+  #  net.ipv6.conf.wlan0.disable_ipv6 = 1
 
   # dmesg: read kernel buffer failed: Permission denied
   ${SUDO} sysctl kernel.dmesg_restrict=0
@@ -201,7 +229,7 @@ optimize_systemctl() {
   # sysctl - configure kernel parameters at runtime
   # ${SUDO} sysctl -p
   ${SUDO} sysctl -p --system
-
+  ${SUDO} systemctl restart procps
 }
 
 debug() {
@@ -216,21 +244,21 @@ debug() {
 #  Note       :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-optimize_systemctl
-backup
+#optimize_systemctl
+#backup
 firewall
 permission
-clear_page_cache_and_swap
-clear_system_cache
+#clear_page_cache_and_swap
+#clear_system_cache
 update_upgrade
 
-echo "Linux kernel is $GREEN ${KERNEL_VERSION}.${MAJOR_VERSION}.${MINOR_VERSION} $NC"
-
-echo "List of Available Processors:"
-echo "-----------------------------"
-
-lscpu | grep -E "Model name|Socket|Core\(s\) per socket|Thread\(s\) per core" | awk -F: '{print $2}' | sed 's/^ *//'
-
+#echo "Linux kernel is $GREEN ${KERNEL_VERSION}.${MAJOR_VERSION}.${MINOR_VERSION} $NC"
+#
+#echo "List of Available Processors:"
+#echo "-----------------------------"
+#
+#lscpu | grep -E "Model name|Socket|Core\(s\) per socket|Thread\(s\) per core" | awk -F: '{print $2}' | sed 's/^ *//'
+#
 exit
 
 #Disabling Transparent Huge Pages (THP) (Default(madvise) :- always [madvise] never)
@@ -355,11 +383,11 @@ fi
 #kernel.dmesg_restrict=0
 #' | ${SUDO} tee /etc/sysctl.d/local.conf > /dev/null
 
-${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
-${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
-${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+#${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
+#${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
+#${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 # /etc/sysctl.d/98-mld_grv.conf
-${SUDO} sysctl -w net.ipv6.mld_qrv=1
+#${SUDO} sysctl -w net.ipv6.mld_qrv=1
 
 echo "Tune of system is ....... [DONE]"
 echo "Updating [updatedb] ....... [Running]"
