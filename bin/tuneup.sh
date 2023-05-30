@@ -50,8 +50,8 @@ command_exists() {
 update_upgrade() {
   # Lets remove all apt cached list
   if [ -d "/var/lib/apt/lists" ]; then
-       ${SUDO} find /var/lib/apt/lists/ -type f -delete
-       ${SUDO} find /var/lib/apt/lists/ -type d -delete
+    ${SUDO} find /var/lib/apt/lists/ -type f -delete
+    ${SUDO} find /var/lib/apt/lists/ -type d -delete
   fi
 
   ${SUDO} touch /etc/apt/apt.conf.d/99force-ipv4
@@ -216,9 +216,9 @@ optimize_systemctl() {
   # ${SUDO} sysctl -w fs.inotify.max_user_watches=524288
   ${SUDO} sysctl -w fs.inotify.max_user_watches=1048576
 
-  ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=1
-  ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=1
-  ${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+  #  ${SUDO} sysctl -w net.ipv6.conf.all.disable_ipv6=0
+  #  ${SUDO} sysctl -w net.ipv6.conf.default.disable_ipv6=0
+  #  ${SUDO} sysctl -w net.ipv6.conf.lo.disable_ipv6=0
   #  net.ipv6.conf.wlan0.disable_ipv6 = 1
 
   # dmesg: read kernel buffer failed: Permission denied
@@ -230,6 +230,10 @@ optimize_systemctl() {
   # ${SUDO} sysctl -p
   ${SUDO} sysctl -p --system
   ${SUDO} systemctl restart procps
+  ${SUDO} systemctl restart NetworkManager
+  ${SUDO} nmcli networking off
+  ${SUDO} nmcli networking on
+
 }
 
 debug() {
@@ -244,9 +248,9 @@ debug() {
 #  Note       :- This is standard linux tune up script
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#optimize_systemctl
+optimize_systemctl
 #backup
-firewall
+#firewall
 permission
 #clear_page_cache_and_swap
 #clear_system_cache
@@ -391,6 +395,17 @@ fi
 
 echo "Tune of system is ....... [DONE]"
 echo "Updating [updatedb] ....... [Running]"
+
+firefox() {
+  # Clear dns cache
+  #(1)  about:networking#dns
+  # (2) Clear
+  # (3) about:configfiref
+  #network.dnsCacheEntries
+  #network.dnsCacheExpiration
+  #network.dnsCacheExpirationGracePeriod
+  ls -lA
+}
 
 # https://klaver.it/linux/sysctl.conf
 # https://people.redhat.com/alikins/system_tuning.html#tcp
