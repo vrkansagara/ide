@@ -263,7 +263,7 @@ alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-
 # Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
 alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
-alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty  sudo kill 9'
+alias myPsilent='ps -ef | grep "teams\|skype\|slack|teams" | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty  sudo kill 9'
 
 # package dependencies
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "

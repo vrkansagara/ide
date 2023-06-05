@@ -223,6 +223,13 @@ optimize_systemctl() {
 
   # dmesg: read kernel buffer failed: Permission denied
   ${SUDO} sysctl kernel.dmesg_restrict=0
+
+  #  ${SUDO} cat /proc/sys/kernel/printk
+  #4	4	1	7 ( Default )
+
+  # helpful into kernel development
+  ${SUDO} sh -c "echo 7 4 1 7 > /proc/sys/kernel/printk"
+
   # Clean up dmesg
   # ${SUDO} dmesg -C
 
