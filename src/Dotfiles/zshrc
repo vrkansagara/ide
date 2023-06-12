@@ -4,6 +4,7 @@
 #### VRKANSAGARA @START
 source "$HOME/.vim/src/Dotfiles/shell/ssh.sh"
 source "$HOME/.vim/src/Dotfiles/shell/functions.sh"
+source "$HOME/.vim/src/Dotfiles/shell/git_aliases.sh"
 
 # Export general variables
 #
@@ -53,7 +54,8 @@ export AWT_TOOLKIT=MToolkit
 # wmname LG3D
 
 # export DISPLAY=$DISPLAY
-export DISPLAY=:0.0
+# export DISPLAY=:0.0
+export DISPLAY=:1
 
 # useful command to find what you should be aliasing:
 alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"

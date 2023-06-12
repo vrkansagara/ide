@@ -39,7 +39,7 @@ alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 
 alias gp='git push'
-alias gpoh='git push --set-upstream origin HEAD'
+alias gpoh='git push --force-with-lease --set-upstream origin HEAD'
 alias gpd='git push --dry-run'
 alias gpf='git push --force-with-lease'
 alias gpf!='git push --force'
