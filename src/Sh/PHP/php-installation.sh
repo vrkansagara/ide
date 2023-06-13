@@ -22,7 +22,8 @@ ${SUDO} apt-get install -f
 
 ${SUDO} apt install --no-install-recommends --yes \
     apt-transport-https lsb-release ca-certificates curl \
-    software-properties-common php-pear
+    software-properties-common php-pear \
+    sqlite3
 
 if [  -n "$(uname -a | grep -i Ubuntu)" ]; then
     ${SUDO} add-apt-repository --yes ppa:ondrej/php
@@ -33,7 +34,7 @@ fi
 
 #for VERSION in 5.6 7.4 8.1 8.2;do
 for VERSION in 8.2;do
-    for EXTENSION in xml dev fpm memcached exif soap bcmath ctype fileinfo json mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl pgsql odbc apcu mcrypt ;do
+    for EXTENSION in sqlite3 xml dev fpm memcached exif soap bcmath ctype fileinfo  mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl pgsql odbc apcu mcrypt ;do
         ${SUDO} apt-get install --no-install-recommends --yes php${VERSION}-${EXTENSION}
     done
 done
