@@ -17,6 +17,13 @@ fi
 #  Note		  :- https://tldp.org/LDP/abs/html/io-redirection.html
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+start=$(date +"%s")
+
 bold=$(tput bold)
 normal=$(tput sgr0)
 echo "this is ${bold}bold${normal} but this isn't"
+
+stop=$(date +"%s")
+
+executionTime=$(($stop-$start))
+echo "$(($executionTime / 60)) minutes and $(($executionTime % 60)) seconds elapsed."
