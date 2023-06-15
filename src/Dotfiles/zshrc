@@ -58,7 +58,7 @@ export AWT_TOOLKIT=MToolkit
 export DISPLAY=:1
 
 # useful command to find what you should be aliasing:
-alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+alias profileMe="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
 
 # Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
 # export TERM=xterm
@@ -151,7 +151,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git laravel)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -292,8 +292,6 @@ alias myLimit="/usr/bin/cpulimit -c 30  "
 alias myHtop="/usr/bin/htop -u $USER "
 alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
 alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
-
-
 
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
