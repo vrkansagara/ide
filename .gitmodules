@@ -1,0 +1,78 @@
+[submodule "pack/colors/start/papercolor-theme"]
+	path = pack/colors/start/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "pack/colors/start/vim-atom-dark"]
+	path = pack/colors/start/vim-atom-dark
+	url = https://github.com/gosukiwi/vim-atom-dark.git
+[submodule "pack/colors/start/vim-colorscheme-primary"]
+	path = pack/colors/start/vim-colorscheme-primary
+	url = https://github.com/google/vim-colorscheme-primary.git
+[submodule "pack/colors/start/peaksea"]
+	path = pack/colors/start/peaksea
+	url = https://github.com/vim-scripts/peaksea.git
+[submodule "pack/vendor/start/lightline"]
+	path = pack/vendor/start/lightline
+	url = https://github.com/itchyny/lightline.vim.git
+[submodule "pack/vendor/start/nerdtree"]
+	path = pack/vendor/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/vendor/start/ctrlp"]
+	path = pack/vendor/start/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "pack/vendor/start/vim-commentary"]
+	path = pack/vendor/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/vendor/start/vim-surround"]
+	path = pack/vendor/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/vendor/start/vim-fugitive"]
+	path = pack/vendor/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/vendor/start/vim-sensible"]
+	path = pack/vendor/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "pack/vendor/start/vim-scriptease"]
+	path = pack/vendor/start/vim-scriptease
+	url = https://github.com/tpope/vim-scriptease.git
+[submodule "pack/vendor/start/vim-visual-multi"]
+	path = pack/vendor/start/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi.git
+[submodule "pack/vendor/start/fzf"]
+	path = pack/vendor/start/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "pack/vendor/start/fzf.vim"]
+	path = pack/vendor/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "pack/vendor/start/vim-gitgutter"]
+	path = pack/vendor/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "pack/vendor/start/emmnet-vim"]
+	path = pack/vendor/start/emmnet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "pack/vendor/start/vimproject"]
+	path = pack/vendor/start/vimproject
+	url = https://github.com/tbknl/vimproject.git
+[submodule "pack/vendor/start/rust"]
+	path = pack/vendor/start/rust
+	url = https://github.com/rust-lang/rust.vim
+[submodule "pack/vendor/start/vim-markdown"]
+	path = pack/vendor/start/vim-markdown
+	url = https://github.com/gabrielelana/vim-markdown.git
+[submodule "pack/vendor/start/vim-quickui"]
+	path = pack/vendor/start/vim-quickui
+	url = https://github.com/skywind3000/vim-quickui.git
+[submodule "pack/vendor/start/ack"]
+	path = pack/vendor/start/ack
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "pack/vendor/start/tlib_vim"]
+	path = pack/vendor/start/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "pack/vendor/start/vim-addon-mw-utils"]
+	path = pack/vendor/start/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "pack/vendor/start/vim-snipmate"]
+	path = pack/vendor/start/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "pack/vendor/start/vim-snippets"]
+	path = pack/vendor/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git

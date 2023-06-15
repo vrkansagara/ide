@@ -63,9 +63,6 @@ remove_vim_vendor_module() {
 
 }
 
-remove_vim_vendor_module
-mkdir -p ${CLONE_DIRECTORY}
-mkdir -p ${CLONE_DIRECTORY_COLOR}
 
 submodule() {
 
@@ -165,6 +162,11 @@ submodule() {
 
 # yarn install --frozen-lockfile --production
 cd ${VIM_DIRECTORY}
+
+remove_vim_vendor_module
+submodule
+mkdir -p ${CLONE_DIRECTORY}
+mkdir -p ${CLONE_DIRECTORY_COLOR}
 
 # echo "Installation of [ vim-snipmate default snippets (Previously snipmate-snippets) ] ..."
 # # git submodule add -f https://github.com/tomtom/tlib_vim.git --depth=1  vendor/tlib_vim

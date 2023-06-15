@@ -44,24 +44,18 @@ done
 
 ${SUDO} apt-get install alsa-utils neofetch arandr --yes --no-install-recommends
 
-echo "===========INFORMATION==========="
-printf "Argument display is %s\n" "$display"
-printf "Argument arg_1 is %s\n" "$arg_1"
-echo "===========INFORMATION==========="
+echo    "===========INFORMATION==============="
+printf  "Argument display is %s\n" "$display"
+printf  "Argument arg_1 is %s\n" "$arg_1"
+echo    "===========INFORMATION==============="
 
 if [[ "$display" == 2 ]]; then
   echo "Selecting primary display"
-  if [ $(lsb_release -sc) == 'jammy' ]; then
     xrandr \
-      --output XWAYLAND1 --mode 1366x768 --pos 1920x0 --rotate normal \
-      --output XWAYLAND1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-      --output XWAYLAND3 --off
-  else
-    xrandr \
-      --output eDP-1 --mode 1366x768 --pos 1920x0 --rotate normal \
-      --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-      --output DP-1 --off
-  fi
+        --output eDP-1 --mode 1366x768 --pos 1920x0 --rotate normal \
+        --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal\
+        --output HDMI-2 --off
+
 
 elif [[ "$display" == 3 ]]; then
   xrandr \
@@ -115,14 +109,16 @@ gsettings set org.gnome.desktop.peripherals.mouse left-handed false
 # Set default volume to unmute with 45% audio
 # pactl list sinks short | awk '{print $2}'
 #speaker
-pactl set-default-sink alsa_output.usb-Jieli_Technology_UACDemoV1.0_1120022704060017-01.iec958-stereo
+# pactl set-default-sink alsa_output.usb-Jieli_Technology_UACDemoV1.0_1120022704060017-01.iec958-stereo
 # Headphon
 # pactl set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink
 
-pactl set-sink-mute @DEFAULT_SINK@ 0
-pactl set-sink-volume @DEFAULT_SINK@ 45%
+# pactl set-sink-mute @DEFAULT_SINK@ 0
+# pactl set-sink-volume @DEFAULT_SINK@ 45%
 
 ${SUDO} systemctl stop bluetooth
 
 # set default brightness
-$HOME/.vim/bin/brightness.sh set 15000
+bash $HOME/.vim/bin/brightness set 25000
+
+exit 0

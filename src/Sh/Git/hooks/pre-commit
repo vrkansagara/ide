@@ -1,44 +1,16 @@
-#!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
-fi
+#!/bin/sh
 
+#
+# Run the hook command.
+# Note: this will be replaced by the real command during copy.
+#
 
-git config user.name "Vallabh Kansagara"
-git config user.email "vrkansagara@gmail.com"
+# Fetch the GIT diff and format it as command input:
+DIFF=$(git -c diff.mnemonicprefix=false -c diff.noprefix=false --no-pager diff -r -p -m -M --full-index --no-color --staged | cat)
 
-RESTORE='\033[0m'
-RED='\033[00;31m'
-YELLOW='\033[00;33m'
-BLUE='\033[00;34m'
+# Grumphp env vars
 
-FORBIDDEN=( '<<<<<<< HEAD' '>>>>>>> origin/' '>>>>>>> upstream/' '=======' )
-FOUND=''
+export GRUMPHP_GIT_WORKING_DIR="$(git rev-parse --show-toplevel)"
 
-for j in "${FORBIDDEN[@]}"
-do
-  for i in `git diff --cached --name-only`
-  do
-    if echo `git show :$i` | grep -q "$j"; then
-	FOUND+="${BLUE}$i ${RED}contains ${RESTORE}\"$j\"${RESTORE}\n"
-    fi
-  done
-done
-
-# if FOUND is not empty, REJECT the COMMIT
-# PRINT the results (colorful-like)
-
-if [[ ! -z $FOUND ]]; then
-  printf "${YELLOW}COMMIT REJECTED\n"
-  printf "$FOUND"
-  exit 1
-fi
-composer validate --strict
-composer run cs-check
-composer run cs-fix
-composer update
-composer run test
-
-echo 'Git pre-commit process is clear.'
-exit 0
+# Run GrumPHP
+(cd "./" && printf "%s\n" "${DIFF}" | exec 'vendor/bin/grumphp' 'git:pre-commit' '--skip-success-output')
