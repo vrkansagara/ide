@@ -42,7 +42,7 @@ while getopts ":a:d:" opt; do
   esac
 done
 
-${SUDO} apt-get install alsa-utils neofetch arandr --yes --no-install-recommends
+# ${SUDO} apt-get install alsa-utils neofetch arandr --yes --no-install-recommends
 
 echo    "===========INFORMATION==============="
 printf  "Argument display is %s\n" "$display"
@@ -53,14 +53,14 @@ if [[ "$display" == 2 ]]; then
   echo "Selecting primary display"
     xrandr \
         --output eDP-1 --mode 1366x768 --pos 1920x0 --rotate normal \
-        --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal\
+        --output HDMI-1 --off --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --primary \
         --output HDMI-2 --off
 
 
 elif [[ "$display" == 3 ]]; then
   xrandr \
-    --output eDP-1 --mode 1366x768 --pos 3286x0 --rotate normal \
-    --output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal --primary \
+    --output eDP-1 --mode 1366x768 --pos 3286x0 --rotate normal --primary \
+    --output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal \
     --output DP-1 --mode 1366x768 --pos 0x0 --rotate normal
 else
   echo "Current screen setting."

@@ -33,7 +33,7 @@ else
 fi
 
 #for VERSION in 5.6 7.4 8.1 8.2;do
-for VERSION in 8.2;do
+for VERSION in 8.0 ;do
     for EXTENSION in sqlite3 xml dev fpm memcached exif soap bcmath ctype fileinfo  mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl pgsql odbc apcu mcrypt ;do
         ${SUDO} apt-get install --no-install-recommends --yes php${VERSION}-${EXTENSION}
     done

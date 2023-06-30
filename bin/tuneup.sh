@@ -94,9 +94,11 @@ firewall() {
   ${SUDO} ufw allow https
   ${SUDO} ufw allow http
   ${SUDO} ufw allow ssh
+  ${SUDO} ufw allow dns
   ${SUDO} ufw default allow outgoing
   ${SUDO} ufw default deny incoming
   ${SUDO} ufw reload
+
 }
 
 permission() {
@@ -418,3 +420,9 @@ firefox() {
 # https://people.redhat.com/alikins/system_tuning.html#tcp
 # https://cromwell-intl.com/open-source/performance-tuning/nfs.html
 exit 0
+
+#echo "tmpfs /tmp tmpfs rw,nosuid,nodev" | sudo tee -a /etc/fstab
+#echo "tmpfs /var/tmp tmpfs rw,nosuid,nodev" | sudo tee -a /etc/fstab
+#echo "tmpfs /var/log/journal tmpfs rw,nosuid,nodev" | sudo tee -a /etc/fstab
+#echo "tmpfs /home/vallabh/.pdepend tmpfs rw,nosuid,nodev" | sudo tee -a /etc/fstab
+#sudo reboot
