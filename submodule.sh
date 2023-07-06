@@ -150,8 +150,6 @@ yarn set version latest
 #echo "Add intelephense license here"
 #node -e "console.log(os.homedir() + '/intelephense/licence.txt')"
 
-
-
 rm -rf composer.phar
 rm -rf vendor composer.lock
 composer update

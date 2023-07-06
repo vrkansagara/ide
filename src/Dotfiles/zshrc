@@ -77,8 +77,8 @@ export ZSH="/home/$USER/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -142,6 +142,8 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git laravel)
 
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -246,7 +248,7 @@ alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
 alias myPublicIP='dig +short txt ch whoami.cloudflare @1.0.0.1'
 alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
-alias myIp="echo $(hostname -I | awk '{print $1}')"
+# alias myIp="echo $(hostname -I | awk '{print $1}')"
 alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
 # sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
 alias ownIt='sudo chown -Rf $USER:$USER '

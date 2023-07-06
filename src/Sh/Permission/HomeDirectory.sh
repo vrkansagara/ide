@@ -18,7 +18,17 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
-${SUDO} chown $USER:$USER -Rf $HOME
+if [ $(uname -s) == 'Darwin' ]; then
+    ${SUDO} chown -R $USER:staff $HOME
+    ${SUDO} chmod -R 600 ~
+    ${SUDO} chmod -R u+rwX ~
+    ${SUDO} chmod og+rX ~
+    ${SUDO} chmod -R og+rX ~/Public
+    ${SUDO} chmod og=wX ~/Public/Drop\ Box
+  else
+    ${SUDO} chown $USER:$USER -Rf $HOME
+fi
+
 
 echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
 ${SUDO} chmod 0755 -Rf $HOME
