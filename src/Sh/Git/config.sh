@@ -8,8 +8,6 @@ fi
 echo ""
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
     SUDO=sudo
@@ -21,7 +19,11 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-${SUDO} apt-get install --no-install-recommends -y gnupg2  git-flow
+if [ $(uname -s) == 'Darwin' ]; then
+    brew install gnupg2  git-flow
+  else
+    ${SUDO} apt-get install --no-install-recommends -y gnupg2  git-flow
+fi
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
