@@ -107,12 +107,13 @@ if [ "$?" == 2 ]; then
 fi
 
 #### VRKANSAGARA @START
-	source $HOME/.vim/src/Dotfiles/shell/bash_aliases.sh
-	source $HOME/.vim/src/Dotfiles/shell/bash_color.sh
-	source $HOME/.vim/src/Dotfiles/shell/bash_export.sh
-	source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
-	# source $HOME/.vim/src/Dotfiles/shell/bash_improvement.sh
-	source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
+source $HOME/.vim/src/Dotfiles/shell/bash_aliases.sh
+source $HOME/.vim/src/Dotfiles/shell/bash_color.sh
+source $HOME/.vim/src/Dotfiles/shell/bash_export.sh
+source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
+# source $HOME/.vim/src/Dotfiles/shell/bash_improvement.sh
+source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
+source $HOME/.vim/src/Dotfiles/shell/svn_aliases.sh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 

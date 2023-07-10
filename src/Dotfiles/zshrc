@@ -140,7 +140,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git laravel)
+plugins=(git svn laravel)
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -315,4 +315,8 @@ export NVM_DIR="$HOME/.nvm"
 # source <(ng completion script)
 
 # Let's rust do it's own
-source "$HOME/.cargo/env"
+[ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
+
+# SVN Alias
+alias sInfo='svn info'
+alias sRevision='svn info |grep Revision: |cut -c11-'
