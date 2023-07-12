@@ -35,3 +35,7 @@ done
 ## before displaying all done message
 wait 
 echo "All done"
+
+while true; do echo -n 1; sleep 10; done
+
+
