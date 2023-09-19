@@ -28,7 +28,7 @@ try
 
     for f in split(glob('~/.vim/src/Config/Plugin/*.vim'), '\n')
         if (filereadable(f))
-            " exe 'source' f
+            exe 'source' f
         else
             throw "File can not able to read " . f
         endif
@@ -38,7 +38,7 @@ try
     "order)
     for f in split(glob('~/.vim/src/Config/Vim/*.vim'), '\n')
         if (filereadable(f))
-            " exe 'source' f
+            exe 'source' f
         else
             throw "File can not able to read " . f
         endif
@@ -48,7 +48,7 @@ try
     "doesn't matter
     for f in split(glob('~/.vim/src/Config/Language/*.vim'), '\n')
         if (filereadable(f))
-            " exe 'source' . f
+            exe 'source' . f
         else
             throw "File can not able to read " . f
         endif
@@ -56,7 +56,7 @@ try
 
     " Loading helptags FIX
     for f in split(glob('~/.vim/pack/vendor/start/*/doc'), '\n')
-        " exe "silent! helptags ". f
+        exe "silent! helptags ". f
     endfor
 
     " Before passing access to user , it must be light background.
