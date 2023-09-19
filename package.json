@@ -14,6 +14,7 @@
     "jquery-ui": "^1.13.2",
     "laravel-mix": "^6.0.49",
     "node-notifier": "^10.0.1",
+    "serverless": "^3.33.0",
     "vue-cli": "^2.9.6"
   },
   "devDependencies": {

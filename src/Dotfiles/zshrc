@@ -2,12 +2,13 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
+
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
-
-if [ -f ~/.profile ]; then
-   . ~/.profile
-fi
+source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
 
 # some more ls aliases
 alias ll='ls -l'
@@ -57,6 +58,7 @@ export AWT_TOOLKIT=MToolkit
 # export TERM=xterm
 # Remote sessin would be xterm base (Avoide st-256 issue at remote)
 alias ssh='env TERM=xterm ssh'
+alias sshOld='env TERM=xterm ssh -oHostKeyAlgorithms=+ssh-dss '
 export GPG_TTY=$(tty)
 # If you come from bash you might have to change your $PATH.
 export PATH="$(getconf PATH)" # reset system default
@@ -73,8 +75,7 @@ export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi
 # END SNIPPET
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/$USER/.oh-my-zsh"
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -145,11 +146,8 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git svn laravel)
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/svn
-plugins=()
+plugins=(git)
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -246,7 +244,7 @@ alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-
 # Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
 alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
-alias myPsilent='ps -ef | grep "teams\|skype\|slack" | grep -v grep | awk "{print \$2}" | xargs sudo kill 9'
+alias myPsilent='ps -ef | grep "teams\|skype\|slack\|discord" | grep -v grep | awk "{print \$2}" | xargs -I {} sudo kill -9 {} '
 # package dependencies
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -301,15 +299,14 @@ alias lkmLog="sudo tail -f /var/log/syslog"
 alias lkmCrash="echo 'sudo /usr/bin/crash /var/crash/202110071450/dump.202110071450 /usr/lib/debug/boot/vmlinux-5.4.0-88-generic'"
 alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -eS ~/.zsh_history_bad > ~/.zsh_history && fc -R ~/.zsh_history"
 
-source $HOME/.vim/src/Dotfiles/shell/bash_functions.sh
-source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
+# source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
 
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
-# bindkey -s '^r' 'history | fzf\n'
-bindkey -s '^p' 'ps -aux | fzf\n'
-bindkey -s '^h' 'htop -u $USER \n'
+# echo -ne '\e[5 q' # Use beam shape cursor on startup.
+# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+# # bindkey -s '^r' 'history | fzf\n'
+# bindkey -s '^p' 'ps -aux | fzf\n'
+# bindkey -s '^h' 'htop -u $USER \n'
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -320,8 +317,8 @@ bindkey -s '^h' 'htop -u $USER \n'
 # [ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
 
 # SVN Alias
-alias sInfo='svn info'
-alias sRevision='svn info |grep Revision: |cut -c11-'
+alias svnInfo='svn info'
+alias svnRevision='svn info |grep Revision: |cut -c11-'
 
 
 prompt_context() {
@@ -331,9 +328,16 @@ prompt_context() {
 }
 
 
+if [ -f ~/.profile ]; then
+   # . ~/.profile
+fi
 
 # ... your ZSHRC with all your scripts
 
 if [[ "$ZPROF" = true ]]; then
   zprof
 fi
+
+# Mac specific
+export nproc=$(sysctl -n hw.logicalcpu)
+alias juliA="/usr/local/bin/julia --compiled-modules=yes --startup-file=no --banner=no "
