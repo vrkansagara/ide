@@ -55,7 +55,7 @@ which_term(){
 			esac
 ## If none of the version arguments worked, try and get the
 ## package version
-				[ $found -eq 0 ] && echo "$term " $(dpkg -l $term | awk '/^ii/{print $3}')
+[ $found -eq 0 ] && echo "$term " $(dpkg -l $term | awk '/^ii/{print $3}')
 }
 
 timezsh() {

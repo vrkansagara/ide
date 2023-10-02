@@ -142,7 +142,7 @@ git submodule update --init --recursive --jobs 4  --remote --merge
 bin/composer self-update
 bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev
 ${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
-yarn set version latest
+# yarn set version latest
 
 # update coc-nvim plugines
 #echo "Wait for 2 minutes, coc-nvim plugines is started updating"

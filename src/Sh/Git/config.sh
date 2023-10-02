@@ -4,7 +4,6 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-
 echo ""
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
@@ -20,7 +19,7 @@ fi
 
 
 if [ $(uname -s) == 'Darwin' ]; then
-    brew install gnupg2  git-flow
+    brew install gnupg2  git-flow zsh-completions
   else
     ${SUDO} apt-get install --no-install-recommends -y gnupg2  git-flow
 fi
