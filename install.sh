@@ -49,10 +49,10 @@ echo "Adding symbolic link for better git tracking of project"
 ${SUDO} mv .zshrc .vimrc .bashrc /tmp
 ${SUDO} mv $HOME/.vim/coc-settings.dist.json $HOME/.vim/coc-settings.json
 [ -f $HOME/.zshrc ] mv $HOME/.zshrc $HOME/.zshrc.old
-ln -s $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
-ln -s $HOME/.vim/vimrc.vim $HOME/.vimrc
-ln -s $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
-ln -s $HOME/.vim/src/Sh/Git/hooks/pre-commit $HOME/.vim/.git/hooks
+ln -P $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
+ln -P $HOME/.vim/vimrc.vim $HOME/.vimrc
+ln -P $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
+ln -P $HOME/.vim/src/Sh/Git/hooks/pre-commit $HOME/.vim/.git/hooks
 mkdir -p $HOME/.vim/data/cache/zsh
 
 # Set sh and bin  directory executable
