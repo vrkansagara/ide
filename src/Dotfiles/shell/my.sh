@@ -126,8 +126,6 @@ alias lkmLog="sudo tail -f /var/log/syslog"
 alias lkmCrash="echo 'sudo /usr/bin/crash /var/crash/202110071450/dump.202110071450 /usr/lib/debug/boot/vmlinux-5.4.0-88-generic'"
 alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -eS ~/.zsh_history_bad > ~/.zsh_history && fc -R ~/.zsh_history"
 
-# source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
-
 # echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
@@ -165,6 +163,7 @@ alias juliA="/usr/local/bin/julia --compiled-modules=yes --startup-file=no --ban
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
+source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
 
 # some more ls aliases
 alias ll='ls -l'
