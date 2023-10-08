@@ -1,33 +1,57 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
+set -ex # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+    set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+PWD=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
+command_exists() {
+    command -v "$@" >/dev/null 2>&1
+}
 
 if [ "$(whoami)" != "root" ]; then
+    # Check if sudo is installed
+    command_exists sudo || return 1
     SUDO=sudo
 fi
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note       :-
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install curl
+node_latest() {
+    # nodejs and npm  related stuff
+    # Ref:- https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version
+    #npm i  npm-check-updates node-sass
+    npm install
+    ./node_modules/.bin/ncu -u
+    npm update
+    ${SUDO} chmod -R a+x node_modules
+    ${SUDO} chmod -R +x ./node_modules/.bin
+    npm rebuild node-sass
+}
 
-${SUDO} curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm() {
 
-nvm install node
-nvm install --lts
+    # ${SUDO} apt-get install curl
 
-# Using Linux
-# curl -sL install-node.now.sh/lts | ${SUDO} bash -
-# curl --compressed -o- -L https://yarnpkg.com/install.sh | ${SUDO} bash
+   export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} -E bash -
-# curl -fsSL https://deb.nodesource.com/setup_16.x | ${SUDO} bash -
-# ${SUDO} apt-get install --yes --no-install-recommends  nodejs
+    command_exists nvm || echo "NVM command not found" && exit
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+
+    nvm install node
+    nvm install --latest-npm
+    nvm install --lts
+}
+main() {
+  if [[ "$1" == "--nvm" ]]; then
+    nvm
+  fi
+  if [[ "$1" == "--node_latest" ]]; then
+    node_latest
+  fi
+}
+
+main "$@"
