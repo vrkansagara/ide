@@ -145,9 +145,9 @@ setopt autocd # Automatically cd into typed directory.
 COMPOSER_PROCESS_TIMEOUT=5000
 
 # History in cache directory:
-# HISTSIZE=10000000
-# SAVEHIST=10000000
-# HISTFILE=~/.vim/data/cache/zsh
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.vim/data/cache/zsh
 
 ## VIM plugines debug
 export NVIM_COC_LOG_LEVEL=debug
@@ -160,19 +160,19 @@ export AWT_TOOLKIT=MToolkit
 
 # export DISPLAY=:0
 # Yes,I use st( Terminal base would be xterm (to avoide VIM and Remote SSH X )
-# export TERM=xterm
+export TERM=xterm
 # Remote sessin would be xterm base (Avoide st-256 issue at remote)
 alias ssh='env TERM=xterm ssh'
 alias sshOld='env TERM=xterm ssh -oHostKeyAlgorithms=+ssh-dss '
+
 export GPG_TTY=$(tty)
+
 # If you come from bash you might have to change your $PATH.
 export PATH="$(getconf PATH)" # reset system default
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.vim/node_modules/.bin:$PATH"
-export PATH="/snap/bin:$PATH"
 
 # BEGIN SNIPPET: Magento Cloud CLI configuration
 HOME=${HOME:-"/home/$USER"}
