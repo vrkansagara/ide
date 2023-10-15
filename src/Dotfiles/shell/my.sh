@@ -23,6 +23,9 @@ alias ss='source ~/.zshrc'
 alias ll='/bin/ls -lhtraF'
 alias la='ls -A'
 alias l='ls -CF'
+alias c="clear"   # clear interface
+alias h="history" # review log of commands
+alias o="open ."  # open current directory in the finder
 
 # Docker Related stuff #
 # sudo curl -L
@@ -55,56 +58,9 @@ alias gh='cd ~/git'
 
 alias du='/usr/bin/du -sh  '
 
-# Git alias ( Apart from git config )
-alias gc='git commit -S '
-
-## Linux Administator commands
-alias myDmesgWatch='watch "dmesg | tail -20"'
-alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
-alias myListeN="sudo netstat -natp"
-alias myWatch="sudo watch ss -tp"
-alias myWatchN="sudo netstat -A inet -p"
-alias myWatchWho="sudo netstat -A inet -p | grep '^tcp' | grep '/' | sed 's_.*/__' | sort | uniq"
-# alias myWatchWhO="sudo ss -tp | grep -v Recv-Q | sed -e 's/.*users:((\"//' -e 's/\".*$//' | sort | uniq"
-alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
-alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
-# Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
-alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
-alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
-alias myPsilent='ps -ef | grep "teams\|skype\|slack\|discord" | grep -v grep | awk "{print \$2}" | xargs -I {} sudo kill -9 {} '
-# package dependencies
-alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
-alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
-alias myPublicIP='dig +short txt ch whoami.cloudflare @1.0.0.1'
-alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
-alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
-# alias myIp="echo $(hostname -I | awk '{print $1}')"
-alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
-# sensors| grep -i rpm | awk '{ print "Fan "$3"/"$11" RPM"}'
-alias ownIt='sudo chown -Rf $USER:$USER '
-alias ownItWithPermission='sudo chmod 0744 -Rf'
-alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
-alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
-alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
-alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
-alias myLimit="/usr/bin/cpulimit -c 30  "
-alias myHtop="/usr/bin/htop -u $USER "
-alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
-# alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
-
-# For Git
-alias myGitLs='for i in */; do (cd $i && echo -n "$(pwd) <=> " && git rev-parse --abbrev-ref HEAD);  done'
-alias myGitLog="git log --oneline | fzf --preview 'git show --name-only {1}'"
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
 alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
-
-# File finder
-alias myFindFile="sudo find / -type f  -name "
-alias myFindDirectory="find / -type d  -name "
-alias myFindLastModified="find $(pwd) \( ! -regex '.*/\..*' \) -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head"
-# -r = recursive -n= line numer -w match whole world -e=pattern used for search
-alias myFindTextIntoDirectory="grep -rnw -e "
 
 # AWS Aliases
 alias myaAsMyInfo='curl http://169.254.169.254/latest/meta-data/'
@@ -141,45 +97,33 @@ alias zshCorruptHistoryRepair="mv ~/.zsh_history ~/.zsh_history_bad && strings -
 # Let's rust do it's own
 # [ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
 
-# SVN Alias
-alias svnInfo='svn info'
-alias svnRevision='svn info |grep Revision: |cut -c11-'
-
-
 prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment white default "%(!.%{%F{yellow}%}.)$USER"
-  fi
+	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+		prompt_segment white default "%(!.%{%F{yellow}%}.)$USER"
+	fi
 }
-
-
-
 
 # Mac specific
 export nproc=$(sysctl -n hw.logicalcpu)
 alias juliA="/usr/local/bin/julia --compiled-modules=yes --startup-file=no --banner=no "
 
 # CUSTOM FROM HERE....
-# ~/.zshrc file for zsh interactive shells.
-# see /usr/share/doc/zsh/examples/zshrc for examples
+source "$HOME/.vim/src/Dotfiles/shell/bash_color.sh"
 source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
-source $HOME/.vim/src/Dotfiles/shell/git_aliases.sh
-
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
+source "$HOME/.vim/src/Dotfiles/shell/git_aliases.sh"
+source "$HOME/.vim/src/Dotfiles/shell/svn_aliases.sh"
+source "$HOME/.vim/src/Dotfiles/shell/administrator_aliases.sh"
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    # change suggestion color
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+	. /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+	# change suggestion color
+	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
 # enable command-not-found if installed
 if [ -f /etc/zsh_command_not_found ]; then
-    . /etc/zsh_command_not_found
+	. /etc/zsh_command_not_found
 fi
 
 ## Original VRKANSAGARA start from bellow
@@ -187,9 +131,9 @@ fi
 # set -x # You refer to a noisy script.(Used to debugging)
 
 # Enable colors and change prompt:
-# autoload -U colors && colors	# Load colors
-setopt autocd		# Automatically cd into typed directory.
-# stty stop undef		# Disable ctrl-s to freeze terminal.
+# autoload -U colors && colors  # Load colors
+setopt autocd # Automatically cd into typed directory.
+# stty stop undef       # Disable ctrl-s to freeze terminal.
 # setopt interactive_comments
 
 COMPOSER_PROCESS_TIMEOUT=5000
@@ -235,20 +179,22 @@ if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-clo
 # source $HOME/.vim/src/Dotfiles/shell/my.sh
 
 if [ -f "$HOME/.profile" ]; then
-    . $HOME/.profile
+	. $HOME/.profile
 fi
 
 # zsh-completions
- if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-    autoload -Uz compinit
-    compinit
-chmod go-w '/opt/homebrew/share'
-chmod -R go-w '/opt/homebrew/share/zsh'
-  fi
+if type brew &>/dev/null; then
+	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+	autoload -Uz compinit
+	compinit
+	chmod go-w '/opt/homebrew/share'
+	chmod -R go-w '/opt/homebrew/share/zsh'
+fi
 
+# gem install --user-install docker-sync
+export GEM_HOME="$HOME/.gem"
 
 # This must be the last line of $HOME/.zshrc becuse From bash_functions.sh@profzsh will call for the profilling
 if [[ "$ZPROF" = true ]]; then
-  zprof
+	zprof
 fi

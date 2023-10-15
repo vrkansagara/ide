@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
 export DEBIAN_FRONTEND=noninteractive
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -38,9 +35,8 @@ ${SUDO} chmod 700 $HOME/.gnupg
 # maybe you need some random work in your OS to generate a key. so run this command: `find ./* /home/username -type d | xargs grep some_random_string > /dev/null`
 
 if [ -f "~/.ssh/gnupg/vrkansagara-sec.key" ]; then
-  gpg --import ~/.ssh/gnupg/vrkansagara-sec.key
+	gpg --import ~/.ssh/gnupg/vrkansagara-sec.key
 fi
-
 
 # check current keys:
 gpg --list-secret-keys --keyid-format LONG

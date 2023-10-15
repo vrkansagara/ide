@@ -2,12 +2,15 @@
 # (sorted alphabetically)
 #
 
+alias myGitLs='for i in */; do (cd $i && echo -n "$(pwd) <=> " && git rev-parse --abbrev-ref HEAD);  done'
+alias myGitLog="git log --oneline | fzf --preview 'git show --name-only {1}'"
+
 alias g='git'
 alias gb='git branch'
 alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gbr='git branch --remote'
-alias gc='git commit -v'
+alias gc='git commit -S -v '
 alias gc!='git commit -v --amend'
 alias gcn!='git commit -v --no-edit --amend'
 alias gca='git commit -v -a'
@@ -80,7 +83,6 @@ alias gsps='git show --pretty=short --show-signature'
 alias gsr='git svn rebase'
 alias gss='git status -s'
 alias gst='git status'
-
 
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'

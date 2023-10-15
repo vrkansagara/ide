@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo " "
@@ -19,16 +19,18 @@ fi
 
 echo "User [ $USER ] is the only one who owning the [ $HOME ] directory"
 if [ $(uname -s) == 'Darwin' ]; then
-    ${SUDO} chown -R $USER:staff $HOME
-    ${SUDO} chmod -R 600 ~
-    ${SUDO} chmod -R u+rwX ~
-    ${SUDO} chmod og+rX ~
-    ${SUDO} chmod -R og+rX ~/Public
-    ${SUDO} chmod og=wX ~/Public/Drop\ Box
-  else
-    ${SUDO} chown $USER:$USER -Rf $HOME
+	# Resetting home directory permissions on macOS
+	chflags -R nouchg ~
+	diskutil resetUserPermissions / $(id -u)
+	# ${SUDO} chown -R $USER:staff $HOME
+	# ${SUDO} chmod -R 600 ~
+	# ${SUDO} chmod -R u+rwX ~
+	# ${SUDO} chmod og+rX ~
+	# ${SUDO} chmod -R og+rX ~/Public
+	# ${SUDO} chmod og=wX ~/Public/Drop\ Box
+else
+	${SUDO} chown $USER:$USER -Rf $HOME
 fi
-
 
 echo "Current user [ $USER ] has all the rights to change [ $HOME ] directory and it's file(s)."
 ${SUDO} chmod 0755 -Rf $HOME
