@@ -68,9 +68,13 @@ profzsh() {
 	ZPROF=true $shell -i -c exit
 }
 #tar gzip a file or folder
-#example: tgz archive myproject
+#example: tgz archive myproject or tgz archive myproject -t for timestamp
 function tgz {
-	tar -czvf $1.tgz $2
+	if [[ "$3" == "-t" ]]; then
+		tar -czvf $1-$(date "+%Y%m%d%H%M%S").tgz $2
+	else
+		tar -czvf $1.tgz $2
+	fi
 }
 
 #find a file type
