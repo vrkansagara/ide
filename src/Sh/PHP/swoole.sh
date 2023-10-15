@@ -5,7 +5,7 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 echo ""
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-export DEBIAN_FRONTEND=noninteractive
+export
 echo " "
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
@@ -14,7 +14,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # sed -i 's/\x27NULL\x27/NULL/' FileName.sql # This will tream the 'NULL' with NULL (Useful for database)
@@ -24,4 +24,3 @@ for i in *.php; do
 	# sed -i 's/\x27NULL\x27/NULL/' $i
 	# sed -i '/namespace Database\\Seeders;/d' $i
 done
-

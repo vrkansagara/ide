@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
@@ -18,7 +18,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # https://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro
-${SUDO} apt-get install --no-install-recommends linux-image-$(uname -r|sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
+${SUDO} apt-get install --no-install-recommends linux-image-$(uname -r | sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r | sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
 ${SUDO} modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
 ${SUDO} modprobe wl
 
@@ -64,18 +64,18 @@ ${SUDO} apt-get install -y elinks htop exuberant-ctags curl lsb-release remmina
 
 read -r -p "Do you want to install XFCE desktop ? [Y/n] " input
 case $input in
-	[yY][eE][sS]|[yY])
-		echo "Install desktop manager"
-		${SUDO} apt-get install -y xfce4 xfce4-goodies
-		${SUDO} apt-get install --reinstall thunar-volman gvfs-backends go-mtpfs mtp gmtp
-		;;
-	[nN][oO]|[nN])
-		echo "Skipping...XFCE"
-		;;
-	*)
-		echo "Invalid input..."
-		exit 1
-		;;
+[yY][eE][sS] | [yY])
+	echo "Install desktop manager"
+	${SUDO} apt-get install -y xfce4 xfce4-goodies
+	${SUDO} apt-get install --reinstall thunar-volman gvfs-backends go-mtpfs mtp gmtp
+	;;
+[nN][oO] | [nN])
+	echo "Skipping...XFCE"
+	;;
+*)
+	echo "Invalid input..."
+	exit 1
+	;;
 esac
 
 # cd /tmp
@@ -92,8 +92,8 @@ ${SUDO} apt-get autoremove
 # Adding current use to virtual box
 ${SUDO} adduser $USER vboxsf
 
-echo "AllowRoot=root" | ${SUDO}  tee -a /etc/gdm3/custom.conf
-echo "AutomaticLogin=$(whoami)" | ${SUDO}  tee -a /etc/gdm3/custom.conf
+echo "AllowRoot=root" | ${SUDO} tee -a /etc/gdm3/custom.conf
+echo "AutomaticLogin=$(whoami)" | ${SUDO} tee -a /etc/gdm3/custom.conf
 echo "greeter-show-manual-login=true" | ${SUDO} /etc/lightdm/lightdm.conf
 
 # reset htop configuration

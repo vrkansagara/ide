@@ -1,40 +1,38 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo ""
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 # Stop all containers
-docker stop `docker ps -qa`
+docker stop $(docker ps -qa)
 
 # Remove all containers
-docker rm `docker ps -qa`
+docker rm $(docker ps -qa)
 
 # Remove all images
-docker rmi -f `docker images -qa `
+docker rmi -f $(docker images -qa)
 
 # Remove all volumes
 docker volume rm $(docker volume ls -qf)
 
 # Remove all networks
-docker network rm `docker network ls -q`
-
+docker network rm $(docker network ls -q)
 
 docker network rm $(docker network ls | tail -n+2 | awk '{if($2 !~ /bridge|none|host/){ print $1 }}')
 

@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo ""
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR="$(dirname "$SCRIPT")"
 export SCRIPTDIR
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,15 +32,15 @@ fi
 # sudo apt-get remove speedtest-cli
 
 if ! command -v shellcheck &>/dev/null; then
-  echo "Install shellcheck for shell script sanitization"
-  ${SUDO} apt-get install shellcheck
+	echo "Install shellcheck for shell script sanitization"
+	${SUDO} apt-get install shellcheck
 fi
 
 if ! command -v speedtest &>/dev/null; then
-  echo "Install speedtest for speedtest"
-  ${SUDO} apt-get install curl
-  curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | ${SUDO} bash
-  ${SUDO} apt-get install speedtest
+	echo "Install speedtest for speedtest"
+	${SUDO} apt-get install curl
+	curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | ${SUDO} bash
+	${SUDO} apt-get install speedtest
 fi
 
 #speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt

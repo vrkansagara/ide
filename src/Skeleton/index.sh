@@ -3,7 +3,7 @@ set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTDIR=$(dirname "$SCRIPT")
@@ -12,8 +12,7 @@ if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-if ! command -v ls &> /dev/null
-then
+if ! command -v ls &>/dev/null; then
 	echo "ls command not found"
 fi
 
@@ -30,5 +29,7 @@ echo $(date)
 echo "Current home folder is " $(pwd)
 
 echo "Ctrl+s to freeze output/error and press Ctrl+q to continue script and press Ctrl+c to cancle the program."
-for i in {1..10}; do echo "$i"; sleep 0.3; done
-
+for i in {1..10}; do
+	echo "$i"
+	sleep 0.3
+done

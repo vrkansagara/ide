@@ -3,6 +3,11 @@
 #   zmodload zsh/zprof
 # fi
 
+export USER=$(id -un)
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+export GROUP=$(id -gn)
+
 #### @VRKANSAGARA @START
 # https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
 # ssh-add -l &>/dev/null
@@ -23,9 +28,10 @@ alias ss='source ~/.zshrc'
 alias ll='/bin/ls -lhtraF'
 alias la='ls -A'
 alias l='ls -CF'
-alias c="clear"   # clear interface
-alias h="history" # review log of commands
-alias o="open ."  # open current directory in the finder
+alias c="clear" # clear interface
+# force zsh to show the complete history
+alias h="history 0" # review log of commands
+alias o="open ."    # open current directory in the finder
 
 # Docker Related stuff #
 # sudo curl -L
@@ -174,14 +180,6 @@ export PATH="$HOME/"'.magento-cloud/bin':"$PATH"
 if [ -f "$HOME/"'.magento-cloud/shell-config.rc' ]; then . "$HOME/"'.magento-cloud/shell-config.rc'; fi
 # END SNIPPET
 
-# Lets include into $HOME/.zshrc file
-# Lets call my custom configuration for the shell
-# source $HOME/.vim/src/Dotfiles/shell/my.sh
-
-if [ -f "$HOME/.profile" ]; then
-	. $HOME/.profile
-fi
-
 # zsh-completions
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -193,6 +191,15 @@ fi
 
 # gem install --user-install docker-sync
 export GEM_HOME="$HOME/.gem"
+
+PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}]
+╰─%B[卐]%b "
+RPROMPT="%B${return_code}%b"
+
+# Alwayse load profile at the last because user preference can be overriden to the existing function or variables
+if [ -f "$HOME/.profile" ]; then
+	. $HOME/.profile
+fi
 
 # This must be the last line of $HOME/.zshrc becuse From bash_functions.sh@profzsh will call for the profilling
 if [[ "$ZPROF" = true ]]; then

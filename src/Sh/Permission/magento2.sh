@@ -6,7 +6,7 @@ fi
 
 echo
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo

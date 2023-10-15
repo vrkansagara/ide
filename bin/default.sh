@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo -e "\n\n\n"
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "SCRIPT")
@@ -14,7 +14,7 @@ VER=$(uname -r)
 BUILD=$(uname -m)
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -22,25 +22,25 @@ fi
 #  Note       :- Set my default configuration for the working style.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 while getopts ":a:d:" opt; do
-  case $opt in
-  a)
-    arg_1="$OPTARG"
-    ;;
-  d)
-    display="$OPTARG"
-    ;;
-  \?)
-    echo "Invalid option -$OPTARG" >&2
-    exit 1
-    ;;
-  esac
+	case $opt in
+	a)
+		arg_1="$OPTARG"
+		;;
+	d)
+		display="$OPTARG"
+		;;
+	\?)
+		echo "Invalid option -$OPTARG" >&2
+		exit 1
+		;;
+	esac
 
-  case $OPTARG in
-  -*)
-    echo "Option $opt needs a valid argument"
-    exit 1
-    ;;
-  esac
+	case $OPTARG in
+	-*)
+		echo "Option $opt needs a valid argument"
+		exit 1
+		;;
+	esac
 done
 
 ${SUDO} apt-get install alsa-utils neofetch arandr --yes --no-install-recommends
@@ -51,30 +51,30 @@ printf "Argument arg_1 is %s\n" "$arg_1"
 echo "===========INFORMATION==========="
 
 if [[ "$display" == 2 ]]; then
-  echo "Selecting primary display"
-  if [ $(lsb_release -sc) == 'jammy' ]; then
-    xrandr \
-      --output XWAYLAND1 --mode 1366x768 --pos 1920x0 --rotate normal \
-      --output XWAYLAND1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-      --output XWAYLAND3 --off
-  else
-    xrandr \
-      --output eDP-1 --mode 1366x768 --pos 1920x0 --rotate normal \
-      --output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
-      --output DP-1 --off
-  fi
+	echo "Selecting primary display"
+	if [ $(lsb_release -sc) == 'jammy' ]; then
+		xrandr \
+			--output XWAYLAND1 --mode 1366x768 --pos 1920x0 --rotate normal \
+			--output XWAYLAND1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+			--output XWAYLAND3 --off
+	else
+		xrandr \
+			--output eDP-1 --mode 1366x768 --pos 1920x0 --rotate normal \
+			--output HDMI-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+			--output DP-1 --off
+	fi
 
 elif [[ "$display" == 3 ]]; then
-  xrandr \
-    --output eDP-1 --mode 1366x768 --pos 3286x0 --rotate normal \
-    --output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal --primary \
-    --output DP-1 --mode 1366x768 --pos 0x0 --rotate normal
+	xrandr \
+		--output eDP-1 --mode 1366x768 --pos 3286x0 --rotate normal \
+		--output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal --primary \
+		--output DP-1 --mode 1366x768 --pos 0x0 --rotate normal
 else
-  echo "Current screen setting."
-  xrandr \
-    --output eDP-1 --mode 1366x768 --pos 0x0 --rotate normal --primary \
-    --output HDMI-1 --off \
-    --output DP-1 --off
+	echo "Current screen setting."
+	xrandr \
+		--output eDP-1 --mode 1366x768 --pos 0x0 --rotate normal --primary \
+		--output HDMI-1 --off \
+		--output DP-1 --off
 fi
 
 # Check list of timezones which is available into system.

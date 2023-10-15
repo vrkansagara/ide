@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo ""
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -17,11 +17,10 @@ fi
 #  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 if [ $(uname -s) == 'Darwin' ]; then
-    brew install gnupg2  git-flow zsh-completions
-  else
-    ${SUDO} apt-get install --no-install-recommends -y gnupg2  git-flow
+	brew install gnupg2 git-flow zsh-completions
+else
+	${SUDO} apt-get install --no-install-recommends -y gnupg2 git-flow
 fi
 
 BASEDIR=$(dirname "$0")
@@ -49,7 +48,7 @@ git config --global pull.rebase false
 git config --global user.name "Vallabh Kansagara"
 git config --global user.signingkey 8BA6E7ABD8112B3E
 
-git config --global alias.add-unmerged  '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`'
+git config --global alias.add-unmerged '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`'
 git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.cm 'commit -m'
@@ -85,5 +84,5 @@ git config --global alias.gp 'push -u origin HEAD --force-with-lease'
 git config --global url."https://".insteadOf git://
 
 # Tee command append to file multiple time TODO
-cat .gitignore | tee /tmp/.gitignore-global > /dev/null
-sed 's/\r//' /tmp/.gitignore-global | sort -u > ~/.gitignore
+cat .gitignore | tee /tmp/.gitignore-global >/dev/null
+sed 's/\r//' /tmp/.gitignore-global | sort -u >~/.gitignore

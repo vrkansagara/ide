@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
@@ -22,13 +22,13 @@ ${SUDO} apt-get install apt-transport-https
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | ${SUDO} tee /etc/apt/sources.list.d/elastic-7.x.list
 ${SUDO} apt-get update && ${SUDO} apt-get install elasticsearch
 
-exit;
+exit
 
 # /etc/security/limits.conf
 # Ensure ElasticSearch can open files and lock memory!
-elasticsearch   soft    nofile          65536
-elasticsearch   hard    nofile          65536
-elasticsearch   -       memlock         unlimited
+elasticsearch soft nofile 65536
+elasticsearch hard nofile 65536
+elasticsearch - memlock unlimited
 
 # /etc/security/limits.conf,
 # allow user 'elasticsearch' mlockall

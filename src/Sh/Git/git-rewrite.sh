@@ -5,7 +5,7 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 echo -e ""
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")
@@ -36,7 +36,7 @@ export FILTER_BRANCH_SQUELCH_WARNING=1
 update_signature(){
 # vrkansagara gpg signature
 # curl -sL https://gist.githubusercontent.com/vrkansagara/862e1ea96091ddf01d8e3f0786eefae8/raw/bcc458eb4b2c0eb441aaf7a56f385bc6cd4cb25a/vrkansagara.gpg | gpg --import
-# 
+#
 # export GPGKEY=8BA6E7ABD8112B3E
 
 git filter-branch --force --commit-filter '
