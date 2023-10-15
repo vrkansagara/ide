@@ -111,7 +111,7 @@ prompt_context() {
 
 # Mac specific
 export nproc=$(sysctl -n hw.logicalcpu)
-alias juliA="/usr/local/bin/julia --compiled-modules=yes --startup-file=no --banner=no "
+alias juliA="$(brew --prefix)/bin/julia --compiled-modules=yes --startup-file=no --banner=no "
 
 # CUSTOM FROM HERE....
 source "$HOME/.vim/src/Dotfiles/shell/bash_color.sh"
@@ -192,7 +192,7 @@ fi
 # gem install --user-install docker-sync
 export GEM_HOME="$HOME/.gem"
 
-PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}]
+PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ हरि ऊँ तत् सत्  ]
 ╰─%B[卐]%b "
 RPROMPT="%B${return_code}%b"
 

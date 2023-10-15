@@ -46,3 +46,6 @@
 [submodule "pack/vendor/start/rust"]
 	path = pack/vendor/start/rust
 	url = https://github.com/rust-lang/rust.vim
+[submodule "pack/vendor/start/JuliaFormatter"]
+	path = pack/vendor/start/JuliaFormatter
+	url = https://github.com/kdheepak/JuliaFormatter.vim

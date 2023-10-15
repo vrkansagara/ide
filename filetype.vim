@@ -37,7 +37,7 @@ function! OnFileSave()
         silent! %s/^\s*://
         " silent! %s/^map/nnoremap/
         " silent! %s/^imap/inoremap/
-        
+
         "nmap <-> nnoremap make issue with coc-nvim , so disable it
         " silent! %s/^nmap/nnoremap/
         " silent! %s/^cmap/cnoremap/
