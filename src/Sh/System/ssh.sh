@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
+	SUDO=sudo
 fi
 echo ""
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,15 +44,15 @@ ${SUDO} chmod 0700 $HOME/.ssh/*.pub
 eval "$(ssh-agent -s)"
 
 if [ -f "$HOME/.ssh/id_rsa" ]; then
-  ssh-add $HOME/.ssh/id_rsa
+	ssh-add $HOME/.ssh/id_rsa
 fi
 
 if [ -f "$HOME/.ssh/id_rsa_vrkansagara" ]; then
-  ssh-add $HOME/.ssh/id_rsa_vrkansagara
+	ssh-add $HOME/.ssh/id_rsa_vrkansagara
 fi
 
 if [ -f "~/.ssh/gnupg/vrkansagara-sec.key" ]; then
-  gpg --import ~/.ssh/gnupg/vrkansagara-sec.key
+	gpg --import ~/.ssh/gnupg/vrkansagara-sec.key
 fi
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied."

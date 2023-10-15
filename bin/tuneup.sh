@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo " "
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "$SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+	SUDO=sudo
 fi
 cd $SCRIPTDIR
 
@@ -21,7 +21,7 @@ cd $SCRIPTDIR
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # First thing First
 
-${SUDO} sysctl --all > $HOME/Documents/sysctl-${CURRENT_DATE}.txt
+${SUDO} sysctl --all >$HOME/Documents/sysctl-${CURRENT_DATE}.txt
 
 ${SUDO} ufw default allow outgoing
 ${SUDO} ufw default deny incoming
@@ -29,15 +29,15 @@ ${SUDO} ufw default deny incoming
 # Give *.sh to execute permission for the working directory
 ${SUDO} find -name '*.sh' -exec ls -lA {} +
 
- # 1. Clear PageCache only.
- # 2. Clear dentries and inodes.
- # 3. Clear PageCache, dentries and inodes.
- # Note, we are using "echo 3", but it is not recommended in production instead
- # use "echo 1"
- # Writing to this will cause the kernel to drop clean caches, as well as
- # reclaimable slab objects like dentries and inodes.  Once dropped, their
- # memory becomes free.
- # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
+# 1. Clear PageCache only.
+# 2. Clear dentries and inodes.
+# 3. Clear PageCache, dentries and inodes.
+# Note, we are using "echo 3", but it is not recommended in production instead
+# use "echo 1"
+# Writing to this will cause the kernel to drop clean caches, as well as
+# reclaimable slab objects like dentries and inodes.  Once dropped, their
+# memory becomes free.
+# ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
 ${SUDO} sysctl vm.drop_caches=3
 
 # Clear program cache/remove
@@ -49,7 +49,7 @@ ${SUDO} rm -rfv ~/.cache/thumbnails
 # /etc/sysctl.conf
 
 # Clear Swap Space in Linux?
-${SUDO}  swapoff -a && ${SUDO} swapon -a
+${SUDO} swapoff -a && ${SUDO} swapon -a
 
 # swappiness
 # This control is used to define how aggressive the kernel will swap
@@ -147,7 +147,7 @@ ${SUDO} apt-get install procps preload --yes --no-install-recommends
 ${SUDO} apt autoremove
 ${SUDO} apt-get --yes clean
 ${SUDO} apt-get --yes autoclean
-${SUDO} apt-get --yes --purge  autoremove
+${SUDO} apt-get --yes --purge autoremove
 ${SUDO} apt-get update --yes --no-install-recommends
 ${SUDO} apt-get upgrade --yes -v
 # ${SUDO} apt upgrade --yes --no-install-recommends -v
@@ -172,16 +172,15 @@ ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
 # Clean apt history logs
 if [ -f "/var/log/apt/history.log" ]; then
-  ${SUDO} head -n 1 /var/log/apt/history.log | sudo tee /var/log/apt/history.log
+	${SUDO} head -n 1 /var/log/apt/history.log | sudo tee /var/log/apt/history.log
 fi
 if [ -f "/var/log/apt-history.log" ]; then
-  ${SUDO} head -n 1 /var/log/apt-history.log | sudo tee /var/log/apt-history.log
+	${SUDO} head -n 1 /var/log/apt-history.log | sudo tee /var/log/apt-history.log
 fi
 
-if ! command -v earlyoom &> /dev/null
-then
-    ${SUDO} apt install earlyoom
-    # EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
+if ! command -v earlyoom &>/dev/null; then
+	${SUDO} apt install earlyoom
+	# EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
 fi
 
 # Remove old phpstome directories.
@@ -201,10 +200,9 @@ ${SUDO} cat /proc/sys/kernel/threads-max
 echo "Total threads running:"
 ps -eo nlwp | awk '$1 ~ /^[0-9]+$/ { n += $1 } END { print n }'
 
-
 if [ -f "/etc/sysctl.d/local.conf" ]; then
-  # Lets backup the resolver
-  ${SUDO} cp /etc/sysctl.d/local.conf /etc/sysctl.d/local-${CURRENT_DATE}.conf
+	# Lets backup the resolver
+	${SUDO} cp /etc/sysctl.d/local.conf /etc/sysctl.d/local-${CURRENT_DATE}.conf
 fi
 echo '
 # Kernel system variables configuration files
@@ -221,7 +219,7 @@ net.ipv6.conf.all.disable_ipv6=0
 net.ipv6.conf.default.disable_ipv6=0
 net.ipv6.conf.lo.disable_ipv6=0
 kernel.dmesg_restrict=0
-' | ${SUDO} tee /etc/sysctl.d/local.conf  >/dev/null
+' | ${SUDO} tee /etc/sysctl.d/local.conf >/dev/null
 
 echo "Tune of system is ....... [DONE]"
 

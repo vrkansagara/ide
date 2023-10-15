@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
@@ -28,7 +28,10 @@ echo "Stopping IPv4 firewall and allowing everyone..."
 ipt="/usr/sbin/iptables"
 
 ## Failsafe - die if /sbin/iptables not found
-[ ! -x "$ipt" ] && { echo "$0: \"${ipt}\" command not found."; exit 1; }
+[ ! -x "$ipt" ] && {
+	echo "$0: \"${ipt}\" command not found."
+	exit 1
+}
 ${SUDO} $ipt -t filter -F
 ${SUDO} $ipt -t filter -X
 ${SUDO} $ipt -t nat -F
@@ -94,9 +97,9 @@ ${SUDO} $ipt -I INPUT 1 -i lo -j ACCEPT
 ${SUDO} $ipt -A OUTPUT -p udp --dport 53 -j ACCEPT
 
 # Now, allow connection to website serverfault.com on port 80
-${SUDO} $ipt  -A OUTPUT -p tcp -d gocomics.com --dport 443 -j ACCEPT
-${SUDO} $ipt  -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+${SUDO} $ipt -A OUTPUT -p tcp -d gocomics.com --dport 443 -j ACCEPT
+${SUDO} $ipt -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
 # Drop everything
-${SUDO} $ipt  -P INPUT DROP
-${SUDO} $ipt  -P OUTPUT DROP
+${SUDO} $ipt -P INPUT DROP
+${SUDO} $ipt -P OUTPUT DROP

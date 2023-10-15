@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo

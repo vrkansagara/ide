@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
@@ -19,7 +19,6 @@ fi
 # /etc/fstab
 # cgroup /sys/fs/cgroup cgroup defaults,blkio,net_cls,freezer,devices,cpuacct,cpu,cpuset,memory,clone_children 0 0
 
-
 # This will select only the mounts that are part of cgroup version 1, taking just
 # their mount points and then unmounting them.
 sudo mount -t cgroup | cut -f 3 -d ' ' | xargs sudo umount
@@ -31,9 +30,8 @@ sudo find /sys/fs/cgroup -maxdepth 1 -type l -exec rm {} \;
 # sudo find /sys/fs/cgroup/ -links 2 -type d -not -path '/sys/fs/cgroup/unified/*' -exec rmdir -v {} \;
 sudo mount -o remount,ro /sys/fs/cgroup
 
-
 # if cgroup is supported by your kernel
-	# grep "cgroup" /proc/filesystems
+# grep "cgroup" /proc/filesystems
 
 # Add the following line to /etc/fstab:
 # cgroup /sys/fs/cgroup cgroup defaults
@@ -52,21 +50,20 @@ sudo mount -o remount,ro /sys/fs/cgroup
 # Add the following string inside of the GRUB_CMDLINE_LINUX_DEFAULT variable:
 # cgroup_enable=memory swapaccount=1
 
-
 YUM_CMD=$(which yum)
 APT_GET_CMD=$(which apt)
 OTHER_CMD=$(which def)
 
- if [[ ! -z $YUM_CMD ]]; then
-    ${SUDO} yum -y libcgroup libcgroup-tools
- elif [[ ! -z $APT_GET_CMD ]]; then
-   ${SUDO}  apt install -y libcgroup1 cgroup-tools cgroupfs-mount
- elif [[ ! -z $OTHER_CMD ]]; then
-    ${SUDO} $OTHER_CMD other-project-install
- else
-    echo "error can't install package $PACKAGE"
-    exit 1;
- fi
+if [[ ! -z $YUM_CMD ]]; then
+	${SUDO} yum -y libcgroup libcgroup-tools
+elif [[ ! -z $APT_GET_CMD ]]; then
+	${SUDO} apt install -y libcgroup1 cgroup-tools cgroupfs-mount
+elif [[ ! -z $OTHER_CMD ]]; then
+	${SUDO} $OTHER_CMD other-project-install
+else
+	echo "error can't install package $PACKAGE"
+	exit 1
+fi
 
 # From there, you can add tasks into your cgroup using the echo command:
 # echo $pid > /sys/fs/cgroup/memory/mycgroup/tasks
@@ -105,18 +102,15 @@ ${SUDO} cp $HOME/.vim/bin/conf.d/cgrules.conf /etc
 ${SUDO} /usr/sbin/cgconfigparser -l /etc/cgconfig.conf
 ${SUDO} /usr/sbin/cgrulesengd -vvv
 
-
 ${SUDO} systemctl daemon-reload
 ${SUDO} systemctl enable cgconfigparser
 ${SUDO} systemctl enable cgrulesgend
 ${SUDO} systemctl start cgconfigparser
 ${SUDO} systemctl start cgrulesgend
 
-
 # check if cgroup’s are working properly
 # cat /sys/fs/cgroup/cpu/web2/tasks
 # cat /sys/fs/cgroup/memory/web2/tasks
-
 
 ## vallabh @ vrkansagara.local ➜  .vim git:(master) mount | grep cgroup
 # cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)

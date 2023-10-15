@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo " "
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -21,11 +21,11 @@ ${SUDO} add-apt-repository ppa:jonathonf/vim
 ${SUDO} apt update
 ${SUDO} apt install --yes --no-install-recommends vim vim-gtk3
 
-exit;
+exit
 
 ${SUDO} apt update
 APT_PACKAGE_TARGET="vim-gtk" # Ubuntu
-${SUDO} apt-get purge  ${APT_PACKAGE_TARGET}
+${SUDO} apt-get purge ${APT_PACKAGE_TARGET}
 ${SUDO} apt-get build-dep ${APT_PACKAGE_TARGET}
 
 TMPDIRECOTORY="$HOME/tmp/latest"
@@ -38,38 +38,38 @@ git clean -fd
 
 ${SUDO} make distclean
 ./configure \
-    --disable-acl \
-    --disable-darwin                          \
-    --disable-gpm                             \
-    --disable-gtk2-check                      \
-    --disable-gtktest                         \
-    --disable-gui                             \
-    --disable-largefile                       \
-    --disable-netbeans                        \
-    --disable-option-checking                 \
-    --disable-selinux                         \
-    --disable-sniff                           \
-    --disable-sysmouse                        \
-    --disable-workshop                        \
-    --disable-xim                             \
-    --disable-xsmp                            \
-    --enable-cscope                           \
-    --enable-fontset                          \
-    --enable-multibyte                        \
-    --enable-perlinterp                       \
-    --enable-luainterp                        \
-    --enable-python3interp=yes                \
-    --enable-pythoninterp=yes                 \
-    --enable-rubyinterp=yes                   \
-    --enable-fail-if-missing                  \
-    --with-features=normal                    \
-    --enable-gui=auto                         \
-    --enable-gui=gtk2 \
-    --with-x                                  \
-    --with-compiledby="Vallabh Kansagara <vrkansagara@gmail.com>" \
-    --with-vim-name=vi                        \
-    --with-features=huge                      \
-    --prefix=/usr
+	--disable-acl \
+	--disable-darwin \
+	--disable-gpm \
+	--disable-gtk2-check \
+	--disable-gtktest \
+	--disable-gui \
+	--disable-largefile \
+	--disable-netbeans \
+	--disable-option-checking \
+	--disable-selinux \
+	--disable-sniff \
+	--disable-sysmouse \
+	--disable-workshop \
+	--disable-xim \
+	--disable-xsmp \
+	--enable-cscope \
+	--enable-fontset \
+	--enable-multibyte \
+	--enable-perlinterp \
+	--enable-luainterp \
+	--enable-python3interp=yes \
+	--enable-pythoninterp=yes \
+	--enable-rubyinterp=yes \
+	--enable-fail-if-missing \
+	--with-features=normal \
+	--enable-gui=auto \
+	--enable-gui=gtk2 \
+	--with-x \
+	--with-compiledby="Vallabh Kansagara <vrkansagara@gmail.com>" \
+	--with-vim-name=vi \
+	--with-features=huge \
+	--prefix=/usr
 
 make
 ${SUDO} rm -rf /usr/local/bin/vim /usr/share/vim/

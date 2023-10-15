@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-
 echo ""
-export DEBIAN_FRONTEND=noninteractive
+export
 CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 SCRIPT=$(readlink -f "")
 SCRIPTDIR=$(dirname "SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+	SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,5 +19,4 @@ fi
 #  Note		  :- Install system font from the package manager
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-${SUDO} apt-get install --yes --no-install-recommends fonts-quicksand 
-
+${SUDO} apt-get install --yes --no-install-recommends fonts-quicksand

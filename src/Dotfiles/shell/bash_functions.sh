@@ -88,6 +88,20 @@ function lt {
 	history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
-function dsn_clear() {
-
+function machine() {
+	unameOut="$(uname -s)"
+	case "${unameOut}" in
+	Linux*) machine=linux ;;
+	Darwin*) machine=mac ;;
+	CYGWIN*) machine=cygwin ;;
+	MINGW*) machine=minGw ;;
+	MSYS_NT*) machine=git ;;
+	*) machine="UNKNOWN:${unameOut}" ;;
+	esac
+	export machine
 }
+
+function main() {
+	machine
+}
+main

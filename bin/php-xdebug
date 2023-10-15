@@ -2,7 +2,7 @@
 
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
-export DEBIAN_FRONTEND=noninteractive
+export
 
 if [ "$(whoami)" != "root" \]; then
 	SUDO=sudo
@@ -12,7 +12,7 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- 
+#  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 export XDEBUG_CONFIG="idekey=xdebug"
@@ -25,4 +25,3 @@ export XDEBUG_CONFIG="idekey=xdebug"
 # You are now officially ready to start debugging with PHP. However, if you've
 # become stuck at any point then there are plenty of Google tutorials on setting
 # up Xdebug, or you can email me and I'll do my best to help.
-
