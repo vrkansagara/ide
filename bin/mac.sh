@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 echo
@@ -17,10 +17,18 @@ fi
 #  Note		    :- Mac machine helper
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-sudo dscacheutil -flushcache
-sudo killall -HUP mDNSResponder
+${SUDO} dscacheutil -flushcache
+${SUDO} killall -HUP mDNSResponder
 
 du -sh /Library/Caches/* | sort -h
 
+if ! command -v brew &>/dev/null; then
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+	brew update
+	brew doctor
+	brew install pinentry-mac
+fi
+
 # How to drop memory caches in macOS?
-sync && sudo purge
+sync && ${SUDO} purge
