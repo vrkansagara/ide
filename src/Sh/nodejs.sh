@@ -43,7 +43,9 @@ nvm() {
 
     nvm install node
     nvm install --latest-npm
+    nvm use --latest-npm
     nvm install --lts
+    nvm use --lts
 }
 main() {
   if [[ "$1" == "--nvm" ]]; then

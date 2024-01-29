@@ -4,7 +4,7 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-[ -z "$1" ] && echo "Script require argument.(ex. deb-stable | deb-insider | snap)" && exit
+[ -z "$1" ] && echo "Script require argument.(ex. deb-stable | deb-insider | snap | mac)" && exit
 
 # This script cleans all cache for Microsoft Teams on Linux
 # Tested on Ubuntu-like, Debian by @necrifede and Arch Linux by @lucas-dclrcq. Feel free to test/use in other distributions.
@@ -29,6 +29,12 @@ case $1 in
   snap)
     export TEAMS_PROCESS_NAME=teams
     cd "$HOME"/snap/teams/current/.config/Microsoft/Microsoft\ Teams || exit 1
+  ;;
+  mac)
+    export TEAMS_PROCESS_NAME=teams
+    rm -rf ~/Library/Application\ Support/Microsoft
+#    cd "$HOME"/snap/teams/current/.config/Microsoft/Microsoft\ Teams || exit 1
+    exit 0
   ;;
   *)
     echo "Use $0 ( deb-stable | deb-insider | snap) as parameter."
