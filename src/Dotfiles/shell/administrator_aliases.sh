@@ -18,8 +18,10 @@ alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
 alias myPsilent='ps -ef | grep "teams\|skype\|slack\|discord" | grep -v grep | awk "{print \$2}" | xargs -I {} sudo kill -9 {} '
 # package dependencies
 alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {1}' "
-alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.com'
-alias myPublicIP='dig +short txt ch whoami.cloudflare @1.0.0.1'
+alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.comss
+'
+alias myPublicIP="dig +short txt ch whoami.cloudflare @1.0.0.1 | tr -d '\"'"
+alias myPublicIPCloud=`curl -fSs https://1.1.1.1/cdn-cgi/trace | awk -F= '/ip/ { print $2 }'`
 alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 # alias myIp="echo $(hostname -I | awk '{print $1}')"
@@ -40,5 +42,5 @@ alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
 alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
 alias myFindLastModified="find $(pwd) \( ! -regex '.*/\..*' \) -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head"
-# -r = recursive -n= line numer -w match whole world -e=pattern used for search
+# -r = recursive -n= line numer -w match whole world -e=pattern used for search --include=\*.{xml,php} --exclude=\*.o
 alias myFindTextIntoDirectory="grep -rnw -e "

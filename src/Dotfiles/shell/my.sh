@@ -1,7 +1,14 @@
+# @usage
+# (1) copy original zshrc and inject top and bottom code
+# (2) Top code
 # This will be the first line of the .zshrc
 # if [[ "$ZPROF" = true ]]; then
 #   zmodload zsh/zprof
 # fi
+# (3) Bottom code
+# Lets include into $HOME/.zshrc file
+# Lets call my custom configuration for the shell
+#source $HOME/.vim/src/Dotfiles/shell/my.sh
 
 export USER=$(id -un)
 export USER_ID=$(id -u)
@@ -9,6 +16,12 @@ export GROUP_ID=$(id -g)
 export GROUP=$(id -gn)
 
 #### @VRKANSAGARA @START
+command_exists() {
+  # @usage :- command_exists sdfsfsdfsfsd || echo " [ $1 ] command not found" && exit
+  command -v "$@" >/dev/null 2>&1
+  #  &&  echo " [ sudo ] command not found" && exit 0
+  #  https://command-not-found.com/
+}
 # https://rabexc.org/posts/pitfalls-of-ssh-agents ( Be careful !!! )
 # ssh-add -l &>/dev/null
 # if [ "$?" == 2 ]; then
@@ -49,6 +62,7 @@ alias dcb='docker-compose up -dV --build --remove-orphans --force-recreate '
 alias dcu='docker-compose up -dV --remove-orphans --force-recreate '
 alias dcl='docker-compose logs --follow --timestamps --tail 50 '
 alias dIps="docker ps -q | xargs -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | sed 's/ \// /'"
+alias dm="docker-machine"
 
 #File Manager related stuff #
 
@@ -67,6 +81,7 @@ alias du='/usr/bin/du -sh  '
 # PHP Aliases
 alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
 alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
+alias myPhpRunInWeb='php7 -S 0.0.0.0:12345 -d web/index.php -t web'
 
 # AWS Aliases
 alias myaAsMyInfo='curl http://169.254.169.254/latest/meta-data/'
@@ -116,7 +131,6 @@ alias juliA="$(brew --prefix)/bin/julia --compiled-modules=yes --startup-file=no
 # CUSTOM FROM HERE....
 source "$HOME/.vim/src/Dotfiles/shell/bash_color.sh"
 source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
-source "$HOME/.vim/src/Dotfiles/shell/git_aliases.sh"
 source "$HOME/.vim/src/Dotfiles/shell/svn_aliases.sh"
 source "$HOME/.vim/src/Dotfiles/shell/administrator_aliases.sh"
 
@@ -192,7 +206,8 @@ fi
 # gem install --user-install docker-sync
 export GEM_HOME="$HOME/.gem"
 
-PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ हरि ऊँ तत् सत्  ]
+#PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ हरि ऊँ तत् सत्  ]
+PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ Do One Thing and Do It Well ]
 ╰─%B[卐]%b "
 RPROMPT="%B${return_code}%b"
 
@@ -201,7 +216,7 @@ if [ -f "$HOME/.profile" ]; then
 	. $HOME/.profile
 fi
 
-# This must be the last line of $HOME/.zshrc becuse From bash_functions.sh@profzsh will call for the profilling
+# This must be the last line of $HOME/.zshrc because From bash_functions.sh@profzsh will call for the profiling
 if [[ "$ZPROF" = true ]]; then
 	zprof
 fi

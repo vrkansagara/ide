@@ -108,8 +108,3 @@ source $ZSH/oh-my-zsh.sh
 # Lets include into $HOME/.zshrc file
 # Lets call my custom configuration for the shell
 source $HOME/.vim/src/Dotfiles/shell/my.sh
-
-# This must be the last line of $HOME/.zshrc becuse From bash_functions.sh@profzsh will call for the profilling
-if [[ "$ZPROF" = true ]]; then
-  zprof
-fi
