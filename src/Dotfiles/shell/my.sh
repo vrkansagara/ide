@@ -9,7 +9,7 @@
 # Lets include into $HOME/.zshrc file
 # Lets call my custom configuration for the shell
 #source $HOME/.vim/src/Dotfiles/shell/my.sh
-
+echo "Loading ..... $0"
 export USER=$(id -un)
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
@@ -36,6 +36,7 @@ command_exists() {
 #   fi
 # fi
 
+alias g='git'
 alias ss='source ~/.zshrc'
 # alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
 alias ll='/bin/ls -lhtraF'
@@ -124,10 +125,6 @@ prompt_context() {
 	fi
 }
 
-# Mac specific
-export nproc=$(sysctl -n hw.logicalcpu)
-alias juliA="$(brew --prefix)/bin/julia --compiled-modules=yes --startup-file=no --banner=no "
-
 # CUSTOM FROM HERE....
 source "$HOME/.vim/src/Dotfiles/shell/bash_color.sh"
 source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
@@ -213,8 +210,14 @@ RPROMPT="%B${return_code}%b"
 
 # Alwayse load profile at the last because user preference can be overriden to the existing function or variables
 if [ -f "$HOME/.profile" ]; then
+  echo "Loading ..... user specific profile settings .. $HOME/.profile"
 	. $HOME/.profile
 fi
+
+# Mac specific
+# export nproc=$(sysctl -n hw.logicalcpu)
+# alias juliA=`$(brew --prefix)/bin/julia --compiled-modules=yes --startup-file=no --banner=no `
+
 
 # This must be the last line of $HOME/.zshrc because From bash_functions.sh@profzsh will call for the profiling
 if [[ "$ZPROF" = true ]]; then
