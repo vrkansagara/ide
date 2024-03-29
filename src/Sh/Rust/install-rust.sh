@@ -12,7 +12,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- https://www.rust-lang.org/tools/install
 #  Note(Other)		  :- https://forge.rust-lang.org/infra/other-installation-methods.html
 #  Ref: https://github.com/orgs/mozilla/repositories?language=rust&type=all

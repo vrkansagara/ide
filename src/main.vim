@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :- Main configuration file for the VIM(init)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Alt-letter will now be recognized by vi in a terminal as well as by gvim.

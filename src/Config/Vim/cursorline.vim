@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About:- CursorLine related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
+" Maintainer:- vallabhdas kansagara — @vrkansagara
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight current line
 set cursorline

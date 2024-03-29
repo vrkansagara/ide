@@ -16,7 +16,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Kernel development reference. ( sanitize using shellcheck)
 #  @url     :- https://www.speedtest.net/apps/cli
 #  @usage   :- every 15 minutes.

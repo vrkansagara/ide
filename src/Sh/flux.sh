@@ -12,7 +12,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Brightness dim after sunset and sunrise
 #  Github	  :- https://github.com/xflux-gui/fluxgui
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

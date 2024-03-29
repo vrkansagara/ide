@@ -9,7 +9,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- VIM dependecies setup using git submodule + vim manager
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 echo "Sub-module installation started at $CURRENT_DATE"

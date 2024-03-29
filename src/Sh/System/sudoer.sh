@@ -15,7 +15,7 @@ fi
 echo -e "Script [$0] started in [$SCRIPTDIR] at  $CURRENT_DATE"
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Ubuntu no password for the current user
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

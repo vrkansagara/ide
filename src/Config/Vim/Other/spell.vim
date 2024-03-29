@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About:- spell related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
+" Maintainer:- vallabhdas kansagara — @vrkansagara
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set spell spelllang=en_gb
 set spellfile=~/.vim/data/spell/en.utf-8.add

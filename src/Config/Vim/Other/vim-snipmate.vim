@@ -1,4 +1,4 @@
-let g:snips_author = "Vallabh Kansagara"
+let g:snips_author = "vallabhdas kansagara"
 
 " snipMate options
 let g:snipMate = {}
