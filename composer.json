@@ -29,7 +29,8 @@
     "laravel/installer": "@stable",
     "symfony/yaml": "@stable",
     "symfony/console": "^5.4",
-    "vrkansagara/common": "dev-master"
+    "vrkansagara/common": "dev-master",
+    "laravel/envoy": "^2.9"
   },
   "support": {
     "email": "vrkansagara@gmail.com",

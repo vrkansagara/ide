@@ -144,7 +144,7 @@ git submodule update --init --recursive --jobs 4  --remote --merge
 
 bin/composer self-update
 bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev
-${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
+# ${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
 # yarn set version latest
 
 # update coc-nvim plugines
@@ -153,12 +153,12 @@ ${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
 #echo "Add intelephense license here"
 #node -e "console.log(os.homedir() + '/intelephense/licence.txt')"
 
-rm -rf composer.phar
-rm -rf vendor composer.lock
-composer update
-./vendor/bin/grumphp  git:deinit
-./vendor/bin/grumphp  git:init
-./vendor/bin/grumphp
+# rm -rf composer.phar
+# rm -rf vendor composer.lock
+# composer update
+# ./vendor/bin/grumphp  git:deinit
+# ./vendor/bin/grumphp  git:init
+# ./vendor/bin/grumphp
 
 echo "Submodule installation recursive dependence .....................[DONE]."
 

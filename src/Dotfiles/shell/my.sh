@@ -210,13 +210,9 @@ RPROMPT="%B${return_code}%b"
 
 # Alwayse load profile at the last because user preference can be overriden to the existing function or variables
 if [ -f "$HOME/.profile" ]; then
-  echo "Loading ..... user specific profile settings .. $HOME/.profile"
+  echo "Loading ..... $HOME/.profile , User specific profile settings .."
 	. $HOME/.profile
 fi
-
-# Mac specific
-# export nproc=$(sysctl -n hw.logicalcpu)
-# alias juliA=`$(brew --prefix)/bin/julia --compiled-modules=yes --startup-file=no --banner=no `
 
 
 # This must be the last line of $HOME/.zshrc because From bash_functions.sh@profzsh will call for the profiling

@@ -75,7 +75,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(timer)
+plugins=(timer git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,3 +108,12 @@ source $ZSH/oh-my-zsh.sh
 # Lets include into $HOME/.zshrc file
 # Lets call my custom configuration for the shell
 source $HOME/.vim/src/Dotfiles/shell/my.sh
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/vallabh/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
