@@ -23,6 +23,9 @@ fi
 # sudo apt-get update && sudo apt-get install dbeaver-ce
 # wget -k https://dbeaver.com/files/dbeaver-ee-latest-linux.gtk.x86_64.tar.gz -O $HOME/Applications/dbeaver-ee-latest-linux.gtk.x86_64.tar.gz
 
+sudo snap connect dbeaver-ce:ssh-key
+sudo snap connect dbeaver-ce:ssh-public-keys
+
 ${SUDO} add-apt-repository ppa:serge-rider/dbeaver-ce
 ${SUDO} apt-get update
 ${SUDO} apt-get install dbeaver-ce
