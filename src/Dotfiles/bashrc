@@ -106,7 +106,7 @@ if [ "$?" == 2 ]; then
   fi
 fi
 
-#### VRKANSAGARA @START
+#### vrkansagara @START
 source $HOME/.vim/src/Dotfiles/shell/bash_aliases.sh
 source $HOME/.vim/src/Dotfiles/shell/bash_color.sh
 source $HOME/.vim/src/Dotfiles/shell/bash_export.sh
