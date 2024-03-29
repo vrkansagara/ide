@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About:- number related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
+" Maintainer:- vallabhdas kansagara — @vrkansagara
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " This setting can be useful for determining how many lines of text you want to

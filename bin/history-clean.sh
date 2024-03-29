@@ -12,7 +12,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- clean your bas history.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 $SHELL -c 'cat /dev/null > $HOME/.bash_history'

@@ -13,7 +13,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- VIM compile from source.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -66,7 +66,7 @@ ${SUDO} make distclean
 	--enable-gui=auto \
 	--enable-gui=gtk2 \
 	--with-x \
-	--with-compiledby="Vallabh Kansagara <vrkansagara@gmail.com>" \
+	--with-compiledby="vallabhdas kansagara <vrkansagara@gmail.com>" \
 	--with-vim-name=vi \
 	--with-features=huge \
 	--prefix=/usr

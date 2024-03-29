@@ -15,7 +15,7 @@ SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -57,7 +57,7 @@ update_email(){
 	git filter-branch --env-filter '
 OLD_EMAIL="vallabh@vrkansagara.local"
 CORRECT_EMAIL="vrkansagara@gmail.com"
-CORRECT_NAME="Vallabh Kansagara"
+CORRECT_NAME="vallabhdas kansagara"
 
 if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
 then

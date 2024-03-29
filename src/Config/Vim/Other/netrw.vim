@@ -1,6 +1,6 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note		 :- netrw-quickmap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

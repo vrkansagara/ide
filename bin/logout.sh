@@ -14,7 +14,7 @@ if [ "$(whoami)" == "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Logout of the current user(DONT USE FOR THE ROOT)
 #				 kill -9 -1 kills all processes owned by the user executing it,
 #				 except for the shell you executed it from, with exception to

@@ -13,7 +13,7 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Set brightness with xbacklight, but never go below 1 (as that's "off Increment to use.
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 curBrightness=$(cat /sys/class/backlight/intel_backlight/brightness)

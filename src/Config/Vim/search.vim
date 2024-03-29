@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About:- search related configuration
-" Maintainer:- Vallabh Kansagara — @vrkansagara
+" Maintainer:- vallabhdas kansagara — @vrkansagara
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Turn on "very magic" regex status by default for searches.

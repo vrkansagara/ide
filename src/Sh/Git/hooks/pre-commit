@@ -5,7 +5,7 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 
-git config user.name "Vallabh Kansagara"
+git config user.name "vallabhdas kansagara"
 git config user.email "vrkansagara@gmail.com"
 
 RESTORE='\033[0m'

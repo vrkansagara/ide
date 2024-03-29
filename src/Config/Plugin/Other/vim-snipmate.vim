@@ -1,6 +1,6 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- Vallabh Kansagara<vrkansagara@gmail.com> — @vrkansagara "
+" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -20,6 +20,6 @@ let g:snipMate.snippet_dirs = ['~/.vim/src/']
 
 " snipMate options
 " echo g:snipMate
-let g:snips_author = "Vallabh Kansagara"
+let g:snips_author = "vallabhdas kansagara"
 " imap <C-T> <Plug>snipMateNextOrTrigger
 " smap <C-T> <Plug>snipMateNextOrTrigger

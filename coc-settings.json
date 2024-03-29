@@ -24,7 +24,7 @@
   "json.enable": true,
   "tsserver.enable": true,
   "snippets.snipmate.enable": true,
-  "snippets.snipmate.author": "Vallabh Kansagara",
+  "snippets.snipmate.author": "vallabhdas kansagara",
   "snippets.ultisnips.directories": [
     "~/.vim/src/UltiSnips"
   ],
