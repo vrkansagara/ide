@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
+  set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export
-
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -18,32 +14,36 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 echo " Docker related permission..."
-${SUDO} apt-get install \
-	apt-transport-https \
-	ca-certificates \
-	curl \
-	gnupg \
-	lsb-release
+# Add Docker's official GPG key:
+${SUDO} apt-get update
+${SUDO} apt-get install ca-certificates curl
+${SUDO} install -m 0755 -d /etc/apt/keyrings
+${SUDO} curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+${SUDO} chmod a+r /etc/apt/keyrings/docker.asc
 
-${SUDO} curl -fsSL https://download.docker.com/linux/ubuntu/gpg | ${SUDO} gpg --batch --yes --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+          $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
+  ${SUDO} tee /etc/apt/sources.list.d/docker.list >/dev/null
+${SUDO} apt-get update
 if [ -f "/usr/bin/docker" ]; then
-	${SUDO} chmod 666 /var/run/docker.sock
-	${SUDO} groupadd docker
-	${SUDO} usermod -aG docker ${USER}
-	if [ -d "$HOME/$USER/.docker" ]; then
-		${SUDO} chown "$USER":"$USER" /home/"$USER"/.docker -R
-		${SUDO} chmod g+rwx "$HOME/.docker" -R
-	fi
+  ${SUDO} chmod 666 /var/run/docker.sock
+  ${SUDO} groupadd docker
+  ${SUDO} usermod -aG docker ${USER}
+  if [ -d "$HOME/$USER/.docker" ]; then
+    ${SUDO} chown "$USER":"$USER" /home/"$USER"/.docker -R
+    ${SUDO} chmod g+rwx "$HOME/.docker" -R
+  fi
 fi
 
 if [ ! -f "/usr/bin/docker-compose" ]; then
-	${SUDO} curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-	${SUDO} chmod +x /usr/local/bin/docker-compose
-	${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  ${SUDO} curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  ${SUDO} chmod +x /usr/local/bin/docker-compose
+  ${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 fi
 
-${SUDO} sysctl -w vm.max_map_count=262144
+#${SUDO} sysctl -w vm.max_map_count=262144
 ${SUDO} systemctl restart docker
 echo "[DONE] Docker compose script "
 
