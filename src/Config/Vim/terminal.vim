@@ -32,7 +32,7 @@ function! OnTermExit(job, message)
     let opts = {'maxwidth':w, 'maxheight':h, 'minwidth':w, 'minheight':h}
     let opts.wrap = 0
     let opts.mapping = 0
-    let opts.title = 'VRKANSAGARA-Terminal'
+    let opts.title = 'vrkansagara-Terminal'
     let opts.close = 'button'
     let opts.border = [2,2,2,2,2,2,2,2,2]
     let opts.drag = 1

@@ -15,7 +15,7 @@ export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
 export GROUP=$(id -gn)
 
-#### @VRKANSAGARA @START
+#### @vrkansagara @START
 command_exists() {
   # @usage :- command_exists sdfsfsdfsfsd || echo " [ $1 ] command not found" && exit
   command -v "$@" >/dev/null 2>&1
@@ -143,7 +143,7 @@ if [ -f /etc/zsh_command_not_found ]; then
 	. /etc/zsh_command_not_found
 fi
 
-## Original VRKANSAGARA start from bellow
+## Original vrkansagara start from bellow
 # set -e # This setting is telling the script to exit on a command error.
 # set -x # You refer to a noisy script.(Used to debugging)
 
