@@ -1,6 +1,6 @@
 ## Linux Administator commands
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -lA'
 alias la='ls -A'
 alias l='ls -CF'
 alias myDmesgWatch='watch "dmesg | tail -20"'
