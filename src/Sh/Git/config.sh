@@ -13,12 +13,12 @@ fi
 #  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-#if [ $(uname -s) == 'Darwin' ]; then
-##    brew install gnupg2 git-flow zsh-completions
-#    brew install gnupg2 zsh-completions
-#else
-#    ${SUDO} apt-get install --no-install-recommends -y gnupg2 git-flow
-#fi
+if [ "$(uname -s)" == 'Darwin' ]; then
+    brew install gnupg2 git-flow zsh-completions
+    brew install gnupg2 zsh-completions
+else
+    ${SUDO} apt-get install --no-install-recommends -y gnupg2 git-flow
+fi
 
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
@@ -28,7 +28,7 @@ echo "Current directory is $(pwd)"
 mv $HOME/.gitconfig /tmp
 
 # Git config list
-echo "Git configuration started on ${CURRENT_DATE}"
+echo "Git configuration started on $(date +%Y%m%d%H%M%S)"
 git config --global commit.gpgsign true
 git config --global core.editor vim
 git config --global core.excludesFile '~/.gitignore'
