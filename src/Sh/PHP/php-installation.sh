@@ -6,11 +6,9 @@ fi
 
 export
 
-if [ "(whoami)" != "root" ]; then
+if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
-
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -31,7 +29,7 @@ else
 	${SUDO} sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 fi
 
-for VERSION in 8.0; do
+for VERSION in 8.0 8.1 8.2 8.3; do
 	for EXTENSION in dev fpm memcached exif soap bcmath ctype fileinfo mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl; do
 		${SUDO} apt-get install --no-install-recommends --yes php${VERSION}-${EXTENSION}
 	done
