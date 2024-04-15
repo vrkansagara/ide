@@ -18,9 +18,9 @@ CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 # https://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro
-${SUDO} apt-get install --no-install-recommends linux-image-$(uname -r | sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r | sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
-${SUDO} modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
-${SUDO} modprobe wl
+#${SUDO} apt-get install --no-install-recommends linux-image-$(uname -r | sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r | sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
+#${SUDO} modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+#${SUDO} modprobe wl
 
 # ${SUDO} sudo apt install --no-install-recommends --no-install-suggests \
 # vim geany git build-essential htop sudo xorg xserver-xorg xinit \
