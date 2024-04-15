@@ -10,8 +10,6 @@ if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- MySQL Reset root password

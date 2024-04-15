@@ -13,6 +13,10 @@ fi
 #  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+echo " Lets remove Docker related stuff..."
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
 echo " Docker related permission..."
 # Add Docker's official GPG key:
 ${SUDO} apt-get update
@@ -27,6 +31,9 @@ echo \
           $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
   ${SUDO} tee /etc/apt/sources.list.d/docker.list >/dev/null
 ${SUDO} apt-get update
+
+${SUDO} apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 if [ -f "/usr/bin/docker" ]; then
   ${SUDO} chmod 666 /var/run/docker.sock
   ${SUDO} groupadd docker
@@ -45,6 +52,7 @@ fi
 
 #${SUDO} sysctl -w vm.max_map_count=262144
 ${SUDO} systemctl restart docker
+docker run hello-world
 echo "[DONE] Docker compose script "
 
 # curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
