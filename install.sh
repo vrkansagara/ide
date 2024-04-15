@@ -53,7 +53,7 @@ ln -P $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
 ln -P $HOME/.vim/vimrc.vim $HOME/.vimrc
 ln -P $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
 ln -P $HOME/.vim/src/Sh/Git/hooks/pre-commit $HOME/.vim/.git/hooks
-mkdir -p $HOME/.vim/data/cache/zsh
+ mkdir -p $HOME/.vim/data/cache
 
 # Set sh and bin  directory executable
 chmod -R +x $HOME/.vim/src/Sh/* $HOME/.vim/bin
