@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "$1" == "-v" ]]; then
+    set -x # You refer to a noisy script.(Used to debugging)
+fi
+
+PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+
+# Reset output
+resetOutput() {
+    echo -en "\x1b[0m\n"
+}
+# Check weather the command is exists or not.
+command_exists() {
+    # @note : Check if sudo is installed
+    # @usage : command_exists sudo || return 1
+    command -v "$@" >/dev/null 2>&1
+}
+
+if [ ! -d "$HOME/tmp" ]; then
+    mkdir -p $HOME/tmp/
+fi
+
+resetOutput
+echo "This command [ ${@:1} ] run at [$(date)]"
+
+command_exists "$1" || {
+    printf 'Command not found : %s\n' "$1" >&2
+    printf 'Help : https://command-not-found.com/%s \n' "$1" >&2
+    exit 1
+}
+
+# credit goes to @casey
+exec "$@"
