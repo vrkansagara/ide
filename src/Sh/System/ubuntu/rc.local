@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+# sudo chown root /etc/rc.local
+# sudo chmod 755 /etc/rc.local
+# systemctl status rc-local.service
+
+
+
+touch /forcefsck
