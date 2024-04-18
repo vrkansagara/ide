@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
+
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
@@ -142,8 +143,10 @@ cd ${VIM_DIRECTORY}
 
 git submodule update --init --recursive --jobs 4  --remote --merge
 
-bin/composer self-update
-bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev
+
+cd ${VIM_DIRECTORY}
+./bin/composer self-update
+./bin/composer install --prefer-dist --no-scripts --no-progress --no-interaction --no-dev
 # ${SUDO} npm i -g npm@latest intelephense@latest livereloadx yarn
 # yarn set version latest
 

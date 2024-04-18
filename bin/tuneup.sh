@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
+
 set -e # This setting is telling the script to exit on a command error.
+
 if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
+  set -x # You refer to a noisy script.(Used to debugging)
 fi
+
+exit;
+
 export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+  SUDO=sudo
 fi
-cd $SCRIPTDIR
+
+PWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+cd $PWD
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -16,10 +23,13 @@ cd $SCRIPTDIR
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # First thing First
 
-${SUDO} sysctl --all >$HOME/Documents/sysctl-${CURRENT_DATE}.txt
+mkdir -p $HOME/Documents/backup
+${SUDO} sysctl --all >$HOME/Documents/backup/sysctl-${CURRENT_DATE}.txt
 
 ${SUDO} ufw default allow outgoing
 ${SUDO} ufw default deny incoming
+${SUDO} ufw enable
+${SUDO} ufw reload
 
 # Give *.sh to execute permission for the working directory
 ${SUDO} find -name '*.sh' -exec ls -lA {} +
@@ -34,6 +44,10 @@ ${SUDO} find -name '*.sh' -exec ls -lA {} +
 # memory becomes free.
 # ${SUDO} echo "echo 3 > /proc/sys/vm/drop_caches"
 ${SUDO} sysctl vm.drop_caches=3
+# Clear Swap Space in Linux?
+${SUDO} swapoff -a && ${SUDO} swapon -a
+
+${SUDO} sysctl -p
 
 # Clear program cache/remove
 ${SUDO} rm -rfv ~/.cache/thumbnails
@@ -42,9 +56,6 @@ ${SUDO} rm -rfv ~/.cache/thumbnails
 # ${SUDO} rm -rfv ~/.config/google-chrome
 # cp -r -v ~/.config/google-chrome ~/.config/google-chromebackup
 # /etc/sysctl.conf
-
-# Clear Swap Space in Linux?
-${SUDO} swapoff -a && ${SUDO} swapon -a
 
 # swappiness
 # This control is used to define how aggressive the kernel will swap
@@ -167,15 +178,15 @@ ${SUDO} find /var/log -type f -regex ".*\.gz$" -delete
 ${SUDO} find /var/log -type f -regex ".*\.[0-9]$" -delete
 # Clean apt history logs
 if [ -f "/var/log/apt/history.log" ]; then
-	${SUDO} head -n 1 /var/log/apt/history.log | sudo tee /var/log/apt/history.log
+  ${SUDO} head -n 1 /var/log/apt/history.log | sudo tee /var/log/apt/history.log
 fi
 if [ -f "/var/log/apt-history.log" ]; then
-	${SUDO} head -n 1 /var/log/apt-history.log | sudo tee /var/log/apt-history.log
+  ${SUDO} head -n 1 /var/log/apt-history.log | sudo tee /var/log/apt-history.log
 fi
 
 if ! command -v earlyoom &>/dev/null; then
-	${SUDO} apt install earlyoom
-	# EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
+  ${SUDO} apt install earlyoom
+  # EARLYOOM_ARGS="-m 5 -r 60 --avoid '(^|/)(init|Xorg|ssh)$' --prefer '(^|/)(java|chromium|google-chrome|skype|teams)$'"
 fi
 
 # Remove old phpstome directories.
@@ -196,10 +207,12 @@ echo "Total threads running:"
 ps -eo nlwp | awk '$1 ~ /^[0-9]+$/ { n += $1 } END { print n }'
 
 if [ -f "/etc/sysctl.d/local.conf" ]; then
-	# Lets backup the resolver
-	${SUDO} cp /etc/sysctl.d/local.conf /etc/sysctl.d/local-${CURRENT_DATE}.conf
+  # Lets backup the resolver
+  ${SUDO} cp /etc/sysctl.d/local.conf /etc/sysctl.d/local-${CURRENT_DATE}.conf
 fi
-echo '
+
+function kernel_tuneup() {
+  echo '
 # Kernel system variables configuration files
 # My personal preference
 vm.swappiness=80
@@ -215,10 +228,12 @@ net.ipv6.conf.default.disable_ipv6=0
 net.ipv6.conf.lo.disable_ipv6=0
 kernel.dmesg_restrict=0
 ' | ${SUDO} tee /etc/sysctl.d/local.conf >/dev/null
+}
 
 echo "Tune of system is ....... [DONE]"
 
 # https://klaver.it/linux/sysctl.conf
 # https://people.redhat.com/alikins/system_tuning.html#tcp
 # https://cromwell-intl.com/open-source/performance-tuning/nfs.html
+
 exit 0
