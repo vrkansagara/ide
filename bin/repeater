@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  $1 :- how many time need to repeat
+#  $2 :- what command / file need to repeat
+#  $3 :- default sleep time 1 secounds or if defined
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+count=$1
+DEFAULT_SLEEP_VALUE=1
+sleep="${3:-$DEFAULT_SLEEP_VALUE}"
+
+for i in $(seq $count); do
+  bash -c "$2"
+  sleep $sleep
+done

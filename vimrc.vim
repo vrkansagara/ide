@@ -13,9 +13,8 @@ endfunction
 try
 
     "(Priority = 0) Initialization vim path loader ( VIM 8 default)
-    " silent !mkdir -p ~/.vim/pack/
+    silent !mkdir -p ~/.vim/autoload
     if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !mkdir -p ~/.vim/autoload
         " silent !curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
         " silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     endif

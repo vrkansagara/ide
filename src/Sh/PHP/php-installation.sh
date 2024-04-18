@@ -4,7 +4,6 @@ if [[ "$1" == "-v" ]]; then
 	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-export
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
@@ -27,6 +26,7 @@ if [ -n "$(uname -a | grep -i Ubuntu)" ]; then
 else
 	${SUDO} curl -sSL -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 	${SUDO} sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+    ${SUDO} apt-get update
 fi
 
 for VERSION in 8.0 8.1 8.2 8.3; do
