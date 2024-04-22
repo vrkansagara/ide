@@ -46,19 +46,28 @@ fi
 # ${SUDO} update-initramfs -u -k all
 # ${SUDO} reboot # optional
 
-if [ ! -d "/etc/X11/xorg.conf.d" ]; then
+if [ ! -d "/etc/X11/xorg.conf.d" ]; thensh /home/vrkansagara/.vim/src/Sh/System/ubuntu/speedtest.sh
 	echo "Enabling tap to click for the MacBokAir track pad."
 	${SUDO} mkdir -p /etc/X11/xorg.conf.d
 else
 	# sudo apt install libinput-tools
 	echo 'Section "InputClass"
-  Identifier "libinput touchpad catchall"
-  MatchIsTouchpad "on"
+    Identifier "libinput touchpad catchall"
+    MatchIsTouchpad "on"
+    MatchDevicePath "/dev/input/event*"
+    Driver "libinput"
+    Option "Tapping" "on"
+    Option "NaturalScrolling" "true"
+EndSection
+
+Section "InputClass"
+  Identifier "libinput pointer catchall"
+  MatchIsPointer "on"
   MatchDevicePath "/dev/input/event*"
+  Option "NaturalScrolling" "on"
   Driver "libinput"
-  Option "Tapping" "on"
-  Option "NaturalScrolling" "true"
-  EndSection' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf >/dev/null
+EndSection
+  ' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf >/dev/null
 	# ${SUDO} systemctl restart lightdm
 fi
 
