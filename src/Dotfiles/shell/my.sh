@@ -85,7 +85,7 @@ alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
 alias myPhpRunInWeb='php7 -S 0.0.0.0:12345 -d web/index.php -t web'
 
 # AWS Aliases
-alias myaAsMyInfo='curl http://169.254.169.254/latest/meta-data/'
+alias myAwsMyInfo='curl http://169.254.169.254/latest/meta-data/'
 
 # PHP Laminas server
 alias myPhpComposerRun='composer run-script serve --timeout 0'
@@ -184,6 +184,7 @@ export PATH="$HOME/.vim/bin:$HOME/.vim/vendor/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.vim/node_modules/.bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # BEGIN SNIPPET: Magento Cloud CLI configuration
 HOME=${HOME:-"/home/$USER"}

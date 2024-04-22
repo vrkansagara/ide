@@ -13,7 +13,7 @@ fi
 #  Note		  :- Kernel development reference. ( sanitize using shellcheck)
 #  @url     :- https://www.speedtest.net/apps/cli
 #  @usage   :- every 15 minutes.
-# */15 * * * * sh /home/vallabh/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
+# */15 * * * * sh /home/vrkansagara/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ## If migrating from prior bintray install instructions please first...
@@ -37,4 +37,4 @@ if ! command -v speedtest &>/dev/null; then
 fi
 
 #speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
-speedtest --accept-license -p no >/tmp/speedtest.txt
+speedtest --secure > /tmp/speedtest.txt

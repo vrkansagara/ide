@@ -39,7 +39,7 @@ nvm() {
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-    command_exists nvm || echo "NVM command not found" && exit
+#    command_exists nvm || echo "NVM command not found" && exit
 
     nvm install node
     nvm install --latest-npm
@@ -51,7 +51,7 @@ main() {
   if [[ "$1" == "--nvm" ]]; then
     nvm
   fi
-  if [[ "$1" == "--node_latest" ]]; then
+  if [[ "$1" == "--node-latest" ]]; then
     node_latest
   fi
 }

@@ -27,17 +27,26 @@ endfunction
 
 " This function is dynamically called by hiting enter for filetype
 function! Rungo()
-	let fileName = expand('%:t') " file name only (with extention)
-	let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
-	let filePath = expand('%:p') " Absolute to filepath
-	let directoryPath = expand('%:p:h') " Absolute to directory
+    let fileName = expand('%:t') " file name only (with extention)
+    let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+    let filePath = expand('%:p') " Absolute to filepath
+    let directoryPath = expand('%:p:h') " Absolute to directory
 
-	" Write current file
-	execute "silent! w!"
+    execute "silent! mkdir -p /tmp". fileNameW
+    let outputpath =  "/tmp" . fileNameW . ".o"
 
-	" Clear terminal color, clean screen, run object
-	execute "silent! echo -e '\033[0m' && clear"
+    let output_options = " -o ". outputpath
 
-	exe "!sh " . filePath
+    " Write current file
+    execute "silent! w!"
+
+    " compile current file with gcc options
+    execute "silent! go build " . filePath . output_options
+
+
+    " Clear terminal color, clean screen, run object
+    " execute "silent! echo -e '\033[0m' && clear"
+    execute "! echo -e '\033[0m' && clear && " . outputpath
+    " exe "!sh " . filePath
 endfunction
 

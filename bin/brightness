@@ -21,7 +21,7 @@ echo "Current brightness level is  => $curBrightness"
 
 command=""
 value=""
-minimumBrightness=5
+minimumBrightness=1000
 
 if [ $# -ge 2 ]; then
 	# Two arguments: first is command, second is "value"
@@ -46,7 +46,7 @@ fi
 
 # ls -lA /sys/class/backlight/
 
-userValueForBrightness=1
+userValueForBrightness=10
 
 case "$command" in
 "up")
@@ -59,7 +59,7 @@ case "$command" in
 	fi
 	;;
 "set")
-	if [[ $value -le 10 ]]; then
+	if [[ $value -le 50 ]]; then
 		userValueForBrightness=$minimumBrightness
 	else
 		userValueForBrightness=$value
