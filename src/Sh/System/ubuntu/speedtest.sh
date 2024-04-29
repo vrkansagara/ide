@@ -11,6 +11,7 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note		  :- Kernel development reference. ( sanitize using shellcheck)
+#  Note		  :- Make sure cron is installed (sudo apt-get install cron)
 #  @url     :- https://www.speedtest.net/apps/cli
 #  @usage   :- every 15 minutes.
 # */15 * * * * sh /home/vrkansagara/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
@@ -30,11 +31,12 @@ if ! command -v shellcheck &>/dev/null; then
 fi
 
 if ! command -v speedtest &>/dev/null; then
-	echo "Install speedtest for speedtest"
+	echo "Install speed test for speedtest"
 	${SUDO} apt-get install curl
 	curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | ${SUDO} bash
 	${SUDO} apt-get install speedtest
 fi
 
 #speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
-speedtest --secure > /tmp/speedtest.txt
+echo "Speed test started at [ $(date) ]" | tee -a  /tmp/speedtest.txt
+speedtest --secure | tee -a  /tmp/speedtest.txt

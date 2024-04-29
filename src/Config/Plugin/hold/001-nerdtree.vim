@@ -30,6 +30,7 @@ let NERDTreeCustomOpenArgs = {'file':{'where':'t'}}
 		\ '^.DS_Store$',
 		\ '^.idea$',
 		\ '^.git$',
+		\ '^.svn$',
 		\ '^.coffee$',
 		\ '^bundle$']
 
