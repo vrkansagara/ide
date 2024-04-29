@@ -1,3 +1,6 @@
+" :echo &runtimepath
+" creates a new buffer and reports in a much more legible way as each path is in a different line
+" :new | put =split(&runtimepath, ',')
 set runtimepath+=$HOME/.vim/src
 
 function! VimErrorCaught() abort
@@ -26,6 +29,7 @@ try
     "0-9,az,AZ order)
 
     for f in split(glob('~/.vim/src/Config/Plugin/*.vim'), '\n')
+        " https://github.com/vim/vim/blob/master/src/filepath.c#L920
         if (filereadable(f))
             exe 'source' f
         else
