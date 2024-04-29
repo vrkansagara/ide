@@ -15,7 +15,7 @@ fi
 
 if ! command -v acpi &>/dev/null; then
     echo "Install acpi for better level check up"
-    ${SUDO} apt-get install --yes --no-install-recommends acpi powermgmt-base libnotify-bin notify-osd
+    ${SUDO} apt-get install --yes --no-install-recommends acpi powermgmt-base libnotify-bin notify-osd powermgmt-base
 fi
 
 while true; do
