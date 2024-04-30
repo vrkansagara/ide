@@ -104,10 +104,24 @@ git submodule add -f https://github.com/kdheepak/JuliaFormatter.vim pack/vendor/
 # yarn install --frozen-lockfile --production
 cd ${VIM_DIRECTORY}
 
+## color /theme
+ echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design ] ..."
+git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git pack/colors/start/papercolor-theme
+
+echo "Installation of [ A vim theme inspired by Atom's default dark theme ] ..."
+git submodule add -f https://github.com/gosukiwi/vim-atom-dark.git pack/colors/start/vim-atom-dark
+
+echo "Installation of [ Primary, a Vim color scheme based on Google's colors ] ..."
+git submodule add -f https://github.com/google/vim-colorscheme-primary.git pack/colors/start/vim-colorscheme-primary
+
+echo "Installation of [ Refined color, contains both gui and cterm256 for dark and light background ] ..."
+git submodule add -f https://github.com/vim-scripts/peaksea.git pack/colors/start/peaksea
+
+
+
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."
 # git submodule add -f https://github.com/tpope/vim-pathogen.git --depth=1
-# echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design  ] ..."
-# git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git --depth=1
+
 
 # echo "Installation of [ sensible.vim: Defaults everyone can agree on   ] ..."
 # git submodule add -f https://github.com/tpope/vim-sensible.git --depth=1  vendor/vim-sensible

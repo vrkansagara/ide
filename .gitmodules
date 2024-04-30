@@ -49,3 +49,15 @@
 [submodule "pack/vendor/start/JuliaFormatter"]
 	path = pack/vendor/start/JuliaFormatter
 	url = https://github.com/kdheepak/JuliaFormatter.vim
+[submodule "pack/colors/start/papercolor-theme"]
+	path = pack/colors/start/papercolor-theme
+	url = https://github.com/NLKNguyen/papercolor-theme.git
+[submodule "pack/colors/start/vim-atom-dark"]
+	path = pack/colors/start/vim-atom-dark
+	url = https://github.com/gosukiwi/vim-atom-dark.git
+[submodule "pack/colors/start/vim-colorscheme-primary"]
+	path = pack/colors/start/vim-colorscheme-primary
+	url = https://github.com/google/vim-colorscheme-primary.git
+[submodule "pack/colors/start/peaksea"]
+	path = pack/colors/start/peaksea
+	url = https://github.com/vim-scripts/peaksea.git
