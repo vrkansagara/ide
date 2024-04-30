@@ -57,6 +57,7 @@ function! ChangeColorScheme()
 			syntax on
 		endif
 	catch
-		throw exception
+		" throw exception
+		echo "Caught error ::COLORSCHEME:: " . v:exception
 	endtry
 endfunction

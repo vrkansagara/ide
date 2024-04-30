@@ -28,7 +28,7 @@ function! Runvim()
 	" Write current file
 	execute "silent! w!"
 
-	" Clear terminal color(failback of previous result)
+	" Clear terminal color(fallback of previous result)
 	execute "silent! echo -e '\033[0m' "
 
 	endfunction
