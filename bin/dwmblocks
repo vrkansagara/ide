@@ -1,18 +1,19 @@
 #!/bin/sh
 # notify-send -u {low, normal, critical} -t {0} test
 psclean (){
-  ps -ef | grep "notification-daemon" | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty sudo kill 9
+  ps -ef | grep "notification-daemon" | grep -v grep | awk "{print \$2}" | xargs --no-run-if-empty sudo kill -9
 }
 
 # Stadart output using dwmblocks refresh interval
-echo $(TZ=':Asia/Kolkata' date +'%a %d %b [%r]') $(TZ=':Europe/Amsterdam' date +'[%r]')
+# echo $(TZ=':Asia/Kolkata' date +'%a %d %b [%r]') $(TZ=':Europe/Amsterdam' date +'[%r]')
+echo $(TZ=':Asia/Kolkata' date +'%A %d %B [%R:%S]')
 
 # @TODO @FIXME some how default export variable is not captured by zsh or sh
 TERMINAL="st"
 EDITOR="vim"
 
 case $BLOCK_BUTTON in
-    1) psclean && notify-send "DATE TIME" "\
+    1) notify-send "DATE TIME" "\
 IST+5:30  = $(TZ=':Asia/Kolkata'     date +'%a %d %b [%r]')
 UTC+00:00 = $(TZ=':UTC'              date +'%a %d %b [%r]')
 GMT+2:00  = $(TZ=':Europe/Amsterdam' date +'%a %d %b [%r]')" ;;
