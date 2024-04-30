@@ -35,7 +35,7 @@ inoremap kj <Esc>
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 
-" execute external command and past standarad output in insert mode ( CTRL+R a )
+" execute external command and past standard output in insert mode ( CTRL+R a )
 " @a is the register name
 let @a = system("ls -lhtr")
 
