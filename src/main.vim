@@ -39,8 +39,8 @@ let mapleader = ","
 " @a is the register name
 let @a = system("ls -lhtr")
 
-nnoremap <leader>v :tabedit $MYVIMRC<CR>
-nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
+nnoremap <silent><nowait><leader>v :tabedit $MYVIMRC<CR>
+nnoremap <silent><nowait><leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 
 " vimcasts #24
 " Auto-reload vimrc on save
@@ -51,7 +51,7 @@ nnoremap <leader>my :tabedit $HOME/.vim/src/main.vim<CR>
 " endif
 
 " Reload vimrc configuration file
-nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <silent><nowait><leader>r :source $MYVIMRC<CR>
 " nnoremap <leader>r :source ~/.vim/vimrc.vim<CR>
 
 "sudo" save: current file.
@@ -182,7 +182,8 @@ set nofixendofline
 " Switch CWD to the directory of the open buffer:
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 nnoremap <leader>tmp :cd /tmp<cr>:pwd<cr>
-nnoremap <leader>git :cd ~/git<cr>:pwd<cr>
+nnoremap <leader>git :cd $HOME/git<cr>:pwd<cr>
+nnoremap <leader>www :cd $HOME/www<cr>:pwd<cr>
 
 " Keybindings for movement in insert mode
 inoremap <leader>0 <Esc>I
