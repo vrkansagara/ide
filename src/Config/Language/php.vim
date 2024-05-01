@@ -21,30 +21,30 @@ autocmd BufNewFile,BufRead *.blade.php set ft=blade
 
 function! PhpCsCheck()
     try
-        " exec "!./vendor/bin/phpcs ". expand('%:p')
-        exec "!~/.vim/vendor/bin/phpcs -s ". expand('%:p')
+    " exec "!./vendor/bin/phpcs ". expand('%:p')
+    exec "!~/.vim/vendor/bin/phpcs -s ". expand('%:p')
     catch
-        " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
-        throw :exception
+    " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
+    throw :exception
     endtry
-endfunction
+    endfunction
 
 
 function! PhpCsFix()
     try
-        call PhpCsCheck()
-        exec "!~/.vim/vendor/bin/phpcbf ". expand('%:p')
+call PhpCsCheck()
+    exec "!~/.vim/vendor/bin/phpcbf ". expand('%:p')
     catch
-        " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
-        throw :exception
+    " echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
+    throw :exception
     endtry
-endfunction
+    endfunction
 
-"Sort PHP use statements ( This is already done using php-name
-"http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
-" vmap <Leader>su ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
+    "Sort PHP use statements ( This is already done using php-name
+    "http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
+    " vmap <Leader>su ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>
 
-" This function is dynamically called by Pressing F5 by (filetype.vim)
+    " This function is dynamically called by Pressing F5 by (filetype.vim)
 function! RefreshF5php()
     " Call F2 which is trim whitespace for all file type
     exe "normal \<F2>"
@@ -62,7 +62,7 @@ function! RefreshF5php()
     execute "normal gg=G``"
     " Do not loose the cursor possition
     " execute "normal ``"
-endfunction
+    endfunction
 
     " This function is dynamically called by hiting enter for filetype
 function! Runphp()
@@ -76,7 +76,7 @@ function! Runphp()
     execute "silent! w!"
 
     " Clear terminal color, clean screen, run object
-    execute "silent! !echo -e '\033[0m' && clear"
+    execute "silent! bash -C 'clear'"
 
     " run php file using unix less to pip the output
     execute "!php " . filePath

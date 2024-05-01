@@ -32,12 +32,14 @@ function! Runsh()
 	let filePath = expand('%:p') " Absolute to filepath
 	let directoryPath = expand('%:p:h') " Absolute to directory
 
+    " Lets check shell errors
+	execute "shellcheck %"
+
 	" Write current file
-	execute "silent! w!"
+	" execute "silent! w!"
 
 	" Clear terminal color, clean screen, run object
-	execute "silent! echo -e '\033[0m' && clear"
-
-	exe "!sh " . filePath
+	" execute "silent! echo -e '\033[0m' && clear"
+	" exe "!sh " . filePath
 endfunction
 

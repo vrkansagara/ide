@@ -1,4 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
+use Ramsey\Uuid\Uuid;
+
 // uuidgen | pbcopy
 
 define('PHP_START', microtime(true));

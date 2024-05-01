@@ -5,10 +5,9 @@ if [[ "$1" == "-v" ]]; then
 fi
 
 echo -e" "
-export
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-SCRIPT=$(readlink -f "")
-SCRIPTDIR=$(dirname "SCRIPT")
+export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+export SCRIPT=$(readlink -f "")
+export SCRIPTDIR=$(dirname "SCRIPT")
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
