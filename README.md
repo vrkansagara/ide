@@ -59,6 +59,8 @@ love to answer if anything on this. I would be more happy if you have on this.
 
 #### Reference(s)
 - [VIM official help](!https://www.vim.org/docs.php)
+- [VimL Script language](!https://en.wikibooks.org/wiki/Learning_the_vi_Editor/Vim/VimL_Script_language)
+- [vimscript x in y minutes](!https://learnxinyminutes.com/docs/vimscript/)
 
 
 ## Made with :heart: in India
