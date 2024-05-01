@@ -121,7 +121,7 @@ function! ExecuteCurrentFile()
     " i.e. (2) filetype vim,  function name = Runvim()
 
     let function_name = "Run" . ext
-    if exists("*". function_name)
+    if exists("*". function_name) && ext:false
         exe "call " . function_name ."()"
     else
         echoerr function_name 'does not exitsts'
