@@ -3,6 +3,12 @@
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function! CLoseAllPossibleFoldMethod()
+	" Lets cloase all possible folds
+	execute "normal zM"
+endfunction
+
+
 " All folds are closed as per foldlevel
 set foldenable
 set foldlevel=5
@@ -35,13 +41,13 @@ autocmd FileType c      setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s
 autocmd FileType python setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
 autocmd FileType php    setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*//'
 autocmd FileType php    setlocal foldmethod=expr foldexpr=getline(v:lnum)=~'^\\s*#'
-autocmd FileType txt   setlocal nofoldenable
+autocmd FileType txt    setlocal nofoldenable
 autocmd FileType conf   setlocal nofoldenable
+autocmd FileType markdown   setlocal nofoldenable
 autocmd FileType json	setlocal foldmethod=syntax
 
 " Toggle method used for folding
 nnoremap mm :call ToggleFoldMethod()<CR>
-
 function! ToggleFoldMethod()
 	if &foldmethod == 'indent'
         set foldmethod=marker
@@ -53,7 +59,3 @@ function! ToggleFoldMethod()
 	call CLoseAllPossibleFoldMethod()
 endfunction
 
-function! CLoseAllPossibleFoldMethod()
-	" Lets cloase all possible folds
-	execute "normal zM"
-endfunction
