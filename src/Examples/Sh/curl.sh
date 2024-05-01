@@ -4,9 +4,7 @@ if [[ "$1" == "-v" ]]; then
 	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export
+export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo

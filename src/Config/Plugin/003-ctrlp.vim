@@ -28,13 +28,13 @@ let g:ctrlp_cmd = 'CtrlP'
 " Quickly open all mixed files
 nnoremap <C-S-f>f :CtrlPMixed<CR>
 
-" Quickly find and open a buffer
+" Find and open a buffer
 nnoremap <leader>b :CtrlPBuffer<cr>
 
-" Quickly open buffer tag
+" Buffer tag
 nnoremap <leader>. :CtrlPBufTag<cr>
 
-" Quickly find and open a recently opened file
+" Recently opened file
 nnoremap <leader>` :CtrlPMRUFiles<cr>
 
 " Seach recursively from the ancestor containing .git
