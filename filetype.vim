@@ -7,12 +7,20 @@
 " Ref: - https://github.com/vim/vim/blob/master/runtime/filetype.vim
 " If vim not detect file type user can add it manually
 " Vim script
+
 " Listen very carefully, I will say this only once
 if exists("did_load_filetypes")
-    " echoerr "Filetypes does not exists with this vim"
-"    finish
+    echoerr "Filetypes does not exists with this vim"
+    finish
 endif
 " let did_load_filetypes = 1
+
+" Prevent a file from being sourced multiple times; users can set the variable
+" in their configuration to prevent the plugin from loading at all.
+if exists('g:loaded_my_plugin')
+    finish
+endif
+let g:loaded_my_plugin = v:true
 
 augroup filetypedetect
     au! BufRead,BufNewFile *.foo,*.bar,*.baz        setfiletype fooBarBaz
@@ -121,7 +129,7 @@ function! ExecuteCurrentFile()
     " i.e. (2) filetype vim,  function name = Runvim()
 
     let function_name = "Run" . ext
-    if exists("*". function_name) && ext:false
+    if exists("*". function_name)
         exe "call " . function_name ."()"
     else
         echoerr function_name 'does not exitsts'
