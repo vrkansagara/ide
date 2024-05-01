@@ -1,7 +1,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
+" Note		 :- sudo apt install xdotool
 	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! Cap_Status()
 	let St = systemlist('xset -q | grep "Caps Lock" | awk ''{print $4}''')[0]
