@@ -79,8 +79,9 @@ nnoremap <leader>T :call LastWindow()<cr>
 " vnoremap <S-Tab> <gv
 
 function! OnTabSwitch()
+    execute "retab"
 	"Fold all except current cursor and keep cursor position
 	exe "normal mazMzv`a"
-	"Switch to the current file directory, easy on netrw and NERDTree if any.
-	exe "normal !cd pwd"
+	"Switch to the current file directory, easy on netrw, NERDTree and CTRLP if any.
+	exe "silent! cd %:p:h"
 endfunction
