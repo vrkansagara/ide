@@ -45,6 +45,7 @@ esac
 
 remove_vim_vendor_module
 mkdir -p ${CLONE_DIRECTORY}
+cd ${VIM_DIRECTORY}
 
 echo "Installation of [ A command-line fuzzy finder   ] ..."
 git submodule add -f  https://github.com/junegunn/fzf pack/vendor/start/fzf
@@ -98,11 +99,13 @@ git submodule add -f https://github.com/rust-lang/rust.vim pack/vendor/start/rus
 echo "Installation of [ A (N)Vim plugin for formatting Julia code using JuliaFormatter.jl.]"
 git submodule add -f https://github.com/kdheepak/JuliaFormatter.vim pack/vendor/start/JuliaFormatter
 
+echo "Installation of [ Refined color, contains both gui and cterm256 for dark and light background ] ..."
+git submodule add -f https://github.com/skywind3000/vim-quickui.git pack/vendor/start/vim-quickui
+
 # echo "Installation of [ A Vim plugin for Prettier ] ..."
 # git submodule add -f https://github.com/prettier/vim-prettier.git pack/vendor/start/vim-prettier
 # cd ${CLONE_DIRECTORY}/vim-prettier
 # yarn install --frozen-lockfile --production
-cd ${VIM_DIRECTORY}
 
 ## color /theme
  echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design ] ..."
@@ -116,7 +119,6 @@ git submodule add -f https://github.com/google/vim-colorscheme-primary.git pack/
 
 echo "Installation of [ Refined color, contains both gui and cterm256 for dark and light background ] ..."
 git submodule add -f https://github.com/vim-scripts/peaksea.git pack/colors/start/peaksea
-
 
 
 # echo "Installation of [ pathogen.vim: manage your runtimepath ] ..."

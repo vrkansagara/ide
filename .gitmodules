@@ -61,3 +61,6 @@
 [submodule "pack/colors/start/peaksea"]
 	path = pack/colors/start/peaksea
 	url = https://github.com/vim-scripts/peaksea.git
+[submodule "pack/vendor/start/vim-quickui"]
+	path = pack/vendor/start/vim-quickui
+	url = https://github.com/skywind3000/vim-quickui.git
