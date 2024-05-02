@@ -1,21 +1,29 @@
 ## Linux Administrator commands
 
-# some more ls aliases
-alias ll='ls -lA'
+# alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
+alias ll='/bin/ls -lhtraF'
 alias la='ls -A'
 alias l='ls -CF'
+alias c="clear" # clear interface
 
-alias myDmesgWatch='watch "sudo dmesg | tail -20"'
-alias myDmesgError='sudo dmesg --level=emerg,alert,crit,err | tail -20'
+alias du='/usr/bin/du -sh  '
+
+alias myDmesgWatch='watch "sudo dmesg -T | tail -20"'
+alias myDmesgError='sudo dmesg -T --level=emerg,alert,crit,err | tail -20'
+
 alias myVarLogError="sudo grep -i -r 'error' -v '1password_1password.desktop\|snap.1password.1password' /var/log/syslog"
+
 alias myListen="sudo lsof -iTCP -sTCP:LISTEN -Pn"
 alias myListeN="sudo netstat -natp"
+
 alias myWatch="sudo watch ss -tp"
 alias myWatchN="sudo netstat -A inet -p"
 alias myWatchWho="sudo netstat -A inet -p | grep '^tcp' | grep '/' | sed 's_.*/__' | sort | uniq"
+
 # alias myWatchWhO="sudo ss -tp | grep -v Recv-Q | sed -e 's/.*users:((\"//' -e 's/\".*$//' | sort | uniq"
 alias myTop10Processes='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
 alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-vsz | head'
+
 # Let’s view the threads of a process interactively by embedding our ps command in the –preview flag:
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
 alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
@@ -37,11 +45,15 @@ alias myCpuInfo="lscpu | egrep 'Model name|Socket|Thread|NUMA|CPU\(s\)'"
 
 alias ownIt='sudo chown -Rf $USER:$USER '
 alias ownItWithPermission='sudo chmod 0744 -Rf'
+
 alias currentMonitor='xrandr | grep " connected" | cut -f1 -d " "'
+
 alias setBrightness='echo "xrandr --output eDP-1 --brightness 0.75"'
 alias setMyBrightness="echo 15000 | sudo tee  /sys/class/backlight/intel_backlight/brightness"
 alias setMyBrightnessAnother="echo 7 | sudo tee /sys/class/backlight/acpi_video0/brightness"
+
 alias myLimit="/usr/bin/cpulimit -c 30  "
+
 alias myHtop="/usr/bin/htop -u $USER "
 alias mtHtopDelay="/usr/bin/htop -u $USER -d 60"
 # alias myHtopFirefox="$(which htop) -p $(pidof firefox | sed 's/ /,/g')"
