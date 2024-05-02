@@ -38,32 +38,10 @@ command_exists() {
 
 alias g='git'
 alias ss='source ~/.zshrc'
-# alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
-alias ll='/bin/ls -lhtraF'
-alias la='ls -A'
-alias l='ls -CF'
-alias c="clear" # clear interface
+
 # force zsh to show the complete history
 alias h="history 0" # review log of commands
 alias o="open ."    # open current directory in the finder
-
-# Docker Related stuff #
-# sudo curl -L
-# "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname
-# -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-# sudo chmod +x /usr/local/bin/docker-compose
-# dc up -dV --build --remove-orphan --force-recreate
-alias d='docker '
-alias de='docker exec -it '
-alias dc='docker-compose '
-alias dce='docker-compose exec -u $(whoami) '
-alias dcE='docker-compose exec -u root '
-alias ds='docker-compose ps --services'
-alias dcb='docker-compose up -dV --build --remove-orphans --force-recreate '
-alias dcu='docker-compose up -dV --remove-orphans --force-recreate '
-alias dcl='docker-compose logs --follow --timestamps --tail 50 '
-alias dIps="docker ps -q | xargs -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | sed 's/ \// /'"
-alias dm="docker-machine"
 
 #File Manager related stuff #
 
@@ -73,22 +51,12 @@ alias vi='cd ~/.vim && vim'
 alias viml='vim --startuptime /tmp/vim-startup.log'
 alias vimDebug="vim --cmd 'profile start /tmp/vim-profiling.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
 
-alias www='cd ~/www'
-alias htdocs='cd ~/htdocs'
-alias gh='cd ~/git'
+alias www='cd $HOME/www'
+alias htdocs='cd $HOME/htdocs'
+alias gh='cd $HOME/git'
 
-alias du='/usr/bin/du -sh  '
 
-# PHP Aliases
-alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
-alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
-alias myPhpRunInWeb='php7 -S 0.0.0.0:12345 -d web/index.php -t web'
 
-# AWS Aliases
-alias myAwsMyInfo='curl http://169.254.169.254/latest/meta-data/'
-
-# PHP Laminas server
-alias myPhpComposerRun='composer run-script serve --timeout 0'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -128,8 +96,11 @@ prompt_context() {
 # CUSTOM FROM HERE....
 source "$HOME/.vim/src/Dotfiles/shell/bash_color.sh"
 source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
-source "$HOME/.vim/src/Dotfiles/shell/svn_aliases.sh"
+#source "$HOME/.vim/src/Dotfiles/shell/svn_aliases.sh"
 source "$HOME/.vim/src/Dotfiles/shell/administrator_aliases.sh"
+source "$HOME/.vim/src/Dotfiles/shell/docker_aliases.sh"
+source "$HOME/.vim/src/Dotfiles/shell/aws_aliases.sh"
+source "$HOME/.vim/src/Dotfiles/shell/php_aliases.sh"
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
@@ -158,7 +129,7 @@ COMPOSER_PROCESS_TIMEOUT=5000
 # History in cache directory:
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTFILE=~/.vim/data/cache/zsh
+HISTFILE=$HOME/.vim/data/cache/zsh
 
 ## VIM plugines debug
 export NVIM_COC_LOG_LEVEL=debug
