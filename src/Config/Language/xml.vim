@@ -15,7 +15,7 @@ function! RefreshF5xml()
 
 endfunction
 
-" This function is dynamically called by hiting enter for filetype
+" This function is dynamically called by hitting  enter for filetype
 function! Runxml()
 	execute "PrettierAsync"
 endfunction

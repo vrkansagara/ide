@@ -14,10 +14,10 @@ function! RefreshF5html()
 	execute "PrettierAsync"
 	endfunction
 
-	" This function is dynamically called by hiting enter for filetype
+	" This function is dynamically called by hitting  enter for filetype
 function! Runhtml()
-	let fileName = expand('%:t') " file name only (with extention)
-	let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+	let fileName = expand('%:t') " file name only (with extension)
+	let fileNameW = expand('%:p:r') "Absolute file name only (without extension)
 	let filePath = expand('%:p') " Absolute to filepath
 	let directoryPath = expand('%:p:h') " Absolute to directory
 

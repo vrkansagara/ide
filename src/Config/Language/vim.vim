@@ -21,7 +21,7 @@ function! RefreshF5vim ()
     endfunction
 
 
-    " This function is dynamically called by hiting enter for filetype
+    " This function is dynamically called by hitting  enter for filetype
 function! Runvim()
     " Write current file
     execute "silent! w!"
