@@ -65,10 +65,10 @@ function! RefreshF5make()
 
 endfunction
 
-" This function is dynamically called by hiting enter for filetype
+" This function is dynamically called by hitting  enter for filetype
 function! Runc()
-    let fileName = expand('%:t') " file name only (with extention)
-    let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+    let fileName = expand('%:t') " file name only (with extension)
+    let fileNameW = expand('%:p:r') "Absolute file name only (without extension)
     let filePath = expand('%:p') " Absolute to filepath
     let directoryPath = expand('%:p:h') " Absolute to directory
 
@@ -93,10 +93,10 @@ function! Runc()
     execute "! echo -e '\033[0m' && clear && " . outputpath
 endfunction
 
-" This function is dynamically called by hiting enter for filetype
+" This function is dynamically called by hitting  enter for filetype
 function! Runmake()
-    let fileName = expand('%:t') " file name only (with extention)
-    let fileNameW = expand('%:p:r') "Absolute file name only (without extention)
+    let fileName = expand('%:t') " file name only (with extension)
+    let fileNameW = expand('%:p:r') "Absolute file name only (without extension)
     let filePath = expand('%:p') " Absolute to filepath
     let directoryPath = expand('%:p:h') " Absolute to directory
 
