@@ -35,7 +35,7 @@ function! Runsh()
     "execute "shellcheck %"
 
     " Write current file
-    " execute "silent! w!"
+    execute "silent! w!"
 
     " Clear terminal color, clean screen, run object
     " execute "!clear && sh " . filePath
