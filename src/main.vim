@@ -65,7 +65,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " nnoremap <silent> <F1> Already set with guake terminal
 " Do you absolutely hate trailing white space or tabs in your files? (Yes =
 " Press F2)
-nnoremap <silent> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>:echom "White space trimed"<CR>
+nnoremap <silent><nowait> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>:echom "= = White space timed = = "<CR>
 
 function! HighlightRepeats() range
     "Ref :-  https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor/28690847
