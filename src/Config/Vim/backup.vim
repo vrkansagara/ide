@@ -3,6 +3,13 @@
 " Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"The swap file is updated after typing 200 characters or when you have not typed
+"anything for four seconds.
+set swapfile                      " enable swaps
+set undodir=$HOME/.vim/data/undo     " undo files
+set backupdir=$HOME/.vim/data/backup " backups
+set directory=$HOME/.vim/data/swap   " swap files
+
 " set nobackup " Disable backupfile
 " set noswapfile " Disable swapfile
 " set noundofile " Disable undo
@@ -23,11 +30,6 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
-"The swap file is updated after typing 200 characters or when you have not typed
-"anything for four seconds.
-set swapfile                      " enable swaps
-set undodir=$HOME/.vim/data/undo     " undo files
-set backupdir=$HOME/.vim/data/backup " backups
-set directory=$HOME/.vim/data/swap   " swap files
+
 
 
