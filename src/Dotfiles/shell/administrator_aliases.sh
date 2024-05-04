@@ -1,5 +1,10 @@
 ## Linux Administrator commands
 
+export FZF_DEFAULT_OPTS="--preview 'cat  {}'"
+export FZF_DEFAULT_COMMAND="find $(pwd) -type f"
+# fzf can do things like vim $(fzf) or cp $(fzf) ~/.config/pipewire
+
+
 # alias ls='/bin/ls --human-readable --size -1 -S --classify -lAlhtra'
 alias ll='/bin/ls -lhtraF'
 alias la='ls -A'
