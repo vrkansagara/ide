@@ -25,7 +25,7 @@ let g:loaded_my_plugin = v:true
 augroup filetypedetect
     au! BufRead,BufNewFile *.foo,*.bar,*.baz        setfiletype fooBarBaz
     au! BufRead,BufNewFile nginx.conf   setfiletype nginx
-     au! BufRead,BufNewFile *.conf   setfiletype conf
+    au! BufRead,BufNewFile *.confini *.conf   setfiletype conf
 augroup END
 
 " :autocmd FileType vim autocmd BufWritePost <buffer> call OnFileSave()
