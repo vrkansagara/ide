@@ -49,9 +49,10 @@ let g:ctrlp_prompt_mappings = {
             \ }
 
 let g:ctrlp_max_height = 15
+" let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|.DS_Store|bundle)$',
-            \ 'file': '\v\.(swap|so|log|tags)$',
+            \ 'dir': '\v[\/](\.(git|hg|svn|idea|DS_Store)|(node_modules|dist|bundles))$',
+            \ 'file': '\v\.(swap|so|log|tags)$'
             \ }
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:50'
 
