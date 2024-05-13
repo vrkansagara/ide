@@ -222,7 +222,7 @@ set scrolloff=3
 " Set column size to 80 character (standard size)
 " " Make it obvious where 80 characters is ( Reformat it:gq)                   i
 " Set text width to 80 character only., I am not using at this time.
-set textwidth=80
+set textwidth=120
 set colorcolumn=+1
 set wrapmargin=2
 set expandtab
