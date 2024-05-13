@@ -32,12 +32,21 @@ endif
 map! kj <Esc>
 inoremap kj <Esc>
 
+" Add line break in normal mode
+nnoremap <silent><nowait>o o<Esc>
+nnoremap <silent><nowait>O O<Esc>
+
+" Tabbing visual selection
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 
 " execute external command and past standard output in insert mode ( CTRL+R a )
 " @a is the register name
 let @a = system("ls -lhtr")
+let @d = system("date")
 
 nnoremap <silent><nowait><leader>v :tabedit $MYVIMRC<CR>
 nnoremap <silent><nowait><leader>my :tabedit $HOME/.vim/src/main.vim<CR>
