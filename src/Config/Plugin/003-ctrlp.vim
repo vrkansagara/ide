@@ -51,17 +51,17 @@ let g:ctrlp_prompt_mappings = {
 let g:ctrlp_max_height = 15
 " let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_custom_ignore = {
-            \ 'dir': '\v[\/](\.(git|hg|svn|idea|DS_Store)|(node_modules|dist|bundles))$',
+            \ 'dir': '\v[\/](\.(git|hg|svn|idea|DS_Store)|(vendor|node_modules|dist|bundles))$',
             \ 'file': '\v\.(swap|so|log|tags)$'
             \ }
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:50'
 
 " Use ag if available for quicker searches
 if executable('ag')
-
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
+else
+    " let g:ctrlp_user_command = 'find %s -type f | grep -v "`cat .ctrlpignore`"'
 endif
 
 let g:ctrlp_tabpage_position = 'ac'
