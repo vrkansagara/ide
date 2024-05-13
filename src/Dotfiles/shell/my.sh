@@ -176,7 +176,7 @@ fi
 export GEM_HOME="$HOME/.gem"
 
 #PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ हरि ऊँ तत् सत्  ]
-PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ Do One Thing and Do It Well ]
+PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ Do one thing at a time and do it well ]
 ╰─%B[卐]%b "
 RPROMPT="%B${return_code}%b"
 
