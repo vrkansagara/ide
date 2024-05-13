@@ -109,7 +109,7 @@ git submodule add -f https://github.com/skywind3000/vim-quickui.git pack/vendor/
 # yarn install --frozen-lockfile --production
 
 ## color /theme
- echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design ] ..."
+echo "Installation of [ Light & Dark Vim color schemes inspired by Google's Material Design ] ..."
 git submodule add -f https://github.com/NLKNguyen/papercolor-theme.git pack/colors/start/papercolor-theme
 
 echo "Installation of [ A vim theme inspired by Atom's default dark theme ] ..."
