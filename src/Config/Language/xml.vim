@@ -1,7 +1,6 @@
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :- 
+" Note       :-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " This function is dynamically called by Pressing F5 by (filetype.vim)
@@ -11,11 +10,18 @@ function! RefreshF5xml()
 
     " reindent whole file without losing current " position
     " exe "normal gg=G``"
-	execute "PrettierAsync"
+    " execute "PrettierAsync"
 
 endfunction
 
 " This function is dynamically called by hitting  enter for filetype
 function! Runxml()
-	execute "PrettierAsync"
+    " execute "PrettierAsync"
+
+    " Call F2 which is trim whitespace for all file type
+    exe "normal \<F2>"
+
+    " Write current file
+    execute "silent! w!"
+
 endfunction

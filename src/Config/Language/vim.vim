@@ -5,7 +5,8 @@ function! RefreshF5vim ()
     exe "normal \<F2>"
 
     " Indent whole file
-    exe "normal gg=G``"
+    " Vim indetation is not so good
+    " exe "normal gg=G``"
 
     " Clear messages for better visibility
     exec "messages clear"
