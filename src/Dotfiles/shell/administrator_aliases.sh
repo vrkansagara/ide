@@ -39,7 +39,7 @@ alias myDebDependencies="apt-cache search . | fzf --preview 'apt-cache depends {
 alias myPublicIp='dig +short myip.opendns.com @resolver1.opendns.comss
 '
 alias myPublicIP="dig +short txt ch whoami.cloudflare @1.0.0.1 | tr -d '\"'"
-alias myPublicIPCloud="echo $(curl -fSs https://1.1.1.1/cdn-cgi/trace | awk -F= '/ip/ { print $2 }')"
+alias myPublicIPCloud="curl -fSs https://1.1.1.1/cdn-cgi/trace | awk -F= '/ip/ { print $2 }'"
 alias myPublicIpv6='dig -6 TXT +short o-o.myaddr.l.google.com @ns1.google.com'
 alias myAllIp="ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
 
