@@ -1,0 +1,13 @@
+# https://wiki.debian.org/fstab
+# https://www.kernel.org/doc/html/latest/filesystems/tmpfs.html
+
+tmpfs /tmp tmpfs defaults,noatime,nosuid,nodev,noexec,mode=1777,size=2G 0 0
+tmpfs /var/tmp tmpfs rw,nosuid,nodev
+tmpfs /home/vrkansagara/.pdepend tmpfs rw,nosuid,nodev
+tmpfs /home/vrkansagara/.cache/JetBrains tmpfs rw,nosuid,nodev
+tmpfs /home/vrkansagara/.cache/google-chrome tmpfs rw,nosuid,nodev
+tmpfs /var/log/journal tmpfs rw,nosuid,nodev
+
+if you have enough RAM ( 16 GB then no need swap)
+sudo swapon --show
+sudo swapoff -av
