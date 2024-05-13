@@ -3,7 +3,7 @@ call quickui#menu#reset()
 
 " install a 'File' menu, use [text, command] to represent an item.
 call quickui#menu#install('&File', [
-            \ [ "&New File\tCtrl+n", 'echo 0' ],
+            \ [ "&New File\t tabnew", ':tabnew' ],
             \ [ "&Open File\t(F3)", 'echo 1' ],
             \ [ "&Close", 'echo 2' ],
             \ [ "--", '' ],
@@ -12,6 +12,7 @@ call quickui#menu#install('&File', [
             \ [ "Save All", 'echo 5' ],
             \ [ "--", '' ],
             \ [ "E&xit\tAlt+x", 'echo 6' ],
+            \ [ "Close all unchanged\t bufdo! bw", "bufdo! bw" ],
             \ ])
 
 " items containing tips, tips will display in the cmdline
@@ -42,4 +43,7 @@ call quickui#menu#install('H&elp', [
 let g:quickui_show_tip = 1
 
 " hit space twice to open menu
-noremap <space><space> :call quickui#menu#open()<cr>
+nnoremap <A-f> :call Openmenu()<cr><cr>
+function! Openmenu()
+    call quickui#menu#open()
+endfunction
