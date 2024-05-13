@@ -99,6 +99,7 @@ git submodule add -f https://github.com/rust-lang/rust.vim pack/vendor/start/rus
 echo "Installation of [ A (N)Vim plugin for formatting Julia code using JuliaFormatter.jl.]"
 git submodule add -f https://github.com/kdheepak/JuliaFormatter.vim pack/vendor/start/JuliaFormatter
 
+# Alternative to menu module for the vim
 echo "Installation of [ Refined color, contains both gui and cterm256 for dark and light background ] ..."
 git submodule add -f https://github.com/skywind3000/vim-quickui.git pack/vendor/start/vim-quickui
 
