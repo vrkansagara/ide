@@ -70,7 +70,7 @@ profzsh() {
 
 #tar gzip a file or folder
 #example: tgz archive myproject or tgz archive myproject -t for timestamp
-function tgz {
+tgz() {
     if [[ "$3" == "-t" ]]; then
         tar -czvf $1-$(date "+%Y%m%d%H%M%S").tgz $2
     else
@@ -80,20 +80,20 @@ function tgz {
 
 #find a file type
 #example:  ft html
-function ft {
+ft() {
     find . -name "*."$1 -print
 }
 #find a file name like this
 #example:  f index
-function f {
+f() {
     find . -name "*"$1"*" -print
 }
 #List top ten commands
-function lt {
+lt() {
     history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
-function machine() {
+machine() {
     unameOut="$(uname -s)"
     case "${unameOut}" in
         Linux*) machine=linux ;;
@@ -106,7 +106,7 @@ function machine() {
             export machine
 }
 
-function main() {
+main() {
     machine
 }
 main
