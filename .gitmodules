@@ -49,6 +49,9 @@
 [submodule "pack/vendor/start/JuliaFormatter"]
 	path = pack/vendor/start/JuliaFormatter
 	url = https://github.com/kdheepak/JuliaFormatter.vim
+[submodule "pack/vendor/start/vim-quickui"]
+	path = pack/vendor/start/vim-quickui
+	url = https://github.com/skywind3000/vim-quickui.git
 [submodule "pack/colors/start/papercolor-theme"]
 	path = pack/colors/start/papercolor-theme
 	url = https://github.com/NLKNguyen/papercolor-theme.git
@@ -61,6 +64,3 @@
 [submodule "pack/colors/start/peaksea"]
 	path = pack/colors/start/peaksea
 	url = https://github.com/vim-scripts/peaksea.git
-[submodule "pack/vendor/start/vim-quickui"]
-	path = pack/vendor/start/vim-quickui
-	url = https://github.com/skywind3000/vim-quickui.git
