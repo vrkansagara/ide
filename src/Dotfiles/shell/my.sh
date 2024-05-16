@@ -55,9 +55,6 @@ alias www='cd $HOME/www'
 alias htdocs='cd $HOME/htdocs'
 alias gh='cd $HOME/git'
 
-
-
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -168,8 +165,8 @@ if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 	autoload -Uz compinit
 	compinit
-	chmod go-w '/opt/homebrew/share'
-	chmod -R go-w '/opt/homebrew/share/zsh'
+	# chmod go-w '/opt/homebrew/share'
+	# chmod -R go-w '/opt/homebrew/share/zsh'
 fi
 
 # gem install --user-install docker-sync
