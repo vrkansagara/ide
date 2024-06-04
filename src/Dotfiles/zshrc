@@ -1,3 +1,5 @@
+#https://access.redhat.com/solutions/61334
+ulimit -u unlimited
 if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi

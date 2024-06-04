@@ -38,7 +38,7 @@ function! Runsh()
     execute "silent! w!"
 
     " Clear terminal color, clean screen, run object
-    " execute "!clear && sh " . filePath
-    execute "!sh " . filePath
+    " execute "!clear && /usr/bin/bash " . filePath
+    execute "!echo \" \n \e[0;32m ----- SEHLL OUTPUT ----- \e[0m \\n \" && bash " . filePath
     endfunction
 

@@ -4,6 +4,10 @@ if [[ "$1" == "-v" ]]; then
 	set -x # You refer to a noisy script.(Used to debugging)
 fi
 
+if [ "$(uname -s)" == 'Darwin' ]; then
+    exit 0;
+fi
+
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
