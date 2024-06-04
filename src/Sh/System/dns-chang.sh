@@ -21,7 +21,6 @@ fi
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Change dns for latency improvement
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-echo -e "\n"
 echo "$0 execution ... [STARTED - ${CURRENT_DATE}]"
 
 ${SUDO} apt install dos2unix
