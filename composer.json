@@ -18,20 +18,19 @@
     }
   ],
   "require": {
-    "php": ">=7.4",
-    "guzzle/guzzle": "@stable",
-    "phpoffice/phpspreadsheet": "@stable",
-    "guzzlehttp/guzzle": "@stable",
-    "mtdowling/jmespath.php": "@stable",
-    "symfony/dom-crawler": "@stable",
-    "laminas/laminas-migration": "@stable",
-    "laminas/laminas-component-installer": "@stable",
-    "laravel/installer": "@stable",
-    "symfony/yaml": "@stable",
-    "symfony/console": "^5.4",
+    "php": ">=8.3",
     "vrkansagara/common": "dev-master",
     "laravel/envoy": "^2.9",
-    "ramsey/uuid": "^4.7"
+    "ramsey/uuid": "^4.7",
+    "guzzle/guzzle": "^1.0",
+    "guzzlehttp/guzzle": "^7.9",
+    "mtdowling/jmespath.php": "^2.7",
+    "symfony/dom-crawler": "^7.1",
+    "laminas/laminas-migration": "dev-renovate/all-minor-patch",
+    "laminas/laminas-component-installer": "^3.4",
+    "laravel/installer": "^4.5",
+    "symfony/yaml": "^6.4",
+    "symfony/console": "^5.4"
   },
   "support": {
     "email": "vrkansagara@gmail.com",
@@ -56,8 +55,8 @@
       "sudo chown -Rf $USER storage/logs/"
     ],
     "permission-readonly": [
-      "sudo find ./ -type f -exec chmod 644 {} \\;",
-      "sudo find ./ -type d -exec chmod 755 {} \\;"
+      "sudo find ./ -type f -exec chmod 644 {} +",
+      "sudo find ./ -type d -exec chmod 755 {} +"
     ],
     "check": [
       "@cs-check",
@@ -77,18 +76,18 @@
     ]
   },
   "require-dev": {
-    "laminas/laminas-coding-standard": "^2.3",
-    "vimeo/psalm": "^4.23",
-    "phpstan/phpstan": "^1.7",
-    "phpro/grumphp": "^1.12",
-    "squizlabs/php_codesniffer": "^3.6",
-    "enlightn/security-checker": "^1.10",
-    "ergebnis/composer-normalize": "^2.28",
-    "maglnet/composer-require-checker": "^3.8",
-    "phpmd/phpmd": "^2.12",
-    "phpunit/phpunit": "^9.5",
     "roave/security-advisories": "dev-latest",
-    "behat/behat": "^3.12"
+    "behat/behat": "^3.12",
+    "vimeo/psalm": "^5.25",
+    "phpstan/phpstan": "^1.11",
+    "phpro/grumphp": "^1.16",
+    "squizlabs/php_codesniffer": "^3.10",
+    "enlightn/security-checker": "^1.11",
+    "ergebnis/composer-normalize": "^2.43",
+    "maglnet/composer-require-checker": "^3.8",
+    "phpmd/phpmd": "^2.15",
+    "laminas/laminas-coding-standard": "^2.5",
+    "phpunit/phpunit": "^9.6"
   },
   "config": {
     "allow-plugins": {
