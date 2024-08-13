@@ -44,7 +44,7 @@ git config --global merge.tool vimdiff
 git config --global mergetool.prompt false
 git config --global pull.rebase false
 git config --global url."https://".insteadOf git://
-git config --global user.name "vallabhdas kansagara"
+git config --global user.name "Vallabhdas Kansagara"
 git config --global user.signingkey 8BA6E7ABD8112B3E
 
 git config --global alias.add-unmerged '!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`'
