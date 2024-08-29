@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
+  set -x # You refer to a noisy script.(Used to debugging)
 fi
 
 if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -14,7 +14,7 @@ fi
 #  Note		  :- Make sure cron is installed (sudo apt-get install cron)
 #  @url     :- https://www.speedtest.net/apps/cli
 #  @usage   :- every 15 minutes.
-# */15 * * * * sh /home/vrkansagara/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
+# */15 * * * * sh /home/vallabh/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ## If migrating from prior bintray install instructions please first...
@@ -26,17 +26,19 @@ fi
 # sudo apt-get remove speedtest-cli
 
 if ! command -v shellcheck &>/dev/null; then
-	echo "Install shellcheck for shell script sanitization"
-	${SUDO} apt-get install shellcheck
+  echo "Install shellcheck for shell script sanitization"
+  ${SUDO} apt-get install shellcheck
 fi
 
 if ! command -v speedtest &>/dev/null; then
-	echo "Install speed test for speedtest"
-	${SUDO} apt-get install curl
-	curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | ${SUDO} bash
-	${SUDO} apt-get install speedtest
+  echo "Install speed test for speedtest"
+  ${SUDO} apt-get install curl
+  curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | ${SUDO} bash
+  ${SUDO} apt-get install speedtest-cli
 fi
 
-#speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
-echo "Speed test started at [ $(date) ]" | tee -a  /tmp/speedtest.txt
-speedtest --secure | tee -a  /tmp/speedtest.txt
+if command -v speedtest &>/dev/null; then
+  #speedtest -p no > /tmp/speedtest-"${CURRENT_DATE}".txt
+  echo "Speed test started at [ $(date) ]" | tee -a /tmp/speedtest.txt
+  speedtest --secure | tee -a /tmp/speedtest.txt
+fi
