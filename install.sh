@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-    set -x # You refer to a noisy script.(Used to debugging)
+  set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-echo " "
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export
+export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  SUDO=sudo
 fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -23,7 +21,7 @@ CLONE_DIRECTORY="/tmp/.vim-${CURRENT_DATE}"
 
 echo "Creating backup directory."
 if [ ! -d "$BACKUP_DIRECTORY" ]; then
-    mkdir -p $BACKUP_DIRECTORY
+  mkdir -p $BACKUP_DIRECTORY
 fi
 
 echo "Cloning the [vrkansagara/ide] vim configuration."
@@ -32,14 +30,16 @@ cd ${CLONE_DIRECTORY}
 
 echo "Creating backup of ~/.vim* to ${BACKUP_DIRECTORY}"
 if [ $(ls $HOME/.vim* | wc -l) != 0 ]; then
-    echo "Moving base vimrc config to back up folder"
-    mv -f $HOME/.vim* $BACKUP_DIRECTORY
+  echo "Moving base vimrc config to back up folder"
+  mv -f $HOME/.vim* $BACKUP_DIRECTORY
 fi
 
 # git pull --recurse-submodules
 # git submodule update --init --recursive
 mv ${CLONE_DIRECTORY} $HOME/.vim
 mkdir -p "$HOME/.vim/pack/vendor/start/"
+
+rm -rf $HOME/.vim/pack/*
 sh -c "$HOME/.vim/submodule.sh"
 
 # echo "Set up pathogen for vim run time path."
@@ -53,7 +53,7 @@ ln -P $HOME/.vim/src/Dotfiles/zshrc $HOME/.zshrc
 ln -P $HOME/.vim/vimrc.vim $HOME/.vimrc
 ln -P $HOME/.vim/src/Dotfiles/bashrc $HOME/.bashrc
 ln -P $HOME/.vim/src/Sh/Git/hooks/pre-commit $HOME/.vim/.git/hooks
- mkdir -p $HOME/.vim/data/cache
+mkdir -p $HOME/.vim/data/cache
 
 # Set sh and bin  directory executable
 chmod -R +x $HOME/.vim/src/Sh/* $HOME/.vim/bin
