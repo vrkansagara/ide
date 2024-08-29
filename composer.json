@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": ">=8.3",
-    "vrkansagara/common": "dev-master",
+    "vrkansagara/common": "dev-develop",
     "laravel/envoy": "^2.9",
     "ramsey/uuid": "^4.7",
     "guzzle/guzzle": "^1.0",
