@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-set -ex # This setting is telling the script to exit on a command error.
+set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
+  shift
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
@@ -49,9 +50,11 @@ nvm() {
 main() {
   if [[ "$1" == "--nvm" ]]; then
     nvm
+    shift
   fi
   if [[ "$1" == "--node-latest" ]]; then
     node_latest
+    shift
   fi
 }
 
