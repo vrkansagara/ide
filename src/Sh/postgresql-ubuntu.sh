@@ -5,8 +5,7 @@ if [[ "$1" == "-v" ]]; then
 	shift
 fi
 
-echo
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 export
 
 if [ "$(whoami)" != "root" ]; then
