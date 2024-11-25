@@ -5,8 +5,6 @@ if [[ "$1" == "-v" ]]; then
 	shift
 fi
 
-export
-
 if [ "$(whoami)" != "root" ]; then
 	SUDO=sudo
 fi
