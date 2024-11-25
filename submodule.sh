@@ -25,6 +25,7 @@ read -r -p 'Do you want to remove VIM vendor,php copmoser, coc vendor [Y/n]?' in
 case $input in [yY][eE][sS]|[yY])
 # ${SUDO} rm -rf ~/.config/coc
 ${SUDO} rm -rf vendor/*
+${SUDO} rm -rf pack/*
 ${SUDO} rm -rf ${CLONE_DIRECTORY}/*
 ${SUDO} rm -rf .gitmodules
 ${SUDO} touch .gitmodules
