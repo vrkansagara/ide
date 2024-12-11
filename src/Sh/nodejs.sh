@@ -23,14 +23,16 @@ node_latest() {
   # Ref:- https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version
   #npm i  npm-check-updates node-sass
   npm install
-  ./node_modules/.bin/ncu -u
-  npm update
   ${SUDO} chmod -R a+x node_modules
   ${SUDO} chmod -R +x ./node_modules/.bin
-  npm rebuild node-sass
+
+  ./node_modules/.bin/ncu -u
+  npm update
+  npm rebuild node-sass --force
 }
 
 nvm() {
+  command_exists nvm && echo "NVM command found, Exit" && exit
 
   ${SUDO} apt-get install curl
 
@@ -39,7 +41,6 @@ nvm() {
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-  #    command_exists nvm || echo "NVM command not found" && exit
 
   nvm install node
   nvm install --latest-npm
