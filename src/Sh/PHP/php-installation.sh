@@ -22,7 +22,7 @@ ${SUDO} apt install --no-install-recommends --yes \
 	apt-transport-https lsb-release ca-certificates curl \
 	software-properties-common php-pear
 
-if [ -n "$(uname -a | grep -i Ubuntu)" ]; then
+if [ -n "$(uname -a | grep -i Ubuntu | grep -i WSL)" ]; then
 	${SUDO} add-apt-repository --yes ppa:ondrej/php
 else
 	${SUDO} curl -sSL -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
