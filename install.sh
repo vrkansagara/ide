@@ -26,7 +26,7 @@ if [ ! -d "$BACKUP_DIRECTORY" ]; then
 fi
 
 echo "Cloning the [vrkansagara/ide] vim configuration."
-git clone --recursive --branch master --depth 1 git@github.com:vrkansagara/ide.git ${CLONE_DIRECTORY}
+git clone --recursive --branch master --depth 1 https://github.com/vrkansagara/ide.git ${CLONE_DIRECTORY}
 cd ${CLONE_DIRECTORY}
 
 echo "Creating backup of ~/.vim* to ${BACKUP_DIRECTORY}"
