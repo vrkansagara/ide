@@ -30,7 +30,7 @@ else
     ${SUDO} apt-get update
 fi
 
-for VERSION in 8.0 8.1 8.2 8.3; do
+for VERSION in 8.0 8.1 8.2 8.3 8.4; do
 	for EXTENSION in dev fpm memcached exif soap bcmath ctype fileinfo mbstring pdo phar simplexml tokenizer xml xmlwriter curl dom intl gd gmp imagick mysqli zip xdebug curl; do
 		${SUDO} apt-get install --no-install-recommends --yes php${VERSION}-${EXTENSION}
 	done
