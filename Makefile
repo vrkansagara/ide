@@ -53,6 +53,9 @@ elasticsearch-clean:
 .phony: help
 help:
 	@echo "$(NC)$(GREEN)Clean : remove vendor,node_modules and pack/*"
+	@echo "$(NC)$(GREEN)node : Node build"
+	@echo "$(NC)$(GREEN)node-install : Node module install"
+	@echo "$(NC)$(GREEN)node-cli : Node cli"
 	@echo "$(NC)$(GREEN)elasticsearch-up : Elasticsearch up"
 	@echo "$(NC)$(GREEN)elasticsearch-down : Elasticsearch down"
 	@echo "$(NC)$(GREEN)elasticsearch-clean : Elasticsearch clean"
