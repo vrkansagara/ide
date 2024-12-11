@@ -26,6 +26,10 @@ DOCKER_RUN_NODE = $(DOCKER_COMPOSE_COMMANED) $(NODE) run --rm node
 node:
 	$(DOCKER_COMPOSE_COMMANED) $(NODE) build
 
+.phony: node-audit-fix
+node-audit-fix:
+	$(DOCKER_RUN_NODE) npm audit fix --force
+
 .phony: node-install
 node-install:
 	$(DOCKER_RUN_NODE) npm install
@@ -56,6 +60,7 @@ help:
 	@echo "$(NC)$(GREEN)node : Node build"
 	@echo "$(NC)$(GREEN)node-install : Node module install"
 	@echo "$(NC)$(GREEN)node-cli : Node cli"
+	@echo "$(NC)$(GREEN)node-audit-fix : Node audit fix"
 	@echo "$(NC)$(GREEN)elasticsearch-up : Elasticsearch up"
 	@echo "$(NC)$(GREEN)elasticsearch-down : Elasticsearch down"
 	@echo "$(NC)$(GREEN)elasticsearch-clean : Elasticsearch clean"
