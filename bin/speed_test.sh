@@ -2,7 +2,7 @@
 
 url=$1
 TOTAL=0
-COUNT=100
+COUNT=10
 HIGHEST=false
 LOWEST=false
 for ((i=1;i<=$COUNT;i++));

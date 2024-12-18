@@ -14,7 +14,7 @@ fi
 #  Note		  :- Make sure cron is installed (sudo apt-get install cron)
 #  @url     :- https://www.speedtest.net/apps/cli
 #  @usage   :- every 15 minutes.
-# */15 * * * * sh /home/vallabh/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
+# */15 * * * * sh $HOME/.vim/src/Sh/System/ubuntu/speedtest.sh >> /dev/null 2>&1  (no output)
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ## If migrating from prior bintray install instructions please first...
