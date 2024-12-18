@@ -68,4 +68,5 @@ alias myFindFile="sudo find / -type f  -name "
 alias myFindDirectory="find / -type d  -name "
 alias myFindLastModified="find $(pwd) \( ! -regex '.*/\..*' \) -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head"
 # -r = recursive -n= line numer -w match whole world -e=pattern used for search --include=\*.{xml,php} --exclude=\*.o
-alias myFindTextIntoDirectory="grep -rnw -e "
+
+alias myHardwareInformation="inxi -Fxz"
