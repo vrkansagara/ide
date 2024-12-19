@@ -1,1 +1,8 @@
-alias SUDO="sudo "
+alias SUDO="sudo"
+
+export PATH="$HOME/bin:$PATH"
+
+# https://docs.docker.com/build/buildkit/
+export DOCKER_BUILDKIT=1
+
+export NODE_OPTIONS="--max-old-space-size=4096"
