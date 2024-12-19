@@ -5,7 +5,6 @@ if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
 fi
 
-export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
 PWD=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 command_exists() {
@@ -18,7 +17,7 @@ if [ "$(whoami)" != "root" ]; then
   SUDO=sudo
 fi
 
-node_latest() {
+nodeLatest() {
   # nodejs and npm  related stuff
   # Ref:- https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version
   #npm i  npm-check-updates node-sass
@@ -31,7 +30,15 @@ node_latest() {
   npm rebuild node-sass --force
 }
 
-nvm() {
+nodejsInstall() {
+    nvm install node
+    nvm install --latest-npm
+    nvm use --latest-npm
+    nvm install --lts
+    nvm use --lts
+}
+
+nvmInstall() {
   command_exists nvm && echo "NVM command found, Exit" && exit
 
   ${SUDO} apt-get install curl
@@ -42,19 +49,21 @@ nvm() {
 
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
-  nvm install node
-  nvm install --latest-npm
-  nvm use --latest-npm
-  nvm install --lts
-  nvm use --lts
+
 }
 main() {
   if [[ "$1" == "--nvm" ]]; then
-    nvm
+    nvmInstall
     shift
   fi
+
+  if [[ "$1" == "--nodejs" ]]; then
+    nodejsInstall
+    shift
+  fi
+
   if [[ "$1" == "--node-latest" ]]; then
-    node_latest
+    nodeLatest
     shift
   fi
 }
