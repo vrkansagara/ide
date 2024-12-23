@@ -11,9 +11,8 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note       :- lets clean shell history
+#  Note       :- get all available cidr ip(s) of current AS
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set -euo pipefail
-$(history -c)
-$(history -cw)
+echo "AS32934 as following ip(s) range"
+whois -h whois.radb.net '!gAS32934' | tr " " "\n"
