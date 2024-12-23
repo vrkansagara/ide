@@ -1,2 +1,7 @@
 *
 !.gitignore
+!backup
+!cache
+!sessions
+!swap
+!undo

@@ -1,1 +1,0 @@
- whois -h whois.radb.net '!gAS32934' | tr " " "\n"

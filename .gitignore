@@ -8,7 +8,6 @@ data/spell/*
 tags
 .idea
 vendor/*
-/data/*
 /.yarn
 /coverage/
 *.out
