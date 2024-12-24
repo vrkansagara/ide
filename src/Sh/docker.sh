@@ -2,6 +2,7 @@
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
   set -x # You refer to a noisy script.(Used to debugging)
+  shift
 fi
 
 if [ "$(whoami)" != "root" ]; then
@@ -12,7 +13,6 @@ fi
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :-
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 echo " Lets remove Docker related stuff..."
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
@@ -34,20 +34,31 @@ ${SUDO} apt-get update
 
 ${SUDO} apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-if [ -f "/usr/bin/docker" ]; then
-  ${SUDO} chmod 666 /var/run/docker.sock
-  ${SUDO} groupadd docker
-  ${SUDO} usermod -aG docker ${USER}
-  if [ -d "$HOME/$USER/.docker" ]; then
-    ${SUDO} chown "$USER":"$USER" /home/"$USER"/.docker -R
-    ${SUDO} chmod g+rwx "$HOME/.docker" -R
-  fi
-fi
-
 if [ ! -f "/usr/bin/docker-compose" ]; then
   ${SUDO} curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   ${SUDO} chmod +x /usr/local/bin/docker-compose
   ${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+fi
+
+if [ -f "/usr/bin/docker" ]; then
+  ${SUDO} chmod 666 /var/run/docker.sock
+
+  if grep -q docker /etc/group; then
+    echo "Group docker"
+  else
+    ${SUDO} groupadd docker
+  fi
+
+  if getent group docker | grep -qw "${USER}"; then
+    echo "User [ ${USER} ] is into docker group"
+  else
+    ${SUDO} usermod -aG docker ${USER}
+    if [ -d "$HOME/$USER/.docker" ]; then
+      ${SUDO} chown "$USER":"$USER" /home/"$USER"/.docker -R
+      ${SUDO} chmod g+rwx "$HOME/.docker" -R
+    fi
+  fi
+
 fi
 
 #${SUDO} sysctl -w vm.max_map_count=262144
