@@ -1,9 +1,40 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+set -e # This setting is telling the script to exit on a command error.
+if [[ "$1" == "-v" ]]; then
+  set -x # You refer to a noisy script.(Used to debugging)
+fi
 
-# sudo chown root /etc/rc.local
-# sudo chmod 755 /etc/rc.local
-# systemctl status rc-local.service
+PWD=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
+command_exists() {
+  command -v "$@" >/dev/null 2>&1
+}
 
+if [ "$(whoami)" != "root" ]; then
+  SUDO=sudo
+fi
 
-touch /forcefsck
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
+#  Ref        :- my rc local
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+permission() {
+  ${SUDO} touch /etc/rc.local
+  ${SUDO} chown root /etc/rc.local
+  ${SUDO} chmod 755 /etc/rc.local
+  ${SUDO} systemctl status rc-local.service
+}
+
+main() {
+  # Lets check file system on next boot
+  ${SUDO} touch /forcefsck
+
+  if [[ "$1" == "--permission" ]]; then
+    set -x # You refer to a noisy script.(Used to debugging)
+    shift
+  fi
+
+}
+
+main "$@"
