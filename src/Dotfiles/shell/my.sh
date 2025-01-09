@@ -1,12 +1,12 @@
 # @usage
 # (1) copy original zshrc and inject top and bottom code
 # (2) Top code
-# This will be the first line of the .zshrc
+# This will be the first line of the zshrc-kali
 # if [[ "$ZPROF" = true ]]; then
 #   zmodload zsh/zprof
 # fi
 # (3) Bottom code
-# Lets include into $HOME/.zshrc file
+# Lets include into $HOME/zshrc-kali file
 # Lets call my custom configuration for the shell
 #source $HOME/.vim/src/Dotfiles/shell/my.sh
 echo "Loading ..... $0"
@@ -37,7 +37,7 @@ command_exists() {
 # fi
 
 alias g='git'
-alias ss='source ~/.zshrc'
+alias ss='source ~/zshrc-kali'
 
 # force zsh to show the complete history
 alias h="history 0" # review log of commands
@@ -184,7 +184,7 @@ if [ -f "$HOME/.profile" ]; then
 fi
 
 
-# This must be the last line of $HOME/.zshrc because From bash_functions.sh@profzsh will call for the profiling
+# This must be the last line of $HOME/zshrc-kali because From bash_functions.sh@profzsh will call for the profiling
 if [[ "$ZPROF" = true ]]; then
 	zprof
 fi
