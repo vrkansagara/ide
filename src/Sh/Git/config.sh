@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 set -e # This setting is telling the script to exit on a command error.
 if [[ "$1" == "-v" ]]; then
-    set -x # You refer to a noisy script.(Used to debugging)
-    shift
+  set -x # You refer to a noisy script.(Used to debugging)
+  shift
 fi
 
 if [ "$(whoami)" != "root" ]; then
-    SUDO=sudo
+  sudo="sudo"
 fi
+
+export pwd="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+cd $pwd
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
@@ -15,18 +18,17 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if [ "$(uname -s)" == 'Darwin' ]; then
-    brew install gnupg2 git-flow zsh-completions
-    brew install gnupg2 zsh-completions
+  brew install gnupg2 git-flow zsh-completions
+  brew install gnupg2 zsh-completions
 else
-    ${SUDO} apt-get install --no-install-recommends -y gnupg2 git-flow
+  $sudo apt-get install --no-install-recommends -y gnupg2 git-flow
 fi
 
-BASEDIR=$(dirname "$0")
-cd $BASEDIR
-
 # Run script to local directory
-echo "Current directory is $(pwd)"
-mv $HOME/.gitconfig /tmp
+echo "Current directory is $pwd"
+if [ -f $HOME/.gitconfig ]; then
+  mv $HOME/.gitconfig /tmp
+fi
 
 # Git config list
 echo "Git configuration started on $(date +%Y%m%d%H%M%S)"
@@ -173,4 +175,7 @@ git config --global alias.workSign 'config --global  user.signingkey 9E1BB86EF02
 
 # Tee command append to file multiple time TODO
 cat .gitignore | tee /tmp/.gitignore-global >/dev/null
-sed 's/\r//' /tmp/.gitignore-global | sort -u > ~/.gitignore
+sed 's/\r//' /tmp/.gitignore-global | sort -u >~/.gitignore
+
+echo "Git configuration is set."
+exit 0
