@@ -76,6 +76,11 @@ main() {
     default
     $sudo ufw reload
   fi
+
+  if [[ "$1" == "--log" ]]; then
+    shift
+    $sudo dmesg -w | grep '\[UFW'
+  fi
 }
 
 main "$@"
