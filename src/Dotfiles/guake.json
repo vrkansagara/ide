@@ -1,0 +1,9 @@
+[
+  {
+    "description": "List all files",
+    "cmd": [
+      "ls",
+      "-ls"
+    ]
+  }
+]
