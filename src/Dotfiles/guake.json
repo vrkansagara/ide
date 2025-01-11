@@ -5,5 +5,13 @@
       "ls",
       "-ls"
     ]
+  } ,
+  {
+    "description": "Run phpstorm",
+    "cmd": [
+      "sudo",
+      "ps -ef | grep 'phpstorm' | grep -v grep | awk \"{print \\$2}\" | xargs -I {} sudo kill -9 {}",
+      "&& ~/Applications/PhpStorm-213.7172.28/bin/phpstorm.sh"
+    ]
   }
 ]
