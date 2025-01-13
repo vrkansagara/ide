@@ -86,7 +86,7 @@
     "phpmd/phpmd": "^2.15",
     "laminas/laminas-coding-standard": "^2.5",
     "phpunit/phpunit": "^9.6",
-    "vimeo/psalm": "^4.30"
+    "vimeo/psalm": "^4.30 || ^5.0"
   },
   "config": {
     "allow-plugins": {
