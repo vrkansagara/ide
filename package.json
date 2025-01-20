@@ -15,7 +15,7 @@
     "laravel-mix": "^6.0.49",
     "node-notifier": "^10.0.1",
     "node-sass": "^9.0.0",
-    "npm-check-updates": "^17.1.11",
+    "npm-check-updates": "^17.1.14",
     "serverless": "^4.4.15",
     "vue-cli": "^2.9.6"
   },
