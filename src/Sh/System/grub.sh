@@ -16,7 +16,7 @@ fi
 
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  note		    :- lets compitable grub to work with older hardware
+#  note		    :- lets compatible grub to work with older hardware
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 $sudo cp /etc/default/grub $HOME/.vim/backup/grub-$(date "+%Y%m%d%H%M%S")
