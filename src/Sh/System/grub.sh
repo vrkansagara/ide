@@ -27,4 +27,7 @@ $sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet 
 $sudo update-grub
 $sudo update-initramfs
 
+# analyze the boot sequence
+systemd-analyze plot > $HOME/boot.svg
+
 exit 0
