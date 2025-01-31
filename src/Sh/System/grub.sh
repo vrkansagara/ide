@@ -21,13 +21,14 @@ fi
 
 $sudo cp /etc/default/grub $HOME/.vim/backup/grub-$(date "+%Y%m%d%H%M%S")
 
-#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_idle.max_cstate=1 fsck.mode=force fsck.repair=yes intel_iommu=igfx_off"
-$sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_idle.max_cstate=1 fsck.mode=force fsck.repair=yes intel_iommu=igfx_off"/' /etc/default/grub
+$sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet nosplash debug i915.enable_dc=0 ahci.mobile_lpm_policy=1 intel_idle.max_cstate=1 fsck.mode=force fsck.repair=yes intel_iommu=igfx_off"/' /etc/default/grub
 
 $sudo update-grub
-$sudo update-initramfs
+$sudo update-initramfs -u
 
 # analyze the boot sequence
 systemd-analyze plot > $HOME/boot.svg
+
+# inxi -Fxxxrz | grep -i 'driver\|acpi'
 
 exit 0
