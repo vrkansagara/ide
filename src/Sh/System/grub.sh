@@ -19,7 +19,7 @@ fi
 #  note		    :- lets compatible grub to work with older hardware
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-$sudo cp /etc/default/grub $HOME/.vim/backup/grub-$(date "+%Y%m%d%H%M%S")
+$sudo cp /etc/default/grub $HOME/.vim/data/backup/grub-$(date "+%Y%m%d%H%M%S")
 
 $sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet nosplash debug i915.enable_dc=0 ahci.mobile_lpm_policy=1 intel_idle.max_cstate=1 fsck.mode=force fsck.repair=yes intel_iommu=igfx_off"/' /etc/default/grub
 
