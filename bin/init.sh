@@ -11,4 +11,8 @@ ${SUDO} chmod +x *
 
 ${SUDO} apt-get install --yes --no-install-recommends \
 xclip \
+git \
+nmap \
+elinks \
+vim \
 ufw gufw
