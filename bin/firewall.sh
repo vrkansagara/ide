@@ -48,6 +48,10 @@ function default() {
   # Email stuff
   $sudo ufw allow in smtp
   $sudo ufw reject out smtp
+
+  # Speedtest.net
+  sudo ufw allow out to any port 5060
+  sudo ufw allow out to any port 8080
 }
 
 main() {
