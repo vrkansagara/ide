@@ -15,4 +15,5 @@ git \
 nmap \
 elinks \
 vim \
-ufw gufw
+ufw gufw \
+alacarte

@@ -52,6 +52,7 @@ function default() {
   # Speedtest.net
   sudo ufw allow out to any port 5060
   sudo ufw allow out to any port 8080
+  sudo ufw allow out to any port 554
 }
 
 main() {
