@@ -5,7 +5,7 @@
     "vk": "vue-cli-service build --mode=development --watch"
   },
   "dependencies": {
-    "@angular/cli": "^19.0.4",
+    "@angular/cli": "^19.1.6",
     "@vue/cli": "^4.2.2",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
