@@ -5,7 +5,21 @@
       "ls",
       "-ls"
     ]
-  } ,
+  },
+  {
+    "description": "Ubuntu update and upgrade",
+    "cmd": [
+      "sudo",
+      "apt-get install -f && sudo update && sudo apt-get upgrade -V"
+    ]
+  },
+  {
+    "description": "Ubuntu apt clean and auto remove",
+    "cmd": [
+      "sudo",
+      "apt-get clean && sudo apt-get autoremove"
+    ]
+  },
   {
     "description": "Run phpstorm",
     "cmd": [
