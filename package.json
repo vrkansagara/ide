@@ -16,7 +16,7 @@
     "node-notifier": "^10.0.1",
     "node-sass": "^9.0.0",
     "npm-check-updates": "^17.1.11",
-    "serverless": "^4.4.15",
+    "serverless": "^4.11.1",
     "vue-cli": "^2.9.6"
   },
   "devDependencies": {
