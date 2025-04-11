@@ -10,14 +10,14 @@
     "description": "Ubuntu update and upgrade",
     "cmd": [
       "sudo",
-      "apt-get install -f && sudo update && sudo apt-get upgrade -V"
+      "apt-get install -f && sudo apt-get clean && sudo apt-get autoremove && sudo apt-get update && sudo apt-get upgrade -V"
     ]
   },
   {
-    "description": "Ubuntu apt clean and auto remove",
+    "description": "Ubuntu dist upgrade",
     "cmd": [
       "sudo",
-      "apt-get clean && sudo apt-get autoremove"
+      "apt-get clean && sudo apt dist-upgrade"
     ]
   },
   {

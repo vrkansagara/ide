@@ -1,0 +1,10 @@
+# bash $HOME/.vim/src/Dotfiles/cron >/dev/null 2>&1
+# DEBIAN_FRONTEND=noninteractive
+
+export DEBIAN_FRONTEND=noninteractive
+
+sudo apt-get install -f
+sudo apt-get clean
+sudo apt-get autoremove
+sudo apt update
+sudo apt upgrade -y
