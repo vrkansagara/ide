@@ -7,7 +7,7 @@
   "dependencies": {
     "@angular/cli": "^19.0.4",
     "@vue/cli": "^4.2.2",
-    "axios": "^1.7.9",
+    "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "gulp-cli": "^3.0.0",
     "jquery": "^3.7.1",
