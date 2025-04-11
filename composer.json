@@ -77,7 +77,7 @@
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "behat/behat": "^3.12",
-    "phpstan/phpstan": "^1.11",
+    "phpstan/phpstan": "^1.11 || ^2.0",
     "phpro/grumphp": "^1.16",
     "squizlabs/php_codesniffer": "^3.10",
     "enlightn/security-checker": "^1.11",
