@@ -1,10 +1,21 @@
-# bash $HOME/.vim/src/Dotfiles/cron >/dev/null 2>&1
+# 0 * * * * bash $HOME/.vim/src/Dotfiles/cron >/dev/null 2>&1
 # DEBIAN_FRONTEND=noninteractive
 
 export DEBIAN_FRONTEND=noninteractive
 
-sudo apt-get install -f
+sudo dpkg -i /var/cache/apt/archives/*.deb
+sudo dpkg --configure -a
+sudo apt-get install -fy
+sudo apt-get dist-upgrade
+
 sudo apt-get clean
 sudo apt-get autoremove
 sudo apt update
 sudo apt upgrade -y
+
+# sudo apt install unattended-upgrades
+sudo apt-get update > /tmp/apt-update.log
+sudo apt-get upgrade > /tmp/apt-upgrade.log
+sudo journalctl --vacuum-size=100M > /tmp/journalctl.log
+
+echo "Cron finished at " $(date "+%Y%m%d%H%M%S") | tee -a  /tmp/cron.log
