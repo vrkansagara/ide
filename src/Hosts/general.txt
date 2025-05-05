@@ -349,3 +349,7 @@ ff02::3 ip6-allhosts
 0.0.0.0 resharper-plugins.jetbrains.com
 0.0.0.0 resources.jetbrains.com
 0.0.0.0 www.jetbrains.com
+
+#=====================================
+# Google Specific
+0.0.0.0 play.google.com
