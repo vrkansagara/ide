@@ -37,14 +37,48 @@ export DEBIAN_FRONTEND=noninteractive
 
 # https://docs.docker.com/build/buildkit/
 export DOCKER_BUILDKIT=1
+export COMPOSE_BAKE=true
 
 export NODE_OPTIONS="--max-old-space-size=4096"
 
 # Shell script specific
 export SUDO="sudo"
 
+[ -z "$VARIABLE" ] && VARIABLE="abc"
+
+if env | grep -q ^VARIABLE=
+then
+  echo env variable is already exported
+else
+  echo env variable was not exported, but now it is
+  export VARIABLE
+fi
+
 # Lets switch to default zsh shell
 # chsh -s $(which zsh)
 
 # 1password ssh
 export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+
+# Set defaults if variables are unset or null
+[ -z "$USER" ] && USER="defaultuser"
+[ -z "$UID" ] && UID="1000"
+[ -z "$GID" ] && GID="1000"
+
+# Function to check and export variable if not already exported
+check_and_export() {
+  local VAR_NAME="$1"
+  if env | grep -q "^${VAR_NAME}="
+  then
+    echo "$VAR_NAME is already exported"
+  else
+    echo "$VAR_NAME was not exported, but now it is"
+    export "$VAR_NAME"
+  fi
+}
+
+# Check and export each variable
+check_and_export "USER"
+check_and_export "UID"
+check_and_export "GID"

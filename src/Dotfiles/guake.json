@@ -25,7 +25,15 @@
     "cmd": [
       "sudo",
       "ps -ef | grep 'phpstorm' | grep -v grep | awk \"{print \\$2}\" | xargs -I {} sudo kill -9 {}",
-      "&& ~/Applications/PhpStorm-213.7172.28/bin/phpstorm.sh"
+      "&& cpulimit -b -l $((30 * $NUM_CPU_CORES)) /snap/bin/phpstorm"
+    ]
+  },
+  {
+    "description": "Run Google Chrome",
+    "cmd": [
+      "sudo",
+      "ps -ef | grep 'google-chrome' | grep -v grep | awk \"{print \\$2}\" | xargs -I {} sudo kill -9 {}",
+      "&& cpulimit -b -l $((30 * $NUM_CPU_CORES)) $(which google-chrome)"
     ]
   }
 ]
