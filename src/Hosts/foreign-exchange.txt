@@ -1,8 +1,5 @@
 # Title: vrkansagara/ide
-#
-0.0.0.0 # Fetch the latest version of this file: https://raw.githubusercontent.com/vrkansagara/ide/2023/hosts
-0.0.0.0 # Project home page: https://github.com/vrkansagara/ide
-#
+# Ref :: - https://rbi.org.in/scripts/bs_viewcontent.aspx?Id=4235
 # ===============================================================
 # Title: Hosts contributed by Vallabh Kansagara
 # https://vrkansagara.in
