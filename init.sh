@@ -19,9 +19,20 @@ ${SUDO} apt-get autoremove
 ${SUDO} apt-get update
 ${SUDO} apt-get upgrade -V
 
-${SUDO} apt install -y git gitk htop nmap elinks arandr gufw ufw zsh curl
-${SUDO} apt install -y xdotool
-${SUDO} apt install -y guake
+${SUDO} apt install -y \
+  git \
+  gitk \
+  htop \
+  nmap \
+  elinks \
+  arandr \
+  gufw \
+  ufw \
+  zsh \
+  curl \
+  xdotool \
+  cpulimit \
+  guake
 
 
 # Install zsh and set default shell to zsh
@@ -31,12 +42,6 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 mkdir -p $HOME/www $HOME/git/vrkansagara $HOME/Applications
-
-if [ ! -d "$HOME/Applications/PhpStorm-213.7172.28/" ]; then
-  curl https://download-cdn.jetbrains.com/webide/PhpStorm-2021.3.3.tar.gz -o PhpStorm-2021.3.3.tar.gz
-  cd $HOME/Applications
-  tar -xvf PhpStorm-2021.3.3.tar.gz
-fi
 
 if [ ! -f "$HOME/.vim/bin/jq" ]; then
   cd /tmp
