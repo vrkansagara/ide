@@ -14,8 +14,8 @@ sudo apt update
 sudo apt upgrade -y
 
 # sudo apt install unattended-upgrades
-sudo apt-get update > /tmp/apt-update.log
-sudo apt-get upgrade > /tmp/apt-upgrade.log
-sudo journalctl --vacuum-size=100M > /tmp/journalctl.log
+yes | sudo apt-get update > /tmp/apt-update.log
+yes | sudo apt-get upgrade > /tmp/apt-upgrade.log
+yes | sudo journalctl --vacuum-size=100M > /tmp/journalctl.log
 
 echo "Cron finished at " $(date "+%Y%m%d%H%M%S") | tee -a  /tmp/cron.log
