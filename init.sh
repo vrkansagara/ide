@@ -64,4 +64,10 @@ if [ ! -f "$HOME/.vim/bin/JMESPath" ]; then
   mv /tmp/JMESPath $(pwd)/bin
 fi
 
-${SUDO} chmod +x $HOME/.vim/bin/*
+
+if [ ! -f "$HOME/.vim/bin" ]; then
+  ${SUDO} chmod +x $HOME/.vim/bin/*
+  else
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"
+fi
+
