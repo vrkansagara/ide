@@ -19,6 +19,7 @@ ${SUDO} apt-get clean
 ${SUDO} apt-get autoremove
 ${SUDO} apt-get update
 ${SUDO} apt-get upgrade -V
+${SUDO} apt-get install -f
 
 ${SUDO} apt install -y \
   git \
