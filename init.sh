@@ -12,6 +12,7 @@ fi
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 #  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
 #  Note       :- Init script
+#  Run        :- sh -c "$(curl -fsSL https://raw.githubusercontent.com/vrkansagara/ide/master/init.sh)"
 # """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ${SUDO} apt-get clean
@@ -41,7 +42,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   chsh -s $(which zsh)
 fi
 
-mkdir -p $HOME/www $HOME/git/vrkansagara $HOME/Applications
+mkdir -p $HOME/www $HOME/www $HOME/git/vrkansagara $HOME/Applications
 
 if [ ! -f "$HOME/.vim/bin/jq" ]; then
   cd /tmp
