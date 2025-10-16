@@ -1,3 +1,5 @@
+# https://crontab.guru/every-15-minutes
+# */15 * * * * bash $HOME/.vim/src/Dotfiles/cron >/dev/null 2>&1
 # 0 * * * * bash $HOME/.vim/src/Dotfiles/cron >/dev/null 2>&1
 # DEBIAN_FRONTEND=noninteractive
 
