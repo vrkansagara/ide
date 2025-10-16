@@ -1,9 +1,9 @@
 [submodule "pack/vendor/start/fzf"]
 	path = pack/vendor/start/fzf
-	url = https://github.com/junegunn/fzf
+	url = https://github.com/junegunn/fzf.git
 [submodule "pack/vendor/start/fzf.vim"]
 	path = pack/vendor/start/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
 [submodule "pack/vendor/start/vim-commentary"]
 	path = pack/vendor/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
@@ -45,10 +45,10 @@
 	url = https://github.com/tbknl/vimproject.git
 [submodule "pack/vendor/start/rust"]
 	path = pack/vendor/start/rust
-	url = https://github.com/rust-lang/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
 [submodule "pack/vendor/start/JuliaFormatter"]
 	path = pack/vendor/start/JuliaFormatter
-	url = https://github.com/kdheepak/JuliaFormatter.vim
+	url = https://github.com/kdheepak/JuliaFormatter.vim.git
 [submodule "pack/vendor/start/vim-quickui"]
 	path = pack/vendor/start/vim-quickui
 	url = https://github.com/skywind3000/vim-quickui.git
@@ -64,3 +64,6 @@
 [submodule "pack/colors/start/peaksea"]
 	path = pack/colors/start/peaksea
 	url = https://github.com/vim-scripts/peaksea.git
+[submodule "pack/vendor/start/emmet-vim"]
+	path = pack/vendor/start/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
