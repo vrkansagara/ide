@@ -116,6 +116,7 @@ main() {
   add_submodule https://github.com/gosukiwi/vim-atom-dark.git               pack/colors/start/vim-atom-dark
   add_submodule https://github.com/google/vim-colorscheme-primary.git       pack/colors/start/vim-colorscheme-primary
   add_submodule https://github.com/vim-scripts/peaksea.git                  pack/colors/start/peaksea
+  add_submodule https://github.com/mattn/emmet-vim.git                     pack/vendor/start/emmnet-vim
 
   # Update all submodules
   log "Updating submodules recursively..."
