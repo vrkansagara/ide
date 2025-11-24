@@ -125,7 +125,7 @@ BASE_PACKAGES=(
 )
 
 MINIMAL_PACKAGES=(
-  git zsh curl htop
+  git zsh curl htop dos2unix
 )
 
 if (( MINIMAL )); then
