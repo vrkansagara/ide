@@ -1,68 +1,116 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+set -euo pipefail
+
+# Verbose mode
+if [[ "${1:-}" == "-v" ]]; then
+  set -x
   shift
 fi
 
-if [ "$(whoami)" != "root" ]; then
-SUDO=sudo
+# Sudo detection
+SUDO=""
+if [[ "$(id -u)" -ne 0 ]]; then
+  SUDO="sudo"
 fi
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# -------------------------------------------------------------------------
+# Maintainer: Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Purpose: Safely rewrite commit email + optionally sign commits
+# -------------------------------------------------------------------------
 
+# Change to current git repo (abort if not inside repo)
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "❌ Not inside a git repository. Aborting."
+  exit 1
+fi
 
-#git filter-branch [--env-filter <command>] [--tree-filter <command>]
-#    [--index-filter <command>] [--parent-filter <command>]
-#    [--msg-filter <command>] [--commit-filter <command>]
-#    [--tag-name-filter <command>] [--subdirectory-filter <directory>]
-#    [--prune-empty]
-#    [--original <namespace>] [-d <directory>] [-f | --force]
-#    [--] [<rev-list options>…]
-
-# cd ~/.vim/
-# cd ~/git/vrkansagara/dwm
-cd ~/git/vrkansagara/LaraOutPress
 export FILTER_BRANCH_SQUELCH_WARNING=1
 
-update_signature(){
+
+# -------------------------------------------------------------------------
+# FIX EMAILS (SAFE & CORRECT)
+# -------------------------------------------------------------------------
+update_email() {
+    OLD_EMAIL="vallabh@vrkansagara.local"
+    CORRECT_EMAIL="vrkansagara@gmail.com"
+    CORRECT_NAME="Vallabhdas Kansagara"
+
+    echo "🔧 Rewriting author/committer email…"
+
+    git filter-branch --force --env-filter "
+if [[ \"\$GIT_COMMITTER_EMAIL\" == \"$OLD_EMAIL\" ]]; then
+    export GIT_COMMITTER_NAME=\"$CORRECT_NAME\";
+    export GIT_COMMITTER_EMAIL=\"$CORRECT_EMAIL\";
+fi
+if [[ \"\$GIT_AUTHOR_EMAIL\" == \"$OLD_EMAIL\" ]]; then
+    export GIT_AUTHOR_NAME=\"$CORRECT_NAME\";
+    export GIT_AUTHOR_EMAIL=\"$CORRECT_EMAIL\";
+fi
+" --tag-name-filter cat -- --branches --tags
+}
+
+
+# -------------------------------------------------------------------------
+# GPG SIGN REWRITE (SAFE VERSION)
 # vrkansagara gpg signature
 # curl -sL https://gist.githubusercontent.com/vrkansagara/862e1ea96091ddf01d8e3f0786eefae8/raw/bcc458eb4b2c0eb441aaf7a56f385bc6cd4cb25a/vrkansagara.gpg | gpg --import
 #
 # export GPGKEY=8BA6E7ABD8112B3E
+# Correct approach:
+# 1) Only rewrite commits where the author == you
+# 2) Use ONE commit-tree call, not two
+# -------------------------------------------------------------------------
+update_signature() {
+    GPG_EMAIL="vrkansagara@gmail.com"
 
-git filter-branch --force --commit-filter '
-if [ "$GIT_COMMITTER_EMAIL" = "vrkansagara@gmail.com" ];
-then git commit-tree -S "$@";
-else git commit-tree "$@";
-fi
+    echo "🔏 Rewriting history with signed commits (only yours)…"
+    echo "⚠️ WARNING: This rewrites ALL history. Ensure backup or fresh clone."
 
-if [ "$GIT_AUTHOR_EMAIL" = "vrkansagara@gmail.com" ];
-then git commit-tree -S "$@";
-else git commit-tree "$@";
+    git filter-branch --force --commit-filter '
+if [ "$GIT_AUTHOR_EMAIL" = "'"$GPG_EMAIL"'" ]; then
+    git commit-tree -S "$@"
+else
+    git commit-tree "$@"
 fi
 ' --tag-name-filter cat -- --branches --tags
-# ' HEAD
 }
 
-update_email(){
-	git filter-branch --env-filter '
-OLD_EMAIL="vallabh@vrkansagara.local"
-CORRECT_EMAIL="vrkansagara@gmail.com"
-CORRECT_NAME="vallabhdas kansagara"
 
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
-then
-export GIT_COMMITTER_NAME="$CORRECT_NAME"
-export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+# -------------------------------------------------------------------------
+# HELP HANDLER
+# -------------------------------------------------------------------------
+if [[ "${1:-}" == "help" ]]; then
+    cat <<EOF
+
+Usage:
+  ./script.sh email      → Rewrite author/committer email
+  ./script.sh sign       → Re-sign commits belonging to your email
+  ./script.sh -v email   → Verbose + rewrite emails
+
+Examples:
+  ./script.sh email
+  ./script.sh sign
+
+EOF
+    exit 0
 fi
 
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-export GIT_AUTHOR_NAME="$CORRECT_NAME"
-export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
-' --tag-name-filter cat -- --branches --tags
+
+# -------------------------------------------------------------------------
+# EXECUTION MODE
+# -------------------------------------------------------------------------
+case "${1:-}" in
+  email)
+    update_email
+    ;;
+  sign)
+    update_signature
+    ;;
+  *)
+    echo "❌ Unknown command: ${1:-}"
+    echo "Run: ./script.sh help"
+    exit 1
+    ;;
+esac
+
+echo "✔ Done."
