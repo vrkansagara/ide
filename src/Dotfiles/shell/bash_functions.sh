@@ -163,10 +163,10 @@ machine() {
 # Git shortcut function (IMPORTANT)
 ########################################
 # Remove alias if exists
-unalias g 2>/dev/null || true
+#unalias ggs 2>/dev/null || true
 
 # Function version of `g`
-g() {
+ggfff() {
     git "$@"
 }
 

@@ -134,7 +134,7 @@ add_alias gb 'branch'
 add_alias gba 'branch -a'
 add_alias gbd 'branch -d'
 add_alias gbr 'branch --remote'
-add_alias gs 'log -1 --show-signature'
+add_alias gcSignature 'log -1 --show-signature'
 
 # FIXED: gc alias (no recursion)
 add_alias gc '!git reflog expire --expire=now --all && git gc --prune=now --aggressive'
