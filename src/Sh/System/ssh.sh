@@ -81,9 +81,16 @@ fi
 # ---------------------------------------------------------------------------
 # GPG import (fix tilde expansion)
 # ---------------------------------------------------------------------------
+$SUDO chown -R "$USER":"$USER" ~/.gnupg
+$SUDO chmod 700 ~/.gnupg
+$SUDO chmod 600 ~/.gnupg/*
 if [ -f "$HOME/.ssh/gnupg/vrkansagara-sec.key" ]; then
     gpg --import "$HOME/.ssh/gnupg/vrkansagara-sec.key"
 fi
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+gpg --list-keys
+
 
 echo "[DONE] Linux $HOME/.ssh directory permission applied safely."
 exit 0

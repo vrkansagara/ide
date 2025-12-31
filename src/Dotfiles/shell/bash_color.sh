@@ -104,8 +104,3 @@ Jobs="\j"
 #   # @2 - Prompt when not in GIT repo
 #   echo " '$Yellow$PathShort$Color_Off'\$ "; \
 # fi)'
-
-# enable this flag ONLY if you are working with an internal repository that doesn't have a valid certificate
-# export GIT_SSL_NO_VERIFY=true
-
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"

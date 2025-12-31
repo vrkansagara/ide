@@ -1,111 +1,178 @@
+########################################
+# Date with ordinal suffix
+########################################
 Day() {
-    printf $(date "+%e" | sed -e 's/\ //')
+    local day
+    day="$(date '+%e' | tr -d ' ')"
 
-        case $(date +%d) in
-        01 | 21 | 31) printf "${day}st" ;;
-    02 | 22) printf "${day}nd" ;;
-    03 | 23) printf "${day}rd" ;;
-    *) printf "${day}th" ;;
+    case "$day" in
+        1|21|31) printf "%sst\n" "$day" ;;
+        2|22)    printf "%snd\n" "$day" ;;
+        3|23)    printf "%srd\n" "$day" ;;
+        *)       printf "%sth\n" "$day" ;;
     esac
 }
 
+########################################
+# Battery status (Linux, BAT0 safe)
+########################################
 Battery() {
-    dir=/sys/class/power_supply/BAT0
+    local dir="/sys/class/power_supply/BAT0"
 
-        grep -q ^C "${dir}"/status && printf +
-        cat "${dir}"/capacity
+    [[ -d "$dir" ]] || return 0
+
+    if grep -q '^Charging' "$dir/status" 2>/dev/null; then
+        printf "+"
+    fi
+
+    cat "$dir/capacity" 2>/dev/null
 }
 
+########################################
+# Notify-send from root or script
+########################################
 myNotifySend() {
-#Detect the name of the display in use
-    local display=":$(ls /tmp/.X11-unix/* | sed 's#/tmp/.X11-unix/X##' | head -n 1)"
+    local display user uid
 
-#Detect the user using such display
-        local user=$(who | grep '('$display')' | awk '{print $1}' | head -n 1)
+    display="$(ls /tmp/.X11-unix/X* 2>/dev/null | sed 's#.*/X##' | head -n1)"
+    [[ -n "$display" ]] || return 1
+    display=":$display"
 
-#Detect the id of the user
-        local uid=$(id -u $user)
+    user="$(who | awk -v d="$display" '$0 ~ d {print $1; exit}')"
+    [[ -n "$user" ]] || return 1
 
-        sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "$@"
+    uid="$(id -u "$user")"
+
+    sudo -u "$user" \
+        DISPLAY="$display" \
+        DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$uid/bus" \
+        notify-send "$@"
 }
 
+########################################
+# Detect terminal and version
+########################################
 which_term() {
-    term=$(ps -p $(ps -p $$ -o ppid=) -o args=)
-        found=0
-        case $term in
-        *gnome-terminal*)
-        found=1
-        echo "gnome-terminal " $(dpkg -l gnome-terminal | awk '/^ii/{print $3}')
-        ;;
-    *lxterminal*)
-        found=1
-        echo "lxterminal " $(dpkg -l lxterminal | awk '/^ii/{print $3}')
-        ;;
-    rxvt*)
-        found=1
-        echo "rxvt " $(dpkg -l rxvt | awk '/^ii/{print $3}')
-        ;;
-## Try and guess for any others
-    *)
-        for v in '-version' '--version' '-V' '-v'; do
-            $term "$v" &>/dev/null && eval $term $v && found=1 && break
-                done
-                ;;
+    local parent term found=0
+
+    parent="$(ps -p $$ -o ppid=)"
+    term="$(ps -p "$parent" -o comm=)"
+
+    case "$term" in
+        gnome-terminal*)
+            echo "gnome-terminal $(dpkg -l gnome-terminal | awk '/^ii/{print $3}')"
+            found=1
+            ;;
+        lxterminal*)
+            echo "lxterminal $(dpkg -l lxterminal | awk '/^ii/{print $3}')"
+            found=1
+            ;;
+        rxvt*)
+            echo "rxvt $(dpkg -l rxvt | awk '/^ii/{print $3}')"
+            found=1
+            ;;
     esac
-## If none of the version arguments worked, try and get the
-## package version
-        [ $found -eq 0 ] && echo "$term " $(dpkg -l $term | awk '/^ii/{print $3}')
-}
 
-timezsh() {
-    shell=${1-$SHELL}
-    for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
-# Lets profile zsh
-profzsh() {
-    shell=${1-$SHELL}
-    ZPROF=true $shell -i -c exit
-}
-
-#tar gzip a file or folder
-#example: tgz archive myproject or tgz archive myproject -t for timestamp
-tgz() {
-    if [[ "$3" == "-t" ]]; then
-        tar -czvf $1-$(date "+%Y%m%d%H%M%S").tgz $2
-    else
-        tar -czvf $1.tgz $2
+    if [[ $found -eq 0 ]]; then
+        for v in --version -version -V -v; do
+            if "$term" "$v" &>/dev/null; then
+                "$term" "$v"
+                return
             fi
+        done
+        dpkg -l "$term" 2>/dev/null | awk '/^ii/{print $2, $3}'
+    fi
 }
 
-#find a file type
-#example:  ft html
+########################################
+# Measure shell startup time
+########################################
+timezsh() {
+    local shell="${1:-$SHELL}"
+    for _ in {1..10}; do
+        /usr/bin/time "$shell" -i -c exit
+    done
+}
+
+########################################
+# Profile zsh startup
+########################################
+profzsh() {
+    local shell="${1:-$SHELL}"
+    ZPROF=true "$shell" -i -c exit
+}
+
+########################################
+# Tar + gzip helper
+# Usage: tgz archive dir [-t]
+########################################
+tgz() {
+    local name="$1"
+    local target="$2"
+
+    [[ -n "$name" && -n "$target" ]] || {
+        echo "Usage: tgz <name> <dir> [-t]"
+        return 1
+    }
+
+    if [[ "${3:-}" == "-t" ]]; then
+        tar -czvf "${name}-$(date '+%Y%m%d%H%M%S').tgz" "$target"
+    else
+        tar -czvf "${name}.tgz" "$target"
+    fi
+}
+
+########################################
+# Find by extension
+########################################
 ft() {
-    find . -name "*."$1 -print
-}
-#find a file name like this
-#example:  f index
-f() {
-    find . -name "*"$1"*" -print
-}
-#List top ten commands
-lt() {
-    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+    find . -type f -name "*.$1"
 }
 
+########################################
+# Find by filename fragment
+########################################
+f() {
+    find . -type f -name "*$1*"
+}
+
+########################################
+# Top used commands
+########################################
+lt() {
+    history | awk '{a[$2]++} END {for (i in a) print a[i], i}' \
+        | sort -rn | head
+}
+
+########################################
+# Detect OS
+########################################
 machine() {
-    unameOut="$(uname -s)"
-    case "${unameOut}" in
-        Linux*) machine=linux ;;
+    case "$(uname -s)" in
+        Linux*)  machine=linux ;;
         Darwin*) machine=mac ;;
         CYGWIN*) machine=cygwin ;;
-        MINGW*) machine=minGw ;;
+        MINGW*)  machine=mingw ;;
         MSYS_NT*) machine=git ;;
-        *) machine="UNKNOWN:${unameOut}" ;;
-        esac
-            export machine
+        *) machine="UNKNOWN" ;;
+    esac
+    export machine
 }
 
+########################################
+# Git shortcut function (IMPORTANT)
+########################################
+# Remove alias if exists
+unalias g 2>/dev/null || true
+
+# Function version of `g`
+g() {
+    git "$@"
+}
+
+########################################
+# Init
+########################################
 main() {
     machine
 }
