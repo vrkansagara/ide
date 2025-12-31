@@ -114,7 +114,9 @@ add_alias() {
 }
 
 add_alias add-unmerged '!git diff --name-only --diff-filter=U | xargs -r git add'
+
 add_alias br 'branch'
+
 add_alias cam 'commit -a -m'
 add_alias cas 'commit -a -s'
 add_alias casm 'commit -a -s -m'
@@ -127,9 +129,13 @@ add_alias conflicts 'diff --name-only --diff-filter=U'
 add_alias cs 'commit -S -v'
 add_alias csm 'commit -s -m'
 add_alias current 'rev-parse --verify HEAD'
+
 add_alias dv 'difftool -t vimdiff -y'
+
 add_alias edit-unmerged '!git diff --name-only --diff-filter=U | xargs -r vim'
+
 add_alias fa 'fetch --all'
+
 add_alias gb 'branch'
 add_alias gba 'branch -a'
 add_alias gbd 'branch -d'
@@ -137,6 +143,7 @@ add_alias gbr 'branch --remote'
 add_alias gcSignature 'log -1 --show-signature'
 
 # FIXED: gc alias (no recursion)
+# immediately expires all reflog entries and then runs an aggressive garbage collection to reclaim maximum disk space
 add_alias gc '!git reflog expire --expire=now --all && git gc --prune=now --aggressive'
 
 add_alias gca 'commit -v -a'
@@ -145,31 +152,34 @@ add_alias gcanF 'commit -v -a --no-edit --amend'
 add_alias gcansF 'commit -v -a -s --no-edit --amend'
 add_alias gcnF 'commit -v --no-edit --amend'
 
+add_alias lga 'log --graph --max-count=10'
 add_alias lg 'log --stat'
 add_alias lgg 'log --graph'
 add_alias lgga 'log --graph --decorate --all'
+add_alias ll 'log --oneline'
 add_alias log 'log --oneline --decorate --graph'
 add_alias loga 'log --oneline --decorate --graph --all'
-add_alias ll 'log --oneline'
-add_alias lga 'log --graph --max-count=10'
 
-add_alias pd 'push --dry-run'
 add_alias p 'push'
+add_alias pd 'push --dry-run'
 add_alias pf 'push --force'
 add_alias pfwl 'push --force-with-lease'
 add_alias pofwl 'push -u origin HEAD --force-with-lease'
 add_alias pr 'pull --rebase'
+
+add_alias rv 'remote -v'
+
 add_alias sb 'status -sb'
 add_alias st 'status -sb'
-add_alias undo 'reset --soft HEAD~1'
-add_alias unstage 'reset HEAD --'
-add_alias rv 'remote -v'
+add_alias ss 'status --short'
 
 # Stash aliases (shell-safe)
 add_alias stashAdd '!sh -c "git stash push -m \"Save at - $(date +%Y%m%d%H%M%S)\""'
 add_alias stashApply 'stash apply stash@{0}'
 add_alias stashList 'stash list'
 
+add_alias undo 'reset --soft HEAD~1'
+add_alias unstage 'reset HEAD --'
 
 
 # -------------------------------------------------------------------------
