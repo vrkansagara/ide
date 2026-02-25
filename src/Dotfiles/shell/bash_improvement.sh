@@ -1,8 +1,20 @@
-# If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc
-# so it won't get overriden
-if [ ! -a $HOME/.inputrc ]; then
+# ==============================================================================
+# bash_improvement.sh — Readline / inputrc bootstrapping for interactive shells
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+# Usage      : source this file from ~/.bashrc or ~/.zshrc
 
-	echo '$include /etc/inputrc' >$HOME/.inputrc
-	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
-	echo "bind 'set completion-ignore-case on'" >>$HOME/.inputrc
+# Guard against double-sourcing
+[ -n "${_LOADED_BASH_IMPROVEMENT_SH:-}" ] && return 0
+_LOADED_BASH_IMPROVEMENT_SH=1
+
+# ------------------------------------------------------------------------------
+# If ~/.inputrc does not yet exist: seed it from /etc/inputrc and enable
+# case-insensitive tab completion.
+# ------------------------------------------------------------------------------
+if [ ! -e "$HOME/.inputrc" ]; then
+    printf '$include /etc/inputrc\n' > "$HOME/.inputrc"
+    # Enable case-insensitive tab completion
+    printf "bind 'set completion-ignore-case on'\n" >> "$HOME/.inputrc"
 fi

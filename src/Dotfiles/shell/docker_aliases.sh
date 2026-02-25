@@ -1,18 +1,55 @@
-# Docker Related stuff #
-# sudo curl -L
-# "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname
-# -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-# sudo chmod +x /usr/local/bin/docker-compose
-# dc up -dV --build --remove-orphan --force-recreate
+# ==============================================================================
+# docker_aliases.sh — Docker and Docker Compose shortcut aliases
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+# Usage      : source this file from ~/.bashrc or ~/.zshrc
+#
+# Install docker-compose (example):
+#   sudo curl -L \
+#     "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" \
+#     -o /usr/local/bin/docker-compose
+#   sudo chmod +x /usr/local/bin/docker-compose
+
+# Guard against double-sourcing
+[ -n "${_LOADED_DOCKER_ALIASES_SH:-}" ] && return 0
+_LOADED_DOCKER_ALIASES_SH=1
+
+# ------------------------------------------------------------------------------
+# Core docker
+# ------------------------------------------------------------------------------
 alias d='docker '
 alias de='docker exec -it '
+
+# ------------------------------------------------------------------------------
+# Docker Compose — service management
+# ------------------------------------------------------------------------------
 alias dc='docker compose '
 alias dce='docker compose exec -u $(whoami) '
 alias dcE='docker compose exec -u root '
 alias ds='docker compose ps --services'
+
+# ------------------------------------------------------------------------------
+# Docker Compose — build / up / down
+# Usage: dcb   — full rebuild (verbose, detached, remove orphans, force-recreate)
+#        dcu   — up without rebuild
+#        dcdV  — bring down and remove volumes
+# ------------------------------------------------------------------------------
 alias dcb='docker compose --verbose up -dV --build --remove-orphans --force-recreate '
 alias dcu='docker compose --verbose up -dV --remove-orphans --force-recreate '
 alias dcdV='docker compose down --volumes '
+
+# ------------------------------------------------------------------------------
+# Docker Compose — logs
+# ------------------------------------------------------------------------------
 alias dcl='docker compose logs --follow --timestamps --tail 50 '
+
+# ------------------------------------------------------------------------------
+# Inspect — print IP addresses for all running containers
+# ------------------------------------------------------------------------------
 alias dIps="docker ps -q | xargs -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | sed 's/ \// /'"
-alias dm="docker-machine"
+
+# ------------------------------------------------------------------------------
+# Docker Machine (legacy)
+# ------------------------------------------------------------------------------
+alias dm='docker-machine'

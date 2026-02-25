@@ -1,26 +1,109 @@
 #!/usr/bin/env bash
-export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-export DEBIAN_FRONTEND=noninteractive
+# ==============================================================================
+# launch-instance.sh — Bootstrap an Ubuntu/Debian AWS EC2 instance with nginx
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
-if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
-fi
+set -o errexit
+set -o pipefail
+set -o nounset
 
-${SUDO} apt update -y
-${SUDO} apt upgrade -y
-${SUDO} apt install nginx -y
-${SUDO} systemctl enable nginx
-${SUDO} systemctl start nginx
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-# Fetch the Availability Zone information using IMDSv2
-TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
-AZ=`curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/availability-zone`
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-# Create the index.html file
-cat > /var/www/html/info.html <<EOF
-<div>This instance is located in Availability Zone: $AZ</div>
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
+
+  Bootstrap a Ubuntu/Debian AWS EC2 instance: install nginx, fetch the
+  instance Availability Zone via IMDSv2, and write an info page.
+
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
+
+main() {
+    export DEBIAN_FRONTEND=noninteractive
+    CURRENT_DATE="$(date "+%Y%m%d%H%M%S")"
+
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    section "Updating and installing nginx"
+    _run apt update -y
+    _run apt upgrade -y
+    _run apt install nginx -y
+    _run systemctl enable nginx
+    _run systemctl start nginx
+
+    section "Fetching Availability Zone via IMDSv2"
+    # Fetch the Availability Zone information using IMDSv2
+    TOKEN="$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")"
+    AZ="$(curl -H "X-aws-ec2-metadata-token: ${TOKEN}" http://169.254.169.254/latest/meta-data/placement/availability-zone)"
+
+    section "Writing instance info page"
+    # Create the index.html file
+    cat > /var/www/html/info.html <<EOF
+<div>This instance is located in Availability Zone: ${AZ}</div>
 EOF
 
+    info "instance created on ${CURRENT_DATE}" | _run tee /var/www/html/index.nginx-debian.html
 
-echo "instance created on ${CURRENT_DATE}" | ${SUDO} tee /var/www/html/index.nginx-debian.html
+    ok "launch-instance.sh ..... [DONE]"
+}
+
+main "$@"

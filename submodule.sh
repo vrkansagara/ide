@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # ==============================================================================
-#  Vim Submodule / Plugin Manager
+# submodule.sh — Vim plugin manager via git submodules (idempotent setup)
 # ==============================================================================
-#  Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
-#  Version    : 2.0.0
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+#
 #  Purpose    : Idempotent setup and update of Vim plugins via git submodules.
 #
 #  Usage: ./submodule.sh [OPTIONS]
@@ -20,11 +21,15 @@
 #    -h, --help      Show this help
 # ==============================================================================
 
-set -euo pipefail
+set -o errexit
+set -o pipefail
+set -o nounset
 
 # ------------------------------------------------------------------------------
-# Constants
+# Constants + state
 # ------------------------------------------------------------------------------
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
 readonly SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 readonly SCRIPT_VERSION="2.0.0"
 readonly VIM_DIR="${HOME}/.vim"
@@ -32,9 +37,14 @@ readonly PACK_DIR="${VIM_DIR}/pack"
 readonly LOG_FILE="/tmp/vim-submodule-$$.log"
 readonly GITMODULES="${VIM_DIR}/.gitmodules"
 
+VERBOSE=0
+SUDO_CMD=""
+
 # ------------------------------------------------------------------------------
 # Plugin registry  (url  dest-path-relative-to-VIM_DIR)
 # ------------------------------------------------------------------------------
+# Plugin list uses declare -a (bash array) — [[ ]] is required here for
+# bash array syntax; this is intentional and exempt from the [ ] rule.
 declare -a PLUGINS=(
   # Core plugins
   "https://github.com/junegunn/fzf.git                         pack/vendor/start/fzf"
@@ -67,42 +77,43 @@ declare -a PLUGINS=(
 # ------------------------------------------------------------------------------
 MODE="install"
 DRY_RUN=false
-VERBOSE=false
 JOBS=4
-SUDO_CMD=()
 COUNT_ADDED=0
 COUNT_SKIPPED=0
 COUNT_FAILED=0
 
 # ------------------------------------------------------------------------------
-# Color output (disabled automatically when not writing to a terminal)
+# Color block
 # ------------------------------------------------------------------------------
-if [[ -t 1 ]] && command -v tput &>/dev/null; then
-  C_GREEN="$(tput setaf 2)"
-  C_RED="$(tput setaf 1)"
-  C_YELLOW="$(tput setaf 3)"
-  C_CYAN="$(tput setaf 6)"
-  C_RESET="$(tput sgr0)"
-else
-  C_GREEN="" C_RED="" C_YELLOW="" C_CYAN="" C_RESET=""
-fi
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
 # ------------------------------------------------------------------------------
-# Logging
+# Logging helpers
 # ------------------------------------------------------------------------------
-log()   { printf '%b[*]%b %s\n'   "${C_CYAN}"   "${C_RESET}" "$*" | tee -a "${LOG_FILE}"; }
-ok()    { printf '%b[✔]%b %s\n'   "${C_GREEN}"  "${C_RESET}" "$*" | tee -a "${LOG_FILE}"; }
-warn()  { printf '%b[!]%b %s\n'   "${C_YELLOW}" "${C_RESET}" "$*" | tee -a "${LOG_FILE}" >&2; }
-die()   { printf '%b[✘]%b %s\n'   "${C_RED}"    "${C_RESET}" "$*" | tee -a "${LOG_FILE}" >&2; exit 1; }
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET" | tee -a "${LOG_FILE}"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET" | tee -a "${LOG_FILE}" >&2; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" | tee -a "${LOG_FILE}" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET" | tee -a "${LOG_FILE}"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" | tee -a "${LOG_FILE}" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
 # ------------------------------------------------------------------------------
 # Error trap
 # ------------------------------------------------------------------------------
 on_error() {
-  local code=$? line="${BASH_LINENO[0]}"
-  warn "Unexpected failure at line ${line} (exit ${code}). See: ${LOG_FILE}"
-  print_summary
-  exit "${code}"
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code}). See: ${LOG_FILE}"
+    print_summary
+    exit "${code}"
 }
 trap on_error ERR
 
@@ -110,31 +121,37 @@ trap on_error ERR
 # Usage
 # ------------------------------------------------------------------------------
 usage() {
-  grep '^#  ' "${BASH_SOURCE[0]}" | sed 's/^#  //'
+    grep '^#  ' "${BASH_SOURCE[0]}" | sed 's/^#  //'
+}
+
+# ------------------------------------------------------------------------------
+# Sudo wrapper
+# ------------------------------------------------------------------------------
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
 }
 
 # ------------------------------------------------------------------------------
 # Argument parsing
 # ------------------------------------------------------------------------------
 parse_args() {
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      --install)  MODE="install"; shift ;;
-      --update)   MODE="update";  shift ;;
-      --clean)    MODE="clean";   shift ;;
-      -v|--verbose)
-        VERBOSE=true; set -x; shift ;;
-      -n|--dry-run)
-        DRY_RUN=true; shift ;;
-      --jobs)
-        [[ "$2" =~ ^[0-9]+$ ]] || die "--jobs requires a positive integer"
-        JOBS="$2"; shift 2 ;;
-      -h|--help)
-        usage; exit 0 ;;
-      *)
-        die "Unknown option: $1  (try --help)" ;;
-    esac
-  done
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --install)    MODE="install"; shift ;;
+            --update)     MODE="update";  shift ;;
+            --clean)      MODE="clean";   shift ;;
+            -v|--verbose) VERBOSE=1; set -x; shift ;;
+            -n|--dry-run) DRY_RUN=true; shift ;;
+            --jobs)
+                printf '%s' "$2" | grep -qE '^[0-9]+$' || fatal "--jobs requires a positive integer"
+                JOBS="$2"; shift 2 ;;
+            --version)    printf '%s v%s\n' "$PROGNAME" "$VERSION"; exit 0 ;;
+            -h|--help)    usage; exit 0 ;;
+            --)           shift; break ;;
+            -*)           fatal "Unknown option: '$1'. Use -h for help." ;;
+            *)            break ;;
+        esac
+    done
 }
 
 # ------------------------------------------------------------------------------
@@ -143,170 +160,169 @@ parse_args() {
 
 # Run a command or print it in dry-run mode.
 run() {
-  if [[ "${DRY_RUN}" == true ]]; then
-    log "[DRY-RUN] $*"
-    return 0
-  fi
-  "$@"
+    if [ "${DRY_RUN}" = "true" ]; then
+        info "[DRY-RUN] $*"
+        return 0
+    fi
+    "$@"
 }
 
 # Check whether a submodule path is already registered in .gitmodules.
 is_registered() {
-  local dest="$1"
-  grep -qF "path = ${dest}" "${GITMODULES}" 2>/dev/null
+    local dest="$1"
+    grep -qF "path = ${dest}" "${GITMODULES}" 2>/dev/null
 }
 
 # ------------------------------------------------------------------------------
 # Add a single submodule (idempotent).
 # ------------------------------------------------------------------------------
 add_submodule() {
-  local url="$1"
-  local dest="$2"
-  local name; name="$(basename "${url}" .git)"
+    local url="$1"
+    local dest="$2"
+    local name
+    name="$(basename "${url}" .git)"
 
-  if is_registered "${dest}"; then
-    warn "  Already registered: ${name} (${dest})"
-    COUNT_SKIPPED=$(( COUNT_SKIPPED + 1 ))
-    return 0
-  fi
+    if is_registered "${dest}"; then
+        warn "  Already registered: ${name} (${dest})"
+        COUNT_SKIPPED=$(( COUNT_SKIPPED + 1 ))
+        return 0
+    fi
 
-  log "  Adding: ${name} → ${dest}"
-  if run git submodule add --depth=1 "${url}" "${dest}" >>"${LOG_FILE}" 2>&1; then
-    ok "  Added: ${name}"
-    COUNT_ADDED=$(( COUNT_ADDED + 1 ))
-  else
-    warn "  Failed to add: ${name} — skipping."
-    COUNT_FAILED=$(( COUNT_FAILED + 1 ))
-  fi
+    info "  Adding: ${name} -> ${dest}"
+    if run git submodule add --depth=1 "${url}" "${dest}" >>"${LOG_FILE}" 2>&1; then
+        ok "  Added: ${name}"
+        COUNT_ADDED=$(( COUNT_ADDED + 1 ))
+    else
+        warn "  Failed to add: ${name} -- skipping."
+        COUNT_FAILED=$(( COUNT_FAILED + 1 ))
+    fi
 }
 
 # ------------------------------------------------------------------------------
 # Mode: install — add missing submodules, then initialise all.
 # ------------------------------------------------------------------------------
 do_install() {
-  log "Mode: install"
+    info "Mode: install"
 
-  mkdir -p "${PACK_DIR}/vendor/start" "${PACK_DIR}/colors/start"
+    mkdir -p "${PACK_DIR}/vendor/start" "${PACK_DIR}/colors/start"
 
-  local entry url dest
-  for entry in "${PLUGINS[@]}"; do
-    read -r url dest <<< "${entry}"
-    add_submodule "${url}" "${dest}"
-  done
+    local entry url dest
+    for entry in "${PLUGINS[@]}"; do
+        read -r url dest <<< "${entry}"
+        add_submodule "${url}" "${dest}"
+    done
 
-  log "Initialising and cloning submodules (jobs=${JOBS})..."
-  run git submodule update --init --recursive --jobs "${JOBS}" >>"${LOG_FILE}" 2>&1
+    info "Initialising and cloning submodules (jobs=${JOBS})..."
+    run git submodule update --init --recursive --jobs "${JOBS}" >>"${LOG_FILE}" 2>&1
 }
 
 # ------------------------------------------------------------------------------
 # Mode: update — pull the latest upstream for every submodule.
 # ------------------------------------------------------------------------------
 do_update() {
-  log "Mode: update (fetching latest from upstream)"
-  run git submodule update --init --recursive --remote --merge --jobs "${JOBS}" >>"${LOG_FILE}" 2>&1
+    info "Mode: update (fetching latest from upstream)"
+    run git submodule update --init --recursive --remote --merge --jobs "${JOBS}" >>"${LOG_FILE}" 2>&1
 }
 
 # ------------------------------------------------------------------------------
 # Mode: clean — deinit all submodules, wipe pack/, then re-install.
 # ------------------------------------------------------------------------------
 do_clean() {
-  printf '%b[!]%b This will REMOVE all Vim plugin submodules and re-install from scratch.\n' \
-    "${C_YELLOW}" "${C_RESET}"
-  read -r -p "    Continue? [y/N]: " input
-  case "${input,,}" in
-    y|yes) : ;;
-    *) log "Aborted."; exit 0 ;;
-  esac
+    printf '%b[!]%b This will REMOVE all Vim plugin submodules and re-install from scratch.\n' \
+        "${C_YELLOW}" "${C_RESET}"
+    read -r -p "    Continue? [y/N]: " input
+    case "${input}" in
+        y|Y|yes|YES) : ;;
+        *) info "Aborted."; exit 0 ;;
+    esac
 
-  warn "Deinitialising all submodules..."
-  run git submodule deinit --force --all >>"${LOG_FILE}" 2>&1 || true
+    warn "Deinitialising all submodules..."
+    run git submodule deinit --force --all >>"${LOG_FILE}" 2>&1 || true
 
-  warn "Removing tracked submodule paths from git index..."
-  run git rm --force --cached -r pack >>"${LOG_FILE}" 2>&1 || true
+    warn "Removing tracked submodule paths from git index..."
+    run git rm --force --cached -r pack >>"${LOG_FILE}" 2>&1 || true
 
-  warn "Removing pack directories..."
-  run "${SUDO_CMD[@]}" rm -rf "${PACK_DIR}"
+    warn "Removing pack directories..."
+    _run rm -rf "${PACK_DIR}"
 
-  warn "Removing .git/modules metadata..."
-  run "${SUDO_CMD[@]}" rm -rf "${VIM_DIR}/.git/modules"
+    warn "Removing .git/modules metadata..."
+    _run rm -rf "${VIM_DIR}/.git/modules"
 
-  warn "Clearing .gitmodules..."
-  if [[ "${DRY_RUN}" == false ]]; then
-    > "${GITMODULES}"
-  else
-    log "[DRY-RUN] > ${GITMODULES}"
-  fi
+    warn "Clearing .gitmodules..."
+    if [ "${DRY_RUN}" = "false" ]; then
+        : > "${GITMODULES}"
+    else
+        info "[DRY-RUN] > ${GITMODULES}"
+    fi
 
-  ok "Clean complete. Re-installing..."
-  do_install
+    ok "Clean complete. Re-installing..."
+    do_install
 }
 
 # ------------------------------------------------------------------------------
 # Composer (optional, best-effort)
 # ------------------------------------------------------------------------------
 run_composer() {
-  local composer="${VIM_DIR}/bin/composer"
-  if [[ ! -x "${composer}" ]]; then
-    warn "Composer not found at ${composer} — skipping."
-    return
-  fi
-  log "Running composer..."
-  run "${composer}" self-update >>"${LOG_FILE}" 2>&1
-  run "${composer}" install \
-    --prefer-dist --no-scripts --no-progress --no-interaction --no-dev \
-    >>"${LOG_FILE}" 2>&1
-  ok "Composer done."
+    local composer="${VIM_DIR}/bin/composer"
+    if [ ! -x "${composer}" ]; then
+        warn "Composer not found at ${composer} -- skipping."
+        return
+    fi
+    info "Running composer..."
+    run "${composer}" self-update >>"${LOG_FILE}" 2>&1
+    run "${composer}" install \
+        --prefer-dist --no-scripts --no-progress --no-interaction --no-dev \
+        >>"${LOG_FILE}" 2>&1
+    ok "Composer done."
 }
 
 # ------------------------------------------------------------------------------
 # Summary
 # ------------------------------------------------------------------------------
 print_summary() {
-  echo ""
-  echo "=============================="
-  echo " Summary"
-  echo "=============================="
-  echo "  Added   : ${COUNT_ADDED}"
-  echo "  Skipped : ${COUNT_SKIPPED}"
-  echo "  Failed  : ${COUNT_FAILED}"
-  echo "  Log     : ${LOG_FILE}"
-  echo "=============================="
+    printf '\n'
+    printf '==============================\n'
+    printf ' Summary\n'
+    printf '==============================\n'
+    printf '  Added   : %s\n' "${COUNT_ADDED}"
+    printf '  Skipped : %s\n' "${COUNT_SKIPPED}"
+    printf '  Failed  : %s\n' "${COUNT_FAILED}"
+    printf '  Log     : %s\n' "${LOG_FILE}"
+    printf '==============================\n'
 }
 
 # ------------------------------------------------------------------------------
 # Main
 # ------------------------------------------------------------------------------
 main() {
-  parse_args "$@"
+    parse_args "$@"
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
 
-  # Touch log file early so subsequent tee calls work.
-  touch "${LOG_FILE}"
+    # Touch log file early so subsequent tee calls work.
+    touch "${LOG_FILE}"
 
-  # Sudo detection
-  if [[ "$(id -u)" -ne 0 ]] && command -v sudo &>/dev/null; then
-    SUDO_CMD=(sudo)
-  fi
+    # Must be inside the vim directory (git repo root for submodule commands).
+    cd "${VIM_DIR}" || fatal "Vim directory not found: ${VIM_DIR}"
 
-  # Must be inside the vim directory (git repo root for submodule commands).
-  cd "${VIM_DIR}" || die "Vim directory not found: ${VIM_DIR}"
+    [ -d ".git" ] || fatal "${VIM_DIR} is not a git repository."
 
-  [[ -d ".git" ]] || die "${VIM_DIR} is not a git repository."
+    printf '==============================\n'
+    printf ' %s v%s\n' "${SCRIPT_NAME}" "${SCRIPT_VERSION}"
+    printf ' %s\n' "$(date '+%Y-%m-%d %H:%M:%S')"
+    [ "${DRY_RUN}" = "true" ] && printf ' DRY-RUN -- no changes will be made.\n' || true
+    printf '==============================\n'
 
-  echo "=============================="
-  echo " ${SCRIPT_NAME} v${SCRIPT_VERSION}"
-  echo " $(date '+%Y-%m-%d %H:%M:%S')"
-  [[ "${DRY_RUN}" == true ]] && echo " DRY-RUN — no changes will be made."
-  echo "=============================="
+    case "${MODE}" in
+        install) do_install ;;
+        update)  do_update  ;;
+        clean)   do_clean   ;;
+    esac
 
-  case "${MODE}" in
-    install) do_install ;;
-    update)  do_update  ;;
-    clean)   do_clean   ;;
-  esac
-
-  run_composer
-  print_summary
-  ok "Done."
+    run_composer
+    print_summary
+    ok "Done."
 }
 
 main "$@"

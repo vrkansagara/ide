@@ -1,19 +1,33 @@
-# Aliases
-# (sorted alphabetically)
-#
+# ==============================================================================
+# svn_aliases.sh — Subversion (SVN) shortcut aliases
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+# Usage      : source this file from ~/.bashrc or ~/.zshrc
 
+# Guard against double-sourcing
+[ -n "${_LOADED_SVN_ALIASES_SH:-}" ] && return 0
+_LOADED_SVN_ALIASES_SH=1
+
+# ------------------------------------------------------------------------------
+# Core SVN aliases (sorted alphabetically by alias name)
+# ------------------------------------------------------------------------------
 alias s='svn'
+alias saa='svn add * --force'                        # add all unversioned files
 alias sc='svn checkout'
-alias sr='svn info |grep Revision: |cut -c11-'
-alias sm="svn st -u"                  # svn status of my modified files
-alias si="svn info"                   # info about local and remote state
-alias su="svn up --ignore-externals"  # svn update ignore externals
-alias sl="svn log --limit"            # svn log and specify a number to return a specific amount of revisions
-alias sco="svn co --ignore-externals" # svn checkout and ignore externals
-alias sd="svn diff -r"                # get a diff, pass in i.e.:168:169 index.xml (revisions to compare and file)
-alias sci="svn ci -m"                 # svn check in with comment
-alias saa="svn add * --force"         # svn add all unrevisioned files
-alias slf="svn log --verbose | grep"  # search svn log for relevant info
+alias sci='svn ci -m'                                # check in with commit message
+alias sco='svn co --ignore-externals'                # checkout, ignore externals
+alias sd='svn diff -r'                               # diff; pass e.g.: 168:169 index.xml
+alias si='svn info'                                  # info about local and remote state
+alias sl='svn log --limit'                           # log; pass number to limit revisions
+alias slf='svn log --verbose | grep'                 # search svn log for relevant info
+alias sm='svn st -u'                                 # status of locally modified files
+alias sr='svn info | grep Revision: | cut -c11-'
+alias su='svn up --ignore-externals'                 # update, ignore externals
 
-# svn status --show-updates --depth infinity | awk '{print $NF}' | xargs -I '{}' svn revert  '{}'
+# ------------------------------------------------------------------------------
+# Hard reset — interactive: reverts all local changes after confirmation
+# svn status --show-updates --depth infinity | awk '{print $NF}' | \
+#   xargs -I '{}' svn revert '{}'
+# ------------------------------------------------------------------------------
 alias s.HardReset='read -p "destroy all local changes?[y/N]" && [[ $REPLY =~ ^[yY] ]] && svn revert . -R && rm -rf $(awk -f <(echo "/^?/{print \$2}") <(svn status) ;)'

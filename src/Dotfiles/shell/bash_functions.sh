@@ -1,3 +1,14 @@
+# ==============================================================================
+# bash_functions.sh — General-purpose shell utility functions
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+# Usage      : source this file from ~/.bashrc or ~/.zshrc
+
+# Guard against double-sourcing
+[ -n "${_LOADED_BASH_FUNCTIONS_SH:-}" ] && return 0
+_LOADED_BASH_FUNCTIONS_SH=1
+
 ########################################
 # Date with ordinal suffix
 ########################################
@@ -60,15 +71,15 @@ which_term() {
 
     case "$term" in
         gnome-terminal*)
-            echo "gnome-terminal $(dpkg -l gnome-terminal | awk '/^ii/{print $3}')"
+            printf "gnome-terminal %s\n" "$(dpkg -l gnome-terminal | awk '/^ii/{print $3}')"
             found=1
             ;;
         lxterminal*)
-            echo "lxterminal $(dpkg -l lxterminal | awk '/^ii/{print $3}')"
+            printf "lxterminal %s\n" "$(dpkg -l lxterminal | awk '/^ii/{print $3}')"
             found=1
             ;;
         rxvt*)
-            echo "rxvt $(dpkg -l rxvt | awk '/^ii/{print $3}')"
+            printf "rxvt %s\n" "$(dpkg -l rxvt | awk '/^ii/{print $3}')"
             found=1
             ;;
     esac
@@ -104,14 +115,15 @@ profzsh() {
 
 ########################################
 # Tar + gzip helper
-# Usage: tgz archive dir [-t]
+# Usage: tgz <name> <dir> [-t]
+#   -t  appends a timestamp to the archive name
 ########################################
 tgz() {
     local name="$1"
     local target="$2"
 
     [[ -n "$name" && -n "$target" ]] || {
-        echo "Usage: tgz <name> <dir> [-t]"
+        printf "Usage: tgz <name> <dir> [-t]\n" >&2
         return 1
     }
 
@@ -123,21 +135,23 @@ tgz() {
 }
 
 ########################################
-# Find by extension
+# Find files by extension
+# Usage: ft <extension>
 ########################################
 ft() {
     find . -type f -name "*.$1"
 }
 
 ########################################
-# Find by filename fragment
+# Find files by filename fragment
+# Usage: f <fragment>
 ########################################
 f() {
     find . -type f -name "*$1*"
 }
 
 ########################################
-# Top used commands
+# Top used shell commands from history
 ########################################
 lt() {
     history | awk '{a[$2]++} END {for (i in a) print a[i], i}' \
@@ -145,35 +159,31 @@ lt() {
 }
 
 ########################################
-# Detect OS
+# Detect OS type; exports $machine
 ########################################
 machine() {
     case "$(uname -s)" in
-        Linux*)  machine=linux ;;
-        Darwin*) machine=mac ;;
-        CYGWIN*) machine=cygwin ;;
-        MINGW*)  machine=mingw ;;
-        MSYS_NT*) machine=git ;;
-        *) machine="UNKNOWN" ;;
+        Linux*)   machine=linux  ;;
+        Darwin*)  machine=mac    ;;
+        CYGWIN*)  machine=cygwin ;;
+        MINGW*)   machine=mingw  ;;
+        MSYS_NT*) machine=git    ;;
+        *)        machine="UNKNOWN" ;;
     esac
     export machine
 }
 
 ########################################
-# Git shortcut function (IMPORTANT)
+# Git passthrough function
 ########################################
 # Remove alias if exists
-#unalias ggs 2>/dev/null || true
+# unalias ggs 2>/dev/null || true
 
-# Function version of `g`
 ggfff() {
     git "$@"
 }
 
 ########################################
-# Init
+# Init: detect machine type at source time
 ########################################
-main() {
-    machine
-}
-main
+machine

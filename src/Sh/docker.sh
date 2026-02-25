@@ -1,70 +1,143 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
-  shift
-fi
+# ==============================================================================
+# docker.sh — Install Docker CE and Docker Compose on Ubuntu
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
-if [ "$(whoami)" != "root" ]; then
-  SUDO=sudo
-fi
+set -o errexit
+set -o pipefail
+set -o nounset
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note       :-
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-echo " Lets remove Docker related stuff..."
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
-
-echo " Docker related permission..."
-# Add Docker's official GPG key:
-${SUDO} apt-get update
-${SUDO} apt-get install ca-certificates curl
-${SUDO} install -m 0755 -d /etc/apt/keyrings
-${SUDO} curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-${SUDO} chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-          $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
-  ${SUDO} tee /etc/apt/sources.list.d/docker.list >/dev/null
-${SUDO} apt-get update
-
-${SUDO} apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-if [ ! -f "/usr/bin/docker-compose" ]; then
-  ${SUDO} curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  ${SUDO} chmod +x /usr/local/bin/docker-compose
-  ${SUDO} ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-fi
-
-if [ -f "/usr/bin/docker" ]; then
-  ${SUDO} chmod 666 /var/run/docker.sock
-
-  if grep -q docker /etc/group; then
-    echo "Group docker"
-  else
-    ${SUDO} groupadd docker
-  fi
-
-  if getent group docker | grep -qw "${USER}"; then
-    echo "User [ ${USER} ] is into docker group"
-  else
-    ${SUDO} usermod -aG docker ${USER}
-    if [ -d "$HOME/$USER/.docker" ]; then
-      ${SUDO} chown "$USER":"$USER" /home/"$USER"/.docker -R
-      ${SUDO} chmod g+rwx "$HOME/.docker" -R
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
     fi
-  fi
+}
+_init_colors
 
-fi
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-#${SUDO} sysctl -w vm.max_map_count=262144
-${SUDO} systemctl restart docker
-docker run hello-world
-echo "[DONE] Docker compose script "
+usage() {
+    cat <<EOF
+Usage: $PROGNAME [-v|--verbose] [--version] [-h|--help]
 
-# curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
-# DRY_RUN=1 sh /tmp/get-docker.sh
+Description:
+  Removes legacy Docker packages, installs Docker CE from the official
+  repository, sets up Docker Compose, configures user permissions, and
+  verifies the installation with a hello-world container.
+
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message and exit
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ "${1:-}" != "" ]; do
+        case "$1" in
+            -v | --verbose)
+                VERBOSE=1
+                set -x
+                ;;
+            --version)
+                printf '%s version %s\n' "$PROGNAME" "$VERSION"
+                exit 0
+                ;;
+            -h | --help)
+                usage
+                exit 0
+                ;;
+            *)
+                warn "Unknown argument: $1"
+                usage
+                exit 1
+                ;;
+        esac
+        shift
+    done
+}
+
+main() {
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    info "Lets remove Docker related stuff..."
+    for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do
+        _run apt-get remove "$pkg" || true
+    done
+
+    info "Docker related permission..."
+    # Add Docker's official GPG key:
+    _run apt-get update
+    _run apt-get install ca-certificates curl
+    _run install -m 0755 -d /etc/apt/keyrings
+    _run curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    _run chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    echo \
+        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
+        _run tee /etc/apt/sources.list.d/docker.list >/dev/null
+    _run apt-get update
+
+    _run apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    if [ ! -f "/usr/bin/docker-compose" ]; then
+        _run curl -L "https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        _run chmod +x /usr/local/bin/docker-compose
+        _run ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    fi
+
+    if [ -f "/usr/bin/docker" ]; then
+        _run chmod 666 /var/run/docker.sock
+
+        if grep -q docker /etc/group; then
+            info "Group docker"
+        else
+            _run groupadd docker
+        fi
+
+        if getent group docker | grep -qw "${USER}"; then
+            info "User [ ${USER} ] is into docker group"
+        else
+            _run usermod -aG docker "${USER}"
+            if [ -d "$HOME/$USER/.docker" ]; then
+                _run chown "$USER":"$USER" /home/"$USER"/.docker -R
+                _run chmod g+rwx "$HOME/.docker" -R
+            fi
+        fi
+    fi
+
+    #_run sysctl -w vm.max_map_count=262144
+    _run systemctl restart docker
+    docker run hello-world
+    ok "Docker compose script"
+
+    # curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+    # DRY_RUN=1 sh /tmp/get-docker.sh
+}
+main "$@"

@@ -1,40 +1,119 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
-  shift
-fi
+# ==============================================================================
+# hack.sh — Install the Hack font via apt package manager
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
+set -o errexit
+set -o pipefail
+set -o nounset
 
-#fonts_dir="${HOME}/.local/share/fonts"
-#if [ ! -d "${fonts_dir}" ]; then
-#	echo "mkdir -p $fonts_dir"
-#	mkdir -p "${fonts_dir}"
-#else
-#	echo "Found fonts dir $fonts_dir"
-#fi
-#
-#
-## clone
-## git clone https://github.com/source-foundry/Hack.git --depth=1 /tmp/font-Hack
-#
-#mkdir -p cd /tmp/font-Hack
-#cd /tmp/font-Hack
-#wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-#unzip Hack-v3.003-ttf.zip
-#cd /tmp/font-Hack/ttf
-#
-#cp * fonts_dir
-#
-#echo "fc-cache -f -v"
-#fc-cache -f -v
-#
-#echo "Checking hack font is installaed ?."
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-${SUDO} apt install fonts-hack
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-echo "fc-cache -f -v"
-fc-cache -f -v
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-fc-list | grep "Hack"
-echo "Hack font installation [Done]."
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
+
+  Install the Hack font using the system apt package manager,
+  refresh the font cache, and verify installation.
+
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
+
+main() {
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    #fonts_dir="${HOME}/.local/share/fonts"
+    #if [ ! -d "${fonts_dir}" ]; then
+    #	info "mkdir -p $fonts_dir"
+    #	mkdir -p "${fonts_dir}"
+    #else
+    #	info "Found fonts dir $fonts_dir"
+    #fi
+    #
+    #
+    ## clone
+    ## git clone https://github.com/source-foundry/Hack.git --depth=1 /tmp/font-Hack
+    #
+    #mkdir -p cd /tmp/font-Hack
+    #cd /tmp/font-Hack
+    #wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+    #unzip Hack-v3.003-ttf.zip
+    #cd /tmp/font-Hack/ttf
+    #
+    #cp * fonts_dir
+    #
+    #info "fc-cache -f -v"
+    #fc-cache -f -v
+    #
+    #info "Checking hack font is installaed ?."
+
+    section "Installing fonts-hack"
+    _run apt install fonts-hack
+
+    section "Refreshing font cache"
+    info "fc-cache -f -v"
+    fc-cache -f -v
+
+    fc-list | grep "Hack" || true
+    ok "Hack font installation [Done]."
+}
+
+main "$@"
