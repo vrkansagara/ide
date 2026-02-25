@@ -68,7 +68,7 @@ Section "InputClass"
   Option "NaturalScrolling" "on"
   Driver "libinput"
 EndSection
-  ' | ${SUDO} tee /etc/X11/xorg.conf.d/40-libinput.conf >/dev/null
+  ' | sudo tee /etc/X11/xorg.conf.d/40-libinput.conf >/dev/null
 	# ${SUDO} systemctl restart lightdm
 fi
 

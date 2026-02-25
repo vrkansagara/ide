@@ -37,8 +37,8 @@
 [submodule "pack/vendor/start/nerdtree"]
 	path = pack/vendor/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
-[submodule "pack/vendor/start/emmnet-vim"]
-	path = pack/vendor/start/emmnet-vim
+[submodule "pack/vendor/start/emmet-vim"]
+	path = pack/vendor/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
 [submodule "pack/vendor/start/vimproject"]
 	path = pack/vendor/start/vimproject
@@ -64,6 +64,6 @@
 [submodule "pack/colors/start/peaksea"]
 	path = pack/colors/start/peaksea
 	url = https://github.com/vim-scripts/peaksea.git
-[submodule "pack/vendor/start/emmet-vim"]
-	path = pack/vendor/start/emmet-vim
+[submodule "pack/vendor/start/emmnet-vim"]
+	path = pack/vendor/start/emmnet-vim
 	url = https://github.com/mattn/emmet-vim.git
