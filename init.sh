@@ -123,11 +123,11 @@ export DEBIAN_FRONTEND=noninteractive
 
 # ---------- Package sets ----------
 BASE_PACKAGES=(
-  git gitk htop nmap elinks arandr gufw ufw zsh curl xdotool cpulimit guake
+  git gitk zsh curl htop dos2unix nmap elinks arandr gufw ufw xdotool cpulimit guake vim alacarte
 )
 
 MINIMAL_PACKAGES=(
-  git zsh curl htop dos2unix
+  git gitk zsh curl htop dos2unix arandr vim
 )
 
 if (( MINIMAL )); then
