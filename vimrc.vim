@@ -1,3 +1,10 @@
+" ==============================================================================
+" File        : vimrc.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : Root Vim configuration entry point — bootstraps all modules
+" ==============================================================================
+
 " :echo &runtimepath
 " creates a new buffer and reports in a much more legible way as each path is in a different line
 " :new | put =split(&runtimepath, ',')
@@ -6,9 +13,9 @@ set runtimepath+=$HOME/.vim/src
 function! VimErrorCaught() abort
 
     if v:exception != ""
-        echo "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
+        echomsg "\n" . 'Caught "' . v:exception . '" in ' . v:throwpoint ."\n"
     else
-        echo 'Nothing caught\n'
+        echomsg 'Nothing caught\n'
     endif
 
 endfunction
@@ -63,18 +70,11 @@ try
     endfor
 
     " Before passing access to user , it must be light background.
-    echo "Do one thing at a time and do it well - vallabhdas kansagara (vrkansagara)."
+    echomsg "Do one thing at a time and do it well - vallabhdas kansagara (vrkansagara)."
 
 catch /.*/
 
     call VimErrorCaught()
-
-catch /^\d\+$/
-
-    echo  "\n Error =========@START\n\n"
-    echo "Caught error: " . v:exception
-    echo "Caught error: " . v:errmsg
-    echo  "\n Error =========@END\n"
 
 finally
 

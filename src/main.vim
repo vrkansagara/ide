@@ -1,6 +1,10 @@
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :- Main configuration file for the VIM(init)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : main.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : Main configuration file for Vim initialisation (Priority=1)
+" ==============================================================================
+
 " Alt-letter will now be recognized by vi in a terminal as well as by gvim.
 " The timeout settings are used to work around the ambiguity with escape
 " sequences. Esc and j sent within 50ms will be mapped to <A-j>, greater than
@@ -76,7 +80,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 " Press F2)
 nnoremap <silent><nowait> <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>:echom ":: White space timed :: "<CR>
 
-function! HighlightRepeats() range
+function! HighlightRepeats() range abort
     "Ref :-  https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor/28690847
     "Ref :-  https://stackoverflow.com/questions/1268032/how-can-i-mark-highlight-duplicate-lines-in-vi-editor/28690847
     "Single liner :--- :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
@@ -96,7 +100,7 @@ function! HighlightRepeats() range
         endif
     endfor
 
-    echom ":: Duplicate lines are highlighted :: "
+    echomsg ":: Duplicate lines are highlighted :: "
 endfunction
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 nnoremap <silent><F1> :HighlightRepeats<cr>
@@ -221,7 +225,7 @@ set scrolljump=5
 set scrolloff=3
 
 " Set column size to 80 character (standard size)
-" Make it obvious where 80 characters is ( Reformat it:gq)                   i
+" Make it obvious where 80 characters is ( Reformat it:gq)
 " Set text width to 80 character only., I am not using at this time.
 set textwidth=120
 set colorcolumn=+1
@@ -235,15 +239,15 @@ set expandtab
 " CTRL + o and CTRL+i back
 
 " Profile Vim by running this command once to start it and again to stop it.
-function! s:profile(bang)
+function! s:profile(bang) abort
     if a:bang
         profile pause
         noautocmd qall
     else
         profile start /tmp/profile.log
         profile func *
-            profile file *
-            endif
+        profile file *
+    endif
 endfunction
 
 command! -bang Profile call s:profile(<bang>0)

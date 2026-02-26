@@ -1,3 +1,15 @@
+" ==============================================================================
+" File        : vim-quickui.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : vim-quickui menu bar configuration
+" ==============================================================================
+
+if exists('g:loaded_vim_quickui_config')
+    finish
+endif
+let g:loaded_vim_quickui_config = v:true
+
 " clear all the menus
 call quickui#menu#reset()
 
@@ -24,26 +36,26 @@ call quickui#menu#install('&Edit', [
 
 " script inside %{...} will be evaluated and expanded in the string
 call quickui#menu#install("&Option", [
-			\ ['Set &Spell %{&spell? "Off":"On"}', 'set spell!'],
-			\ ['Set &Cursor Line %{&cursorline? "Off":"On"}', 'set cursorline!'],
-			\ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
-			\ ])
+            \ ['Set &Spell %{&spell? "Off":"On"}', 'set spell!'],
+            \ ['Set &Cursor Line %{&cursorline? "Off":"On"}', 'set cursorline!'],
+            \ ['Set &Paste %{&paste? "Off":"On"}', 'set paste!'],
+            \ ])
 
 " register HELP menu with weight 10000
 call quickui#menu#install('H&elp', [
-			\ ["&Cheatsheet", 'help index', ''],
-			\ ['T&ips', 'help tips', ''],
-			\ ['--',''],
-			\ ["&Tutorial", 'help tutor', ''],
-			\ ['&Quick Reference', 'help quickref', ''],
-			\ ['&Summary', 'help summary', ''],
-			\ ], 10000)
+            \ ["&Cheatsheet", 'help index', ''],
+            \ ['T&ips', 'help tips', ''],
+            \ ['--',''],
+            \ ["&Tutorial", 'help tutor', ''],
+            \ ['&Quick Reference', 'help quickref', ''],
+            \ ['&Summary', 'help summary', ''],
+            \ ], 10000)
 
 " enable to display tips in the cmdline
 let g:quickui_show_tip = 1
 
 " hit space twice to open menu
 nnoremap <A-f> :call Openmenu()<cr><cr>
-function! Openmenu()
+function! Openmenu() abort
     call quickui#menu#open()
 endfunction

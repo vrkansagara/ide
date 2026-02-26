@@ -1,8 +1,15 @@
+" ==============================================================================
+" File        : vim-prettier.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : vim-prettier code formatter configuration
+" ==============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('g:loaded_vim_prettier_config')
+    finish
+endif
+let g:loaded_vim_prettier_config = v:true
+
 let g:prettier#autoformat = 0
 let g:prettier#autoformat_require_pragma = 1
 let g:prettier#exec_cmd_async = 1

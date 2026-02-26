@@ -1,7 +1,15 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :- visual-multi
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : vim-visual-multi.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : vim-visual-multi multiple cursors configuration
+" ==============================================================================
+
+if exists('g:loaded_vim_visual_multi_config')
+    finish
+endif
+let g:loaded_vim_visual_multi_config = v:true
+
 " Basic usage:
 "     select words with Ctrl-N (like Ctrl-d in Sublime Text/VS Code)
 "     create cursors vertically with Ctrl-Down/Ctrl-Up
@@ -25,4 +33,3 @@ let g:VM_theme            = 'iceblue'
 let g:VM_maps = {}
 " let g:VM_maps["Redo"]     = '<C-r>'
 let g:VM_maps["Undo"]     = 'u'
-

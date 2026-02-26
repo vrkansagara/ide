@@ -1,8 +1,14 @@
+" ==============================================================================
+" File        : vim-airline.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : vim-airline statusline and tabline configuration
+" ==============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('g:loaded_vim_airline_config')
+    finish
+endif
+let g:loaded_vim_airline_config = v:true
 
 "  The information in Section Z looks like this:
 "  10% ☰ 10/100 ln : 20
@@ -34,17 +40,17 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Set theme
 let g:airline_theme='base16_google'
 
-  let g:airline_filetype_overrides = {
-      \ 'coc-explorer':  [ 'CoC Explorer', '' ],
-      \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
-      \ 'fugitive': ['fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
-      \ 'gundo': [ 'Gundo', '' ],
-      \ 'help':  [ 'Help', '%f' ],
-      \ 'minibufexpl': [ 'MiniBufExplorer', '' ],
-      \ 'nerdtree': [ get(g:, 'NERDTreeStatusline', 'NERD'), '' ],
-      \ 'startify': [ 'startify', '' ],
-      \ 'vim-plug': [ 'Plugins', '' ],
-      \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
-      \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
-      \ 'vaffle' : [ 'Vaffle', '%{b:vaffle.dir}' ],
-      \ }
+let g:airline_filetype_overrides = {
+    \ 'coc-explorer':  [ 'CoC Explorer', '' ],
+    \ 'defx':  ['defx', '%{b:defx.paths[0]}'],
+    \ 'fugitive': ['fugitive', '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'],
+    \ 'gundo': [ 'Gundo', '' ],
+    \ 'help':  [ 'Help', '%f' ],
+    \ 'minibufexpl': [ 'MiniBufExplorer', '' ],
+    \ 'nerdtree': [ get(g:, 'NERDTreeStatusline', 'NERD'), '' ],
+    \ 'startify': [ 'startify', '' ],
+    \ 'vim-plug': [ 'Plugins', '' ],
+    \ 'vimfiler': [ 'vimfiler', '%{vimfiler#get_status_string()}' ],
+    \ 'vimshell': ['vimshell','%{vimshell#get_status_string()}'],
+    \ 'vaffle' : [ 'Vaffle', '%{b:vaffle.dir}' ],
+    \ }

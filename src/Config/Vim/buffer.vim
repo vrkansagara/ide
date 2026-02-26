@@ -1,7 +1,14 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note		 :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : buffer.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : Buffer management reference and Scratch buffer command
+" ==============================================================================
+
+if exists('g:loaded_buffer_config')
+    finish
+endif
+let g:loaded_buffer_config = v:true
 
 " :bd          - deletes the current buffer, error if there are unwritten
 " changes

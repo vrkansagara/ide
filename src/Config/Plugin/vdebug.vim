@@ -1,9 +1,18 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :- vdebug VdebugSetUp
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : vdebug.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : Vdebug (Xdebug) debugger configuration
+" ==============================================================================
 
-let g:vdebug_options = {'ide_key': 'vim-xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
-let g:vdebug_options = {'server': '127.0.0.1'}
-let g:vdebug_options = {'port': '9000'}
+if exists('g:loaded_vdebug_config')
+    finish
+endif
+let g:loaded_vdebug_config = v:true
+
+let g:vdebug_options = {
+    \ 'ide_key'       : 'vim-xdebug',
+    \ 'break_on_open' : 0,
+    \ 'server'        : '127.0.0.1',
+    \ 'port'          : '9000',
+    \ }

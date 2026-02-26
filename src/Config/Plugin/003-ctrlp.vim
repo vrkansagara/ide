@@ -1,7 +1,15 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : 003-ctrlp.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : CtrlP fuzzy-finder configuration and key bindings
+" ==============================================================================
+
+if exists('g:loaded_ctrlp_config')
+    finish
+endif
+let g:loaded_ctrlp_config = v:true
+
 "Once CtrlP is open:
 "Press <F5> to purge the cache for the current directory to get new files,
 "remove deleted files and apply new ignore options.

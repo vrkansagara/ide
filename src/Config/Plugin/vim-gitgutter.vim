@@ -1,8 +1,14 @@
+" ==============================================================================
+" File        : vim-gitgutter.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : vim-gitgutter diff signs and hunk navigation
+" ==============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('g:loaded_vim_gitgutter_config')
+    finish
+endif
+let g:loaded_vim_gitgutter_config = v:true
 
 " Use fontawesome icons as signs
 let g:gitgutter_sign_added = '+'

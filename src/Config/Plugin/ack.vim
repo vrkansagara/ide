@@ -1,7 +1,14 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : ack.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : ack/ag search integration configuration
+" ==============================================================================
+
+if exists('g:loaded_ack_config')
+    finish
+endif
+let g:loaded_ack_config = v:true
 
 " ====  ack.vim quick help ===============
 " *?:*  a quick summary of these keys, repeat to close
@@ -37,9 +44,12 @@ command Fix  Ack! 'FIXME|BUG|HACK'
 command Debug Ack! 'PATCH|NOTE|IDEA|INFO|WARNING|CRITICAL'
 
 
-if has("autocmd")
-    " Highlight TODO, FIXME, NOTE, etc.
-    if v:version > 701
-        autocmd Syntax * call matchadd('Todo', '\W\zs\(TODO\|FIXME\|CHANGED\|BUG\|HACK\)')
+augroup ack_syntax_highlight
+    autocmd!
+    if has("autocmd")
+        " Highlight TODO, FIXME, NOTE, etc.
+        if v:version > 701
+            autocmd Syntax * call matchadd('Todo', '\W\zs\(TODO\|FIXME\|CHANGED\|BUG\|HACK\)')
+        endif
     endif
-endif
+augroup END

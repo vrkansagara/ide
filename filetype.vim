@@ -1,7 +1,9 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : filetype.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : Custom filetype detection and per-filetype dispatch functions
+" ==============================================================================
 
 " This file will be loaded by vim by default
 " Ref: - https://github.com/vim/vim/blob/master/runtime/filetype.vim
@@ -10,7 +12,6 @@
 
 " Listen very carefully, I will say this only once
 if exists("did_load_filetypes")
-    echoerr "Filetypes does not exists with this vim"
     finish
 endif
 " let did_load_filetypes = 1
@@ -31,10 +32,13 @@ augroup END
 " :autocmd FileType vim autocmd BufWritePost <buffer> call OnFileSave()
 " Pre = onLoad , Post = afterSave
 " autocmd BufWritePre <buffer> :call OnFileSave()
-autocmd BufWritePost <buffer> :call OnFileSave()
+augroup filesave_hooks
+    autocmd!
+    autocmd BufWritePost <buffer> :call OnFileSave()
+augroup END
 
 
-function! OnFileSave()
+function! OnFileSave() abort
     let ext = &filetype
     let file_name = expand('%:t:r')
     let extension = expand('%:e')
@@ -69,7 +73,7 @@ endfunction
 " How to pipe vim buffer contents via shell command and write output to split
 " window
 command! FW call FilterToNewWindow('myscript')
-function! FilterToNewWindow(script)
+function! FilterToNewWindow(script) abort
     let TempFile = tempname()
     let SaveModified = &modified
     exe 'w ' . TempFile
@@ -80,7 +84,7 @@ endfunction
 
 " You can refresh filetype buffer as own your own.
 nnoremap <F5> :! echo -e'\033[0m' <CR>:call CallLanguageSpecifiF5()<CR>
-function! CallLanguageSpecifiF5()
+function! CallLanguageSpecifiF5() abort
     " (1) To reindent many files, the argument list can be used:
     " :args *.c
     " :argdo normal gg=G
@@ -111,7 +115,7 @@ function! CallLanguageSpecifiF5()
     if exists("*". function_name)
         exe "call " . function_name ."()"
     else
-        echoerr function_name 'does not exitsts'
+        echoerr function_name . ' does not exist'
     endif
 
     " Remove white space from all file type
@@ -119,8 +123,11 @@ function! CallLanguageSpecifiF5()
 
 endfunction
 
-autocmd FileType * noremap <C-m> :call ExecuteCurrentFile()<cr>
-function! ExecuteCurrentFile()
+augroup execute_current_file
+    autocmd!
+    autocmd FileType * noremap <C-m> :call ExecuteCurrentFile()<cr>
+augroup END
+function! ExecuteCurrentFile() abort
     let ext = &filetype " php, conf
     let file_name = expand('%:t:r')
     let extension = expand('%:e') " php,phtml,php5,h, vim, c ,cpp, js
@@ -133,6 +140,6 @@ function! ExecuteCurrentFile()
     if exists("*". function_name)
         exe "call " . function_name ."()"
     else
-        echoerr function_name 'does not exitsts'
+        echoerr function_name . ' does not exist'
     endif
 endfunction

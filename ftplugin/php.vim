@@ -1,3 +1,9 @@
+" ==============================================================================
+" File        : php.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : ftplugin settings for PHP buffers
+" ==============================================================================
 
 " .vim/ftplugin/php.vim by Tobias Schlitt <toby@php.net>.
 " No copyright, feel free to use this, as you like.
@@ -22,7 +28,7 @@ set nowrap
 set formatoptions=qroct
 
 " Use php syntax check when doing :make
-set makeprg=php5\ -l\ %
+set makeprg=php\ -l\ %
 
 " Use errorformat for parsing PHP error output
 set errorformat=%m\ in\ %f\ on\ line\ %l

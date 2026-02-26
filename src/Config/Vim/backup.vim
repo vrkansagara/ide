@@ -1,7 +1,14 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : backup.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : Backup, swap, and undo file paths and settings
+" ==============================================================================
+
+if exists('g:loaded_backup_config')
+    finish
+endif
+let g:loaded_backup_config = v:true
 
 "The swap file is updated after typing 200 characters or when you have not typed
 "anything for four seconds.
@@ -29,7 +36,3 @@ endif
 if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
-
-
-
-

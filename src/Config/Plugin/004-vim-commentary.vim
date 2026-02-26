@@ -1,7 +1,14 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara "
-" Note       :-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" File        : 004-vim-commentary.vim
+" Maintainer  : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+" Version     : 2.0.0
+" Description : vim-commentary plugin configuration and comment string overrides
+" ==============================================================================
+
+if exists('g:loaded_vim_commentary_config')
+    finish
+endif
+let g:loaded_vim_commentary_config = v:true
 
 " commentary.vim
 
@@ -19,18 +26,21 @@ map <C-_> :Commentary<CR>j
 map <S-_> :Commentary<CR>k
 
 " Comment which having \ or //
-autocmd FileType vim setlocal commentstring=\"\ %s
-autocmd FileType php setlocal commentstring=\/\/\%s
-autocmd FileType c setlocal commentstring=\/\/\%s
-autocmd FileType h setlocal commentstring=\/\/\%s
-autocmd FileType cpp setlocal commentstring=\/\/\%s
-autocmd FileType cspel setlocal commentstring=\/\/\%s
+augroup commentary_settings
+    autocmd!
+    autocmd FileType vim setlocal commentstring=\"\ %s
+    autocmd FileType php setlocal commentstring=\/\/\%s
+    autocmd FileType c setlocal commentstring=\/\/\%s
+    autocmd FileType h setlocal commentstring=\/\/\%s
+    autocmd FileType cpp setlocal commentstring=\/\/\%s
+    autocmd FileType cspel setlocal commentstring=\/\/\%s
 
-" Comment which having #
-autocmd FileType crontab setlocal commentstring=#\ %s
-autocmd FileType apache setlocal commentstring=#\ %s
-autocmd FileType zsh setlocal commentstring=#\ %s
-autocmd FileType dockerfile setlocal commentstring=#\ %s
-autocmd FileType gitconfig setlocal commentstring=#\ %s
-autocmd FileType sh setlocal commentstring=#\ %s
-autocmd FileType conf setlocal commentstring=#\ %s
+    " Comment which having #
+    autocmd FileType crontab setlocal commentstring=#\ %s
+    autocmd FileType apache setlocal commentstring=#\ %s
+    autocmd FileType zsh setlocal commentstring=#\ %s
+    autocmd FileType dockerfile setlocal commentstring=#\ %s
+    autocmd FileType gitconfig setlocal commentstring=#\ %s
+    autocmd FileType sh setlocal commentstring=#\ %s
+    autocmd FileType conf setlocal commentstring=#\ %s
+augroup END
