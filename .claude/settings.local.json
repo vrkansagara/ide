@@ -1,8 +1,52 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bash:*)",
-      "Bash(git:*)"
+      "Bash(ls:./*)",
+      "Bash(cat:./*)",
+      "Bash(grep:./*)",
+      "Bash(find:./*)",
+      "Bash(ps:*)",
+      "Bash(top:*)",
+      "Bash(htop:*)",
+      "Bash(git:./*)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(dd:*)",
+      "Bash(mkfs:*)",
+      "Bash(shutdown:*)",
+      "Bash(reboot:*)",
+      "Bash(poweroff:*)",
+      "Bash(chmod:777*)",
+      "Bash(chown:root*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
     ]
+  },
+
+  "sandbox": {
+    "enabled": true,
+    "network_access": false,
+    "file_system": {
+      "mode": "restricted",
+      "allowed_paths": [
+        "./"
+      ]
+    }
+  },
+
+  "telemetry": {
+    "enabled": false
+  },
+
+  "model": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 4096
+  },
+
+  "logging": {
+    "level": "error",
+    "audit": true
   }
 }

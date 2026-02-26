@@ -252,13 +252,19 @@ ensure_path_notice() {
   esac
 }
 
+prevents_tampering() {
+  run "$SUDO chattr +i ~/.vim/.claude/settings.local.json"
+}
+
 # ---------- Execution Flow ----------
 info "Starting bootstrap (minimal=$MINIMAL dry-run=$DRY_RUN force=$FORCE)"
 
 ensure_dir "$BIN_DIR"
 ensure_dir "$HOME/www"
 ensure_dir "$HOME/git/vrkansagara"
-ensure_dir "$HOME/Applications"
+ensure_dir "$HOME/applications"
+ensure_dir "$HOME/tmp"
+ensure_dir "$HOME/logs"
 
 # Network sanity check (optional soft fail)
 if ! curl -fsSI https://github.com >/dev/null 2>&1; then
@@ -300,6 +306,8 @@ fi
 run "chmod -f +x '$BIN_DIR'/* || true"
 
 ensure_path_notice
+
+prevents_tampering
 
 ok "Bootstrap completed successfully."
 
