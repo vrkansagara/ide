@@ -1,26 +1,107 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
-fi
+# ==============================================================================
+# trim.sh — Find and replace patterns in PHP files using sed
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
-export
-echo " "
-if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
-fi
+set -o errexit
+set -o pipefail
+set -o nounset
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-# sed -i 's/\x27NULL\x27/NULL/' FileName.sql # This will tream the 'NULL' with NULL (Useful for database)
-# sed -i 's/123/456/' FileName.anything. # Useful for replacing 123 with 456 value
-for i in *.php; do
-	echo "Find and replace started for 'NULL' with NULL for [ $i ] started"
-	# sed -i 's/\x27NULL\x27/NULL/' $i
-	# sed -i '/namespace Database\\Seeders;/d' $i
-done
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
+
+on_error() {
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code})."
+    exit "${code}"
+}
+trap on_error ERR
+
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
+
+  Find and replace string patterns in PHP files using sed.
+  Examples:
+    sed -i 's/\x27NULL\x27/NULL/' FileName.sql   # Replace 'NULL' with NULL
+    sed -i 's/123/456/' FileName.anything         # Replace 123 with 456
+
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
+
+main() {
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    local current_date
+    current_date="$(date '+%Y%m%d%H%M%S')"
+    log "Started at ${current_date}"
+
+    section "Processing PHP files"
+    for i in *.php; do
+        info "Find and replace started for 'NULL' with NULL for [ ${i} ]"
+        # sed -i 's/\x27NULL\x27/NULL/' "$i"
+        # sed -i '/namespace Database\\Seeders;/d' "$i"
+    done
+
+    ok "Trim operations complete."
+    exit 0
+}
+
+main "$@"

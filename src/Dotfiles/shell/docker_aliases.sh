@@ -25,7 +25,7 @@ alias de='docker exec -it '
 # Docker Compose — service management
 # ------------------------------------------------------------------------------
 alias dc='docker compose '
-alias dce='docker compose exec -u $(whoami) '
+alias dce='docker compose exec -u "$(id -un)" '
 alias dcE='docker compose exec -u root '
 alias ds='docker compose ps --services'
 

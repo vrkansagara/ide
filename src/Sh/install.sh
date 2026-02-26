@@ -1,105 +1,175 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
-	shift
-fi
+# ==============================================================================
+# install.sh — System setup: install common Linux packages and tools
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
+set -o errexit
+set -o pipefail
+set -o nounset
 
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
-fi
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-export CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- This is the system setup script.
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+on_error() {
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code})."
+    exit "${code}"
+}
+trap on_error ERR
 
-# https://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro
-#${SUDO} apt-get install --no-install-recommends linux-image-$(uname -r | sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r | sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
-#${SUDO} modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
-#${SUDO} modprobe wl
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
 
-# ${SUDO} sudo apt install --no-install-recommends --no-install-suggests \
-# vim geany git build-essential htop sudo xorg xserver-xorg xinit \
-# libxft-dev libxinerama-dev xbacklight wget curl zsh \
-# software-properties-common
+  Install common Linux development packages, Oh My Zsh, networking tools,
+  optionally XFCE desktop, nginx, PHP, and configure system defaults.
 
-# echo 10 | sudo tee /sys/class/backlight/acpi_video0/brightness
-# echo 300 > /sys/class/backlight/intel_backlight/brightness
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
 
-## Ubuntu specific
-# Do not upgrade to latest release
-${SUDO} sed -i 's/Prompt=.*/Prompt=never/' /etc/update-manager/release-upgrades
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
 
-# System specific stuff
-${SUDO} apt-get install --reinstall ca-certificates
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
 
-echo "Application related stuff..."
-${SUDO} apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
-${SUDO} apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown diodon fontconfig
-${SUDO} apt-get install -y libxml2-utils #xmllint
+main() {
+    parse_args "$@"
 
-${SUDO} apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit jq
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
 
-echo "Guake specific issue fixing."
-${SUDO} apt-get install libutempter0
+    # https://unix.stackexchange.com/questions/175810/how-to-install-broadcom-bcm4360-on-debian-on-macbook-pro
+    # _run apt-get install --no-install-recommends "linux-image-$(uname -r | sed 's,[^-]*-[^-]*-,,')" "linux-headers-$(uname -r | sed 's,[^-]*-[^-]*-,,')" broadcom-sta-dkms
+    # _run modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+    # _run modprobe wl
 
-echo "Installing nodejs "
-curl -fsSL https://deb.nodesource.com/setup_14.x | ${SUDO} -E bash -
-${SUDO} apt-get install -y nodejs
+    section "Configuring Ubuntu release upgrade policy"
+    ## Ubuntu specific: Do not upgrade to latest release
+    _run sed -i 's/Prompt=.*/Prompt=never/' /etc/update-manager/release-upgrades
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
+    section "Installing system prerequisites"
+    _run apt-get install --reinstall ca-certificates
 
-echo "Installing network realated stuf "
-# Use `nmtui=wireless command line`
-${SUDO} apt-get install -y iputils-ping net-tools lsof nmap whois network-manager wicd wicd-wicd-cli wicd-gtk wicd-curses
+    section "Installing application packages"
+    info "Application related packages..."
+    _run apt-get install -y git meld vim-gtk ack silversearcher-ag build-essential cmake vim-nox python3-dev markdown
+    _run apt-get install -y git curl meld ack silversearcher-ag build-essential cmake make gcc libncurses5-dev libncursesw5-dev python3-dev markdown diodon fontconfig
+    _run apt-get install -y libxml2-utils
 
-echo "System related stuff "
-${SUDO} apt-get install -y elinks htop exuberant-ctags curl lsb-release remmina
+    _run apt-get install -y zsh guake ufw geany httrack keepassxc cpulimit jq
 
-read -r -p "Do you want to install XFCE desktop ? [Y/n] " input
-case $input in
-[yY][eE][sS] | [yY])
-	echo "Install desktop manager"
-	${SUDO} apt-get install -y xfce4 xfce4-goodies
-	${SUDO} apt-get install --reinstall thunar-volman gvfs-backends go-mtpfs mtp gmtp
-	;;
-[nN][oO] | [nN])
-	echo "Skipping...XFCE"
-	;;
-*)
-	echo "Invalid input..."
-	exit 1
-	;;
-esac
+    section "Fixing Guake libutempter dependency"
+    _run apt-get install libutempter0
 
-# cd /tmp
-# wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-# ${SUDO} rm -rf /usr/local/go
-# ${SUDO} tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+    section "Installing Node.js"
+    info "Installing nodejs"
+    curl -fsSL https://deb.nodesource.com/setup_14.x | _run bash -
+    _run apt-get install -y nodejs
 
-${SUDO} apt-get install -y nginx nginx-full php composer
-${SUDO} useradd $USER -g www-data
-${SUDO} chown -R $USER:www-data $HOME/htdocs $HOME/www
+    section "Installing Oh My Zsh"
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
 
-${SUDO} apt-get autoremove
+    section "Installing network tools"
+    info "Installing network related tools"
+    # Use nmtui for wireless command line
+    _run apt-get install -y iputils-ping net-tools lsof nmap whois network-manager wicd wicd-cli wicd-gtk wicd-curses
 
-# Adding current use to virtual box
-${SUDO} adduser $USER vboxsf
+    section "Installing system tools"
+    info "System related packages"
+    _run apt-get install -y elinks htop exuberant-ctags curl lsb-release remmina
 
-echo "AllowRoot=root" | ${SUDO} tee -a /etc/gdm3/custom.conf
-echo "AutomaticLogin=$(whoami)" | ${SUDO} tee -a /etc/gdm3/custom.conf
-echo "greeter-show-manual-login=true" | ${SUDO} /etc/lightdm/lightdm.conf
+    section "Optional: XFCE desktop"
+    local input
+    read -r -p "Do you want to install XFCE desktop? [Y/n] " input
+    case "$input" in
+        [yY][eE][sS]|[yY])
+            info "Installing desktop manager"
+            _run apt-get install -y xfce4 xfce4-goodies
+            _run apt-get install --reinstall thunar-volman gvfs-backends go-mtpfs mtp gmtp
+            ;;
+        [nN][oO]|[nN])
+            info "Skipping XFCE..."
+            ;;
+        *)
+            warn "Invalid input — skipping XFCE."
+            ;;
+    esac
 
-# reset htop configuration
-${SUDO} rm -rf $HOME/.config/htop/htoprc
+    section "Installing web server and PHP"
+    _run apt-get install -y nginx nginx-full php composer
+    _run useradd "$USER" -g www-data 2>/dev/null || true
+    _run chown -R "${USER}:www-data" "$HOME/htdocs" "$HOME/www" 2>/dev/null || true
 
-echo "[DONE] My required Linux binary installation id done."
+    section "Cleaning up"
+    _run apt-get autoremove
 
-exit 0
+    section "Configuring system settings"
+    # Adding current user to VirtualBox group
+    _run adduser "$USER" vboxsf 2>/dev/null || true
+
+    # GDM3 / LightDM configuration
+    local current_user
+    current_user="$(id -un)"
+    printf 'AllowRoot=root\n' | _run tee -a /etc/gdm3/custom.conf >/dev/null
+    printf 'AutomaticLogin=%s\n' "$current_user" | _run tee -a /etc/gdm3/custom.conf >/dev/null
+    printf 'greeter-show-manual-login=true\n' | _run tee -a /etc/lightdm/lightdm.conf >/dev/null
+
+    # Reset htop configuration
+    _run rm -rf "$HOME/.config/htop/htoprc"
+
+    ok "My required Linux binary installation is done."
+    exit 0
+}
+
+main "$@"

@@ -32,6 +32,6 @@ ${SUDO} apt-get install \
 
 ${SUDO} apt update
 
-sleep(3)
+sleep 3
 
 ${SUDO} apt install openvpn3

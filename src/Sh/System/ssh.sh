@@ -1,105 +1,157 @@
 #!/usr/bin/env bash
+# ==============================================================================
+# ssh.sh — Automated SSH safe setup with correct permissions
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
-set -e  # Exit on error
+set -o errexit
+set -o pipefail
+set -o nounset
 
-# Enable verbose mode
-if [[ "${1:-}" == "-v" ]]; then
-    set -x
-    shift
-fi
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-# Use sudo if not root
-if [ "$(id -u)" -ne 0 ]; then
-    SUDO=sudo
-else
-    SUDO=""
-fi
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-# ---------------------------------------------------------------------------
-# Maintainer :- vallabhdas kansagara <vrkansagara@gmail.com> — @vrkansagara
-# Note       :- Automated SSH safe setup with correct permissions
-# ---------------------------------------------------------------------------
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-# Install keychain (non-interactive)
-export DEBIAN_FRONTEND=noninteractive
-$SUDO apt-get update -qq
-$SUDO apt-get install -y --no-install-recommends keychain
+on_error() {
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code})."
+    exit "${code}"
+}
+trap on_error ERR
 
-echo "$USER is the only one owning $HOME/.ssh directory"
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
 
-# Ensure ~/.ssh exists
-mkdir -p "$HOME/.ssh"
+  Install keychain, configure ~/.ssh/config, apply correct SSH directory
+  permissions, start ssh-agent if not running, add SSH keys, and configure
+  GPG agent.
 
-# Append to SSH config safely (as user, not root)
-SSH_CONFIG="$HOME/.ssh/config"
+  Notes:
+    - UseKeychain (macOS only) is not set here
+    - For MySQL via SSH tunnel: ssh-keygen -p -m PEM -f
 
-printf '%s\n' "Host *
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
+
+main() {
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    section "Installing keychain"
+    export DEBIAN_FRONTEND=noninteractive
+    _run apt-get update -qq
+    _run apt-get install -y --no-install-recommends keychain
+
+    info "${USER} is the only one owning ${HOME}/.ssh directory"
+
+    section "Ensuring ~/.ssh directory"
+    mkdir -p "$HOME/.ssh"
+
+    section "Configuring ~/.ssh/config"
+    local SSH_CONFIG="$HOME/.ssh/config"
+    printf '%s\n' "Host *
     AddKeysToAgent yes
     IdentityFile ~/.ssh/id_rsa
     IdentityFile ~/.ssh/id_rsa_vrkansagara
-" | $SUDO tee -a "$SSH_CONFIG" >/dev/null
+" | _run tee -a "$SSH_CONFIG" >/dev/null
 
-# Fix ownership of config
-$SUDO chown "$USER":"$USER" "$SSH_CONFIG"
-$SUDO chmod 600 "$SSH_CONFIG"
+    _run chown "${USER}:${USER}" "$SSH_CONFIG"
+    _run chmod 600 "$SSH_CONFIG"
 
-echo "Generating sample SSH key directory (if needed)"
-cd "$HOME/.ssh"
+    section "Applying SSH golden permissions"
+    _run chmod 700 "$HOME/.ssh"
 
-# ---------------------------------------------------------------------------
-# Correct SSH permissions
-# ---------------------------------------------------------------------------
+    # Private keys
+    local key
+    for key in "$HOME/.ssh"/id_*; do
+        if [[ -f "$key" && ! "$key" =~ \.pub$ ]]; then
+            _run chmod 600 "$key"
+        fi
+    done
 
-echo "Applying SSH golden permissions..."
+    # Public keys must remain world-readable
+    local pub
+    for pub in "$HOME/.ssh"/*.pub; do
+        [[ -f "$pub" ]] && _run chmod 644 "$pub"
+    done
 
-# Folder (correct)
-$SUDO chmod 700 "$HOME/.ssh"
-
-# Private keys (safe loop)
-for key in "$HOME/.ssh"/id_*; do
-    if [[ -f "$key" && ! "$key" =~ \.pub$ ]]; then
-        $SUDO chmod 600 "$key"
+    section "Starting ssh-agent"
+    if ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
+        eval "$(ssh-agent -s)"
     fi
-done
 
-# Public keys must remain world-readable
-for pub in "$HOME/.ssh"/*.pub; do
-    [[ -f "$pub" ]] && $SUDO chmod 644 "$pub"
-done
+    # Add keys if they exist
+    [[ -f "$HOME/.ssh/id_rsa" ]] && ssh-add "$HOME/.ssh/id_rsa"
+    [[ -f "$HOME/.ssh/id_rsa_vrkansagara" ]] && ssh-add "$HOME/.ssh/id_rsa_vrkansagara"
 
-# ---------------------------------------------------------------------------
-# Start ssh-agent only if not running
-# ---------------------------------------------------------------------------
-if ! pgrep -u "$USER" ssh-agent >/dev/null 2>&1; then
-    eval "$(ssh-agent -s)"
-fi
+    section "Configuring GPG"
+    _run chown -R "${USER}:${USER}" "$HOME/.gnupg"
+    _run chmod 700 "$HOME/.gnupg"
+    _run chmod 600 "$HOME/.gnupg"/*
+    if [ -f "$HOME/.ssh/gnupg/vrkansagara-sec.key" ]; then
+        gpg --import "$HOME/.ssh/gnupg/vrkansagara-sec.key"
+    fi
+    gpgconf --kill gpg-agent
+    gpgconf --launch gpg-agent
+    gpg --list-keys
 
-# Add keys if they exist
-[[ -f "$HOME/.ssh/id_rsa" ]] && ssh-add "$HOME/.ssh/id_rsa"
-[[ -f "$HOME/.ssh/id_rsa_vrkansagara" ]] && ssh-add "$HOME/.ssh/id_rsa_vrkansagara"
+    ok "Linux ${HOME}/.ssh directory permission applied safely."
+    exit 0
+}
 
-# ---------------------------------------------------------------------------
-# GPG import (fix tilde expansion)
-# ---------------------------------------------------------------------------
-$SUDO chown -R "$USER":"$USER" ~/.gnupg
-$SUDO chmod 700 ~/.gnupg
-$SUDO chmod 600 ~/.gnupg/*
-if [ -f "$HOME/.ssh/gnupg/vrkansagara-sec.key" ]; then
-    gpg --import "$HOME/.ssh/gnupg/vrkansagara-sec.key"
-fi
-gpgconf --kill gpg-agent
-gpgconf --launch gpg-agent
-gpg --list-keys
-
-
-echo "[DONE] Linux $HOME/.ssh directory permission applied safely."
-exit 0
-
-# NOTES:
-# "Host *"
-#     UseKeychain yes (macOS only)
-#     AddKeysToAgent yes
-#     IdentityFile ~/.ssh/id_rsa
-#
-# mysql could not connect the SSH tunnel → access denied for 'none'
-# ssh-keygen -p -m PEM -f
+main "$@"

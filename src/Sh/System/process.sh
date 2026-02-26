@@ -1,34 +1,114 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
-	shift
-fi
+# ==============================================================================
+# process.sh — Monitor and optionally limit CPU usage of a process
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+# Note       : Control process CPU usage using cputool/cpulimit
 
-if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
-fi
+set -o errexit
+set -o pipefail
+set -o nounset
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Controll nodejs process using cputool
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-${SUDO} apt-get install --yes --no-install-recommends cputool cpulimit
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-PROCESS_NAME="firefox"
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-while true; do
-	clear
+on_error() {
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code})."
+    exit "${code}"
+}
+trap on_error ERR
 
-	TARGETS_PROCESS_PIDS=$(/bin/ps -fu $USER | grep -i "${PROCESS_NAME}" | grep -v "grep" | awk '{print $2}')
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
 
-	for pid in $TARGETS_PROCESS_PIDS; do
-		echo "${PROCESS_NAME} PID is [$pid] "
-		# /usr/bin/cputool -c 5 -p $pid &
-		# ${SUDO} kill -9 $pid
-	done
+  Install cputool and cpulimit, then continuously monitor the PIDs of a
+  target process (default: firefox) every 5 seconds.
 
-	sleep 5
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
 
-done
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
+
+main() {
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    section "Installing dependencies"
+    _run apt-get install --yes --no-install-recommends cputool cpulimit
+
+    readonly PROCESS_NAME="firefox"
+
+    section "Monitoring process: ${PROCESS_NAME}"
+    while true; do
+        clear
+
+        local pid
+        local targets_process_pids
+        targets_process_pids="$(/bin/ps -fu "$USER" | grep -i "${PROCESS_NAME}" | grep -v "grep" | awk '{print $2}')"
+
+        for pid in $targets_process_pids; do
+            info "${PROCESS_NAME} PID is [${pid}]"
+            # /usr/bin/cputool -c 5 -p $pid &
+            # _run kill -9 "$pid"
+        done
+
+        sleep 5
+    done
+}
+
+main "$@"

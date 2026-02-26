@@ -47,7 +47,7 @@ fi
 # ${SUDO} update-initramfs -u -k all
 # ${SUDO} reboot # optional
 
-if [ ! -d "/etc/X11/xorg.conf.d" ]; thensh /home/vrkansagara/.vim/src/Sh/System/ubuntu/speedtest.sh
+if [ ! -d "/etc/X11/xorg.conf.d" ]; then
 	echo "Enabling tap to click for the MacBokAir track pad."
 	${SUDO} mkdir -p /etc/X11/xorg.conf.d
 else

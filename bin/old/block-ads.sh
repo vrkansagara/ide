@@ -1,20 +1,26 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
-fi
+# ==============================================================================
+# block-ads.sh — Configure iptables rules to block ad networks
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
-CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
+set -o errexit
+set -o pipefail
+set -o nounset
+
 export DEBIAN_FRONTEND=noninteractive
 
-if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
+if [ "$(id -u)" -ne 0 ]; then
+    SUDO_CMD="sudo"
+else
+    SUDO_CMD=""
 fi
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :-
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if [[ "${1:-}" == "-v" ]]; then
+    set -x
+    shift
+fi
 
 # Allow loopback
 iptables -I INPUT 1 -i lo -j ACCEPT

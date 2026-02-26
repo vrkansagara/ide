@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-  set -x # You refer to a noisy script.(Used to debugging)
+# ==============================================================================
+# mysql2sqlite.sh — Convert a mysqldump file into SQLite3-compatible SQL
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+#
+# Usage: ./mysql2sqlite mysqldump-opts db-name | sqlite3 database.sqlite
+# Example: ./mysql2sqlite --no-data -u root -pMySecretPassWord myDbase | sqlite3 database.sqlite
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+if [[ "${1:-}" == "-v" ]]; then
+  set -x
+  shift
 fi
 
 # Converts a mysqldump file into a Sqlite 3 compatible file. It also extracts the MySQL `KEY xxxxx` from the

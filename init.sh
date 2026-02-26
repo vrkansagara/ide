@@ -19,7 +19,9 @@
 #  - Non-interactive apt
 #
 
-set -euo pipefail
+set -o errexit
+set -o pipefail
+set -o nounset
 
 # ---------- Defaults ----------
 BIN_DIR_DEFAULT="$HOME/.vim/bin"   # Preserved for backward compatibility
@@ -236,7 +238,7 @@ install_ohmyzsh() {
   zpath="$(command -v zsh || true)"
   if [[ -n "$zpath" && "$SHELL" != "$zpath" ]]; then
     info "Switching default shell to $zpath"
-    run "chsh -s '$zpath' $(whoami)"
+    run "chsh -s '$zpath' $(id -un)"
   fi
 }
 

@@ -1,73 +1,127 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# ==============================================================================
+# git-rewrite.sh — Safely rewrite commit author email or re-sign commits
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
+#
+# Purpose    : Rewrite git history to fix commit email or add GPG signatures
+#
+# GPG key import (vrkansagara):
+#   curl -sL https://gist.githubusercontent.com/vrkansagara/862e1ea96091ddf01d8e3f0786eefae8/raw/bcc458eb4b2c0eb441aaf7a56f385bc6cd4cb25a/vrkansagara.gpg | gpg --import
+#   export GPGKEY=8BA6E7ABD8112B3E
 
-# Verbose mode
-if [[ "${1:-}" == "-v" ]]; then
-  set -x
-  shift
-fi
+set -o errexit
+set -o pipefail
+set -o nounset
 
-# Sudo detection
-SUDO=""
-if [[ "$(id -u)" -ne 0 ]]; then
-  SUDO="sudo"
-fi
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-# -------------------------------------------------------------------------
-# Maintainer: Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
-# Purpose: Safely rewrite commit email + optionally sign commits
-# -------------------------------------------------------------------------
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-# Change to current git repo (abort if not inside repo)
-if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-  echo "❌ Not inside a git repository. Aborting."
-  exit 1
-fi
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
-export FILTER_BRANCH_SQUELCH_WARNING=1
+on_error() {
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code})."
+    exit "${code}"
+}
+trap on_error ERR
 
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS] COMMAND
 
-# -------------------------------------------------------------------------
-# FIX EMAILS (SAFE & CORRECT)
-# -------------------------------------------------------------------------
+  Rewrite git commit history to fix author/committer email or re-sign
+  commits with GPG. Must be run from inside a git repository.
+
+Commands:
+  email    Rewrite author/committer email in all commits
+  sign     Re-sign commits belonging to your email with GPG
+
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+
+Examples:
+  ${PROGNAME} email
+  ${PROGNAME} sign
+  ${PROGNAME} -v email
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                break
+                ;;
+        esac
+    done
+}
+
 update_email() {
-    OLD_EMAIL="vallabh@vrkansagara.local"
-    CORRECT_EMAIL="vrkansagara@gmail.com"
-    CORRECT_NAME="Vallabhdas Kansagara"
+    local OLD_EMAIL="vallabh@vrkansagara.local"
+    local CORRECT_EMAIL="vrkansagara@gmail.com"
+    local CORRECT_NAME="Vallabhdas Kansagara"
 
-    echo "🔧 Rewriting author/committer email…"
+    info "Rewriting author/committer email..."
 
     git filter-branch --force --env-filter "
-if [[ \"\$GIT_COMMITTER_EMAIL\" == \"$OLD_EMAIL\" ]]; then
-    export GIT_COMMITTER_NAME=\"$CORRECT_NAME\";
-    export GIT_COMMITTER_EMAIL=\"$CORRECT_EMAIL\";
+if [[ \"\$GIT_COMMITTER_EMAIL\" == \"${OLD_EMAIL}\" ]]; then
+    export GIT_COMMITTER_NAME=\"${CORRECT_NAME}\";
+    export GIT_COMMITTER_EMAIL=\"${CORRECT_EMAIL}\";
 fi
-if [[ \"\$GIT_AUTHOR_EMAIL\" == \"$OLD_EMAIL\" ]]; then
-    export GIT_AUTHOR_NAME=\"$CORRECT_NAME\";
-    export GIT_AUTHOR_EMAIL=\"$CORRECT_EMAIL\";
+if [[ \"\$GIT_AUTHOR_EMAIL\" == \"${OLD_EMAIL}\" ]]; then
+    export GIT_AUTHOR_NAME=\"${CORRECT_NAME}\";
+    export GIT_AUTHOR_EMAIL=\"${CORRECT_EMAIL}\";
 fi
 " --tag-name-filter cat -- --branches --tags
 }
 
-
-# -------------------------------------------------------------------------
-# GPG SIGN REWRITE (SAFE VERSION)
-# vrkansagara gpg signature
-# curl -sL https://gist.githubusercontent.com/vrkansagara/862e1ea96091ddf01d8e3f0786eefae8/raw/bcc458eb4b2c0eb441aaf7a56f385bc6cd4cb25a/vrkansagara.gpg | gpg --import
-#
-# export GPGKEY=8BA6E7ABD8112B3E
-# Correct approach:
-# 1) Only rewrite commits where the author == you
-# 2) Use ONE commit-tree call, not two
-# -------------------------------------------------------------------------
 update_signature() {
-    GPG_EMAIL="vrkansagara@gmail.com"
+    local GPG_EMAIL="vrkansagara@gmail.com"
 
-    echo "🔏 Rewriting history with signed commits (only yours)…"
-    echo "⚠️ WARNING: This rewrites ALL history. Ensure backup or fresh clone."
+    warn "Rewriting history with signed commits (only yours)..."
+    warn "WARNING: This rewrites ALL history. Ensure backup or fresh clone."
 
     git filter-branch --force --commit-filter '
-if [ "$GIT_AUTHOR_EMAIL" = "'"$GPG_EMAIL"'" ]; then
+if [ "$GIT_AUTHOR_EMAIL" = "'"${GPG_EMAIL}"'" ]; then
     git commit-tree -S "$@"
 else
     git commit-tree "$@"
@@ -75,42 +129,39 @@ fi
 ' --tag-name-filter cat -- --branches --tags
 }
 
+main() {
+    parse_args "$@"
 
-# -------------------------------------------------------------------------
-# HELP HANDLER
-# -------------------------------------------------------------------------
-if [[ "${1:-}" == "help" ]]; then
-    cat <<EOF
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
 
-Usage:
-  ./script.sh email      → Rewrite author/committer email
-  ./script.sh sign       → Re-sign commits belonging to your email
-  ./script.sh -v email   → Verbose + rewrite emails
+    # Ensure we are inside a git repository
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        fatal "Not inside a git repository. Aborting."
+    fi
 
-Examples:
-  ./script.sh email
-  ./script.sh sign
+    export FILTER_BRANCH_SQUELCH_WARNING=1
 
-EOF
+    local cmd="${1:-}"
+
+    case "$cmd" in
+        email)
+            section "Rewriting commit email"
+            update_email
+            ;;
+        sign)
+            section "Re-signing commits with GPG"
+            update_signature
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+
+    ok "Done."
     exit 0
-fi
+}
 
-
-# -------------------------------------------------------------------------
-# EXECUTION MODE
-# -------------------------------------------------------------------------
-case "${1:-}" in
-  email)
-    update_email
-    ;;
-  sign)
-    update_signature
-    ;;
-  *)
-    echo "❌ Unknown command: ${1:-}"
-    echo "Run: ./script.sh help"
-    exit 1
-    ;;
-esac
-
-echo "✔ Done."
+main "$@"

@@ -23,7 +23,12 @@
 #    -h, --help              Show this help
 # ==============================================================================
 
-set -euo pipefail
+set -o errexit
+set -o pipefail
+set -o nounset
+
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
 
 # ------------------------------------------------------------------------------
 # Constants

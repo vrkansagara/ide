@@ -1,30 +1,112 @@
 #!/usr/bin/env bash
-set -e # This setting is telling the script to exit on a command error.
-if [[ "$1" == "-v" ]]; then
-	set -x # You refer to a noisy script.(Used to debugging)
-	shift
-fi
+# ==============================================================================
+# shutter.sh — Install Shutter screenshot tool (switches to Xorg if on Wayland)
+# ==============================================================================
+# Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
+# Version    : 2.0.0
 
-if [ "$(whoami)" != "root" ]; then
-	SUDO=sudo
-fi
+set -o errexit
+set -o pipefail
+set -o nounset
 
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-#  Maintainer :- vallabhdas kansagara<vrkansagara@gmail.com> — @vrkansagara
-#  Note		  :- Install screen short tool.
-# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+readonly VERSION="2.0.0"
+readonly PROGNAME="${0##*/}"
+VERBOSE=0
+SUDO_CMD=""
 
-# shutter project has issue with selection of window so lets move to xorg first
-if [ -f "/etc/gdm3/custom.conf" ]; then
-	# Change WaylandEnable=false to this file /etc/gdm3/custom.conf
-	if [[ 'wayland' == $XDG_SESSION_TYPE ]]; then
-		echo $XDG_SESSION_TYPE
-		${SUDO} sed -i 's/#WaylandEnable=false/WaylandEnable=false/g' /etc/gdm3/custom.conf
-	fi
-fi
+_init_colors() {
+    if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+    else
+        C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
+    fi
+}
+_init_colors
 
-${SUDO} apt-get purge shutter
-${SUDO} add-apt-repository ppa:shutter/ppa
-${SUDO} apt-get update #for Linux Mint only, this is done automatically on Ubuntu
-${SUDO} apt-get install shutter libappindicator-dev gir1.2-appindicator3-0.1
-${SUDO} cpan -i Gtk2::AppIndicator
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
+section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
+
+on_error() {
+    local code=$? line="${BASH_LINENO[0]}"
+    warn "Unexpected failure at line ${line} (exit ${code})."
+    exit "${code}"
+}
+trap on_error ERR
+
+usage() {
+    cat <<EOF
+Usage: ${PROGNAME} [OPTIONS]
+
+  Install Shutter screenshot tool. If running on Wayland, disables Wayland
+  in the GDM3 configuration so that Shutter can function with window selection.
+
+Options:
+  -v, --verbose   Enable verbose/debug output
+  --version       Print version and exit
+  -h, --help      Show this help message
+EOF
+}
+
+_run() {
+    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+}
+
+parse_args() {
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -v|--verbose)
+                VERBOSE=1
+                set -x
+                shift
+                ;;
+            --version)
+                printf '%s\n' "$VERSION"
+                exit 0
+                ;;
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            *)
+                fatal "Unknown option: $1"
+                ;;
+        esac
+    done
+}
+
+main() {
+    parse_args "$@"
+
+    if [ "$(id -u)" -ne 0 ]; then
+        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+    fi
+
+    # Shutter has issues with window selection on Wayland — switch to Xorg
+    section "Checking display session type"
+    if [ -f "/etc/gdm3/custom.conf" ]; then
+        local session_type="${XDG_SESSION_TYPE:-}"
+        if [[ "$session_type" == 'wayland' ]]; then
+            info "Wayland session detected: ${session_type}"
+            warn "Disabling Wayland in /etc/gdm3/custom.conf for Shutter compatibility"
+            _run sed -i 's/#WaylandEnable=false/WaylandEnable=false/g' /etc/gdm3/custom.conf
+        fi
+    fi
+
+    section "Installing Shutter"
+    _run apt-get purge shutter 2>/dev/null || true
+    _run add-apt-repository ppa:shutter/ppa
+    _run apt-get update
+    _run apt-get install shutter libappindicator-dev gir1.2-appindicator3-0.1
+    _run cpan -i Gtk2::AppIndicator
+
+    ok "Shutter installation complete."
+    exit 0
+}
+
+main "$@"
