@@ -8,7 +8,10 @@
       "Bash(ps:*)",
       "Bash(top:*)",
       "Bash(htop:*)",
-      "Bash(git:./*)"
+      "Bash(git:./*)",
+      "Bash(ls:*)",
+      "Bash(chmod 511:*)",
+      "Bash(bash:*)"
     ],
     "deny": [
       "Bash(rm:*)",
@@ -23,7 +26,6 @@
       "Bash(wget:*)"
     ]
   },
-
   "sandbox": {
     "enabled": true,
     "network_access": false,
@@ -34,17 +36,9 @@
       ]
     }
   },
-
   "telemetry": {
     "enabled": false
   },
-
-  "model": {
-    "temperature": 0,
-    "top_p": 1,
-    "max_tokens": 4096
-  },
-
   "logging": {
     "level": "error",
     "audit": true

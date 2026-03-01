@@ -12,7 +12,10 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-readonly VERSION="2.0.0"
+# Use SCRIPT_VERSION (not VERSION) to avoid collision with nvm.sh which
+# declares `local VERSION` inside its functions. Because our variable is
+# readonly, it cannot be shadowed, causing "local: VERSION: readonly variable".
+readonly SCRIPT_VERSION="2.0.0"
 readonly PROGNAME="${0##*/}"
 VERBOSE=0
 SUDO_CMD=""
@@ -106,26 +109,43 @@ nvmInstall() {
     fi
 
     if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+        set +o nounset
         # shellcheck source=/dev/null
         . "$HOME/.nvm/nvm.sh"
+        set -o nounset
         ok "NVM already installed."
         return 0
     fi
 
-    local tmp=""
-    trap '[[ -n "$tmp" ]] && rm -f "$tmp"' EXIT
-
+    local tmp
     tmp="$(mktemp -t nvm-install-XXXX.sh)"
+    # Double-quoted so $tmp is expanded NOW (baked into the trap string at
+    # registration time). Single quotes would defer expansion to EXIT time,
+    # when the local variable is out of scope and set -o nounset throws
+    # "tmp: unbound variable". SC2064 is intentional here.
+    # shellcheck disable=SC2064
+    trap "rm -f '$tmp'" EXIT
+
+    local nvm_dir="$HOME/.nvm"
 
     download_with_retries \
         "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh" \
         "$tmp" 5 4
 
-    bash "$tmp"
+    # Pre-create the target directory so the NVM install script's guard
+    # (exits 1 when NVM_DIR is set but missing) does not trigger.
+    # Passing NVM_DIR explicitly keeps the install path consistent with the
+    # NVM_DIR="$HOME/.nvm" already present in the user's shell profiles.
+    mkdir -p "$nvm_dir"
+    NVM_DIR="$nvm_dir" bash "$tmp"
 
-    if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+    if [[ -s "$nvm_dir/nvm.sh" ]]; then
+        # nvm.sh internally references variables without initialising them,
+        # which is incompatible with set -o nounset. Disable for the source only.
+        set +o nounset
         # shellcheck source=/dev/null
-        . "$HOME/.nvm/nvm.sh"
+        . "$nvm_dir/nvm.sh"
+        set -o nounset
         ok "NVM installed successfully."
     else
         fatal "NVM install failed."
@@ -137,6 +157,9 @@ nvmInstall() {
 # ---------------------------
 nodejsInstall() {
     if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+        # nvm.sh and all nvm functions use unbound variables internally —
+        # incompatible with set -o nounset. Disable for the entire nvm session.
+        set +o nounset
         # shellcheck source=/dev/null
         . "$HOME/.nvm/nvm.sh"
     else
@@ -144,11 +167,12 @@ nodejsInstall() {
     fi
 
     info "Installing Node LTS..."
-    nice -n 10 nvm install --lts || true
+    # nvm is a shell function, not a binary — nice/ionice cannot wrap it.
+    nvm install --lts || true
     nvm use --lts
 
     info "Installing latest stable Node..."
-    nice -n 10 nvm install node || true
+    nvm install node || true
 
     ok "Installed Node versions:"
     nvm ls
@@ -187,7 +211,11 @@ nodeLatest() {
     ok "Node dependencies updated."
 }
 
-parse_args() {
+main() {
+    # Process global flags inline so shift modifies main's own $@.
+    # Calling a separate parse_args function would only shift that function's
+    # local copy of $@, leaving main's $@ unchanged and causing the dispatch
+    # loop below to fatal on unrecognised flag names.
     while [ $# -gt 0 ]; do
         case "$1" in
             -v|--verbose)
@@ -196,7 +224,7 @@ parse_args() {
                 shift
                 ;;
             --version)
-                printf '%s\n' "$VERSION"
+                printf '%s\n' "$SCRIPT_VERSION"
                 exit 0
                 ;;
             -h|--help)
@@ -208,10 +236,6 @@ parse_args() {
                 ;;
         esac
     done
-}
-
-main() {
-    parse_args "$@"
 
     if [ "$(id -u)" -ne 0 ]; then
         command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."

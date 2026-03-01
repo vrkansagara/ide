@@ -9,11 +9,21 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+shopt -s extglob
+
+# ------------------------------------------------------------------------------
+# Constants + state
+# ------------------------------------------------------------------------------
 readonly VERSION="2.0.0"
 readonly PROGNAME="${0##*/}"
 VERBOSE=0
 SUDO_CMD=""
+arg_1=""
+display=""
 
+# ------------------------------------------------------------------------------
+# Color block
+# ------------------------------------------------------------------------------
 _init_colors() {
     if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
         C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
@@ -25,6 +35,9 @@ _init_colors() {
 }
 _init_colors
 
+# ------------------------------------------------------------------------------
+# Logging helpers
+# ------------------------------------------------------------------------------
 info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
 warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
 fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
@@ -32,81 +45,73 @@ ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
 log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
 section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
+# ------------------------------------------------------------------------------
+# Usage
+# ------------------------------------------------------------------------------
 usage() {
-    printf 'Usage: %s [OPTIONS] [-a arg] [-d display]\n\n' "$PROGNAME"
-    printf 'Set my default configuration for the working style.\n'
-    printf 'Configures display layout, GNOME settings, audio, and brightness.\n\n'
-    printf 'Options:\n'
-    printf '  -a ARG           Set arg_1 argument\n'
-    printf '  -d DISPLAY       Set display mode (2=dual-primary, 3=triple)\n'
-    printf '  -v, --verbose    Enable verbose/debug output\n'
-    printf '      --version    Print version and exit\n'
-    printf '  -h, --help       Show this help message\n'
+    cat <<EOF
+Usage: $PROGNAME [OPTIONS]
+
+Set my default configuration for the working style.
+Configures display layout, GNOME settings, audio, and brightness.
+
+Options:
+  -a ARG           Set arg_1 argument
+  -d DISPLAY       Set display mode (2=dual-primary, 3=triple)
+  -v, --verbose    Enable verbose/debug output
+      --version    Print version and exit
+  -h, --help       Show this help message
+
+Example:
+  $PROGNAME -d 2
+  $PROGNAME -d 3 --verbose
+EOF
 }
 
+# ------------------------------------------------------------------------------
+# Sudo wrapper
+# ------------------------------------------------------------------------------
 _run() {
     if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
 }
 
+# ------------------------------------------------------------------------------
+# Argument parsing
+# ------------------------------------------------------------------------------
 parse_args() {
-    arg_1=""
-    display=""
     while [ $# -gt 0 ]; do
         case "$1" in
-            --verbose)     VERBOSE=1 ;;
-            --version)     printf '%s version %s\n' "$PROGNAME" "$VERSION"; exit 0 ;;
-            --help)        usage; exit 0 ;;
-            -*)
-                # Use getopts for -a and -d options
-                local OPTIND=1
-                while getopts ":a:d:vh" opt "$@"; do
-                    case $opt in
-                        a) arg_1="$OPTARG" ;;
-                        d) display="$OPTARG" ;;
-                        v) VERBOSE=1 ;;
-                        h) usage; exit 0 ;;
-                        \?) warn "Invalid option -${OPTARG}" ;;
-                    esac
-                    case "${OPTARG:-}" in
-                        -*) warn "Option $opt needs a valid argument" ;;
-                    esac
-                done
-                return
-                ;;
+            -v|--verbose) VERBOSE=1; set -x; shift ;;
+            --version)    printf '%s v%s\n' "$PROGNAME" "$VERSION"; exit 0 ;;
+            -h|--help)    usage; exit 0 ;;
+            -a)           [ -n "${2:-}" ] || fatal "-a requires an argument"; arg_1="$2"; shift 2 ;;
+            -d)           [ -n "${2:-}" ] || fatal "-d requires an argument"; display="$2"; shift 2 ;;
+            --)           shift; break ;;
+            -*)           fatal "Unknown option: '$1'. Use -h for help." ;;
+            *)            break ;;
         esac
-        shift
     done
 }
 
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
 main() {
-    # Use getopts directly for -a/-d style args
-    arg_1=""
-    display=""
-    while getopts ":a:d:vh" opt; do
-        case $opt in
-            a) arg_1="$OPTARG" ;;
-            d) display="$OPTARG" ;;
-            v) VERBOSE=1 ;;
-            h) usage; exit 0 ;;
-            \?) warn "Invalid option -${OPTARG}" >&2; exit 1 ;;
-        esac
-        case "${OPTARG:-}" in
-            -*) warn "Option $opt needs a valid argument"; exit 1 ;;
-        esac
-    done
+    parse_args "$@"
 
     if [ "$(id -u)" -ne 0 ]; then
         command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
     fi
 
     CURRENT_DATE=$(date "+%Y%m%d%H%M%S")
-    SCRIPT=$(readlink -f "")
+    SCRIPT=$(readlink -f "$0")
     SCRIPTDIR=$(dirname "$SCRIPT")
     OS=$(uname -s)
     VER=$(uname -r)
     BUILD=$(uname -m)
 
     log "Started at ${CURRENT_DATE}"
+    log "Script dir: ${SCRIPTDIR}"
     log "OS=${OS} VER=${VER} BUILD=${BUILD}"
 
     section "Installing packages"
@@ -115,12 +120,11 @@ main() {
     section "INFORMATION"
     printf "Argument display is %s\n" "$display"
     printf "Argument arg_1 is %s\n" "$arg_1"
-    section "INFORMATION"
 
     section "Configuring display layout"
-    if [[ "$display" == 2 ]]; then
+    if [ "$display" = "2" ]; then
         info "Selecting primary display"
-        if [ "$(lsb_release -sc)" == 'jammy' ]; then
+        if [ "$(lsb_release -sc)" = "jammy" ]; then
             xrandr \
                 --output XWAYLAND1 --mode 1366x768 --pos 1920x0 --rotate normal \
                 --output XWAYLAND1 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
@@ -132,7 +136,7 @@ main() {
                 --output DP-1 --off
         fi
 
-    elif [[ "$display" == 3 ]]; then
+    elif [ "$display" = "3" ]; then
         xrandr \
             --output eDP-1 --mode 1366x768 --pos 3286x0 --rotate normal \
             --output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal --primary \
