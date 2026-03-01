@@ -128,13 +128,14 @@ is_in_venv() {
     [ -n "${VIRTUAL_ENV:-}" ]
 }
 
-# Detect Debian/Ubuntu externally-managed-environment restriction.
+# Detect Debian/Ubuntu PEP-668 externally-managed-environment restriction.
+# Checks for the EXTERNALLY-MANAGED marker file in the stdlib directory,
+# which is the canonical method described in PEP 668.
 is_externally_managed() {
     local stdlib_path
     stdlib_path="$("$PYTHON3" -c \
         "import sysconfig; print(sysconfig.get_path('stdlib'))" 2>/dev/null || true)"
-    [ -f "${stdlib_path}/EXTERNALLY-MANAGED" ] || \
-    [ -f "$(dirname "${stdlib_path}")/EXTERNALLY-MANAGED" ]
+    [ -n "$stdlib_path" ] && [ -f "${stdlib_path}/EXTERNALLY-MANAGED" ]
 }
 
 # Retry-capable downloader (pattern from nodejs.sh).
@@ -196,30 +197,43 @@ cmd_install_pip() {
     require_python3
     section "Installing / upgrading pip"
 
-    # On apt-based systems install python3-pip + python3-venv via the package
-    # manager to respect the externally-managed-environment restriction.
+    # ── Step 1: apt-based systems — install via the system package manager ──
+    # This is the only safe method on Debian/Ubuntu with PEP-668 enforcement.
     if command_exists apt-get; then
         info "apt-based system detected — installing python3-pip, python3-venv via apt..."
         _run apt-get install -y python3-pip python3-venv python3-setuptools
-        ok "System pip packages installed."
+        ok "System pip packages installed via apt."
     fi
 
+    # ── Step 2: active venv — safe to upgrade pip directly ─────────────────
     if is_in_venv; then
-        # Inside a venv: no system risk at all.
         info "Active venv detected — upgrading pip inside venv..."
         "$PYTHON3" -m pip install --upgrade pip setuptools wheel
+
+    # ── Step 3: PEP-668 externally-managed system — do NOT run get-pip.py ──
+    # Running pip install (even --user) outside a venv is blocked by
+    # /usr/lib/python3.x/EXTERNALLY-MANAGED on Debian/Ubuntu 23.04+.
+    # The system pip from apt is sufficient; users should work inside venvs.
+    elif is_externally_managed; then
+        warn "Externally-managed environment detected (PEP 668 / Debian policy)."
+        info "System pip is managed by apt — get-pip.py bootstrap is not needed."
+        info "To install third-party packages, use a virtual environment:"
+        printf '    %b%s --create-venv <name>%b\n' "$C_CYAN" "$PROGNAME" "$C_RESET"
+        info "For standalone CLI tools, pipx is recommended:"
+        printf '    %bapt install pipx && pipx install <app>%b\n' "$C_CYAN" "$C_RESET"
+
+    # ── Step 4: non-managed system — bootstrap pip with --user scope ────────
     else
-        # Outside a venv: use get-pip.py with --user to avoid touching system files.
         info "Installing pip via official get-pip.py bootstrap (--user scope)..."
         local tmp
         tmp="$(mktemp -t get-pip-XXXX.py)"
-        # SC2064: intentional — expand $tmp NOW so the path is baked into the trap.
+        # SC2064: intentional — expand $tmp NOW so path is baked into the trap.
         # shellcheck disable=SC2064
         trap "rm -f '${tmp}'" EXIT
 
         download_with_retries "https://bootstrap.pypa.io/get-pip.py" "$tmp" 3 5
 
-        # --user: installs into ~/.local — never touches /usr.
+        # --user installs into ~/.local — never touches /usr system paths.
         "$PYTHON3" "$tmp" --user --upgrade pip setuptools wheel
     fi
 
