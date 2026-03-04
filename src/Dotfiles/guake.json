@@ -7,14 +7,14 @@
     ]
   },
   {
-    "description": "Ubuntu update and upgrade",
+    "description": "Debian update and upgrade",
     "cmd": [
       "sudo",
       "apt-get install -f && sudo apt-get clean && sudo apt-get autoremove && sudo apt-get update && sudo apt-get upgrade -V"
     ]
   },
   {
-    "description": "Ubuntu dist upgrade",
+    "description": "Debian dist upgrade",
     "cmd": [
       "sudo",
       "apt-get clean && sudo apt dist-upgrade"
@@ -25,7 +25,7 @@
     "cmd": [
       "sudo",
       "ps -ef | grep 'phpstorm' | grep -v grep | awk \"{print \\$2}\" | xargs -I {} sudo kill -9 {}",
-      "&& cpulimit -b -l $((40 * $NUM_CPU_CORES)) /snap/bin/phpstorm"
+      "&& nice -n 20 ~/applications/phpstorm/bin/phpstorm &"
     ]
   },
   {
@@ -33,7 +33,7 @@
     "cmd": [
       "sudo",
       "ps -ef | grep 'google-chrome' | grep -v grep | awk \"{print \\$2}\" | xargs -I {} sudo kill -9 {}",
-      "&& cpulimit -b -l $((40 * $NUM_CPU_CORES)) $(which google-chrome)"
+      "&& nice -n 20 google-chrome &"
     ]
   }
 ]

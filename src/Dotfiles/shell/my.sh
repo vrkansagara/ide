@@ -22,8 +22,8 @@ _LOADED_MY_SH=1
 # -------------------------------------------------
 # Identity (DO NOT override $USER)
 # -------------------------------------------------
-export USER_ID="$(id -u)"
-export GROUP_ID="$(id -g)"
+export USER_ID="${UID}"
+export GROUP_ID="${GID}"
 export GROUP="$(id -gn)"
 
 # -------------------------------------------------
@@ -43,7 +43,7 @@ command_exists() {
 # General aliases
 # -------------------------------------------------
 alias g='git'
-alias ss='source ~/.zshrc'
+alias ss='unset _LOADED_MY_SH && source ~/.zshrc'
 alias h='history 0'
 alias o='open .'
 
@@ -144,7 +144,7 @@ export AWT_TOOLKIT=MToolkit
 export TERM=xterm
 alias sshx='env TERM=xterm ssh'
 alias sshOld='env TERM=xterm ssh -oHostKeyAlgorithms=+ssh-dss '
-export GPG_TTY="$(tty)"
+export GPG_TTY="${TTY:-$(tty)}"
 
 # -------------------------------------------------
 # PATH entries (zsh array style — deduplication via typeset -aU above)
