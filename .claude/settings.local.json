@@ -16,7 +16,10 @@
       "Bash(git:*)",
       "Bash(grep:*)",
       "Bash(shellcheck:*)",
-      "Bash(chmod +x:*)"
+      "Bash(chmod +x:*)",
+      "Bash(echo $TERM)",
+      "Bash(echo $TERM_PROGRAM)",
+      "Read(//proc/$PPID/**)"
     ],
     "deny": [
       "Bash(rm:*)",

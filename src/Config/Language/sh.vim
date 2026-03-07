@@ -23,7 +23,17 @@ function! Runsh() abort
     let filePath = expand('%:p')
     let fileName = expand('%:t')
 
-    execute 'silent! w!'
+    let dirPath = expand('%:p:h')
+    if !isdirectory(dirPath)
+        call mkdir(dirPath, 'p')
+    endif
+    execute 'w!'
+    if !filereadable(filePath)
+        echohl ErrorMsg
+        echomsg 'Error: could not save ' . filePath
+        echohl None
+        return
+    endif
 
     if executable('shellcheck')
         let raw = system('shellcheck ' . shellescape(filePath) . ' 2>&1')
@@ -84,8 +94,20 @@ function! RunConfirmsh() abort
     let filePath = expand('%:p')
     let fileName = expand('%:t')
 
-    " Save first so we always run the latest version
-    execute 'silent! w!'
+    " Ensure the parent directory exists before saving
+    let dirPath = expand('%:p:h')
+    if !isdirectory(dirPath)
+        call mkdir(dirPath, 'p')
+    endif
+
+    " Save and verify the file actually exists on disk
+    execute 'w!'
+    if !filereadable(filePath)
+        echohl ErrorMsg
+        echomsg 'Error: could not save ' . filePath
+        echohl None
+        return
+    endif
 
     let answer = input('Run ' . fileName . '? [y/N]: ')
     redraw
@@ -94,17 +116,38 @@ function! RunConfirmsh() abort
         return
     endif
 
-    " Use a terminal split so output streams live and no "Press ENTER" loop
+    " Use a terminal split — live output, no "Press ENTER" loop
     execute 'botright 20split'
     execute 'terminal bash ' . shellescape(filePath)
 endfunction
 
 " ------------------------------------------------------------------------------
-" RefreshF5sh()   Called on F5 — cleans up the buffer.
+" RefreshF5sh()   Called on F5 — trims whitespace then runs shellcheck.
+"                 Shows results in the same scratch split as Runsh().
 " ------------------------------------------------------------------------------
 function! RefreshF5sh() abort
-    " Trim trailing whitespace (F2)
+    " Trim trailing whitespace (F2 mapping)
     execute "normal \<F2>"
-    " Re-indent whole file
-    execute 'normal gg=G``'
+
+    let filePath = expand('%:p')
+    let fileName = expand('%:t')
+
+    let dirPath = expand('%:p:h')
+    if !isdirectory(dirPath)
+        call mkdir(dirPath, 'p')
+    endif
+    execute 'w!'
+    if !filereadable(filePath)
+        echohl ErrorMsg | echomsg 'Error: could not save ' . filePath | echohl None
+        return
+    endif
+
+    if executable('shellcheck')
+        let raw = system('shellcheck ' . shellescape(filePath) . ' 2>&1')
+    else
+        let raw = system('bash -n ' . shellescape(filePath) . ' 2>&1')
+    endif
+    let ok = (v:shell_error == 0)
+
+    call s:ShowInScratch(fileName, ok, raw)
 endfunction

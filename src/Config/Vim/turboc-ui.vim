@@ -17,7 +17,7 @@ set ruler
 "   [A-f]File  [A-e]Edit  [A-s]Search  [A-w]Window  [A-h]Help  [F10]Menu
 function! TurboCTabline() abort
     let bar = ' [A-f]File  [A-e]Edit  [A-s]Search  [A-w]Window  [A-h]Help'
-    let bar .= '  [F10]Open Menu  [A-p]Explorer  [C-p]Files  [C-f]Ripgrep '
+    let bar .= '  [F10]Menu  [A-p]Explorer  [C-p]Files  [C-f]Rg  [A-r/.sh]Run  [F9/.sh]Run '
     return bar
 endfunction
 set tabline=%!TurboCTabline()
