@@ -162,7 +162,7 @@ set ttyfast
 set showcmd
 set showmode
 set wildmenu
-set wildmode="list:longest"
+set wildmode=list:longest
 
 " Added 2005-03-23 Based on http://www.perlmonks.org/index.pl?node_id=441738
 set smarttab
@@ -198,7 +198,6 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Keybindings for movement in insert mode
 inoremap <leader>0 <Esc>I
-inoremap <leader>$ <Esc>,
 inoremap <leader>$ <Esc>A
 inoremap <leader>h <Esc>i
 inoremap <leader>l <Esc>lli

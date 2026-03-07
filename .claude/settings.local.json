@@ -11,7 +11,9 @@
       "Bash(git:./*)",
       "Bash(ls:*)",
       "Bash(chmod 511:*)",
-      "Bash(bash:*)"
+      "Bash(bash:*)",
+      "Bash(vim:*)",
+      "Bash(git:*)"
     ],
     "deny": [
       "Bash(rm:*)",
