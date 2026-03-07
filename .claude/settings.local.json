@@ -13,7 +13,10 @@
       "Bash(chmod 511:*)",
       "Bash(bash:*)",
       "Bash(vim:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(grep:*)",
+      "Bash(shellcheck:*)",
+      "Bash(chmod +x:*)"
     ],
     "deny": [
       "Bash(rm:*)",
