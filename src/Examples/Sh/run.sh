@@ -18,11 +18,11 @@ SUDO_CMD=""
 _init_colors() {
     if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
         C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
-        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
-        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+            C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+            C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
     else
         C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
-    fi
+            fi
 }
 _init_colors
 
@@ -35,22 +35,22 @@ section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
 on_error() {
     local code=$? line="${BASH_LINENO[0]}"
-    warn "Unexpected failure at line ${line} (exit ${code})."
-    exit "${code}"
+        warn "Unexpected failure at line ${line} (exit ${code})."
+        exit "${code}"
 }
 trap on_error ERR
 
 usage() {
     cat <<EOF
-Usage: ${PROGNAME} [OPTIONS]
+        Usage: ${PROGNAME} [OPTIONS]
 
-  Example demonstrating tput bold/normal text formatting with printf.
+        Example demonstrating tput bold/normal text formatting with printf.
 
-Options:
-  -v, --verbose   Enable verbose/debug output
-  --version       Print version and exit
-  -h, --help      Show this help message
-EOF
+        Options:
+        -v, --verbose   Enable verbose/debug output
+        --version       Print version and exit
+        -h, --help      Show this help message
+        EOF
 }
 
 _run() {
@@ -59,40 +59,40 @@ _run() {
 
 parse_args() {
     while [ $# -gt 0 ]; do
-        case "$1" in
-            -v|--verbose)
-                VERBOSE=1
-                set -x
-                shift
-                ;;
-            --version)
-                printf '%s\n' "$VERSION"
-                exit 0
-                ;;
-            -h|--help)
-                usage
-                exit 0
-                ;;
-            *)
-                fatal "Unknown option: $1"
-                ;;
+    case "$1" in
+        -v|--verbose)
+            VERBOSE=1
+            set -x
+            shift
+            ;;
+        --version)
+            printf '%s\n' "$VERSION"
+            exit 0
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        *)
+            fatal "Unknown option: $1"
+            ;;
         esac
-    done
+            done
 }
 
 main() {
     parse_args "$@"
 
-    if [ "$(id -u)" -ne 0 ]; then
-        command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
-    fi
+        if [ "$(id -u)" -ne 0 ]; then
+            command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
+                fi
 
-    local bold normal
-    bold="$(tput bold 2>/dev/null || printf '')"
-    normal="$(tput sgr0 2>/dev/null || printf '')"
+                local bold normal
+                bold="$(tput bold 2>/dev/null || printf '')"
+                normal="$(tput sgr0 2>/dev/null || printf '')"
 
-    printf "this is %sbold%s but this isn't\n" "${bold}" "${normal}"
-    exit 0
+                printf "this is %sbold%s but this isn't\n" "${bold}" "${normal}"
+                exit 0
 }
 
 main "$@"

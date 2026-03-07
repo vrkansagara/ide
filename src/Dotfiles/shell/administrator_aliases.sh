@@ -15,7 +15,8 @@ _LOADED_ADMINISTRATOR_ALIASES_SH=1
 # NOTE: FZF_DEFAULT_COMMAND uses pwd at source time; expand lazily if preferred.
 # ------------------------------------------------------------------------------
 export FZF_DEFAULT_OPTS="--preview 'cat {}'"
-export FZF_DEFAULT_COMMAND="find $(pwd) -type f"
+# Use single quotes so $PWD is NOT expanded at source time — always reflects cwd
+export FZF_DEFAULT_COMMAND='find . -type f'
 
 # ------------------------------------------------------------------------------
 # Directory listing
@@ -34,10 +35,10 @@ alias du='/usr/bin/du -sh '
 # ------------------------------------------------------------------------------
 # Kernel / system log
 # ------------------------------------------------------------------------------
-alias myDmesgWatch='watch "sudo dmesg -T | tail -20"'
+alias myDmesgWatch='watch "sudo dmesg -T | tail -n 20"'
 alias myDmesgError='sudo dmesg -T --level=emerg,alert,crit,err | tail -20'
 
-alias myVarLogError="sudo grep -i -r 'error' -v '1password_1password.desktop\|snap.1password.1password' /var/log/syslog"
+alias myVarLogError="sudo grep -i 'error' /var/log/syslog | grep -v '1password_1password.desktop\|snap.1password.1password'"
 
 # ------------------------------------------------------------------------------
 # Network monitoring
@@ -60,7 +61,7 @@ alias myTop10ProcessesVirtualMemeory='ps -eo vsz,pid,ppid,cmd,%mem,%cpu --sort=-
 # View threads of a process interactively via fzf --preview
 alias myPs="ps axo pid,rss,comm --no-headers | fzf --preview 'ps o args {1}; ps mu {1}'"
 alias myPsMemory='ps -o pid,user,%mem,command ax | sort -b -k3 -r | fzf'
-alias myPsilent='ps -ef | grep "teams\|skype\|slack\|discord" | grep -v grep | awk "{print \$2}" | xargs -I {} sudo kill -9 {} '
+alias myPsilent='ps -ef | grep -E "teams|skype|slack|discord" | grep -v grep | awk '"'"'{print $2}'"'"' | xargs -r sudo kill -9'
 
 # ------------------------------------------------------------------------------
 # Package management

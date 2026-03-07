@@ -30,4 +30,4 @@ alias su='svn up --ignore-externals'                 # update, ignore externals
 # svn status --show-updates --depth infinity | awk '{print $NF}' | \
 #   xargs -I '{}' svn revert '{}'
 # ------------------------------------------------------------------------------
-alias s.HardReset='read -p "destroy all local changes?[y/N]" && [[ $REPLY =~ ^[yY] ]] && svn revert . -R && rm -rf $(awk -f <(echo "/^?/{print \$2}") <(svn status) ;)'
+alias s.HardReset='read -p "destroy all local changes?[y/N]" && [[ $REPLY =~ ^[yY] ]] && svn revert . -R && svn status | awk '"'"'/^\?/{print $2}'"'"' | xargs -r rm -rf'

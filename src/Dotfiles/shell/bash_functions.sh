@@ -25,12 +25,16 @@ Day() {
 }
 
 ########################################
-# Battery status (Linux, BAT0 safe)
+# Battery status (Linux, first available BAT)
 ########################################
 Battery() {
-    local dir="/sys/class/power_supply/BAT0"
+    local dir bat
 
-    [[ -d "$dir" ]] || return 0
+    for bat in /sys/class/power_supply/BAT{0,1,2}; do
+        [[ -d "$bat" ]] && { dir="$bat"; break; }
+    done
+
+    [[ -n "$dir" ]] || return 0
 
     if grep -q '^Charging' "$dir/status" 2>/dev/null; then
         printf "+"
@@ -45,7 +49,7 @@ Battery() {
 myNotifySend() {
     local display user uid
 
-    display="$(ls /tmp/.X11-unix/X* 2>/dev/null | sed 's#.*/X##' | head -n1)"
+    display="$(find /tmp/.X11-unix -maxdepth 1 -name 'X*' 2>/dev/null | sed 's#.*/X##' | head -n1)"
     [[ -n "$display" ]] || return 1
     display=":$display"
 
@@ -64,35 +68,28 @@ myNotifySend() {
 # Detect terminal and version
 ########################################
 which_term() {
-    local parent term found=0
+    local parent term ver
 
-    parent="$(ps -p $$ -o ppid=)"
-    term="$(ps -p "$parent" -o comm=)"
+    parent="$(ps -p $$ -o ppid= 2>/dev/null | tr -d ' ')"
+    term="$(ps -p "$parent" -o comm= 2>/dev/null)"
 
-    case "$term" in
-        gnome-terminal*)
-            printf "gnome-terminal %s\n" "$(dpkg -l gnome-terminal | awk '/^ii/{print $3}')"
-            found=1
-            ;;
-        lxterminal*)
-            printf "lxterminal %s\n" "$(dpkg -l lxterminal | awk '/^ii/{print $3}')"
-            found=1
-            ;;
-        rxvt*)
-            printf "rxvt %s\n" "$(dpkg -l rxvt | awk '/^ii/{print $3}')"
-            found=1
-            ;;
-    esac
+    [[ -n "$term" ]] || { printf "unknown\n"; return 1; }
 
-    if [[ $found -eq 0 ]]; then
-        for v in --version -version -V -v; do
-            if "$term" "$v" &>/dev/null; then
-                "$term" "$v"
-                return
-            fi
-        done
-        dpkg -l "$term" 2>/dev/null | awk '/^ii/{print $2, $3}'
+    # Try common version flags
+    for v in --version -version -V -v; do
+        ver="$("$term" "$v" 2>&1 | head -n1)" && {
+            printf "%s\n" "$ver"
+            return
+        }
+    done
+
+    # Debian fallback
+    if command -v dpkg &>/dev/null; then
+        dpkg -l "$term" 2>/dev/null | awk '/^ii/{print $2, $3; exit}'
+        return
     fi
+
+    printf "%s (version unknown)\n" "$term"
 }
 
 ########################################
@@ -139,6 +136,7 @@ tgz() {
 # Usage: ft <extension>
 ########################################
 ft() {
+    [[ -n "$1" ]] || { printf "Usage: ft <extension>\n" >&2; return 1; }
     find . -type f -name "*.$1"
 }
 
@@ -147,40 +145,42 @@ ft() {
 # Usage: f <fragment>
 ########################################
 f() {
+    [[ -n "$1" ]] || { printf "Usage: f <fragment>\n" >&2; return 1; }
     find . -type f -name "*$1*"
 }
 
 ########################################
 # Top used shell commands from history
+# Usage: lt [N]  (default: 10)
 ########################################
 lt() {
+    local n="${1:-10}"
     history | awk '{a[$2]++} END {for (i in a) print a[i], i}' \
-        | sort -rn | head
+        | sort -rn | head -n "$n"
 }
 
 ########################################
-# Detect OS type; exports $machine
+# Detect OS type; exports $MACHINE_TYPE
 ########################################
 machine() {
     case "$(uname -s)" in
-        Linux*)   machine=linux  ;;
-        Darwin*)  machine=mac    ;;
-        CYGWIN*)  machine=cygwin ;;
-        MINGW*)   machine=mingw  ;;
-        MSYS_NT*) machine=git    ;;
-        *)        machine="UNKNOWN" ;;
+        Linux*)   MACHINE_TYPE=linux  ;;
+        Darwin*)  MACHINE_TYPE=mac    ;;
+        CYGWIN*)  MACHINE_TYPE=cygwin ;;
+        MINGW*)   MACHINE_TYPE=mingw  ;;
+        MSYS_NT*) MACHINE_TYPE=git    ;;
+        *)        MACHINE_TYPE=unknown ;;
     esac
-    export machine
+    export MACHINE_TYPE
 }
 
 ########################################
-# Git passthrough function
+# mkdir + cd in one step
+# Usage: mkcd <dir>
 ########################################
-# Remove alias if exists
-# unalias ggs 2>/dev/null || true
-
-ggfff() {
-    git "$@"
+mkcd() {
+    [[ -n "$1" ]] || { printf "Usage: mkcd <dir>\n" >&2; return 1; }
+    mkdir -p "$1" && cd "$1" || return 1
 }
 
 ########################################

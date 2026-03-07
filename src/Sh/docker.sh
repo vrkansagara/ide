@@ -9,7 +9,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-readonly VERSION="2.0.0"
+readonly SCRIPT_VERSION="2.0.0"
 readonly PROGNAME="${0##*/}"
 VERBOSE=0
 SUDO_CMD=""
@@ -60,7 +60,7 @@ parse_args() {
                 set -x
                 ;;
             --version)
-                printf '%s version %s\n' "$PROGNAME" "$VERSION"
+                printf '%s version %s\n' "$PROGNAME" "$SCRIPT_VERSION"
                 exit 0
                 ;;
             -h | --help)
@@ -78,6 +78,7 @@ parse_args() {
 }
 
 main() {
+    [ $# -eq 0 ] && { usage; exit 0; }
     parse_args "$@"
 
     if [ "$(id -u)" -ne 0 ]; then
@@ -94,13 +95,14 @@ main() {
     _run apt-get update
     _run apt-get install ca-certificates curl
     _run install -m 0755 -d /etc/apt/keyrings
-    _run curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    DISTRO_ID="$(grep -oP '(?<=^ID=).+' /etc/os-release | tr -d '"')"
+    _run curl -fsSL "https://download.docker.com/linux/${DISTRO_ID}/gpg" -o /etc/apt/keyrings/docker.asc
     _run chmod a+r /etc/apt/keyrings/docker.asc
 
     # Add the repository to Apt sources:
-    echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
+    DISTRO_CODENAME="$(grep -oP '(?<=^VERSION_CODENAME=).+' /etc/os-release | tr -d '"')"
+    DISTRO_ID="$(grep -oP '(?<=^ID=).+' /etc/os-release | tr -d '"')"
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/${DISTRO_ID} ${DISTRO_CODENAME} stable" |
         _run tee /etc/apt/sources.list.d/docker.list >/dev/null
     _run apt-get update
 

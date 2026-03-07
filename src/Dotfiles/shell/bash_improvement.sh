@@ -15,6 +15,6 @@ _LOADED_BASH_IMPROVEMENT_SH=1
 # ------------------------------------------------------------------------------
 if [ ! -e "$HOME/.inputrc" ]; then
     printf '$include /etc/inputrc\n' > "$HOME/.inputrc"
-    # Enable case-insensitive tab completion
-    printf "bind 'set completion-ignore-case on'\n" >> "$HOME/.inputrc"
+    # Enable case-insensitive tab completion (readline directive, not a bash bind command)
+    printf 'set completion-ignore-case on\n' >> "$HOME/.inputrc"
 fi

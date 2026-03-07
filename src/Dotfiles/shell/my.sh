@@ -86,12 +86,16 @@ prompt_context() {
 # -------------------------------------------------
 # Custom shell extensions
 # -------------------------------------------------
-source "$HOME/.vim/src/Dotfiles/shell/bash_color.sh"
-source "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh"
-source "$HOME/.vim/src/Dotfiles/shell/administrator_aliases.sh"
-source "$HOME/.vim/src/Dotfiles/shell/docker_aliases.sh"
-source "$HOME/.vim/src/Dotfiles/shell/aws_aliases.sh"
-source "$HOME/.vim/src/Dotfiles/shell/php_aliases.sh"
+for _f in \
+    "$HOME/.vim/src/Dotfiles/shell/bash_color.sh" \
+    "$HOME/.vim/src/Dotfiles/shell/bash_functions.sh" \
+    "$HOME/.vim/src/Dotfiles/shell/administrator_aliases.sh" \
+    "$HOME/.vim/src/Dotfiles/shell/docker_aliases.sh" \
+    "$HOME/.vim/src/Dotfiles/shell/aws_aliases.sh" \
+    "$HOME/.vim/src/Dotfiles/shell/php_aliases.sh"; do
+    [ -f "$_f" ] && source "$_f"
+done
+unset _f
 
 # -------------------------------------------------
 # Autosuggestions
@@ -141,7 +145,7 @@ export AWT_TOOLKIT=MToolkit
 # -------------------------------------------------
 # Terminal / SSH
 # -------------------------------------------------
-export TERM=xterm
+export TERM="${TERM:-xterm-256color}"
 alias sshx='env TERM=xterm ssh'
 alias sshOld='env TERM=xterm ssh -oHostKeyAlgorithms=+ssh-dss '
 export GPG_TTY="${TTY:-$(tty)}"

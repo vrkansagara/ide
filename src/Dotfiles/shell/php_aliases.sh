@@ -12,14 +12,14 @@ _LOADED_PHP_ALIASES_SH=1
 # ------------------------------------------------------------------------------
 # PHP built-in development server
 # ------------------------------------------------------------------------------
-# Start server in current directory (document root = ./)
-alias myPhpRun='php -S 0.0.0.0:12345 -d ./'
+# Start server in current directory (document root = cwd)
+alias myPhpRun='php -S 0.0.0.0:12345'
 
 # Start server with public/index.php as router, document root = public/
-alias myPhpRunInPublic='php -S 0.0.0.0:12345 -d public/index.php -t public'
+alias myPhpRunInPublic='php -S 0.0.0.0:12345 -t public public/index.php'
 
-# Start server with web/index.php as router, document root = web/ (php7)
-alias myPhpRunInWeb='php7 -S 0.0.0.0:12345 -d web/index.php -t web'
+# Start server with web/index.php as router, document root = web/
+alias myPhpRunInWeb='php -S 0.0.0.0:12345 -t web web/index.php'
 
 # ------------------------------------------------------------------------------
 # PHP Laminas / Composer server

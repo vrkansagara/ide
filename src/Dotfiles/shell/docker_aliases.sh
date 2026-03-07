@@ -46,8 +46,9 @@ alias dcl='docker compose logs --follow --timestamps --tail 50 '
 
 # ------------------------------------------------------------------------------
 # Inspect — print IP addresses for all running containers
+# (.NetworkSettings.IPAddress is deprecated; use .Networks range instead)
 # ------------------------------------------------------------------------------
-alias dIps="docker ps -q | xargs -n 1 docker inspect --format '{{ .NetworkSettings.IPAddress }} {{ .Name }} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' | sed 's/ \// /'"
+alias dIps="docker ps -q | xargs -n 1 docker inspect --format '{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' | sed 's/^\///'"
 
 # ------------------------------------------------------------------------------
 # Docker Machine (legacy)

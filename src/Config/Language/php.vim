@@ -7,8 +7,8 @@
 " autocmd FileType php noremap <C-l> :w%!<cr>!php -l %<CR>
 autocmd FileType php noremap <Leader>l :w!<CR>:!php -l %<CR>
 
-" run file with PHP CLI (CTRL-m) ( called as ENTER)
-" autocmd FileType php noremap <C-m> :w!<CR>:! echo '\033[0m'<CR>:!php %<CR>
+" NOTE: Enter key is owned by src/Config/Vim/runner.vim → calls Runphp()
+" F8/F9 remain for CS check/fix as convenience shortcuts
 autocmd FileType php  nnoremap <F8> :!clear <CR> :call PhpCsCheck()<CR>
 autocmd FileType php  nnoremap <F9> :!clear <CR> :call PhpCsFix()<CR>
 
