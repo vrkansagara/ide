@@ -183,6 +183,15 @@ mkcd() {
     mkdir -p "$1" && cd "$1" || return 1
 }
 
+fPortKill() {
+    if lsof -t -i:$1 >/dev/null; then
+        sudo kill -9 $(lsof -t -i:$1)
+        echo "Port $1 killed"
+    else
+        echo "Nothing running on port $1"
+    fi
+}
+
 ########################################
 # Init: detect machine type at source time
 ########################################
