@@ -182,10 +182,26 @@ fi
 export GEM_HOME="$HOME/.gem"
 
 # -------------------------------------------------
+# Python venv indicator
+# -------------------------------------------------
+venv_prompt=""
+
+if [[ -n "$VIRTUAL_ENV" ]]; then
+    venv_name=$(basename "$VIRTUAL_ENV")
+
+    # Get Python version from the venv interpreter
+    py_version=$("$VIRTUAL_ENV/bin/python" -c 'import sys;print(f"{sys.version_info.major}.{sys.version_info.minor}")')
+
+    venv_prompt=" %{$fg[green]%}[py:${venv_name} ${py_version}]%{$reset_color%}"
+fi
+
+
+# -------------------------------------------------
 # Prompt
 # -------------------------------------------------
-PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ Do one thing at a time and do it well ]
+PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${vcs_branch} %{$fg[yellow]%}[%D{%f/%m/%Y} %D{%T}] [ Do one thing at a time and do it well ]${venv_prompt}
 ╰─%B[卐]%b "
+
 RPROMPT="%B${return_code}%b"
 
 # -------------------------------------------------
