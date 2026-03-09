@@ -108,8 +108,9 @@ ${C_BOLD}Package management:${C_RESET}
   --update-pkgs              Upgrade all packages in the current/target venv
   --freeze      [file]       Freeze packages to requirements.txt (default name)
 
-${C_BOLD}REPL:${C_RESET}
+${C_BOLD}REPL / Shell:${C_RESET}
   --console     [name]       Launch an interactive Python REPL inside a venv
+  --shell       [name]       Open a bash/zsh subshell with the venv activated
 
 ${C_BOLD}Interactive:${C_RESET}
   --menu                     Launch the full interactive management menu
@@ -143,6 +144,8 @@ ${C_BOLD}Examples:${C_RESET}
   ${PROGNAME} --venv myproject --install-reqs
   ${PROGNAME} --venv myproject --install-pkg django gunicorn
   ${PROGNAME} --console myproject
+  ${PROGNAME} --shell                             # shell for CWD's venv
+  ${PROGNAME} --shell myproject                   # shell for named venv
   ${PROGNAME} --menu
 EOF
 }
@@ -278,6 +281,54 @@ _detect_project_venv() {
     return 1
 }
 
+# ─── Internal helper: launch a subshell with a venv activated ────────────────
+# Accepts the full path to the venv directory.
+_launch_venv_shell() {
+    local venv_path="$1"
+    local shell_bin="${SHELL:-bash}"
+    local shell_name
+    shell_name="$(basename "$shell_bin")"
+
+    section "Venv shell — $(basename "$venv_path")"
+    printf '  %-10s %s\n' "Shell:"  "$shell_bin"
+    printf '  %-10s %s\n' "Venv:"   "$venv_path"
+    printf '  %-10s %s\n' "Python:" "$("${venv_path}/bin/python" --version 2>&1)"
+    printf '\n%b  Type "exit" or Ctrl-D to leave the venv shell.%b\n\n' "$C_YELLOW" "$C_RESET"
+
+    local tmprc
+    tmprc="$(mktemp /tmp/python3sh-XXXX.sh)"
+    # shellcheck disable=SC2064
+    trap "rm -f '${tmprc}'" EXIT
+
+    case "$shell_name" in
+        bash)
+            {
+                printf '[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"\n'
+                printf '. "%s/bin/activate"\n' "$venv_path"
+            } > "$tmprc"
+            exec "$shell_bin" --rcfile "$tmprc"
+            ;;
+        zsh)
+            local zdotdir
+            zdotdir="$(mktemp -d /tmp/python3zsh-XXXX)"
+            # shellcheck disable=SC2064
+            trap "rm -rf '${zdotdir}'; rm -f '${tmprc}'" EXIT
+            {
+                printf '[ -f "$HOME/.zshrc" ] && . "$HOME/.zshrc"\n'
+                printf '. "%s/bin/activate"\n' "$venv_path"
+            } > "${zdotdir}/.zshrc"
+            ZDOTDIR="$zdotdir" exec "$shell_bin"
+            ;;
+        *)
+            # Generic fallback: export VIRTUAL_ENV + prepend bin to PATH.
+            exec env \
+                VIRTUAL_ENV="$venv_path" \
+                PATH="${venv_path}/bin:${PATH}" \
+                "$shell_bin"
+            ;;
+    esac
+}
+
 # ─── Internal helper: create a venv at an arbitrary path ─────────────────────
 _create_venv_at() {
     local venv_path="$1"
@@ -331,26 +382,31 @@ _project_menu_with_venv() {
             reqs_hint="  ${C_GREEN}[requirements.txt found]${C_RESET}"
 
         printf '\n'
-        printf '  %b1)%b  Open Python REPL (console)\n'                    "$C_BOLD" "$C_RESET"
-        printf "  %b2)%b  Install from requirements.txt%b\n"               "$C_BOLD" "$C_RESET" "$reqs_hint"
-        printf '  %b3)%b  Install package(s)\n'                            "$C_BOLD" "$C_RESET"
-        printf '  %b4)%b  Freeze → requirements.txt\n'                    "$C_BOLD" "$C_RESET"
-        printf '  %b5)%b  Show venv info & installed packages\n'           "$C_BOLD" "$C_RESET"
-        printf '  %b6)%b  Upgrade all packages\n'                         "$C_BOLD" "$C_RESET"
-        printf '  %b7)%b  Full management menu\n'                         "$C_BOLD" "$C_RESET"
+        printf '  %b1)%b  Open shell with venv activated\n'               "$C_BOLD" "$C_RESET"
+        printf '  %b2)%b  Open Python REPL (console)\n'                    "$C_BOLD" "$C_RESET"
+        printf "  %b3)%b  Install from requirements.txt%b\n"               "$C_BOLD" "$C_RESET" "$reqs_hint"
+        printf '  %b4)%b  Install package(s)\n'                            "$C_BOLD" "$C_RESET"
+        printf '  %b5)%b  Freeze → requirements.txt\n'                    "$C_BOLD" "$C_RESET"
+        printf '  %b6)%b  Show venv info & installed packages\n'           "$C_BOLD" "$C_RESET"
+        printf '  %b7)%b  Upgrade all packages\n'                         "$C_BOLD" "$C_RESET"
+        printf '  %b8)%b  Full management menu\n'                         "$C_BOLD" "$C_RESET"
         printf '  %b0)%b  Exit\n\n'                                        "$C_BOLD" "$C_RESET"
-        printf '%bChoice [0-7]: %b' "$C_BOLD" "$C_RESET"
+        printf '%bChoice [0-8]: %b' "$C_BOLD" "$C_RESET"
         read -r choice
 
         case "$choice" in
             1)
+                section "Venv shell — ${DETECTED_VENV_NAME}"
+                _launch_venv_shell "$DETECTED_VENV_PATH"
+                ;;
+            2)
                 section "Python REPL — ${DETECTED_VENV_NAME}"
                 info "Python: $("${DETECTED_VENV_PATH}/bin/python" --version 2>&1)"
                 info "Type 'exit()' or Ctrl-D to leave."
                 printf '\n'
                 exec "${DETECTED_VENV_PATH}/bin/python"
                 ;;
-            2)
+            3)
                 local reqfile="${project_dir}/requirements.txt"
                 if [ ! -f "$reqfile" ]; then
                     printf 'Path to requirements file [requirements.txt]: '
@@ -366,7 +422,7 @@ _project_menu_with_venv() {
                 "${DETECTED_VENV_PATH}/bin/pip" install -r "$reqfile"
                 ok "Requirements installed."
                 ;;
-            3)
+            4)
                 printf 'Package(s) to install (space-separated): '
                 IFS=' ' read -r -a _pkgs
                 if [ "${#_pkgs[@]}" -gt 0 ]; then
@@ -377,14 +433,14 @@ _project_menu_with_venv() {
                     warn "No packages entered."
                 fi
                 ;;
-            4)
+            5)
                 printf 'Output file [%s/requirements.txt]: ' "$project_dir"
                 read -r _outfile
                 _outfile="${_outfile:-${project_dir}/requirements.txt}"
                 "${DETECTED_VENV_PATH}/bin/pip" freeze > "$_outfile"
                 ok "Saved $(wc -l < "$_outfile") packages to: ${_outfile}"
                 ;;
-            5)
+            6)
                 section "Venv info — ${DETECTED_VENV_NAME}"
                 printf '  %-12s %s\n' "Name:"   "$DETECTED_VENV_NAME"
                 printf '  %-12s %s\n' "Type:"   "$DETECTED_VENV_TYPE"
@@ -394,7 +450,7 @@ _project_menu_with_venv() {
                 printf '\n  Installed packages:\n'
                 "${DETECTED_VENV_PATH}/bin/pip" list --format=columns 2>/dev/null || true
                 ;;
-            6)
+            7)
                 section "Upgrading all packages — ${DETECTED_VENV_NAME}"
                 local outdated
                 outdated="$("${DETECTED_VENV_PATH}/bin/pip" list --outdated --format=columns \
@@ -413,7 +469,7 @@ _project_menu_with_venv() {
                     ok "Upgrade complete."
                 fi
                 ;;
-            7)
+            8)
                 cmd_menu
                 return
                 ;;
@@ -422,7 +478,7 @@ _project_menu_with_venv() {
                 exit 0
                 ;;
             *)
-                warn "Invalid choice '${choice}'. Enter a number 0-7."
+                warn "Invalid choice '${choice}'. Enter a number 0-8."
                 ;;
         esac
     done
@@ -816,6 +872,29 @@ cmd_console() {
     exec "$py_bin"
 }
 
+# ─── Command: subshell with venv activated ───────────────────────────────────
+cmd_shell() {
+    local name="${1:-}"
+    require_python3
+
+    local venv_path
+    if [ -n "$name" ]; then
+        _assert_venv_exists "$name"
+        venv_path="$(_venv_path "$name")"
+    elif [ -n "$TARGET_VENV" ]; then
+        _assert_venv_exists "$TARGET_VENV"
+        venv_path="$(_venv_path "$TARGET_VENV")"
+    elif _detect_project_venv; then
+        venv_path="$DETECTED_VENV_PATH"
+    elif is_in_venv; then
+        venv_path="$VIRTUAL_ENV"
+    else
+        fatal "No venv found. Use --venv <name> or run from a project directory with a venv."
+    fi
+
+    _launch_venv_shell "$venv_path"
+}
+
 # ─── Full interactive menu ─────────────────────────────────────────────────────
 cmd_menu() {
     require_python3
@@ -848,11 +927,12 @@ cmd_menu() {
   12) Freeze → requirements.txt
   ─────────────────────────────────────────────────
   13) Open Python console (REPL) for a venv
+  14) Open shell (bash/zsh) with venv activated
   ─────────────────────────────────────────────────
   0)  Exit
 
 MENU
-        printf '%bChoice [0-13]: %b' "$C_BOLD" "$C_RESET"
+        printf '%bChoice [0-14]: %b' "$C_BOLD" "$C_RESET"
         read -r choice
 
         case "$choice" in
@@ -938,12 +1018,20 @@ MENU
                 read -r vname
                 cmd_console "${vname:-}"
                 ;;
+            14)
+                cmd_list_venv
+                printf 'Venv name for shell (leave blank for CWD auto-detect / active venv): '
+                read -r vname
+                TARGET_VENV="${vname:-}"
+                cmd_shell "${vname:-}"
+                TARGET_VENV=""
+                ;;
             0|q|Q)
                 info "Goodbye."
                 exit 0
                 ;;
             *)
-                warn "Invalid choice '${choice}'. Enter a number 0-13."
+                warn "Invalid choice '${choice}'. Enter a number 0-14."
                 ;;
         esac
     done
@@ -1072,6 +1160,16 @@ main() {
                     shift
                 else
                     cmd_console ""
+                fi
+                ;;
+            --shell)
+                shift
+                _shell_name="${1:-}"
+                if [ -n "$_shell_name" ] && [[ "$_shell_name" != --* ]]; then
+                    cmd_shell "$_shell_name"
+                    shift
+                else
+                    cmd_shell ""
                 fi
                 ;;
             --menu)
