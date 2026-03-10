@@ -121,12 +121,9 @@ Format:
 <type>(<scope>): <short description>
 
 [optional body]
-
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
 
 The git author is always **Vallabhdas Kansagara <vrkansagara@gmail.com>** (from git config — never override this).
-The `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>` trailer MUST always be present.
 
 ### Types
 | Type       | When to use                           |
