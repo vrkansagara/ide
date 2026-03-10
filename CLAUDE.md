@@ -14,8 +14,10 @@ A personal Vim IDE configuration and system dotfiles setup for Vallabhdas Kansag
 ## Installation & Bootstrap
 
 ```bash
-# Fresh install (clone + setup)
+# Fresh install (clone + bootstrap) — one-liner
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/vrkansagara/ide/master/install.sh)"
+# or equivalently:
+bash init.sh --clone
 
 # Update existing install
 cd $HOME/.vim
@@ -23,8 +25,8 @@ git stash
 git pull --rebase
 sh ./submodule.sh
 
-# Bootstrap system packages + Oh My Zsh + jq/jp binaries
-bash init.sh [--minimal] [--dry-run] [--no-upgrade] [--skip-ohmyzsh]
+# Bootstrap only (no clone) — system packages + Oh My Zsh + jq/jp binaries
+bash init.sh [--minimal] [--dry-run] [--no-upgrade] [--skip-ohmyzsh] [--no-packages] [--force] [--bin-dir=DIR]
 ```
 
 ## Common Tasks
