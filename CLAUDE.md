@@ -109,3 +109,40 @@ Install scripts for tools/languages, organized by category. Top-level scripts in
 | `~/.vim/bin/` | Custom executables; must be in `$PATH` |
 | `~/.vim/data/cache/zsh` | Zsh history file location |
 | `~/.vim/pack/vendor/start/` | Vim 8 native plugin directory |
+
+## Commit Convention
+
+Always use **Conventional Commits** (https://www.conventionalcommits.org/en/v1.0.0/) for all commits.
+
+Format:
+```
+<type>(<scope>): <short description>
+
+[optional body]
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+```
+
+### Types
+| Type       | When to use                           |
+|------------|---------------------------------------|
+| `fix`      | Bug fix or incorrect value correction |
+| `feat`     | New feature                           |
+| `refactor` | Code restructure, no behavior change  |
+| `chore`    | Maintenance, deps, tooling            |
+| `docs`     | Documentation only                    |
+| `style`    | Formatting, whitespace                |
+| `perf`     | Performance improvement               |
+| `ci`       | CI/CD pipeline changes                |
+
+### Scopes for this repo
+| Scope     | Target                          |
+|-----------|---------------------------------|
+| `display` | `bin/display.sh`                |
+| `vim`     | `vimrc.vim`, `src/main.vim`     |
+| `shell`   | `src/Dotfiles/shell/*`          |
+| `bin`     | `bin/*` utilities               |
+| `plugin`  | `pack/vendor/start/*`           |
+| `lang`    | `src/Config/Language/*`         |
+| `snippet` | `src/UltiSnips/*`, `src/snippets/*` |
+| `init`    | `init.sh`, `install.sh`         |
