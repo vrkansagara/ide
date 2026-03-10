@@ -112,7 +112,7 @@ Install scripts for tools/languages, organized by category. Top-level scripts in
 
 ## Commit Convention
 
-Always use **Conventional Commits** (https://www.conventionalcommits.org/en/v1.0.0/) for all commits.
+STRICT RULE: Before every commit, validate the message matches the **Conventional Commits** spec (https://www.conventionalcommits.org/en/v1.0.0/). If it does not match, STOP and refuse to commit — show the correct format and ask the user to fix it. Never bypass the `commit-msg` hook.
 
 Format:
 ```
@@ -122,6 +122,9 @@ Format:
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
+
+The git author is always **Vallabhdas Kansagara <vrkansagara@gmail.com>** (from git config — never override this).
+The `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>` trailer MUST always be present.
 
 ### Types
 | Type       | When to use                           |
