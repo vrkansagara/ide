@@ -29,7 +29,7 @@ MON_CENTER="HDMI-1"         # external center monitor (primary when present)
 MON_LEFT="DP-1"             # external left monitor
 
 # Resolutions
-RES_LAPTOP="1366x768"
+RES_LAPTOP="1600x900"
 RES_CENTER="1920x1080"
 RES_LEFT="1366x768"
 
@@ -161,7 +161,7 @@ configure_display() {
         # ── Laptop only ──────────────────────────────────────────────────────
         section "Laptop only: ${MON_LAPTOP}(primary)"
         xrandr \
-            --output "$MON_LAPTOP" --mode 1920x1080 --pos 0x0 --rotate normal --primary \
+            --output "$MON_LAPTOP" --mode "$RES_LAPTOP" --pos 0x0 --rotate normal --primary \
             --output "$MON_CENTER" --off \
             --output "$MON_LEFT"   --off
     fi
