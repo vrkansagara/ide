@@ -26,12 +26,14 @@ display=""
 # ------------------------------------------------------------------------------
 MON_LAPTOP="eDP-1"          # built-in laptop screen (right-most)
 MON_CENTER="HDMI-1"         # external center monitor (primary when present)
-MON_LEFT="DP-1"             # external left monitor
+MON_LEFT="DP-2"             # external left monitor
+MON_DP1="DP-1"              # unused DP-1 port (kept off)
+MON_HDMI2="HDMI-2"          # unused HDMI-2 port (kept off)
 
 # Resolutions
-RES_LAPTOP="1600x900"
+RES_LAPTOP="1920x1080"
 RES_CENTER="1920x1080"
-RES_LEFT="1366x768"
+RES_LEFT="1920x1080"
 
 # ------------------------------------------------------------------------------
 # Color block
@@ -68,8 +70,8 @@ Set my default configuration for the working style.
 Auto-detects connected monitors and applies the correct xrandr layout:
 
   Laptop only         → eDP-1 primary
-  Laptop + HDMI-1     → HDMI-1 primary (left), eDP-1 right
-  DP-1 + HDMI-1 + eDP-1 → DP-1 left, HDMI-1 middle+primary, eDP-1 right
+  Laptop + HDMI-1     → HDMI-1 primary (center), eDP-1 right
+  DP-2 + HDMI-1 + eDP-1 → DP-2 left, HDMI-1 middle+primary, eDP-1 right
 
 Options:
   -a ARG           Set arg_1 argument
@@ -133,37 +135,45 @@ configure_display() {
 
     if [ "$has_left" -eq 1 ] && [ "$has_center" -eq 1 ] && [ "$has_laptop" -eq 1 ]; then
         # ── Triple monitor ──────────────────────────────────────────────────
-        # DP-1(0) | HDMI-1(1366) | eDP-1(3286)  [1366+1920=3286]
+        # DP-2(0) | HDMI-1(1920) | eDP-1(3840)  [1920+1920=3840]
         section "Triple display: ${MON_LEFT} | ${MON_CENTER}(primary) | ${MON_LAPTOP}"
         xrandr \
-            --output "$MON_LEFT"   --mode "$RES_LEFT"   --pos 0x0     --rotate normal \
-            --output "$MON_CENTER" --mode "$RES_CENTER" --pos 1366x0  --rotate normal --primary \
-            --output "$MON_LAPTOP" --mode "$RES_LAPTOP" --pos 3286x0  --rotate normal
+            --output "$MON_LEFT"   --mode "$RES_LEFT"   --pos 0x0    --rotate normal \
+            --output "$MON_CENTER" --primary --mode "$RES_CENTER" --pos 1920x0 --rotate normal \
+            --output "$MON_LAPTOP" --mode "$RES_LAPTOP" --pos 3840x0 --rotate normal \
+            --output "$MON_DP1"    --off \
+            --output "$MON_HDMI2"  --off
 
     elif [ "$has_center" -eq 1 ] && [ "$has_laptop" -eq 1 ]; then
         # ── Dual: HDMI + laptop ──────────────────────────────────────────────
-        # HDMI-1(0,primary) | eDP-1(1920)
+        # HDMI-1(0,primary) | eDP-1(1920)  [1920+1920=3840]
         section "Dual display: ${MON_CENTER}(primary) | ${MON_LAPTOP}"
         xrandr \
-            --output "$MON_CENTER" --mode "$RES_CENTER" --pos 0x0    --rotate normal --primary \
+            --output "$MON_CENTER" --primary --mode "$RES_CENTER" --pos 0x0    --rotate normal \
             --output "$MON_LAPTOP" --mode "$RES_LAPTOP" --pos 1920x0 --rotate normal \
-            --output "$MON_LEFT"   --off
+            --output "$MON_LEFT"   --off \
+            --output "$MON_DP1"    --off \
+            --output "$MON_HDMI2"  --off
 
     elif [ "$has_center" -eq 1 ]; then
         # ── Only center monitor (laptop lid closed) ──────────────────────────
         section "Single display: ${MON_CENTER}(primary)"
         xrandr \
-            --output "$MON_CENTER" --mode "$RES_CENTER" --pos 0x0 --rotate normal --primary \
+            --output "$MON_CENTER" --primary --mode "$RES_CENTER" --pos 0x0 --rotate normal \
             --output "$MON_LAPTOP" --off \
-            --output "$MON_LEFT"   --off
+            --output "$MON_LEFT"   --off \
+            --output "$MON_DP1"    --off \
+            --output "$MON_HDMI2"  --off
 
     else
         # ── Laptop only ──────────────────────────────────────────────────────
         section "Laptop only: ${MON_LAPTOP}(primary)"
         xrandr \
-            --output "$MON_LAPTOP" --mode "$RES_LAPTOP" --pos 0x0 --rotate normal --primary \
+            --output "$MON_LAPTOP" --primary --mode "$RES_LAPTOP" --pos 0x0 --rotate normal \
             --output "$MON_CENTER" --off \
-            --output "$MON_LEFT"   --off
+            --output "$MON_LEFT"   --off \
+            --output "$MON_DP1"    --off \
+            --output "$MON_HDMI2"  --off
     fi
 
     ok "Display layout applied."
