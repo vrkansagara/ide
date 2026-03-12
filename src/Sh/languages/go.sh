@@ -3,33 +3,37 @@
 # go.sh — Download and install Go (golang) from the official distribution
 # ==============================================================================
 # Maintainer : Vallabhdas Kansagara <vrkansagara@gmail.com> — @vrkansagara
-# Version    : 2.0.0
+# Version    : 2.1.0
 # Ref        : https://go.dev/doc/install
 
 set -o errexit
 set -o pipefail
 set -o nounset
 
-readonly VERSION="2.0.0"
+readonly VERSION="2.1.0"
 readonly PROGNAME="${0##*/}"
 VERBOSE=0
 SUDO_CMD=""
+GO_VERSION=""
 
 _init_colors() {
     if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
-        C_RESET="$(tput sgr0   2>/dev/null || printf '')"; C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
-        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"; C_RED="$(tput setaf 1 2>/dev/null || printf '')"
-        C_CYAN="$(tput setaf 6  2>/dev/null || printf '')"; C_BOLD="$(tput bold   2>/dev/null || printf '')"
+        C_RESET="$(tput sgr0 2>/dev/null || printf '')"
+        C_GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+        C_YELLOW="$(tput setaf 3 2>/dev/null || printf '')"
+        C_RED="$(tput setaf 1 2>/dev/null || printf '')"
+        C_CYAN="$(tput setaf 6 2>/dev/null || printf '')"
+        C_BOLD="$(tput bold 2>/dev/null || printf '')"
     else
         C_RESET=''; C_GREEN=''; C_YELLOW=''; C_RED=''; C_CYAN=''; C_BOLD=''
     fi
 }
 _init_colors
 
-info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+info()    { printf '%b[INFO]  %s%b\n' "$C_GREEN" "$*" "$C_RESET"; }
 warn()    { printf '%b[WARN]  %s%b\n' "$C_YELLOW" "$*" "$C_RESET"; }
-fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED"    "$*" "$C_RESET" >&2; exit 1; }
-ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN"  "$*" "$C_RESET"; }
+fatal()   { printf '%b[FATAL] %s%b\n' "$C_RED" "$*" "$C_RESET" >&2; exit 1; }
+ok()      { printf '%b[OK]    %s%b\n' "$C_GREEN" "$*" "$C_RESET"; }
 log()     { [ "$VERBOSE" -ne 0 ] && printf '[DEBUG] %s\n' "$*" || true; }
 section() { printf '\n%b=== %s ===%b\n' "${C_BOLD}${C_CYAN}" "$*" "$C_RESET"; }
 
@@ -41,24 +45,24 @@ on_error() {
 trap on_error ERR
 
 usage() {
-    cat <<EOF
+cat <<EOF
 Usage: ${PROGNAME} [OPTIONS]
 
-  Download the Go 1.22.2 tarball from go.dev, remove any existing /usr/local/go
-  installation, and extract the new version to /usr/local.
-
-  After installation, add Go to PATH in your shell profile:
-    export PATH=\$PATH:/usr/local/go/bin
+Download and install Go from go.dev.
 
 Options:
   -v, --verbose   Enable verbose/debug output
-  --version       Print version and exit
+  --version       Print script version and exit
   -h, --help      Show this help message
 EOF
 }
 
 _run() {
-    if [ -n "$SUDO_CMD" ]; then "$SUDO_CMD" "$@"; else "$@"; fi
+    if [ -n "$SUDO_CMD" ]; then
+        "$SUDO_CMD" "$@"
+    else
+        "$@"
+    fi
 }
 
 parse_args() {
@@ -84,19 +88,50 @@ parse_args() {
     done
 }
 
+choose_version() {
+
+    echo
+    echo "Select Go version to install"
+    echo "--------------------------------"
+    echo "1) 1.22.2 (stable)"
+    echo "2) 1.21.13"
+    echo "3) Custom version"
+    echo
+
+    read -rp "Enter option [1-3]: " opt
+
+    case "$opt" in
+        1)
+            GO_VERSION="1.22.2"
+            ;;
+        2)
+            GO_VERSION="1.21.13"
+            ;;
+        3)
+            read -rp "Enter Go version (example 1.22.2): " GO_VERSION
+            ;;
+        *)
+            fatal "Invalid option"
+            ;;
+    esac
+}
+
 main() {
+
     parse_args "$@"
 
     if [ "$(id -u)" -ne 0 ]; then
         command -v sudo >/dev/null 2>&1 && SUDO_CMD="sudo" || warn "sudo not found."
     fi
 
-    readonly GO_PKG="go1.22.2.linux-amd64.tar.gz"
-    readonly GO_URL="https://go.dev/dl/${GO_PKG}"
+    choose_version
 
-    section "Downloading Go"
-    _run rm -rf "/tmp/${GO_PKG}"
+    GO_PKG="go${GO_VERSION}.linux-amd64.tar.gz"
+    GO_URL="https://go.dev/dl/${GO_PKG}"
+
+    section "Downloading Go ${GO_VERSION}"
     cd /tmp
+    _run rm -f "${GO_PKG}"
     wget "$GO_URL"
 
     section "Installing Go to /usr/local"
@@ -104,11 +139,10 @@ main() {
     _run tar -C /usr/local -xzf "${GO_PKG}"
 
     info "Go installed to /usr/local/go"
-    info "Add the following to your shell profile:"
+    info "Add Go to PATH:"
     info "  export PATH=\$PATH:/usr/local/go/bin"
 
-    ok "Go installation complete."
-    exit 0
+    ok "Go ${GO_VERSION} installation complete."
 }
 
 main "$@"
